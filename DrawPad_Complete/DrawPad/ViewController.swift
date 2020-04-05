@@ -7,7 +7,7 @@ class ViewController: UIViewController {
   
   var lastPoint = CGPoint.zero
   var color = UIColor.black
-  var brushWidth: CGFloat = 1.0
+  var brushWidth: CGFloat = 2.0
   var opacity: CGFloat = 1.0
   var swiped = false
   
