@@ -32,7 +32,7 @@ class ViewController: UIViewController {
   // MARK: - Actions
   
   @IBAction func resetPressed(_ sender: Any) {
-    mainImageView.image = nil
+    mainImageView.image = UIImage(named: "RandomPath")!
   }
   
   @IBAction func pencilPressed(_ sender: UIButton) {
@@ -97,8 +97,10 @@ class ViewController: UIViewController {
     UIGraphicsBeginImageContext(mainImageView.frame.size)
     mainImageView.image?.draw(in: view.bounds, blendMode: .normal, alpha: 1.0)
     tempImageView?.image?.draw(in: view.bounds, blendMode: .normal, alpha: opacity)
+    tempImageView.contentMode = .scaleAspectFit
     mainImageView.image = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
+    
     
     tempImageView.image = nil
   }
