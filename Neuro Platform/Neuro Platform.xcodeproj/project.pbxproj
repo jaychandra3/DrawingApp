@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		52ADE809249570B200595A42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE808249570B200595A42 /* AppDelegate.swift */; };
+		52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE80A249570B200595A42 /* SceneDelegate.swift */; };
+		52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE80C249570B200595A42 /* Neuro_Platform.xcdatamodeld */; };
+		52ADE810249570B200595A42 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE80F249570B200595A42 /* ContentView.swift */; };
+		52ADE812249570B400595A42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52ADE811249570B400595A42 /* Assets.xcassets */; };
+		52ADE815249570B400595A42 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52ADE814249570B400595A42 /* Preview Assets.xcassets */; };
+		52ADE818249570B400595A42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52ADE816249570B400595A42 /* LaunchScreen.storyboard */; };
+		52ADE823249570B400595A42 /* Neuro_PlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE822249570B400595A42 /* Neuro_PlatformTests.swift */; };
+		52ADE82E249570B400595A42 /* Neuro_PlatformUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		52ADE81F249570B400595A42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52ADE7FD249570B200595A42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52ADE804249570B200595A42;
+			remoteInfo = "Neuro Platform";
+		};
+		52ADE82A249570B400595A42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52ADE7FD249570B200595A42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52ADE804249570B200595A42;
+			remoteInfo = "Neuro Platform";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		52ADE805249570B200595A42 /* Neuro Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Neuro Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52ADE808249570B200595A42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		52ADE80A249570B200595A42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		52ADE80D249570B200595A42 /* Neuro_Platform.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Neuro_Platform.xcdatamodel; sourceTree = "<group>"; };
+		52ADE80F249570B200595A42 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		52ADE811249570B400595A42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52ADE814249570B400595A42 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		52ADE817249570B400595A42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		52ADE819249570B400595A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52ADE81E249570B400595A42 /* Neuro PlatformTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Neuro PlatformTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52ADE822249570B400595A42 /* Neuro_PlatformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neuro_PlatformTests.swift; sourceTree = "<group>"; };
+		52ADE824249570B400595A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52ADE829249570B400595A42 /* Neuro PlatformUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Neuro PlatformUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neuro_PlatformUITests.swift; sourceTree = "<group>"; };
+		52ADE82F249570B400595A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52ADE802249570B200595A42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52ADE81B249570B400595A42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52ADE826249570B400595A42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52ADE7FC249570B200595A42 = {
+			isa = PBXGroup;
+			children = (
+				52ADE807249570B200595A42 /* Neuro Platform */,
+				52ADE821249570B400595A42 /* Neuro PlatformTests */,
+				52ADE82C249570B400595A42 /* Neuro PlatformUITests */,
+				52ADE806249570B200595A42 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		52ADE806249570B200595A42 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52ADE805249570B200595A42 /* Neuro Platform.app */,
+				52ADE81E249570B400595A42 /* Neuro PlatformTests.xctest */,
+				52ADE829249570B400595A42 /* Neuro PlatformUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52ADE807249570B200595A42 /* Neuro Platform */ = {
+			isa = PBXGroup;
+			children = (
+				52ADE808249570B200595A42 /* AppDelegate.swift */,
+				52ADE80A249570B200595A42 /* SceneDelegate.swift */,
+				52ADE80F249570B200595A42 /* ContentView.swift */,
+				52ADE811249570B400595A42 /* Assets.xcassets */,
+				52ADE816249570B400595A42 /* LaunchScreen.storyboard */,
+				52ADE819249570B400595A42 /* Info.plist */,
+				52ADE80C249570B200595A42 /* Neuro_Platform.xcdatamodeld */,
+				52ADE813249570B400595A42 /* Preview Content */,
+			);
+			path = "Neuro Platform";
+			sourceTree = "<group>";
+		};
+		52ADE813249570B400595A42 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				52ADE814249570B400595A42 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		52ADE821249570B400595A42 /* Neuro PlatformTests */ = {
+			isa = PBXGroup;
+			children = (
+				52ADE822249570B400595A42 /* Neuro_PlatformTests.swift */,
+				52ADE824249570B400595A42 /* Info.plist */,
+			);
+			path = "Neuro PlatformTests";
+			sourceTree = "<group>";
+		};
+		52ADE82C249570B400595A42 /* Neuro PlatformUITests */ = {
+			isa = PBXGroup;
+			children = (
+				52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */,
+				52ADE82F249570B400595A42 /* Info.plist */,
+			);
+			path = "Neuro PlatformUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52ADE804249570B200595A42 /* Neuro Platform */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52ADE832249570B400595A42 /* Build configuration list for PBXNativeTarget "Neuro Platform" */;
+			buildPhases = (
+				52ADE801249570B200595A42 /* Sources */,
+				52ADE802249570B200595A42 /* Frameworks */,
+				52ADE803249570B200595A42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Neuro Platform";
+			productName = "Neuro Platform";
+			productReference = 52ADE805249570B200595A42 /* Neuro Platform.app */;
+			productType = "com.apple.product-type.application";
+		};
+		52ADE81D249570B400595A42 /* Neuro PlatformTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52ADE835249570B400595A42 /* Build configuration list for PBXNativeTarget "Neuro PlatformTests" */;
+			buildPhases = (
+				52ADE81A249570B400595A42 /* Sources */,
+				52ADE81B249570B400595A42 /* Frameworks */,
+				52ADE81C249570B400595A42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52ADE820249570B400595A42 /* PBXTargetDependency */,
+			);
+			name = "Neuro PlatformTests";
+			productName = "Neuro PlatformTests";
+			productReference = 52ADE81E249570B400595A42 /* Neuro PlatformTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		52ADE828249570B400595A42 /* Neuro PlatformUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52ADE838249570B400595A42 /* Build configuration list for PBXNativeTarget "Neuro PlatformUITests" */;
+			buildPhases = (
+				52ADE825249570B400595A42 /* Sources */,
+				52ADE826249570B400595A42 /* Frameworks */,
+				52ADE827249570B400595A42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52ADE82B249570B400595A42 /* PBXTargetDependency */,
+			);
+			name = "Neuro PlatformUITests";
+			productName = "Neuro PlatformUITests";
+			productReference = 52ADE829249570B400595A42 /* Neuro PlatformUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52ADE7FD249570B200595A42 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = NDDP;
+				TargetAttributes = {
+					52ADE804249570B200595A42 = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+					52ADE81D249570B400595A42 = {
+						CreatedOnToolsVersion = 11.4.1;
+						TestTargetID = 52ADE804249570B200595A42;
+					};
+					52ADE828249570B400595A42 = {
+						CreatedOnToolsVersion = 11.4.1;
+						TestTargetID = 52ADE804249570B200595A42;
+					};
+				};
+			};
+			buildConfigurationList = 52ADE800249570B200595A42 /* Build configuration list for PBXProject "Neuro Platform" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 52ADE7FC249570B200595A42;
+			productRefGroup = 52ADE806249570B200595A42 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52ADE804249570B200595A42 /* Neuro Platform */,
+				52ADE81D249570B400595A42 /* Neuro PlatformTests */,
+				52ADE828249570B400595A42 /* Neuro PlatformUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		52ADE803249570B200595A42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52ADE818249570B400595A42 /* LaunchScreen.storyboard in Resources */,
+				52ADE815249570B400595A42 /* Preview Assets.xcassets in Resources */,
+				52ADE812249570B400595A42 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52ADE81C249570B400595A42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52ADE827249570B400595A42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52ADE801249570B200595A42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52ADE809249570B200595A42 /* AppDelegate.swift in Sources */,
+				52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */,
+				52ADE810249570B200595A42 /* ContentView.swift in Sources */,
+				52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52ADE81A249570B400595A42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52ADE823249570B400595A42 /* Neuro_PlatformTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52ADE825249570B400595A42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52ADE82E249570B400595A42 /* Neuro_PlatformUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52ADE820249570B400595A42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52ADE804249570B200595A42 /* Neuro Platform */;
+			targetProxy = 52ADE81F249570B400595A42 /* PBXContainerItemProxy */;
+		};
+		52ADE82B249570B400595A42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52ADE804249570B200595A42 /* Neuro Platform */;
+			targetProxy = 52ADE82A249570B400595A42 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		52ADE816249570B400595A42 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52ADE817249570B400595A42 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		52ADE830249570B400595A42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		52ADE831249570B400595A42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		52ADE833249570B400595A42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Neuro Platform/Preview Content\"";
+				DEVELOPMENT_TEAM = HH5RQC38P4;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Neuro Platform/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NDDP.Neuro-Platform";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		52ADE834249570B400595A42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Neuro Platform/Preview Content\"";
+				DEVELOPMENT_TEAM = HH5RQC38P4;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Neuro Platform/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NDDP.Neuro-Platform";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		52ADE836249570B400595A42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HH5RQC38P4;
+				INFOPLIST_FILE = "Neuro PlatformTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NDDP.Neuro-PlatformTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Neuro Platform.app/Neuro Platform";
+			};
+			name = Debug;
+		};
+		52ADE837249570B400595A42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HH5RQC38P4;
+				INFOPLIST_FILE = "Neuro PlatformTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NDDP.Neuro-PlatformTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Neuro Platform.app/Neuro Platform";
+			};
+			name = Release;
+		};
+		52ADE839249570B400595A42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HH5RQC38P4;
+				INFOPLIST_FILE = "Neuro PlatformUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NDDP.Neuro-PlatformUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Neuro Platform";
+			};
+			name = Debug;
+		};
+		52ADE83A249570B400595A42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HH5RQC38P4;
+				INFOPLIST_FILE = "Neuro PlatformUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NDDP.Neuro-PlatformUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Neuro Platform";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52ADE800249570B200595A42 /* Build configuration list for PBXProject "Neuro Platform" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52ADE830249570B400595A42 /* Debug */,
+				52ADE831249570B400595A42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52ADE832249570B400595A42 /* Build configuration list for PBXNativeTarget "Neuro Platform" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52ADE833249570B400595A42 /* Debug */,
+				52ADE834249570B400595A42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52ADE835249570B400595A42 /* Build configuration list for PBXNativeTarget "Neuro PlatformTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52ADE836249570B400595A42 /* Debug */,
+				52ADE837249570B400595A42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52ADE838249570B400595A42 /* Build configuration list for PBXNativeTarget "Neuro PlatformUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52ADE839249570B400595A42 /* Debug */,
+				52ADE83A249570B400595A42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		52ADE80C249570B200595A42 /* Neuro_Platform.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				52ADE80D249570B200595A42 /* Neuro_Platform.xcdatamodel */,
+			);
+			currentVersion = 52ADE80D249570B200595A42 /* Neuro_Platform.xcdatamodel */;
+			path = Neuro_Platform.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 52ADE7FD249570B200595A42 /* Project object */;
+}
