@@ -7,10 +7,46 @@
 //
 
 import SwiftUI
+import PencilKit
 
 struct ContentView: View {
+    @State private var canvasView = PKCanvasView()
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Text("PencilKit Canvas")
+            CanvasView(canvasView: $canvasView)
+                .aspectRatio(contentMode: ContentMode.fill)
+            Spacer()
+            Button(action: {self.canvasView.drawing = PKDrawing()}){
+                ZStack {
+                    Rectangle()
+                        .frame(width: 250.0, height: 30.0)
+                        .foregroundColor(.black)
+                        .cornerRadius(5)
+                        
+                    Text("Clear Canvas")
+                        .foregroundColor(.white)
+                }
+            }
+            Button(action: {
+                print(self.canvasView.drawing.dataRepresentation())
+            }) {
+                ZStack {
+                    Rectangle()
+                        .frame(width: 250.0, height: 30.0)
+                        .foregroundColor(.black)
+                        .cornerRadius(5)
+                        
+                    Text("Log to Console")
+                        .foregroundColor(.white)
+                }
+            }
+            Spacer()
+//            Text("DrawView")
+//            DrawingView()
+//            Spacer()
+        }
     }
 }
 
