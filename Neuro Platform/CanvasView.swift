@@ -14,6 +14,7 @@ struct CanvasView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> PKCanvasView {
         self.canvasView.tool = PKInkingTool(.pen, color: .black, width: 15)
+        
         return canvasView
     }
     

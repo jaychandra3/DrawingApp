@@ -27,6 +27,7 @@ struct DrawingPad: View {
             .gesture(
                 DragGesture(minimumDistance: 0.1)
                 .onChanged({(value) in
+                    print(value)
                     let currentPoint = value.location
                     if currentPoint.y >= 0
                         && currentPoint.y < geometry.size.height {

@@ -14,12 +14,31 @@ struct DrawingView: View {
     @State private var color : Color = Color.black
     @State private var lineWidth : CGFloat = 3.0
     
+    let circle : some Shape = Circle()
+        .stroke(lineWidth: 3)
     var body: some View {
         VStack(alignment: .center) {
-            DrawingPad(currentDrawing: $currentDrawing,
-                       drawings: $drawings,
-                       color: $color,
-                       lineWidth: $lineWidth)
+            ZStack {
+                DrawingPad(currentDrawing: $currentDrawing,
+                           drawings: $drawings,
+                           color: $color,
+                           lineWidth: $lineWidth)
+                HStack {
+                    Spacer()
+                    circle
+                        .opacity(0.5)
+                    Spacer()
+                }
+                
+            }
+            Spacer()
+            Button(action: {self.drawings = [Drawing]()}) {
+                Text("Clear Drawings").foregroundColor(.white)
+            }
+            .padding()
+            .background(Rectangle().foregroundColor(.black))
+            .cornerRadius(5)
+            Spacer()
         }
     }
 }
