@@ -18,8 +18,8 @@
 		52ADE82E249570B400595A42 /* Neuro_PlatformUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */; };
 		AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE250249BD33A00603E42 /* DrawingPad.swift */; };
 		AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE252249BD4F800603E42 /* Drawing.swift */; };
+		AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF94D03524A8112E000EBEF4 /* CustomShapes.swift */; };
 		AFA45A9A249C1120003A6144 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA45A99249C1120003A6144 /* DrawingView.swift */; };
-		AFF42D85249D3C1C002656F3 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF42D84249D3C1C002656F3 /* CanvasView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +57,8 @@
 		52ADE82F249570B400595A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF4EE250249BD33A00603E42 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPad.swift; sourceTree = "<group>"; };
 		AF4EE252249BD4F800603E42 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
+		AF94D03524A8112E000EBEF4 /* CustomShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapes.swift; sourceTree = "<group>"; };
 		AFA45A99249C1120003A6144 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
-		AFF42D84249D3C1C002656F3 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +89,8 @@
 		52ADE7FC249570B200595A42 = {
 			isa = PBXGroup;
 			children = (
-				AFF42D84249D3C1C002656F3 /* CanvasView.swift */,
 				AF4EE250249BD33A00603E42 /* DrawingPad.swift */,
+				AF94D03524A8112E000EBEF4 /* CustomShapes.swift */,
 				AF4EE252249BD4F800603E42 /* Drawing.swift */,
 				AFA45A99249C1120003A6144 /* DrawingView.swift */,
 				52ADE807249570B200595A42 /* Neuro Platform */,
@@ -284,9 +284,9 @@
 			files = (
 				AFA45A9A249C1120003A6144 /* DrawingView.swift in Sources */,
 				52ADE809249570B200595A42 /* AppDelegate.swift in Sources */,
-				AFF42D85249D3C1C002656F3 /* CanvasView.swift in Sources */,
 				AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */,
 				AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */,
+				AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */,
 				52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */,
 				52ADE810249570B200595A42 /* ContentView.swift in Sources */,
 				52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */,
