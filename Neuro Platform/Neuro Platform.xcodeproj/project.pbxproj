@@ -16,6 +16,7 @@
 		52ADE818249570B400595A42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52ADE816249570B400595A42 /* LaunchScreen.storyboard */; };
 		52ADE823249570B400595A42 /* Neuro_PlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE822249570B400595A42 /* Neuro_PlatformTests.swift */; };
 		52ADE82E249570B400595A42 /* Neuro_PlatformUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */; };
+		AF15515424AD44D800162800 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF15515324AD44D800162800 /* DataObjects.swift */; };
 		AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE250249BD33A00603E42 /* DrawingPad.swift */; };
 		AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE252249BD4F800603E42 /* Drawing.swift */; };
 		AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF94D03524A8112E000EBEF4 /* CustomShapes.swift */; };
@@ -55,6 +56,7 @@
 		52ADE829249570B400595A42 /* Neuro PlatformUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Neuro PlatformUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neuro_PlatformUITests.swift; sourceTree = "<group>"; };
 		52ADE82F249570B400595A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF15515324AD44D800162800 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		AF4EE250249BD33A00603E42 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPad.swift; sourceTree = "<group>"; };
 		AF4EE252249BD4F800603E42 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
 		AF94D03524A8112E000EBEF4 /* CustomShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapes.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		52ADE7FC249570B200595A42 = {
 			isa = PBXGroup;
 			children = (
+				AF15515324AD44D800162800 /* DataObjects.swift */,
 				AF4EE250249BD33A00603E42 /* DrawingPad.swift */,
 				AF94D03524A8112E000EBEF4 /* CustomShapes.swift */,
 				AF4EE252249BD4F800603E42 /* Drawing.swift */,
@@ -286,6 +289,7 @@
 				52ADE809249570B200595A42 /* AppDelegate.swift in Sources */,
 				AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */,
 				AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */,
+				AF15515424AD44D800162800 /* DataObjects.swift in Sources */,
 				AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */,
 				52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */,
 				52ADE810249570B200595A42 /* ContentView.swift in Sources */,
