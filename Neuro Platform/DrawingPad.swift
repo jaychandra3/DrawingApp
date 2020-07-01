@@ -13,6 +13,7 @@ struct DrawingPad: View {
     @Binding var drawings : [Drawing]
     @Binding var color : Color
     @Binding var lineWidth : CGFloat
+    let user : UserData = UserData()
     
     var body: some View {
         GeometryReader { geometry in
@@ -27,7 +28,7 @@ struct DrawingPad: View {
             .gesture(
                 DragGesture(minimumDistance: 0.1)
                 .onChanged({(value) in
-                    print(value)
+                    self.user.update(value: value)
                     let currentPoint = value.location
                     if currentPoint.y >= 0
                         && currentPoint.y < geometry.size.height {
@@ -35,8 +36,10 @@ struct DrawingPad: View {
                     }
                 })
                 .onEnded({(value) in
+                    self.user.update(value: value)
                     self.drawings.append(self.currentDrawing)
                     self.currentDrawing = Drawing()
+                    self.user.printInfo()
                 })
             )
         }
