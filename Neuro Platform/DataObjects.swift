@@ -10,7 +10,7 @@ import Foundation
 import CoreGraphics
 import SwiftUI
 
-class UserData {
+class DrawingData {
     var coordinates : [CGPoint]
     var timestamps : [Date]
     var velocities : [Double]
@@ -49,5 +49,11 @@ class UserData {
         print(coordinates)
     }
     
+}
+
+class UserData {
     
+    init() {
+        
+    }
 }
