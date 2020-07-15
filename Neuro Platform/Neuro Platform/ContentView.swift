@@ -17,6 +17,7 @@ struct ContentView: View {
             Text("DrawView")
             DrawingView()
             Spacer()
+            TouchCaptureView()
         }
     }
 }
