@@ -21,6 +21,9 @@
 		AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE252249BD4F800603E42 /* Drawing.swift */; };
 		AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF94D03524A8112E000EBEF4 /* CustomShapes.swift */; };
 		AFA45A9A249C1120003A6144 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA45A99249C1120003A6144 /* DrawingView.swift */; };
+		AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDFDDBA24BE74EE00EBDCA9 /* TouchCaptureViewController.swift */; };
+		AFDFDDBD24BE74EE00EBDCA9 /* TouchCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFDFDDBB24BE74EE00EBDCA9 /* TouchCaptureViewController.xib */; };
+		AFDFDDBF24BE771200EBDCA9 /* TouchCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDFDDBE24BE771200EBDCA9 /* TouchCaptureView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		AF4EE252249BD4F800603E42 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
 		AF94D03524A8112E000EBEF4 /* CustomShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapes.swift; sourceTree = "<group>"; };
 		AFA45A99249C1120003A6144 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		AFDFDDBA24BE74EE00EBDCA9 /* TouchCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCaptureViewController.swift; sourceTree = "<group>"; };
+		AFDFDDBB24BE74EE00EBDCA9 /* TouchCaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TouchCaptureViewController.xib; sourceTree = "<group>"; };
+		AFDFDDBE24BE771200EBDCA9 /* TouchCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCaptureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,7 @@
 		52ADE807249570B200595A42 /* Neuro Platform */ = {
 			isa = PBXGroup;
 			children = (
+				AFDFDDB924BE749100EBDCA9 /* ViewControllers */,
 				52ADE808249570B200595A42 /* AppDelegate.swift */,
 				52ADE80A249570B200595A42 /* SceneDelegate.swift */,
 				52ADE80F249570B200595A42 /* ContentView.swift */,
@@ -152,6 +159,16 @@
 				52ADE82F249570B400595A42 /* Info.plist */,
 			);
 			path = "Neuro PlatformUITests";
+			sourceTree = "<group>";
+		};
+		AFDFDDB924BE749100EBDCA9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AFDFDDBA24BE74EE00EBDCA9 /* TouchCaptureViewController.swift */,
+				AFDFDDBB24BE74EE00EBDCA9 /* TouchCaptureViewController.xib */,
+				AFDFDDBE24BE771200EBDCA9 /* TouchCaptureView.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +277,7 @@
 			files = (
 				52ADE818249570B400595A42 /* LaunchScreen.storyboard in Resources */,
 				52ADE815249570B400595A42 /* Preview Assets.xcassets in Resources */,
+				AFDFDDBD24BE74EE00EBDCA9 /* TouchCaptureViewController.xib in Resources */,
 				52ADE812249570B400595A42 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +310,9 @@
 				AF15515424AD44D800162800 /* DataObjects.swift in Sources */,
 				AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */,
 				52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */,
+				AFDFDDBF24BE771200EBDCA9 /* TouchCaptureView.swift in Sources */,
 				52ADE810249570B200595A42 /* ContentView.swift in Sources */,
+				AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */,
 				52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
