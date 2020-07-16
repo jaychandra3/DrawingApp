@@ -8,11 +8,36 @@
 
 import UIKit
 
-class TouchCaptureViewController: UIViewController {
+protocol TouchCaptureViewDelegate {
+    func didStartDrag(_ sender : TouchCaptureViewController)
+    func didDrag(_ sender : TouchCaptureViewController)
+    func didFinishDrag(_ sender : TouchCaptureViewController)
+}
 
+class TouchCaptureViewController: UIViewController {
+    
+    var delegate : TouchCaptureViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with : event)
+        delegate?.didStartDrag(self)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        if let touch = touches.first {
+            print (touch.altitudeAngle)
+            print (touch.azimuthAngle)
+            print (touch.force)
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
     }
 
     /*
