@@ -31,7 +31,7 @@ class TouchCaptureViewController: UIViewController {
         super.touchesMoved(touches, with: event)
         if let touch = touches.first {
             print (touch.altitudeAngle)
-            print (touch.azimuthAngle)
+            print (touch.azimuthAngle(in: self.view))
             print (touch.force)
         }
     }
