@@ -11,8 +11,8 @@ import SwiftUI
 struct DrawingPad: View {
     @Binding var currentDrawing : Drawing
     @Binding var drawings : [Drawing]
-    @Binding var color : Color
-    @Binding var lineWidth : CGFloat
+    let color : Color = .black
+    let lineWidth : CGFloat = 3.0
     let user : DrawingData = DrawingData()
     
     var body: some View {
@@ -25,41 +25,35 @@ struct DrawingPad: View {
             }
             .stroke(self.color, lineWidth: self.lineWidth)
             .background(Color(white:0.95))
-            .gesture(
-                DragGesture(minimumDistance: 0.1)
-                .onChanged({(value) in
-                    self.user.update(value: value)
-                    let currentPoint = value.location
-                    if currentPoint.y >= 0
-                        && currentPoint.y < geometry.size.height {
-                        self.currentDrawing.points.append(currentPoint)
-                    }
-                })
-                .onEnded({(value) in
-                    self.user.update(value: value)
-                    self.drawings.append(self.currentDrawing)
-                    self.currentDrawing = Drawing()
-                })
-            )
+            
         }
         .frame(maxHeight: .infinity)
     }
     
-    private func add(drawing : Drawing, toPath path : inout Path) {
-        let points = drawing.points
-        if points.count > 1 {
-            for i in 0..<points.count - 1 {
-                let current = points[i]
-                let next = points[i+1]
-                path.move(to: current)
-                path.addLine(to: next)
+        private func continueDrawing(point : CGPoint) {
+    //        user.update(value: value)
+            let currentPoint = point
+    //        if currentPoint.y >= 0
+    //            && currentPoint.y < geometry.size.height {
+                currentDrawing.points.append(currentPoint)
+    //        }
+        }
+        
+        private func finishDrawing(point : CGPoint) {
+    //        self.user.update(value: value)
+            drawings.append(currentDrawing)
+            currentDrawing = Drawing()
+        }
+
+        private func add(drawing : Drawing, toPath path : inout Path) {
+            let points = drawing.points
+            if points.count > 1 {
+                for i in 0..<points.count - 1 {
+                    let current = points[i]
+                    let next = points[i+1]
+                    path.move(to: current)
+                    path.addLine(to: next)
+                }
             }
         }
-    }
-}
-
-struct DrawingPad_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
-    }
 }

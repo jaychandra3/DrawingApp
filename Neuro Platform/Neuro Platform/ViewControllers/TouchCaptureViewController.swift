@@ -9,9 +9,9 @@
 import UIKit
 
 protocol TouchCaptureViewDelegate {
-    func didStartDrag(_ sender : TouchCaptureViewController)
-    func didDrag(_ sender : TouchCaptureViewController)
-    func didFinishDrag(_ sender : TouchCaptureViewController)
+    func didStartDrag(_ sender : TouchCaptureViewController, _ touch : UITouch)
+    func didDrag(_ sender : TouchCaptureViewController, _ touch : UITouch)
+    func didFinishDrag(_ sender : TouchCaptureViewController, _ touch : UITouch)
 }
 
 class TouchCaptureViewController: UIViewController {
@@ -24,20 +24,30 @@ class TouchCaptureViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with : event)
-        delegate?.didStartDrag(self)
+        print("START")
+        if let touch = touches.first {
+            delegate?.didStartDrag(self, touch)
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
         if let touch = touches.first {
-            print (touch.altitudeAngle)
-            print (touch.azimuthAngle)
-            print (touch.force)
+            print(touch.location(in: self.view))
+            delegate?.didDrag(self, touch)
+//            print(touch.location(in: self.view))
+//            print (touch.altitudeAngle)
+//            print (touch.azimuthAngle)
+//            print (touch.force)
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
+        print("END")
+        if let touch = touches.first {
+            delegate?.didFinishDrag(self, touch)
+        }
     }
 
     /*
