@@ -20,9 +20,7 @@ struct DrawingView: View {
         VStack(alignment: .center) {
             ZStack {
                 DrawingPad(currentDrawing: $currentDrawing,
-                           drawings: $drawings,
-                           color: $color,
-                           lineWidth: $lineWidth)
+                           drawings: $drawings)
                 HStack {
                     Spacer()
                     circle
@@ -30,7 +28,12 @@ struct DrawingView: View {
                     Spacer()
                 }
                 
+                TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings)
+                    .opacity(0.1)
+                
             }
+//            Spacer()
+//            TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings)
             Spacer()
             Button(action: {self.drawings = [Drawing]()}) {
                 Text("Clear Drawings").foregroundColor(.white)
@@ -41,6 +44,7 @@ struct DrawingView: View {
             Spacer()
         }
     }
+    
 }
 
 struct DrawingView_Previews: PreviewProvider {

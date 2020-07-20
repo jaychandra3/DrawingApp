@@ -12,12 +12,13 @@ import PencilKit
 struct ContentView: View {
     @State private var canvasView = PKCanvasView()
     
+    let dView = DrawingView()
+    
     var body: some View {
         VStack {
             Text("DrawView")
             DrawingView()
             Spacer()
-            TouchCaptureView()
         }
     }
 }
