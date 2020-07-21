@@ -17,15 +17,15 @@ struct TouchCaptureView: UIViewControllerRepresentable {
         }
         
         func didStartDrag(_ sender: TouchCaptureViewController, _ touch : UITouch) {
-            parent.continueDrawing(point: touch.location(in: sender.view))
+            parent.continueDrawing(point: touch.location(in: sender.view), bounds: sender.view.bounds)
         }
         
         func didDrag(_ sender: TouchCaptureViewController, _ touch : UITouch) {
-            parent.continueDrawing(point: touch.location(in: sender.view))
+            parent.continueDrawing(point: touch.location(in: sender.view), bounds: sender.view.bounds)
         }
         
         func didFinishDrag(_ sender: TouchCaptureViewController, _ touch : UITouch) {
-            parent.finishDrawing(point: touch.location(in: sender.view))
+            parent.finishDrawing(point: touch.location(in: sender.view), bounds : sender.view.bounds)
         }
     }
     
@@ -46,17 +46,20 @@ struct TouchCaptureView: UIViewControllerRepresentable {
         
     }
     
-    public func continueDrawing(point : CGPoint) {
-       //        user.update(value: value)
-               let currentPoint = point
-       //        if currentPoint.y >= 0
-       //            && currentPoint.y < geometry.size.height {
-                   currentDrawing.points.append(currentPoint)
-       //        }
+    public func continueDrawing(point : CGPoint, bounds : CGRect) {
+        if point.y >= 0
+            && point.y < bounds.height {
+                currentDrawing.points.append(point)
+        } else {
+            finishDrawing(point: nil, bounds: bounds)
+        }
+
     }
            
-    public func finishDrawing(point : CGPoint) {
-    //        self.user.update(value: value)
+    public func finishDrawing(point : CGPoint?, bounds : CGRect) {
+        if let p = point {
+            currentDrawing.points.append(p)
+        }
         drawings.append(currentDrawing)
         currentDrawing = Drawing()
     }

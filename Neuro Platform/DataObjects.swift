@@ -14,9 +14,10 @@ class DrawingData {
     var coordinates : [CGPoint]
     var timestamps : [Date]
     var velocities : [Double]
+    var started : Bool
+//    Following variables used for calculating velocities
     var lastPoint : CGPoint
     var lastTime : Date
-    var started : Bool
     
     init() {
         coordinates = [CGPoint]()
@@ -25,6 +26,10 @@ class DrawingData {
         lastPoint = CGPoint(x: -1, y: -1)
         lastTime = Date()
         started = false
+    }
+    
+    func update(value : UITouch) {
+        
     }
     
     func update(value : DragGesture.Value) {

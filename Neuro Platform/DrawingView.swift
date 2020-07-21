@@ -32,8 +32,6 @@ struct DrawingView: View {
                     .opacity(0.1)
                 
             }
-//            Spacer()
-//            TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings)
             Spacer()
             Button(action: {self.drawings = [Drawing]()}) {
                 Text("Clear Drawings").foregroundColor(.white)
