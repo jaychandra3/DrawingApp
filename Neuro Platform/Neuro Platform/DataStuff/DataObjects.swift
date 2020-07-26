@@ -12,47 +12,55 @@ import SwiftUI
 
 class DrawingData {
     var coordinates : [CGPoint]
-    var timestamps : [Date]
+    var timestamps : [TimeInterval]
     var velocities : [Double]
     var started : Bool
 //    Following variables used for calculating velocities
     var lastPoint : CGPoint
-    var lastTime : Date
+    var lastTime : TimeInterval
     
     init() {
         coordinates = [CGPoint]()
-        timestamps = [Date]()
+        timestamps = [TimeInterval]()
         velocities = [Double]()
         lastPoint = CGPoint(x: -1, y: -1)
-        lastTime = Date()
+        lastTime = TimeInterval()
         started = false
     }
     
-    func update(value : UITouch) {
-        
-    }
-    
-    func update(value : DragGesture.Value) {
-        coordinates.append(value.location)
-        timestamps.append(value.time)
+    func update(value : UITouch, location : CGPoint) {
+        coordinates.append(location)
         
         if !started {
-            lastPoint = value.location
-            lastTime = value.time
+            lastPoint = location
+            lastTime = value.timestamp
             velocities.append(0)
             started = true
         } else {
-            let timeint = value.time.timeIntervalSince(lastTime).magnitude
-            let distance = sqrt(pow(lastPoint.x - value.location.x, 2) + pow(lastPoint.y - value.location.y, 2))
-            coordinates.append(value.location)
-            timestamps.append(value.time)
+            let timeint = value.timestamp - lastTime
+            let distance = sqrt(pow(lastPoint.x - location.x, 2)
+                + pow(lastPoint.y - location.y, 2))
+            coordinates.append(location)
+            timestamps.append(value.timestamp)
+            print(Double(distance) / timeint)
             velocities.append(Double(distance) / timeint)
+      
         }
     }
     
-    func printInfo() {
-        print(coordinates)
+    func finishDrawing() {
+//        TODO
     }
+    
+    func printInfo() {
+//        TODO
+    }
+    
+    func convertToJSON() {
+//        TODO
+    }
+    
+    
     
 }
 

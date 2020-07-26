@@ -97,11 +97,6 @@
 		52ADE7FC249570B200595A42 = {
 			isa = PBXGroup;
 			children = (
-				AF15515324AD44D800162800 /* DataObjects.swift */,
-				AF4EE250249BD33A00603E42 /* DrawingPad.swift */,
-				AF94D03524A8112E000EBEF4 /* CustomShapes.swift */,
-				AF4EE252249BD4F800603E42 /* Drawing.swift */,
-				AFA45A99249C1120003A6144 /* DrawingView.swift */,
 				52ADE807249570B200595A42 /* Neuro Platform */,
 				52ADE821249570B400595A42 /* Neuro PlatformTests */,
 				52ADE82C249570B400595A42 /* Neuro PlatformUITests */,
@@ -122,6 +117,8 @@
 		52ADE807249570B200595A42 /* Neuro Platform */ = {
 			isa = PBXGroup;
 			children = (
+				AF67B8D124C7AA740029291C /* DataStuff */,
+				AF67B8D024C7A9FC0029291C /* DrawingStuff */,
 				AFDFDDB924BE749100EBDCA9 /* ViewControllers */,
 				52ADE808249570B200595A42 /* AppDelegate.swift */,
 				52ADE80A249570B200595A42 /* SceneDelegate.swift */,
@@ -159,6 +156,25 @@
 				52ADE82F249570B400595A42 /* Info.plist */,
 			);
 			path = "Neuro PlatformUITests";
+			sourceTree = "<group>";
+		};
+		AF67B8D024C7A9FC0029291C /* DrawingStuff */ = {
+			isa = PBXGroup;
+			children = (
+				AFA45A99249C1120003A6144 /* DrawingView.swift */,
+				AF4EE250249BD33A00603E42 /* DrawingPad.swift */,
+				AF94D03524A8112E000EBEF4 /* CustomShapes.swift */,
+				AF4EE252249BD4F800603E42 /* Drawing.swift */,
+			);
+			path = DrawingStuff;
+			sourceTree = "<group>";
+		};
+		AF67B8D124C7AA740029291C /* DataStuff */ = {
+			isa = PBXGroup;
+			children = (
+				AF15515324AD44D800162800 /* DataObjects.swift */,
+			);
+			path = DataStuff;
 			sourceTree = "<group>";
 		};
 		AFDFDDB924BE749100EBDCA9 /* ViewControllers */ = {

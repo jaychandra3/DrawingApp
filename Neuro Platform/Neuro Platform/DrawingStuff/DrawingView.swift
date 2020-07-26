@@ -13,6 +13,7 @@ struct DrawingView: View {
     @State private var drawings : [Drawing] = [Drawing]()
     @State private var color : Color = Color.black
     @State private var lineWidth : CGFloat = 3.0
+    let data = DrawingData()
     
     let circle : some Shape = Circle()
         .stroke(lineWidth: 3)
@@ -28,7 +29,7 @@ struct DrawingView: View {
                     Spacer()
                 }
                 
-                TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings)
+                TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: data)
                     .opacity(0.1)
                 
             }

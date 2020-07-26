@@ -17,10 +17,12 @@ struct TouchCaptureView: UIViewControllerRepresentable {
         }
         
         func didStartDrag(_ sender: TouchCaptureViewController, _ touch : UITouch) {
+            parent.data.update(value : touch, location: touch.location(in: sender.view))
             parent.continueDrawing(point: touch.location(in: sender.view), bounds: sender.view.bounds)
         }
         
         func didDrag(_ sender: TouchCaptureViewController, _ touch : UITouch) {
+            parent.data.update(value : touch, location : touch.location(in: sender.view))
             parent.continueDrawing(point: touch.location(in: sender.view), bounds: sender.view.bounds)
         }
         
@@ -31,6 +33,7 @@ struct TouchCaptureView: UIViewControllerRepresentable {
     
     @Binding var currentDrawing : Drawing
     @Binding var drawings : [Drawing]
+    let data : DrawingData
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
