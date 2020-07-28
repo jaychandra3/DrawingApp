@@ -34,8 +34,14 @@ struct DrawingView: View {
                 
             }
             Spacer()
-            Button(action: {self.drawings = [Drawing]()}) {
-                Text("Clear Drawings").foregroundColor(.white)
+            HStack {
+                Button(action: {self.drawings = [Drawing]()}) {
+                    Text("Clear Drawings").foregroundColor(.white)
+                }
+                Spacer()
+                Button(action: {self.data.finishDrawing()}) {
+                    Text("Finish Drawing").foregroundColor(.white)
+                }
             }
             .padding()
             .background(Rectangle().foregroundColor(.black))
