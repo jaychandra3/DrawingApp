@@ -14,6 +14,7 @@ struct DrawingView: View {
     @State private var color : Color = Color.black
     @State private var lineWidth : CGFloat = 3.0
     let data = DrawingData()
+    let patient : String
     
     let circle : some Shape = Circle()
         .stroke(lineWidth: 3)
