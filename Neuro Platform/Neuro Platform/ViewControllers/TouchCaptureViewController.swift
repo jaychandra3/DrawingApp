@@ -24,7 +24,6 @@ class TouchCaptureViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with : event)
-        print("START")
         if let touch = touches.first {
             delegate?.didStartDrag(self, touch)
         }
@@ -33,18 +32,12 @@ class TouchCaptureViewController: UIViewController {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
         if let touch = touches.first {
-            print(touch.location(in: self.view))
             delegate?.didDrag(self, touch)
-//            print(touch.location(in: self.view))
-//            print (touch.altitudeAngle)
-//            print (touch.azimuthAngle)
-//            print (touch.force)
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        print("END")
         if let touch = touches.first {
             delegate?.didFinishDrag(self, touch)
         }

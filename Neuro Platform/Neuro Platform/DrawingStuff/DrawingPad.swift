@@ -29,21 +29,6 @@ struct DrawingPad: View {
         }
         .frame(maxHeight: .infinity)
     }
-    
-        private func continueDrawing(point : CGPoint) {
-    //        user.update(value: value)
-            let currentPoint = point
-    //        if currentPoint.y >= 0
-    //            && currentPoint.y < geometry.size.height {
-                currentDrawing.points.append(currentPoint)
-    //        }
-        }
-        
-        private func finishDrawing(point : CGPoint) {
-    //        self.user.update(value: value)
-            drawings.append(currentDrawing)
-            currentDrawing = Drawing()
-        }
 
         private func add(drawing : Drawing, toPath path : inout Path) {
             let points = drawing.points

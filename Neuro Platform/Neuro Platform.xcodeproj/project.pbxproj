@@ -20,6 +20,7 @@
 		AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE250249BD33A00603E42 /* DrawingPad.swift */; };
 		AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE252249BD4F800603E42 /* Drawing.swift */; };
 		AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF94D03524A8112E000EBEF4 /* CustomShapes.swift */; };
+		AFA02B1624CF944C00B74E33 /* FileHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA02B1524CF944C00B74E33 /* FileHelpers.swift */; };
 		AFA45A9A249C1120003A6144 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA45A99249C1120003A6144 /* DrawingView.swift */; };
 		AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDFDDBA24BE74EE00EBDCA9 /* TouchCaptureViewController.swift */; };
 		AFDFDDBD24BE74EE00EBDCA9 /* TouchCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFDFDDBB24BE74EE00EBDCA9 /* TouchCaptureViewController.xib */; };
@@ -63,6 +64,7 @@
 		AF4EE250249BD33A00603E42 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPad.swift; sourceTree = "<group>"; };
 		AF4EE252249BD4F800603E42 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
 		AF94D03524A8112E000EBEF4 /* CustomShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapes.swift; sourceTree = "<group>"; };
+		AFA02B1524CF944C00B74E33 /* FileHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelpers.swift; sourceTree = "<group>"; };
 		AFA45A99249C1120003A6144 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		AFDFDDBA24BE74EE00EBDCA9 /* TouchCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCaptureViewController.swift; sourceTree = "<group>"; };
 		AFDFDDBB24BE74EE00EBDCA9 /* TouchCaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TouchCaptureViewController.xib; sourceTree = "<group>"; };
@@ -97,11 +99,6 @@
 		52ADE7FC249570B200595A42 = {
 			isa = PBXGroup;
 			children = (
-				AF15515324AD44D800162800 /* DataObjects.swift */,
-				AF4EE250249BD33A00603E42 /* DrawingPad.swift */,
-				AF94D03524A8112E000EBEF4 /* CustomShapes.swift */,
-				AF4EE252249BD4F800603E42 /* Drawing.swift */,
-				AFA45A99249C1120003A6144 /* DrawingView.swift */,
 				52ADE807249570B200595A42 /* Neuro Platform */,
 				52ADE821249570B400595A42 /* Neuro PlatformTests */,
 				52ADE82C249570B400595A42 /* Neuro PlatformUITests */,
@@ -122,6 +119,9 @@
 		52ADE807249570B200595A42 /* Neuro Platform */ = {
 			isa = PBXGroup;
 			children = (
+				AFA02B1424CF943300B74E33 /* Utility */,
+				AF67B8D124C7AA740029291C /* DataStuff */,
+				AF67B8D024C7A9FC0029291C /* DrawingStuff */,
 				AFDFDDB924BE749100EBDCA9 /* ViewControllers */,
 				52ADE808249570B200595A42 /* AppDelegate.swift */,
 				52ADE80A249570B200595A42 /* SceneDelegate.swift */,
@@ -159,6 +159,33 @@
 				52ADE82F249570B400595A42 /* Info.plist */,
 			);
 			path = "Neuro PlatformUITests";
+			sourceTree = "<group>";
+		};
+		AF67B8D024C7A9FC0029291C /* DrawingStuff */ = {
+			isa = PBXGroup;
+			children = (
+				AFA45A99249C1120003A6144 /* DrawingView.swift */,
+				AF4EE250249BD33A00603E42 /* DrawingPad.swift */,
+				AF94D03524A8112E000EBEF4 /* CustomShapes.swift */,
+				AF4EE252249BD4F800603E42 /* Drawing.swift */,
+			);
+			path = DrawingStuff;
+			sourceTree = "<group>";
+		};
+		AF67B8D124C7AA740029291C /* DataStuff */ = {
+			isa = PBXGroup;
+			children = (
+				AF15515324AD44D800162800 /* DataObjects.swift */,
+			);
+			path = DataStuff;
+			sourceTree = "<group>";
+		};
+		AFA02B1424CF943300B74E33 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				AFA02B1524CF944C00B74E33 /* FileHelpers.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		AFDFDDB924BE749100EBDCA9 /* ViewControllers */ = {
@@ -306,6 +333,7 @@
 				AFA45A9A249C1120003A6144 /* DrawingView.swift in Sources */,
 				52ADE809249570B200595A42 /* AppDelegate.swift in Sources */,
 				AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */,
+				AFA02B1624CF944C00B74E33 /* FileHelpers.swift in Sources */,
 				AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */,
 				AF15515424AD44D800162800 /* DataObjects.swift in Sources */,
 				AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */,
