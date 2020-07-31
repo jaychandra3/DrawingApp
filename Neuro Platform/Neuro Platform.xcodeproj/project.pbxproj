@@ -19,9 +19,11 @@
 		AF15515424AD44D800162800 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF15515324AD44D800162800 /* DataObjects.swift */; };
 		AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE250249BD33A00603E42 /* DrawingPad.swift */; };
 		AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE252249BD4F800603E42 /* Drawing.swift */; };
+		AF9244D824D4B46B00EEA283 /* FileManagerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9244D724D4B46B00EEA283 /* FileManagerItemView.swift */; };
 		AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF94D03524A8112E000EBEF4 /* CustomShapes.swift */; };
 		AFA02B1624CF944C00B74E33 /* FileHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA02B1524CF944C00B74E33 /* FileHelpers.swift */; };
 		AFA45A9A249C1120003A6144 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA45A99249C1120003A6144 /* DrawingView.swift */; };
+		AFAE31D524D38E4400D3A27B /* FileManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE31D424D38E4400D3A27B /* FileManagerView.swift */; };
 		AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDFDDBA24BE74EE00EBDCA9 /* TouchCaptureViewController.swift */; };
 		AFDFDDBD24BE74EE00EBDCA9 /* TouchCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFDFDDBB24BE74EE00EBDCA9 /* TouchCaptureViewController.xib */; };
 		AFDFDDBF24BE771200EBDCA9 /* TouchCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDFDDBE24BE771200EBDCA9 /* TouchCaptureView.swift */; };
@@ -63,9 +65,11 @@
 		AF15515324AD44D800162800 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		AF4EE250249BD33A00603E42 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPad.swift; sourceTree = "<group>"; };
 		AF4EE252249BD4F800603E42 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
+		AF9244D724D4B46B00EEA283 /* FileManagerItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerItemView.swift; sourceTree = "<group>"; };
 		AF94D03524A8112E000EBEF4 /* CustomShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapes.swift; sourceTree = "<group>"; };
 		AFA02B1524CF944C00B74E33 /* FileHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelpers.swift; sourceTree = "<group>"; };
 		AFA45A99249C1120003A6144 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		AFAE31D424D38E4400D3A27B /* FileManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerView.swift; sourceTree = "<group>"; };
 		AFDFDDBA24BE74EE00EBDCA9 /* TouchCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCaptureViewController.swift; sourceTree = "<group>"; };
 		AFDFDDBB24BE74EE00EBDCA9 /* TouchCaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TouchCaptureViewController.xib; sourceTree = "<group>"; };
 		AFDFDDBE24BE771200EBDCA9 /* TouchCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCaptureView.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 		52ADE807249570B200595A42 /* Neuro Platform */ = {
 			isa = PBXGroup;
 			children = (
+				AFAE31D324D388B600D3A27B /* FileSystem */,
 				AFA02B1424CF943300B74E33 /* Utility */,
 				AF67B8D124C7AA740029291C /* DataStuff */,
 				AF67B8D024C7A9FC0029291C /* DrawingStuff */,
@@ -186,6 +191,15 @@
 				AFA02B1524CF944C00B74E33 /* FileHelpers.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		AFAE31D324D388B600D3A27B /* FileSystem */ = {
+			isa = PBXGroup;
+			children = (
+				AFAE31D424D38E4400D3A27B /* FileManagerView.swift */,
+				AF9244D724D4B46B00EEA283 /* FileManagerItemView.swift */,
+			);
+			path = FileSystem;
 			sourceTree = "<group>";
 		};
 		AFDFDDB924BE749100EBDCA9 /* ViewControllers */ = {
@@ -337,7 +351,9 @@
 				AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */,
 				AF15515424AD44D800162800 /* DataObjects.swift in Sources */,
 				AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */,
+				AFAE31D524D38E4400D3A27B /* FileManagerView.swift in Sources */,
 				52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */,
+				AF9244D824D4B46B00EEA283 /* FileManagerItemView.swift in Sources */,
 				AFDFDDBF24BE771200EBDCA9 /* TouchCaptureView.swift in Sources */,
 				52ADE810249570B200595A42 /* ContentView.swift in Sources */,
 				AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */,

@@ -51,8 +51,8 @@ class DrawingData {
     /**
      Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to JSON.
      */
-    func finishDrawing() {
-        let url : URL = getDocumentsDirectory(filename: "thisDrawing.csv")
+    func finishDrawing(patient : String) {
+        let url : URL = getDocumentsDirectory(filename: "/\(patient)/thisDrawing.csv")
         let str : String = CSVString()
         do {
             try str.write(to: url, atomically: true, encoding: .utf8)
@@ -65,11 +65,6 @@ class DrawingData {
     
     private func CSVString() -> String {
         var str : String = "Coordinates,Timestamps,Velocities\n"
-        
-        print(coordinates.count)
-        print(timestamps.count)
-        print(velocities.count)
-        print("-----------------")
         for index in 0...coordinates.count - 1 {
             print(index)
             str = str + "\"" + coordinates[index].x.description + "," + coordinates[index].y.description + "\"," + timestamps[index].description + "," + velocities[index].description + "\n"

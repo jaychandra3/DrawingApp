@@ -13,8 +13,8 @@ struct DrawingView: View {
     @State private var drawings : [Drawing] = [Drawing]()
     @State private var color : Color = Color.black
     @State private var lineWidth : CGFloat = 3.0
-    let data = DrawingData()
     let patient : String
+    let data = DrawingData()
     
     let circle : some Shape = Circle()
         .stroke(lineWidth: 3)
@@ -40,7 +40,7 @@ struct DrawingView: View {
                     Text("Clear Drawings").foregroundColor(.white)
                 }
                 Spacer()
-                Button(action: {self.data.finishDrawing()}) {
+                Button(action: {self.data.finishDrawing(patient : self.patient)}) {
                     Text("Finish Drawing").foregroundColor(.white)
                 }
             }
@@ -55,6 +55,6 @@ struct DrawingView: View {
 
 struct DrawingView_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingView()
+        DrawingView(patient: "testPatient")
     }
 }
