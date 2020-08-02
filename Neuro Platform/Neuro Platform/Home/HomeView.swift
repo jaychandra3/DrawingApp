@@ -1,0 +1,40 @@
+//
+//  Home.swift
+//  Neuro Platform
+//
+//  Created by Jay Chandra on 8/2/20.
+//  Copyright © 2020 NDDP. All rights reserved.
+//
+
+import Foundation
+import SwiftUI
+
+struct HomeView: View {
+    
+        var body: some View {
+        NavigationView {
+            VStack(spacing: 30) {
+                Text("Neuro Platform Home")
+
+                NavigationLink(destination: ContentView()) {
+                    Text("Drawing Task")
+                }
+
+                NavigationLink(destination: SomeOtherView()) {
+                    Text("Memory Task")
+                }
+                
+                NavigationLink(destination: SomeOtherView2()) {
+                    Text("View Data")
+                }
+            }
+            .navigationBarTitle("Navigation")
+        }
+    }
+}
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
+}
