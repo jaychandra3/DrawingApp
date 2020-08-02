@@ -13,11 +13,7 @@ struct ContentView: View {
     @State private var canvasView = PKCanvasView()
     
     var body: some View {
-        VStack {
-            Text("DrawView")
-            DrawingView(patient: "testPatient")
-            Spacer()
-        }
+        HomeView()
     }
 }
 

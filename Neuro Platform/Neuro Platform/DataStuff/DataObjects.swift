@@ -29,12 +29,12 @@ class DrawingData {
     }
     
     func update(value : UITouch, location : CGPoint) {
-        coordinates.append(location)
-        
         if !started {
             lastPoint = location
             lastTime = value.timestamp
             velocities.append(0)
+            coordinates.append(location)
+            timestamps.append(value.timestamp)
             started = true
         } else {
             let timeint = value.timestamp - lastTime
@@ -42,7 +42,6 @@ class DrawingData {
                 + pow(lastPoint.y - location.y, 2))
             coordinates.append(location)
             timestamps.append(value.timestamp)
-            print(Double(distance) / timeint)
             velocities.append(Double(distance) / timeint)
       
         }
@@ -52,13 +51,14 @@ class DrawingData {
      Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to JSON.
      */
     func finishDrawing(patient : String) {
-        let url : URL = getDocumentsDirectory(filename: "/\(patient)/thisDrawing.csv")
+        let url : URL = getDocumentsDirectory(foldername: patient, filename: "thisDrawing.csv")
         let str : String = CSVString()
         do {
             try str.write(to: url, atomically: true, encoding: .utf8)
             let input = try String(contentsOf: url)
             print(input)
         } catch {
+            print("Failed to write to disk")
             print(error.localizedDescription)
         }
     }
@@ -66,7 +66,6 @@ class DrawingData {
     private func CSVString() -> String {
         var str : String = "Coordinates,Timestamps,Velocities\n"
         for index in 0...coordinates.count - 1 {
-            print(index)
             str = str + "\"" + coordinates[index].x.description + "," + coordinates[index].y.description + "\"," + timestamps[index].description + "," + velocities[index].description + "\n"
         }
 

@@ -14,21 +14,15 @@ struct HomeView: View {
         var body: some View {
         NavigationView {
             VStack(spacing: 30) {
-                Text("Neuro Platform Home")
-
-                NavigationLink(destination: ContentView()) {
+                NavigationLink(destination: DrawingView(patient: "testPatient")) {
                     Text("Drawing Task")
                 }
-
-                NavigationLink(destination: SomeOtherView()) {
-                    Text("Memory Task")
-                }
                 
-                NavigationLink(destination: SomeOtherView2()) {
-                    Text("View Data")
+                NavigationLink(destination: FileManagerView()) {
+                    Text("Files")
                 }
             }
-            .navigationBarTitle("Navigation")
+            .navigationBarTitle("Home")
         }
     }
 }

@@ -9,7 +9,20 @@
 import Foundation
 import SwiftUI
 
-func getDocumentsDirectory(filename pathcomponent : String) -> URL {
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    return paths[0].appendingPathComponent(pathcomponent)
+func getDocumentsDirectory(foldername foldercomponent : String?, filename pathcomponent : String) -> URL {
+    let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        .first!
+    
+    if let folder = foldercomponent {
+        do {
+            try FileManager.init().createDirectory(at: path.appendingPathComponent(folder), withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            print("Could not create directory \(folder) at \(path)")
+            print(error)
+        }
+        return path.appendingPathComponent(folder, isDirectory: true)
+            .appendingPathComponent(pathcomponent, isDirectory: false)
+    } else {
+        return path.appendingPathComponent(pathcomponent, isDirectory: false)
+    }
 }
