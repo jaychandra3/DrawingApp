@@ -14,7 +14,7 @@ struct HomeView: View {
         var body: some View {
         NavigationView {
             VStack(spacing: 30) {
-                NavigationLink(destination: DrawingView(patient: "testPatient")) {
+                NavigationLink(destination: DrawingView(patient: "testPatient2")) {
                     Text("Drawing Task")
                 }
                 

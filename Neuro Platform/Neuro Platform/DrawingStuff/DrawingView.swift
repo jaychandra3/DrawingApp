@@ -55,6 +55,6 @@ struct DrawingView: View {
 
 struct DrawingView_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingView(patient: "testPatient")
+        DrawingView(patient: "testPatient37")
     }
 }

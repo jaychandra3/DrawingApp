@@ -10,6 +10,8 @@ import SwiftUI
 
 struct FileManagerItemView: View {
     var label : String
+    var url : URL
+    var isDirectory : Bool
     
     var body: some View {
         ZStack {
@@ -27,11 +29,5 @@ struct FileManagerItemView: View {
         }
         .frame(minHeight: 50, maxHeight: 50)
         .padding(.horizontal)
-    }
-}
-
-struct FileManagerItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        FileManagerItemView(label: "Folder Name Here")
     }
 }

@@ -9,19 +9,20 @@
 import SwiftUI
 
 struct FileManagerView: View {
+    let items : [FileManagerItemView]
+    
+    init() {
+        items = generateFileItemViews()
+    }
+    
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(1...40, id: \.self) { value in
-                    FileManagerItemView(label: "Folder \(value)")
+                ForEach(items, id: \.label) { item in
+                    item
                 }
             }
         }
     }
 }
 
-struct FileManagerView_Previews: PreviewProvider {
-    static var previews: some View {
-        FileManagerView()
-    }
-}

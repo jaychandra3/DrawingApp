@@ -15,7 +15,7 @@ func getDocumentsDirectory(foldername foldercomponent : String?, filename pathco
     
     if let folder = foldercomponent {
         do {
-            try FileManager.init().createDirectory(at: path.appendingPathComponent(folder), withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(at: path.appendingPathComponent(folder), withIntermediateDirectories: true, attributes: nil)
         } catch {
             print("Could not create directory \(folder) at \(path)")
             print(error)
@@ -25,4 +25,29 @@ func getDocumentsDirectory(foldername foldercomponent : String?, filename pathco
     } else {
         return path.appendingPathComponent(pathcomponent, isDirectory: false)
     }
+}
+
+func getDocumentsDirectoryRoot() -> URL {
+    let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    .first!
+    
+    return path
+}
+
+func generateFileItemViews() -> [FileManagerItemView] {
+    var items = [FileManagerItemView]()
+    let urls : [URL]
+    do {
+        try urls = FileManager.default.contentsOfDirectory(at: getDocumentsDirectoryRoot(), includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
+    } catch {
+        print(error)
+        urls = [URL]()
+    }
+    
+    for url in urls {
+        let temp = FileManagerItemView(label: url.lastPathComponent, url: url, isDirectory: true)
+        items.append(temp)
+    }
+    
+    return items
 }
