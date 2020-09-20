@@ -11,8 +11,12 @@ import SwiftUI
 struct FileManagerView: View {
     let items : [FileManagerItemView]
     
-    init() {
-        items = generateFileItemViews()
+    init(url : URL? = nil) {
+        if let urlval = url {
+            items = generateFileItemViews(url: urlval)
+        } else {
+            items = generateFileItemViews()
+        }
     }
     
     var body: some View {

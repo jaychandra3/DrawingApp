@@ -15,13 +15,28 @@ struct FileManagerItemView: View {
     
     var body: some View {
         ZStack {
-            Rectangle()
+            if isDirectory {
+                NavigationLink(destination: FileManagerView(url: self.url)) {
+                    Rectangle()
+                    .foregroundColor(.gray)
+                    .cornerRadius(20)
+                }
+            } else {
+                Rectangle()
                 .foregroundColor(.gray)
                 .cornerRadius(20)
+            }
             HStack {
-                Image(systemName: "folder")
+                if isDirectory {
+                    Image(systemName: "folder")
                     .font(.system(size: 32, weight: .ultraLight))
                     .padding(.leading)
+                } else {
+                    Image(systemName: "doc.plaintext")
+                    .font(.system(size: 32, weight: .ultraLight))
+                    .padding(.leading)
+                }
+                
                 Text(label)
                 Spacer()
             }
