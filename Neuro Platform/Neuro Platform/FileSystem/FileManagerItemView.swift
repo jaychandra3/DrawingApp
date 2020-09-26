@@ -22,9 +22,13 @@ struct FileManagerItemView: View {
                     .cornerRadius(20)
                 }
             } else {
-                Rectangle()
-                .foregroundColor(.gray)
-                .cornerRadius(20)
+                NavigationLink(
+                    destination: TextFileView(url : self.url)) {
+                    Rectangle()
+                    .foregroundColor(.gray)
+                    .cornerRadius(20)
+                    
+                }
             }
             HStack {
                 if isDirectory {
