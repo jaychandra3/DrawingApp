@@ -34,18 +34,18 @@ func getDocumentsDirectoryRoot() -> URL {
     return path
 }
 
-func generateFileItemViews() -> [FileManagerItemView] {
+func generateFileItemViews(url : URL = getDocumentsDirectoryRoot()) -> [FileManagerItemView] {
     var items = [FileManagerItemView]()
     let urls : [URL]
     do {
-        try urls = FileManager.default.contentsOfDirectory(at: getDocumentsDirectoryRoot(), includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
+        try urls = FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
     } catch {
         print(error)
         urls = [URL]()
     }
     
     for url in urls {
-        let temp = FileManagerItemView(label: url.lastPathComponent, url: url, isDirectory: true)
+        let temp = FileManagerItemView(label: url.lastPathComponent, url: url, isDirectory: url.hasDirectoryPath)
         items.append(temp)
     }
     

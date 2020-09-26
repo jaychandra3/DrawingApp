@@ -11,9 +11,11 @@ import CoreGraphics
 import SwiftUI
 
 class DrawingData {
-    var coordinates : [CGPoint]
-    var timestamps : [TimeInterval]
-    var velocities : [Double]
+    var coordinates : [ CGPoint ]
+    var timestamps : [ TimeInterval ]
+    var velocities : [ Double ]
+    var forces : [ CGFloat ]
+    var azimii : [ CGFloat ]
     var started : Bool
 //    Following variables used for calculating velocities
     var lastPoint : CGPoint
@@ -23,35 +25,42 @@ class DrawingData {
         coordinates = [CGPoint]()
         timestamps = [TimeInterval]()
         velocities = [Double]()
+        forces = [CGFloat]()
+        azimii = [CGFloat]()
         lastPoint = CGPoint(x: -1, y: -1)
         lastTime = TimeInterval()
         started = false
     }
     
-    func update(value : UITouch, location : CGPoint) {
+    func update(value : UITouch, view : UIView) {
+        let location = value.location(in: view)
+        let azimuth = value.azimuthAngle(in: view)
+        let force = value.force
+        
+        coordinates.append(location)
+        timestamps.append(value.timestamp)
+        forces.append(force)
+        azimii.append(azimuth)
+        
         if !started {
             lastPoint = location
             lastTime = value.timestamp
             velocities.append(0)
-            coordinates.append(location)
-            timestamps.append(value.timestamp)
+            
             started = true
         } else {
             let timeint = value.timestamp - lastTime
             let distance = sqrt(pow(lastPoint.x - location.x, 2)
                 + pow(lastPoint.y - location.y, 2))
-            coordinates.append(location)
-            timestamps.append(value.timestamp)
             velocities.append(Double(distance) / timeint)
-      
         }
     }
     
     /**
      Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to JSON.
      */
-    func finishDrawing(patient : String) {
-        let url : URL = getDocumentsDirectory(foldername: patient, filename: "thisDrawing.csv")
+    func finishDrawing(patient : String, drawingName : String = "drawing.csv") {
+        let url : URL = getDocumentsDirectory(foldername: patient, filename: drawingName)
         let str : String = CSVString()
         do {
             try str.write(to: url, atomically: true, encoding: .utf8)
@@ -64,9 +73,9 @@ class DrawingData {
     }
     
     private func CSVString() -> String {
-        var str : String = "Coordinates,Timestamps,Velocities\n"
+        var str : String = "Coordinates,Timestamp,Velocity,force,azimuth\n"
         for index in 0...coordinates.count - 1 {
-            str = str + "\"" + coordinates[index].x.description + "," + coordinates[index].y.description + "\"," + timestamps[index].description + "," + velocities[index].description + "\n"
+            str = str + "\"" + coordinates[index].x.description + "," + coordinates[index].y.description + "\"," + timestamps[index].description + "," + velocities[index].description + "," + forces[index].description + "," + azimii[index].description + "\n"
         }
 
         return str
