@@ -10,6 +10,7 @@ import SwiftUI
 
 struct FileManagerView: View {
     let items : [FileManagerItemView]
+    @State private var isMovingSelection = false;
     
     init(url : URL? = nil) {
         if let urlval = url {
@@ -27,6 +28,17 @@ struct FileManagerView: View {
                 }
             }
         }
+        .toolbar {
+            Button("Export All Files", action : {isMovingSelection = true})
+        }
+        .fileMover(isPresented: $isMovingSelection, file: getDocumentsDirectoryRoot()) {
+            if case .success = $0 {
+                
+            } else {
+                // Handle Failure
+            }
+        }
+            
     }
 }
 

@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct FileManagerItemView: View {
     var label : String
     var url : URL
@@ -22,12 +23,15 @@ struct FileManagerItemView: View {
                     .cornerRadius(20)
                 }
             } else {
-                NavigationLink(
-                    destination: TextFileView(url : self.url)) {
-                    Rectangle()
-                    .foregroundColor(.gray)
-                    .cornerRadius(20)
-                    
+                HStack {
+                
+                    NavigationLink(
+                        destination: TextFileView(url : self.url)) {
+                        Rectangle()
+                        .foregroundColor(.gray)
+                        .cornerRadius(20)
+                    }
+                    Button("Open File", action: {})
                 }
             }
             HStack {
