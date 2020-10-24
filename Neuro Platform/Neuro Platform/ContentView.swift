@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var canvasView = PKCanvasView()
     
     var body: some View {
-        HomeView()
+        MainView()
     }
 }
 

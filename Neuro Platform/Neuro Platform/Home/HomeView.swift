@@ -1,29 +1,18 @@
 //
-//  Home.swift
+//  HomeView.swift
 //  Neuro Platform
 //
-//  Created by Jay Chandra on 8/2/20.
+//  Created by user175482 on 10/17/20.
 //  Copyright © 2020 NDDP. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 struct HomeView: View {
-    
-        var body: some View {
-        NavigationView {
-            VStack(spacing: 30) {
-                NavigationLink(destination: DrawingView(patient: "testPatient2")) {
-                    Text("Drawing Task")
-                }
-                
-                NavigationLink(destination: FileManagerView()) {
-                    Text("Files")
-                }
-            }
-            .navigationBarTitle("Home")
-        }
+    var body: some View {
+        VStack{
+            Text("Home")
+        }.navigationBarTitle("Home")
     }
 }
 

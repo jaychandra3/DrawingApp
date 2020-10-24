@@ -16,8 +16,10 @@
 		52ADE818249570B400595A42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52ADE816249570B400595A42 /* LaunchScreen.storyboard */; };
 		52ADE823249570B400595A42 /* Neuro_PlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE822249570B400595A42 /* Neuro_PlatformTests.swift */; };
 		52ADE82E249570B400595A42 /* Neuro_PlatformUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */; };
-		52CF3E9424D7610000A36B60 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CF3E9324D7610000A36B60 /* HomeView.swift */; };
+		52CF3E9424D7610000A36B60 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CF3E9324D7610000A36B60 /* MainView.swift */; };
+		AF07AD1B253B8C8A002C61BB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF07AD1A253B8C8A002C61BB /* HomeView.swift */; };
 		AF15515424AD44D800162800 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF15515324AD44D800162800 /* DataObjects.swift */; };
+		AF4CBBCC2544ADF00049C80F /* NewPatientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CBBCB2544ADF00049C80F /* NewPatientView.swift */; };
 		AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE250249BD33A00603E42 /* DrawingPad.swift */; };
 		AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE252249BD4F800603E42 /* Drawing.swift */; };
 		AF9244D824D4B46B00EEA283 /* FileManagerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9244D724D4B46B00EEA283 /* FileManagerItemView.swift */; };
@@ -65,8 +67,10 @@
 		52ADE829249570B400595A42 /* Neuro PlatformUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Neuro PlatformUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neuro_PlatformUITests.swift; sourceTree = "<group>"; };
 		52ADE82F249570B400595A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		52CF3E9324D7610000A36B60 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		52CF3E9324D7610000A36B60 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		AF07AD1A253B8C8A002C61BB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		AF15515324AD44D800162800 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
+		AF4CBBCB2544ADF00049C80F /* NewPatientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPatientView.swift; sourceTree = "<group>"; };
 		AF4EE250249BD33A00603E42 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPad.swift; sourceTree = "<group>"; };
 		AF4EE252249BD4F800603E42 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
 		AF9244D724D4B46B00EEA283 /* FileManagerItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerItemView.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 		52ADE807249570B200595A42 /* Neuro Platform */ = {
 			isa = PBXGroup;
 			children = (
+				AF4CBBCA2544ADCF0049C80F /* NavigationScreens */,
 				52CF3E9224D75FB000A36B60 /* Home */,
 				AFAE31D324D388B600D3A27B /* FileSystem */,
 				AFA02B1424CF943300B74E33 /* Utility */,
@@ -176,9 +181,18 @@
 		52CF3E9224D75FB000A36B60 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				52CF3E9324D7610000A36B60 /* HomeView.swift */,
+				52CF3E9324D7610000A36B60 /* MainView.swift */,
+				AF07AD1A253B8C8A002C61BB /* HomeView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		AF4CBBCA2544ADCF0049C80F /* NavigationScreens */ = {
+			isa = PBXGroup;
+			children = (
+				AF4CBBCB2544ADF00049C80F /* NewPatientView.swift */,
+			);
+			path = NavigationScreens;
 			sourceTree = "<group>";
 		};
 		AF67B8D024C7A9FC0029291C /* DrawingStuff */ = {
@@ -368,8 +382,9 @@
 				AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */,
 				AF15515424AD44D800162800 /* DataObjects.swift in Sources */,
 				AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */,
-				52CF3E9424D7610000A36B60 /* HomeView.swift in Sources */,
+				52CF3E9424D7610000A36B60 /* MainView.swift in Sources */,
 				AFAE31D524D38E4400D3A27B /* FileManagerView.swift in Sources */,
+				AF07AD1B253B8C8A002C61BB /* HomeView.swift in Sources */,
 				52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */,
 				AFB86AF224DA0CDD007D6329 /* ViewHelpers.swift in Sources */,
 				AF9244D824D4B46B00EEA283 /* FileManagerItemView.swift in Sources */,
@@ -378,6 +393,7 @@
 				52ADE810249570B200595A42 /* ContentView.swift in Sources */,
 				AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */,
 				52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */,
+				AF4CBBCC2544ADF00049C80F /* NewPatientView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

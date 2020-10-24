@@ -13,6 +13,7 @@ struct DrawingView: View {
     @State private var drawings : [Drawing] = [Drawing]()
     @State private var color : Color = Color.black
     @State private var lineWidth : CGFloat = 3.0
+    @Binding var rootIsActive : Bool
     let patient : String
     let data = DrawingData()
     
@@ -40,7 +41,11 @@ struct DrawingView: View {
                     Text("Clear Drawings").foregroundColor(.white)
                 }
                 Spacer()
-                Button(action: {self.data.finishDrawing(patient : self.patient)}) {
+                Button(action: {
+                    self.data.finishDrawing(patient : self.patient)
+                    self.rootIsActive.toggle()
+                    
+                }) {
                     Text("Finish Drawing").foregroundColor(.white)
                 }
             }
@@ -48,13 +53,8 @@ struct DrawingView: View {
             .background(Rectangle().foregroundColor(.black))
             .cornerRadius(5)
             Spacer()
-        }
+        }.navigationBarHidden(true)
     }
     
 }
 
-struct DrawingView_Previews: PreviewProvider {
-    static var previews: some View {
-        DrawingView(patient: "testPatient37")
-    }
-}
