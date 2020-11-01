@@ -17,7 +17,7 @@ struct NewPatientView: View {
             Spacer()
             Text("Patient Name")
             TextField("Enter Patient Name", text: $name)
-            NavigationLink(destination: DrawingView(rootIsActive: $isActive, patient: name), isActive : $isActive) {
+            NavigationLink(destination: DrawingView(rootIsActive: $isActive, trials: 3, patient: name), isActive : $isActive) {
                 EmptyView()
             }.isDetailLink(false)
             Button("Start Task") {

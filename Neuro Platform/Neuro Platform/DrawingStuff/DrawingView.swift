@@ -14,8 +14,10 @@ struct DrawingView: View {
     @State private var color : Color = Color.black
     @State private var lineWidth : CGFloat = 3.0
     @Binding var rootIsActive : Bool
+    var trials : Int
+    @State private var trialnum : Int = 0
     let patient : String
-    let data = DrawingData()
+    @State private var data = DrawingData()
     
     let circle : some Shape = Circle()
         .stroke(lineWidth: 3)
@@ -31,7 +33,7 @@ struct DrawingView: View {
                     Spacer()
                 }
                 
-                TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: data)
+                TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data)
                     .opacity(0.1)
                 
             }
@@ -42,11 +44,20 @@ struct DrawingView: View {
                 }
                 Spacer()
                 Button(action: {
-                    self.data.finishDrawing(patient : self.patient)
-                    self.rootIsActive.toggle()
-                    
+                    self.data.finishDrawing(patient : self.patient, drawingName: "circle" + trialnum.description + ".csv")
+                    trialnum += 1
+                    if trialnum >= trials {
+                        self.rootIsActive.toggle()
+                    } else {
+                        self.drawings = [Drawing]()
+                        self.data = DrawingData()
+                    }
                 }) {
-                    Text("Finish Drawing").foregroundColor(.white)
+                    if trialnum < trials - 1 {
+                        Text("Next Trial").foregroundColor(.white)
+                    } else {
+                        Text("Finish Drawing").foregroundColor(.white)
+                    }
                 }
             }
             .padding()
@@ -54,6 +65,7 @@ struct DrawingView: View {
             .cornerRadius(5)
             Spacer()
         }.navigationBarHidden(true)
+        .navigationTitle("Trial " + (trialnum + 1).description + "/" + trials.description)
     }
     
 }

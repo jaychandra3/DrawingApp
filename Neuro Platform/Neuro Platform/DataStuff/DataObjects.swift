@@ -17,9 +17,12 @@ class DrawingData {
     var forces : [ CGFloat ]
     var azimii : [ CGFloat ]
     var started : Bool
+    var frameWidth : CGFloat
+    var frameHeight : CGFloat
 //    Following variables used for calculating velocities
     var lastPoint : CGPoint
     var lastTime : TimeInterval
+    
     
     init() {
         coordinates = [CGPoint]()
@@ -30,6 +33,8 @@ class DrawingData {
         lastPoint = CGPoint(x: -1, y: -1)
         lastTime = TimeInterval()
         started = false
+        frameWidth = 0.0
+        frameHeight = 0.0
     }
     
     func update(value : UITouch, view : UIView) {
@@ -46,7 +51,8 @@ class DrawingData {
             lastPoint = location
             lastTime = value.timestamp
             velocities.append(0)
-            
+            frameWidth = view.frame.size.width
+            frameHeight = view.frame.size.height
             started = true
         } else {
             let timeint = value.timestamp - lastTime
@@ -73,7 +79,7 @@ class DrawingData {
     }
     
     private func CSVString() -> String {
-        var str : String = "Coordinates,Timestamp,Velocity,force,azimuth\n"
+        var str : String = "Coordinates ("  + frameWidth.description + "\",\" " + frameHeight.description + "),Timestamp,Velocity,force,azimuth\n"
         for index in 0...coordinates.count - 1 {
             str = str + "\"" + coordinates[index].x.description + "," + coordinates[index].y.description + "\"," + timestamps[index].description + "," + velocities[index].description + "," + forces[index].description + "," + azimii[index].description + "\n"
         }

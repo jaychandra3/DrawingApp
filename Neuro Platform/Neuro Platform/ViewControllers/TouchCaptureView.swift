@@ -34,7 +34,7 @@ struct TouchCaptureView: UIViewControllerRepresentable {
     
     @Binding var currentDrawing : Drawing
     @Binding var drawings : [Drawing]
-    let data : DrawingData
+    @Binding var data : DrawingData
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
