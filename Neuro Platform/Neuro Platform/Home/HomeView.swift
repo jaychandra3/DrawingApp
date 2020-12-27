@@ -11,8 +11,21 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         VStack{
-            Text("Home")
-        }.navigationBarTitle("Home")
+            Text("Analysis Platform")
+                .textStyle(TitleTextStyle())
+            Button(action: {}, label: {
+                Text("Take the Test")
+            }).buttonStyle(MainButtonStyle())
+            Button(action: {}, label: {
+                Text("View Patient Records")
+            }).buttonStyle(MainButtonStyle())
+            Button(action: {}, label: {
+                Text("Instructions Overview")
+            }).buttonStyle(MainButtonStyle())
+            Button(action: {}, label: {
+                Text("About the App")
+            }).buttonStyle(MainButtonStyle())
+        }.navigationBarHidden(false)
     }
 }
 

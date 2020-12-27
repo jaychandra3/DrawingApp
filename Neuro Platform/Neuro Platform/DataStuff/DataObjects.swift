@@ -16,6 +16,7 @@ class DrawingData {
     var velocities : [ Double ]
     var forces : [ CGFloat ]
     var azimii : [ CGFloat ]
+    var altitudes : [ CGFloat ]
     var started : Bool
     var frameWidth : CGFloat
     var frameHeight : CGFloat
@@ -30,6 +31,7 @@ class DrawingData {
         velocities = [Double]()
         forces = [CGFloat]()
         azimii = [CGFloat]()
+        altitudes = [CGFloat]()
         lastPoint = CGPoint(x: -1, y: -1)
         lastTime = TimeInterval()
         started = false
@@ -40,12 +42,14 @@ class DrawingData {
     func update(value : UITouch, view : UIView) {
         let location = value.location(in: view)
         let azimuth = value.azimuthAngle(in: view)
+        let altitude = value.altitudeAngle
         let force = value.force
         
         coordinates.append(location)
         timestamps.append(value.timestamp)
         forces.append(force)
         azimii.append(azimuth)
+        altitudes.append(altitude)
         
         if !started {
             lastPoint = location
@@ -79,9 +83,9 @@ class DrawingData {
     }
     
     private func CSVString() -> String {
-        var str : String = "Coordinates ("  + frameWidth.description + "\",\" " + frameHeight.description + "),Timestamp,Velocity,force,azimuth\n"
+        var str : String = "Coordinates ("  + frameWidth.description + "\",\" " + frameHeight.description + "),Timestamp,Velocity,force,azimuthAngle,altitudeAngle\n"
         for index in 0...coordinates.count - 1 {
-            str = str + "\"" + coordinates[index].x.description + "," + coordinates[index].y.description + "\"," + timestamps[index].description + "," + velocities[index].description + "," + forces[index].description + "," + azimii[index].description + "\n"
+            str = str + "\"" + coordinates[index].x.description + "," + coordinates[index].y.description + "\"," + timestamps[index].description + "," + velocities[index].description + "," + forces[index].description + "," + azimii[index].description + "," + altitudes[index].description + "\n"
         }
 
         return str

@@ -23,8 +23,21 @@ struct ErrorView: View {
     }
 }
 
-struct ViewHelpers_Previews: PreviewProvider {
-    static var previews: some View {
-        ErrorView(errorDescription: "Testing error")
+struct InstructionView : View {
+    
+    
+    var body : some View {
+        Text("Instructions")
+            .font(.largeTitle)
+            .multilineTextAlignment(.center)
     }
 }
+
+struct ViewHelpers_Previews: PreviewProvider {
+    static var previews: some View {
+//        ErrorView(errorDescription: "Testing error")
+//        MyButton(action: {}, label: "button")
+        InstructionView()
+    }
+}
+
