@@ -21,21 +21,25 @@ struct FileManagerView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(items, id: \.label) { item in
-                    item
+        VStack {
+            Text("Patients")
+                .textStyle(TitleTextStyle())
+            ScrollView {
+                VStack {
+                    ForEach(items, id: \.label) { item in
+                        item
+                    }
                 }
             }
-        }
-        .toolbar {
-            Button("Export All Files", action : {isMovingSelection = true})
-        }
-        .fileMover(isPresented: $isMovingSelection, file: getDocumentsDirectoryRoot()) {
-            if case .success = $0 {
-                
-            } else {
-                // Handle Failure
+            .toolbar {
+                Button("Export All Files", action : {isMovingSelection = true})
+            }
+            .fileMover(isPresented: $isMovingSelection, file: getDocumentsDirectoryRoot()) {
+                if case .success = $0 {
+                    
+                } else {
+                    // Handle Failure
+                }
             }
         }
             

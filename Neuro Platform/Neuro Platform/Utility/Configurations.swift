@@ -31,6 +31,15 @@ struct TitleTextStyle: ViewModifier {
     }
 }
 
+struct BodyTextStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.body)
+            .lineSpacing(4)
+            .foregroundColor(.primary)
+    }
+}
+
 // Extensions
 extension Text {
     func textStyle<Style: ViewModifier>(_ style: Style) -> some View {

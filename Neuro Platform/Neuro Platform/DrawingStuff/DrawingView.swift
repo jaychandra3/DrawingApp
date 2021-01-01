@@ -19,17 +19,32 @@ struct DrawingView: View {
     let patient : String
     @State private var data = DrawingData()
     
-    let circle : some Shape = Circle()
-        .stroke(lineWidth: 3)
     var body: some View {
         VStack(alignment: .center) {
+//                    Prompt type
+            switch trialList[trialnum].0 {
+            case .fast:
+                Text("Fast")
+                    .textStyle(TitleTextStyle())
+            case .accurate:
+                Text("Accurate")
+                    .textStyle(TitleTextStyle())
+            }
+            
             ZStack {
                 DrawingPad(currentDrawing: $currentDrawing,
                            drawings: $drawings)
                 HStack {
                     Spacer()
-                    circle
-                        .opacity(0.5)
+                    
+//                    Shape type
+                    switch trialList[trialnum].1 {
+                    case .circle:
+                        Circle().stroke(lineWidth:3).opacity(0.5)
+                    case .spirosquare:
+                        SpiroSquare().stroke(lineWidth:3).opacity(0.5)
+                    }
+                    
                     Spacer()
                 }
                 
@@ -39,30 +54,36 @@ struct DrawingView: View {
             }
             Spacer()
             HStack {
-                Button(action: {self.drawings = [Drawing]()}) {
-                    Text("Clear Drawings").foregroundColor(.white)
-                }
+//                DELETE LATER, NOT NEEDED FOR FINAL VERSION
+//                Button(action: {self.drawings = [Drawing]()}, label: {
+//                    Text("Clear Drawing")
+//                }).buttonStyle(MainButtonStyle())
+                
+                
                 Spacer()
                 Button(action: {
                     self.data.finishDrawing(patient : self.patient, drawingName: "circle" + trialnum.description + ".csv")
                     trialnum += 1
-                    if trialnum >= trials {
+                    if trialnum >= trialList.count {
                         self.rootIsActive.toggle()
+//                        avoid OOB
+                        trialnum -= 1
                     } else {
                         self.drawings = [Drawing]()
                         self.data = DrawingData()
+//                        switch trialList[trialnum].1 {
+//                        case .circle:
+//                            currentshape = Circle().stroke(lineWidth : 3)
+//                        }
                     }
-                }) {
-                    if trialnum < trials - 1 {
+                }, label: {
+                    if trialnum < trialList.count - 1 {
                         Text("Next Trial").foregroundColor(.white)
                     } else {
-                        Text("Finish Drawing").foregroundColor(.white)
+                        Text("Finish Test").foregroundColor(.white)
                     }
-                }
+                }).buttonStyle(MainButtonStyle())
             }
-            .padding()
-            .background(Rectangle().foregroundColor(.black))
-            .cornerRadius(5)
             Spacer()
         }.navigationBarHidden(true)
         .navigationTitle("Trial " + (trialnum + 1).description + "/" + trials.description)

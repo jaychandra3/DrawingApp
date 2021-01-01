@@ -17,22 +17,24 @@ struct MainView: View {
     @ObservedObject var NavData = NavigationMetaData()
         var body: some View {
         NavigationView {
-            VStack(spacing: 30) {
-                NavigationLink(
-                    destination: HomeView(),
-                    label: {
-                        Text("Home")
-                    })
-                NavigationLink(destination : NewPatientView()) {
-                    Text("New Patient")
-                }
-                NavigationLink(destination: FileManagerView()) {
-                    Text("Files")
-                }
-            }.navigationBarTitle("Menu")
+//            VStack(spacing: 30) {
+//                NavigationLink(
+//                    destination: HomeView(),
+//                    label: {
+//                        Text("Home")
+//                    })
+//                NavigationLink(destination : NewPatientView()) {
+//                    Text("New Patient")
+//                }
+//                NavigationLink(destination: FileManagerView()) {
+//                    Text("Files")
+//                }
+//            }.navigationBarTitle("Menu")
             
             HomeView()            
-        }.environmentObject(NavData)
+        }
+            .environmentObject(NavData)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

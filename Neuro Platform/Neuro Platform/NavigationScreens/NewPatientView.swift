@@ -11,9 +11,12 @@ import SwiftUI
 struct NewPatientView: View {
     @State private var name: String = ""
     @State private var isActive : Bool = false
+    @State private var showingAlert = false
     
     var body: some View {
         VStack {
+            Text("New Patient")
+                .textStyle(TitleTextStyle())
             Spacer()
             Text("Patient Name")
             TextField("Enter Patient Name", text: $name)
@@ -21,10 +24,16 @@ struct NewPatientView: View {
                 EmptyView()
             }.isDetailLink(false)
             Button("Start Task") {
-                self.isActive.toggle()
-            }
+                if(name.count > 0) {
+                    self.isActive.toggle()
+                } else {
+                    self.showingAlert.toggle()
+                }
+            }.alert(isPresented: $showingAlert, content: {
+                Alert(title: Text("Form Incomplete"), message: Text("Please enter a name"), dismissButton: .default(Text("Ok")))
+            })
             Spacer()
-        }.navigationBarTitle("New Patient")
+        }
     }
 }
 
