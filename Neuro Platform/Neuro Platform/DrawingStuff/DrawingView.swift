@@ -62,7 +62,7 @@ struct DrawingView: View {
                 
                 Spacer()
                 Button(action: {
-                    self.data.finishDrawing(patient : self.patient, drawingName: "circle" + trialnum.description + ".csv")
+                    self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv")
                     trialnum += 1
                     if trialnum >= trialList.count {
                         self.rootIsActive.toggle()
