@@ -7,7 +7,11 @@
 //
 
 import SwiftUI
-
+/**
+ UIKit wrapper for capturing UITouch information so we can collect necessary
+ apple pencil data such as force and azimuth. Might not be necessary
+ with future SwiftUI versions
+ */
 struct TouchCaptureView: UIViewControllerRepresentable {
     class Coordinator : NSObject,TouchCaptureViewDelegate {
         var parent : TouchCaptureView

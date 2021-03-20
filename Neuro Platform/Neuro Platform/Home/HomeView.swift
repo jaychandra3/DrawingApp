@@ -16,7 +16,12 @@ struct HomeView: View {
     
     var body: some View {
         VStack{
-//            Just some navigation stuff
+            // These buttons link to the various screens
+            // Take inspiration if new screens needed
+            // be weary of the viewActive booleans, can
+            // lead to strange behavior if mistreated
+            // Note: these are EmpytViews so these links
+            // are only semantic (invisible to user)
             NavigationLink(
                 destination: NewPatientView(),
                 isActive: $testActive,
@@ -43,7 +48,8 @@ struct HomeView: View {
                 })
             
             
-//            Actually seen by user
+            // Define actual user seen interface
+            // deal with styles and stuff here
             Text("Analysis Platform")
                 .textStyle(TitleTextStyle())
             

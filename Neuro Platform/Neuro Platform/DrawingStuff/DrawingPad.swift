@@ -15,6 +15,10 @@ struct DrawingPad: View {
     let lineWidth : CGFloat = 3.0
     let user : DrawingData = DrawingData()
     
+    /**
+     This just prints the drawing so it is visible to the user, the drawing itself is updated and stored
+     using the TouchCaptureView
+     */
     var body: some View {
         GeometryReader { geometry in
             Path { path in

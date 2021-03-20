@@ -8,7 +8,9 @@
 
 import SwiftUI
 
-
+// This is the items in the file system like a folder/file
+// it gets passed a url to the specific file/folder and
+// sets up the button action based on file type (open folder/open file)
 struct FileManagerItemView: View {
     var label : String
     var url : URL

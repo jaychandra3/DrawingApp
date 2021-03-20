@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+// This view allows the user to browse the local file system
+// and view the saved CSVs/folders. If adding stuff here, be
+// careful of interaction with FileHelpers, definetely review
+// iOS file system behavior a little first
 struct FileManagerView: View {
     let items : [FileManagerItemView]
     @State private var isMovingSelection = false;

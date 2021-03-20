@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// Barebones Instruction View : TODO
 struct InstructionsView: View {
     var body: some View {
         VStack {

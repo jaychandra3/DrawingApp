@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// Lets you add a new patient and then starts their drawing trials
 struct NewPatientView: View {
     @State private var name: String = ""
     @State private var isActive : Bool = false

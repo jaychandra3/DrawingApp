@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+// Prints file contents onto a view
 struct TextFileView: View {
     let content : String
     

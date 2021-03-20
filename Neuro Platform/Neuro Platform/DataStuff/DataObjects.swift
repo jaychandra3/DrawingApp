@@ -10,6 +10,8 @@ import Foundation
 import CoreGraphics
 import SwiftUI
 
+// Main Data type for storing the drawing information
+// Feel free to add values as necessary
 class DrawingData {
     var coordinates : [ CGPoint ]
     var timestamps : [ TimeInterval ]
@@ -39,6 +41,7 @@ class DrawingData {
         frameHeight = 0.0
     }
     
+    // Called when drawing has changed or started
     func update(value : UITouch, view : UIView) {
         let location = value.location(in: view)
         let azimuth = value.azimuthAngle(in: view)
@@ -67,7 +70,7 @@ class DrawingData {
     }
     
     /**
-     Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to JSON.
+     Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to CSV.
      */
     func finishDrawing(patient : String, drawingName : String = "drawing.csv") {
         let url : URL = getDocumentsDirectory(foldername: patient, filename: drawingName)
@@ -82,6 +85,9 @@ class DrawingData {
         }
     }
     
+    /**
+    Converts file contents to a CSV string that can be printed to a file
+     */
     private func CSVString() -> String {
         var str : String = "Coordinates ("  + frameWidth.description + "\",\" " + frameHeight.description + "),Timestamp,Velocity,force,azimuthAngle,altitudeAngle\n"
         for index in 0...coordinates.count - 1 {
@@ -95,6 +101,7 @@ class DrawingData {
 //        TODO
     }
     
+    // Most likely will be unused, feel free to delete
     func convertToJSON() {
 //        TODO
     }

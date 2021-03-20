@@ -19,6 +19,9 @@ struct DrawingView: View {
     let patient : String
     @State private var data = DrawingData()
     
+    /**
+     This view combines most of the needed features of drawing, collecting data, and printing the final file
+     */
     var body: some View {
         VStack(alignment: .center) {
 //                    Prompt type
@@ -55,6 +58,7 @@ struct DrawingView: View {
             Spacer()
             HStack {
 //                DELETE LATER, NOT NEEDED FOR FINAL VERSION
+//                Clears current drawing
 //                Button(action: {self.drawings = [Drawing]()}, label: {
 //                    Text("Clear Drawing")
 //                }).buttonStyle(MainButtonStyle())
@@ -71,10 +75,6 @@ struct DrawingView: View {
                     } else {
                         self.drawings = [Drawing]()
                         self.data = DrawingData()
-//                        switch trialList[trialnum].1 {
-//                        case .circle:
-//                            currentshape = Circle().stroke(lineWidth : 3)
-//                        }
                     }
                 }, label: {
                     if trialnum < trialList.count - 1 {

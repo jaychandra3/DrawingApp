@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+// get URL of folder and/or filename passed in
 func getDocumentsDirectory(foldername foldercomponent : String?, filename pathcomponent : String) -> URL {
     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         .first!
@@ -27,6 +28,7 @@ func getDocumentsDirectory(foldername foldercomponent : String?, filename pathco
     }
 }
 
+// App root directory URL, only really called in above function getDocumentsDirectory
 func getDocumentsDirectoryRoot() -> URL {
     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     .first!
@@ -34,6 +36,8 @@ func getDocumentsDirectoryRoot() -> URL {
     return path
 }
 
+// Generate FileManagerItemView for each file/folder in the given URL
+// which is used for displaying the files to user
 func generateFileItemViews(url : URL = getDocumentsDirectoryRoot()) -> [FileManagerItemView] {
     var items = [FileManagerItemView]()
     let urls : [URL]

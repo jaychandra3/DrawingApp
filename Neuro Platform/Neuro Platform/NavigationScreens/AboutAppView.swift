@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// Barebones AboutAppView : TODO
 struct AboutAppView: View {
     var body: some View {
         VStack {
