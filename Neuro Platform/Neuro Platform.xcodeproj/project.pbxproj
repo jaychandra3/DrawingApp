@@ -18,10 +18,12 @@
 		52ADE82E249570B400595A42 /* Neuro_PlatformUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */; };
 		52CF3E9424D7610000A36B60 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CF3E9324D7610000A36B60 /* MainView.swift */; };
 		AF07AD1B253B8C8A002C61BB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF07AD1A253B8C8A002C61BB /* HomeView.swift */; };
+		AF10991825991CDC0076A89E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF10991725991CDC0076A89E /* Configurations.swift */; };
 		AF15515424AD44D800162800 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF15515324AD44D800162800 /* DataObjects.swift */; };
 		AF4CBBCC2544ADF00049C80F /* NewPatientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CBBCB2544ADF00049C80F /* NewPatientView.swift */; };
 		AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE250249BD33A00603E42 /* DrawingPad.swift */; };
 		AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4EE252249BD4F800603E42 /* Drawing.swift */; };
+		AF57DB32259FB96C005EDAB7 /* TrialsDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF57DB31259FB96C005EDAB7 /* TrialsDescription.swift */; };
 		AF9244D824D4B46B00EEA283 /* FileManagerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9244D724D4B46B00EEA283 /* FileManagerItemView.swift */; };
 		AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF94D03524A8112E000EBEF4 /* CustomShapes.swift */; };
 		AFA02B1624CF944C00B74E33 /* FileHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA02B1524CF944C00B74E33 /* FileHelpers.swift */; };
@@ -29,6 +31,8 @@
 		AFAE31D524D38E4400D3A27B /* FileManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE31D424D38E4400D3A27B /* FileManagerView.swift */; };
 		AFB86AF224DA0CDD007D6329 /* ViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB86AF124DA0CDD007D6329 /* ViewHelpers.swift */; };
 		AFC37F19251FDB1E00825E5B /* TextFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC37F18251FDB1E00825E5B /* TextFileView.swift */; };
+		AFDD0853259AA8B1001AF7DA /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD0852259AA8B1001AF7DA /* InstructionsView.swift */; };
+		AFDD0858259AAEBA001AF7DA /* AboutAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDD0857259AAEBA001AF7DA /* AboutAppView.swift */; };
 		AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDFDDBA24BE74EE00EBDCA9 /* TouchCaptureViewController.swift */; };
 		AFDFDDBD24BE74EE00EBDCA9 /* TouchCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFDFDDBB24BE74EE00EBDCA9 /* TouchCaptureViewController.xib */; };
 		AFDFDDBF24BE771200EBDCA9 /* TouchCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDFDDBE24BE771200EBDCA9 /* TouchCaptureView.swift */; };
@@ -69,10 +73,12 @@
 		52ADE82F249570B400595A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52CF3E9324D7610000A36B60 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		AF07AD1A253B8C8A002C61BB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AF10991725991CDC0076A89E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		AF15515324AD44D800162800 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		AF4CBBCB2544ADF00049C80F /* NewPatientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPatientView.swift; sourceTree = "<group>"; };
 		AF4EE250249BD33A00603E42 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPad.swift; sourceTree = "<group>"; };
 		AF4EE252249BD4F800603E42 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
+		AF57DB31259FB96C005EDAB7 /* TrialsDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialsDescription.swift; sourceTree = "<group>"; };
 		AF9244D724D4B46B00EEA283 /* FileManagerItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerItemView.swift; sourceTree = "<group>"; };
 		AF94D03524A8112E000EBEF4 /* CustomShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapes.swift; sourceTree = "<group>"; };
 		AFA02B1524CF944C00B74E33 /* FileHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelpers.swift; sourceTree = "<group>"; };
@@ -80,6 +86,8 @@
 		AFAE31D424D38E4400D3A27B /* FileManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerView.swift; sourceTree = "<group>"; };
 		AFB86AF124DA0CDD007D6329 /* ViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelpers.swift; sourceTree = "<group>"; };
 		AFC37F18251FDB1E00825E5B /* TextFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFileView.swift; sourceTree = "<group>"; };
+		AFDD0852259AA8B1001AF7DA /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
+		AFDD0857259AAEBA001AF7DA /* AboutAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppView.swift; sourceTree = "<group>"; };
 		AFDFDDBA24BE74EE00EBDCA9 /* TouchCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCaptureViewController.swift; sourceTree = "<group>"; };
 		AFDFDDBB24BE74EE00EBDCA9 /* TouchCaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TouchCaptureViewController.xib; sourceTree = "<group>"; };
 		AFDFDDBE24BE771200EBDCA9 /* TouchCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCaptureView.swift; sourceTree = "<group>"; };
@@ -191,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				AF4CBBCB2544ADF00049C80F /* NewPatientView.swift */,
+				AFDD0852259AA8B1001AF7DA /* InstructionsView.swift */,
+				AFDD0857259AAEBA001AF7DA /* AboutAppView.swift */,
 			);
 			path = NavigationScreens;
 			sourceTree = "<group>";
@@ -219,6 +229,8 @@
 			children = (
 				AFA02B1524CF944C00B74E33 /* FileHelpers.swift */,
 				AFB86AF124DA0CDD007D6329 /* ViewHelpers.swift */,
+				AF10991725991CDC0076A89E /* Configurations.swift */,
+				AF57DB31259FB96C005EDAB7 /* TrialsDescription.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -306,7 +318,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = NDDP;
 				TargetAttributes = {
 					52ADE804249570B200595A42 = {
@@ -379,12 +391,15 @@
 				52ADE809249570B200595A42 /* AppDelegate.swift in Sources */,
 				AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */,
 				AFA02B1624CF944C00B74E33 /* FileHelpers.swift in Sources */,
+				AFDD0853259AA8B1001AF7DA /* InstructionsView.swift in Sources */,
 				AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */,
 				AF15515424AD44D800162800 /* DataObjects.swift in Sources */,
+				AF10991825991CDC0076A89E /* Configurations.swift in Sources */,
 				AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */,
 				52CF3E9424D7610000A36B60 /* MainView.swift in Sources */,
 				AFAE31D524D38E4400D3A27B /* FileManagerView.swift in Sources */,
 				AF07AD1B253B8C8A002C61BB /* HomeView.swift in Sources */,
+				AFDD0858259AAEBA001AF7DA /* AboutAppView.swift in Sources */,
 				52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */,
 				AFB86AF224DA0CDD007D6329 /* ViewHelpers.swift in Sources */,
 				AF9244D824D4B46B00EEA283 /* FileManagerItemView.swift in Sources */,
@@ -394,6 +409,7 @@
 				AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */,
 				52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */,
 				AF4CBBCC2544ADF00049C80F /* NewPatientView.swift in Sources */,
+				AF57DB32259FB96C005EDAB7 /* TrialsDescription.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +482,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -526,6 +543,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

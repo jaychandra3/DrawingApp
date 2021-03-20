@@ -22,4 +22,5 @@ enum TrialShape {
 var trialList : [(TrialType, TrialShape)] = [
     (.fast, .circle),
     (.accurate, .spirosquare),
+    (.fast, .circle),
 ]

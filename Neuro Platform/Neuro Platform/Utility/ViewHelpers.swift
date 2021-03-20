@@ -24,8 +24,6 @@ struct ErrorView: View {
 }
 
 struct InstructionView : View {
-    
-    
     var body : some View {
         Text("Instructions")
             .font(.largeTitle)
