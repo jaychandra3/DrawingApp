@@ -74,8 +74,8 @@ class DrawingData {
      */
     func finishDrawing(patient : String, drawingName : String = "drawing.csv") {
         let url : URL = getDocumentsDirectory(foldername: patient, filename: drawingName)
-        let str : String = CSVString()
         do {
+        let str : String = CSVString()
             try str.write(to: url, atomically: true, encoding: .utf8)
             let input = try String(contentsOf: url)
             print(input)
@@ -105,14 +105,53 @@ class DrawingData {
     func convertToJSON() {
 //        TODO
     }
-    
-    
-    
 }
 
+// User Data Form
 class UserData {
     
+    var names : [String]
+    var ages : [String]
+    var sexes : [String]
+    var hands : [String]
+    
     init() {
-        
+        names = [String]()
+        ages = [String]()
+        sexes = [String]()
+        hands = [String]()
+    }
+    
+    func updateForm() {
+        // need to figure out how this works
+        names.append(NewPatientView.name)
+        ages.append(NewPatientView.age)
+        sexes.append(NewPatientView.sex)
+        hands.append(NewPatientView.hand)
+    }
+    
+    /**
+     Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to CSV.
+     */
+    
+    func finishForm(formName : String = "patientForm.csv") {
+        let url : URL = getDocumentsDirectory(foldername: formName, filename: formName)
+        do {
+        let str : String = CSVString()
+            try str.write(to: url, atomically: true, encoding: .utf8)
+            let input = try String(contentsOf: url)
+            print(input)
+        } catch {
+            print("Failed to write to disk")
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func CSVString() -> String {
+        var str : String = "Name, Age, Sex, Dominant Hand\n"
+        for index in 0...names.count - 1 {
+            str = str + "\"" + names[index].description + "," + ages[index].description + "\"," + sexes[index].description + "," + hands[index].description + "\n"
+        }
+        return str
     }
 }
