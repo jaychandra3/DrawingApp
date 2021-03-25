@@ -22,20 +22,22 @@ struct NewPatientView: View {
         
         VStack {
             VStack{
-                Text("New Patient")
+                Spacer()
+                Text("Patient Information").font(.system(size: 35))
                     .textStyle(TitleTextStyle())
-
+                Spacer()
+                
                 HStack{
-                    Text("Patient Name")
-                    TextField("Enter Patient Name", text: $name)
+                    Text("Patient Name").font(.system(size: 25))
+                    TextField("Enter Patient Name", text: $name).textFieldStyle(RoundedBorderTextFieldStyle()).border(Color.black)
                 }.padding()
                 HStack{
-                    Text("Patient Age")
-                    TextField("Enter Patient Age", text: $age)
+                    Text("Patient Age").font(.system(size: 25))
+                    TextField("Enter Patient Age", text: $age).textFieldStyle(RoundedBorderTextFieldStyle()).border(Color.black)
                 }.padding()
                 
                 HStack {
-                    Text("Biological Sex")
+                    Text("Biological Sex").font(.system(size: 25))
                     VStack{
                         Picker(selection: $sex, label: Text("Sex")) {
                             Text("Male").tag("Male")
@@ -47,7 +49,7 @@ struct NewPatientView: View {
             
             VStack {
                 HStack {
-                    Text("Dominant Hand")
+                    Text("Dominant Hand").font(.system(size: 25))
                     Picker(selection: $hand, label: Text("Dominant Hand")) {
                         Text("Left Hand").tag("Left Hand")
                         Text("Right Hand").tag("Right Hand")
@@ -58,7 +60,7 @@ struct NewPatientView: View {
                     EmptyView()
                 }.isDetailLink(false)
                 
-                
+                Spacer()
                 Button("Start Task") {
                     if(name.count > 0 &&
                         age.count > 0 &&
@@ -72,7 +74,8 @@ struct NewPatientView: View {
                     Alert(title: Text("Form Incomplete"),
                           message: Text("Please check each entry or selection"),
                           dismissButton: .default(Text("Ok")))
-                }).padding()
+                }).buttonStyle(BorderlessButtonStyle()).font(.largeTitle).padding()
+                Spacer()
             }.padding()
         }
     }
