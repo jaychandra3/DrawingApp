@@ -17,6 +17,7 @@
 		52ADE823249570B400595A42 /* Neuro_PlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE822249570B400595A42 /* Neuro_PlatformTests.swift */; };
 		52ADE82E249570B400595A42 /* Neuro_PlatformUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */; };
 		52CF3E9424D7610000A36B60 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CF3E9324D7610000A36B60 /* MainView.swift */; };
+		96EAA8E2260C158D002707BE /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EAA8E1260C158D002707BE /* test.swift */; };
 		AF07AD1B253B8C8A002C61BB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF07AD1A253B8C8A002C61BB /* HomeView.swift */; };
 		AF10991825991CDC0076A89E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF10991725991CDC0076A89E /* Configurations.swift */; };
 		AF15515424AD44D800162800 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF15515324AD44D800162800 /* DataObjects.swift */; };
@@ -72,6 +73,7 @@
 		52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neuro_PlatformUITests.swift; sourceTree = "<group>"; };
 		52ADE82F249570B400595A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52CF3E9324D7610000A36B60 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		96EAA8E1260C158D002707BE /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		AF07AD1A253B8C8A002C61BB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		AF10991725991CDC0076A89E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		AF15515324AD44D800162800 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				AF4CBBCB2544ADF00049C80F /* NewPatientView.swift */,
 				AFDD0852259AA8B1001AF7DA /* InstructionsView.swift */,
 				AFDD0857259AAEBA001AF7DA /* AboutAppView.swift */,
+				96EAA8E1260C158D002707BE /* test.swift */,
 			);
 			path = NavigationScreens;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				AFAE31D524D38E4400D3A27B /* FileManagerView.swift in Sources */,
 				AF07AD1B253B8C8A002C61BB /* HomeView.swift in Sources */,
 				AFDD0858259AAEBA001AF7DA /* AboutAppView.swift in Sources */,
+				96EAA8E2260C158D002707BE /* test.swift in Sources */,
 				52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */,
 				AFB86AF224DA0CDD007D6329 /* ViewHelpers.swift in Sources */,
 				AF9244D824D4B46B00EEA283 /* FileManagerItemView.swift in Sources */,
