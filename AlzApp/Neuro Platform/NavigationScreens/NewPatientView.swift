@@ -7,13 +7,14 @@
 //
 
 import SwiftUI
+import Combine
 
 // Lets you add a new patient and then starts their drawing trials
 struct NewPatientView: View {
-    @State private var name: String = ""
-    @State private var age: String = ""
-    @State private var sex: String = "Not Selected"
-    @State private var hand: String = "Not Selected"
+    @State var name: String = ""
+    @State var age: String = ""
+    @State var sex: String = "Not Selected"
+    @State var hand: String = "Not Selected"
     
     @State private var isActive : Bool = false
     @State private var showingAlert = false
@@ -33,7 +34,12 @@ struct NewPatientView: View {
                 }.padding()
                 HStack{
                     Text("Patient Age").font(.system(size: 25))
-                    TextField("Enter Patient Age", text: $age).textFieldStyle(RoundedBorderTextFieldStyle()).border(Color.black)
+                    TextField("Enter Patient Age", text: $age).textFieldStyle(RoundedBorderTextFieldStyle()).border(Color.black).onReceive(Just(age)){ newValue in
+                            let filtered = newValue.filter { "0123456789".contains($0) }
+                            if filtered != newValue {
+                                self.age = filtered
+                            }
+                    }
                 }.padding()
                 
                 HStack {
