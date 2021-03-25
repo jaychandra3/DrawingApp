@@ -11,7 +11,7 @@ import SwiftUI
 // Lets you add a new patient and then starts their drawing trials
 struct NewPatientView: View {
     @State private var name: String = ""
-    @State private var age: Int
+    @State private var age: String = ""
     
     @State private var isActive : Bool = false
     @State private var showingAlert = false
@@ -23,6 +23,8 @@ struct NewPatientView: View {
             Spacer()
             Text("Patient Name")
             TextField("Enter Patient Name", text: $name)
+            Text("Patient Age")
+            TextField("Enter Patient Age", text: $age)
             NavigationLink(destination: DrawingView(rootIsActive: $isActive, trials: 3, patient: name), isActive : $isActive) {
                 EmptyView()
             }.isDetailLink(false)
