@@ -11,6 +11,8 @@ import SwiftUI
 // Lets you add a new patient and then starts their drawing trials
 struct NewPatientView: View {
     @State private var name: String = ""
+    @State private var age: Int
+    
     @State private var isActive : Bool = false
     @State private var showingAlert = false
     
@@ -34,7 +36,7 @@ struct NewPatientView: View {
                 Alert(title: Text("Form Incomplete"), message: Text("Please enter a name"), dismissButton: .default(Text("Ok")))
             })
             Spacer()
-        }
+        }.padding()
     }
 }
 
