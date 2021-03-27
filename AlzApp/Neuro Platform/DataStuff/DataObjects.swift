@@ -122,6 +122,7 @@ class UserData {
         hands = [String]()
     }
     
+    /*
     func updateForm() {
         // need to figure out how this works
         names.append(NewPatientView.name)
@@ -129,9 +130,10 @@ class UserData {
         sexes.append(NewPatientView.sex)
         hands.append(NewPatientView.hand)
     }
+    */
     
     /**
-     Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to CSV.
+     Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to CSV. Does this require us to restart the app to store the CSV?
      */
     
     func finishForm(formName : String = "patientForm.csv") {
