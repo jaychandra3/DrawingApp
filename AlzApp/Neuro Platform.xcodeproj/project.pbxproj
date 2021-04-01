@@ -17,6 +17,8 @@
 		52ADE823249570B400595A42 /* Neuro_PlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE822249570B400595A42 /* Neuro_PlatformTests.swift */; };
 		52ADE82E249570B400595A42 /* Neuro_PlatformUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */; };
 		52CF3E9424D7610000A36B60 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CF3E9324D7610000A36B60 /* MainView.swift */; };
+		96D7D0F22615417E0092E77A /* stepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D7D0F12615417E0092E77A /* stepView.swift */; };
+		96D7D0F726154AF20092E77A /* stepInstructions.json in Resources */ = {isa = PBXBuildFile; fileRef = 96D7D0F626154AF20092E77A /* stepInstructions.json */; };
 		AF07AD1B253B8C8A002C61BB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF07AD1A253B8C8A002C61BB /* HomeView.swift */; };
 		AF10991825991CDC0076A89E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF10991725991CDC0076A89E /* Configurations.swift */; };
 		AF15515424AD44D800162800 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF15515324AD44D800162800 /* DataObjects.swift */; };
@@ -72,6 +74,8 @@
 		52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neuro_PlatformUITests.swift; sourceTree = "<group>"; };
 		52ADE82F249570B400595A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52CF3E9324D7610000A36B60 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		96D7D0F12615417E0092E77A /* stepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stepView.swift; sourceTree = "<group>"; };
+		96D7D0F626154AF20092E77A /* stepInstructions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stepInstructions.json; sourceTree = "<group>"; };
 		AF07AD1A253B8C8A002C61BB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		AF10991725991CDC0076A89E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		AF15515324AD44D800162800 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 		52ADE807249570B200595A42 /* Neuro Platform */ = {
 			isa = PBXGroup;
 			children = (
+				96D7D0F626154AF20092E77A /* stepInstructions.json */,
 				AF4CBBCA2544ADCF0049C80F /* NavigationScreens */,
 				52CF3E9224D75FB000A36B60 /* Home */,
 				AFAE31D324D388B600D3A27B /* FileSystem */,
@@ -201,6 +206,7 @@
 				AF4CBBCB2544ADF00049C80F /* NewPatientView.swift */,
 				AFDD0852259AA8B1001AF7DA /* InstructionsView.swift */,
 				AFDD0857259AAEBA001AF7DA /* AboutAppView.swift */,
+				96D7D0F12615417E0092E77A /* stepView.swift */,
 			);
 			path = NavigationScreens;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				52ADE815249570B400595A42 /* Preview Assets.xcassets in Resources */,
 				AFDFDDBD24BE74EE00EBDCA9 /* TouchCaptureViewController.xib in Resources */,
 				52ADE812249570B400595A42 /* Assets.xcassets in Resources */,
+				96D7D0F726154AF20092E77A /* stepInstructions.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +410,7 @@
 				52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */,
 				AFB86AF224DA0CDD007D6329 /* ViewHelpers.swift in Sources */,
 				AF9244D824D4B46B00EEA283 /* FileManagerItemView.swift in Sources */,
+				96D7D0F22615417E0092E77A /* stepView.swift in Sources */,
 				AFDFDDBF24BE771200EBDCA9 /* TouchCaptureView.swift in Sources */,
 				AFC37F19251FDB1E00825E5B /* TextFileView.swift in Sources */,
 				52ADE810249570B200595A42 /* ContentView.swift in Sources */,

@@ -24,7 +24,7 @@ struct NewPatientView: View {
         VStack {
             VStack{
                 Spacer()
-                Text("Patient Information").font(.system(size: 35))
+                Text("Patient Information").bold().font(.system(size: 35))
                     .textStyle(TitleTextStyle())
                 Spacer()
                 
