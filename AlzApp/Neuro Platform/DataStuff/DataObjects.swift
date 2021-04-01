@@ -107,30 +107,29 @@ class DrawingData {
     }
 }
 
+struct Patient{
+    var name : String
+    var age : String
+    var sex : String
+    var hand : String
+}
+
 // User Data Form
 class UserData {
     
-    var names : [String]
-    var ages : [String]
-    var sexes : [String]
-    var hands : [String]
+    private var patients : [Patient] // array of Patient Objects
     
     init() {
-        names = [String]()
-        ages = [String]()
-        sexes = [String]()
-        hands = [String]()
+        patients = [Patient]()
     }
     
-    /*
-    func updateForm() {
-        // need to figure out how this works
-        names.append(NewPatientView.name)
-        ages.append(NewPatientView.age)
-        sexes.append(NewPatientView.sex)
-        hands.append(NewPatientView.hand)
+    func updateForm(newPatient : Patient) {
+        patients.append(newPatient)
     }
-    */
+    
+    func getPatientCount() -> Int {
+        return patients.count
+    }
     
     /**
      Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to CSV. Does this require us to restart the app to store the CSV?
@@ -151,8 +150,8 @@ class UserData {
     
     private func CSVString() -> String {
         var str : String = "Name, Age, Sex, Dominant Hand\n"
-        for index in 0...names.count - 1 {
-            str = str + "\"" + names[index].description + "," + ages[index].description + "\"," + sexes[index].description + "," + hands[index].description + "\n"
+        for index in 0...patients.count - 1 {
+            str = str + "\"" + patients[index].name + "," + patients[index].age + "\"," + patients[index].sex + "," + patients[index].hand + "\n"
         }
         return str
     }

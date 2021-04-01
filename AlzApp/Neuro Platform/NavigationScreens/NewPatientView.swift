@@ -9,6 +9,8 @@
 import SwiftUI
 import Combine
 
+var patientData = UserData()
+
 // Lets you add a new patient and then starts their drawing trials
 struct NewPatientView: View {
     @State var name: String = ""
@@ -72,6 +74,8 @@ struct NewPatientView: View {
                         age.count > 0 &&
                         sex != "Not Selected" &&
                         hand != "Not Selected") {
+                        let newUser = Patient(name: self.name, age: self.age, sex: self.sex, hand: self.hand)
+                        patientData.updateForm(newPatient : newUser)
                         self.isActive.toggle()
                     } else {
                         self.showingAlert.toggle()
