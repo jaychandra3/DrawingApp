@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1001,
+        "step": "encoding_step",
+        "stepLabel": "Encoding Step 1",
+        "instructions": "Trace the figure below as accurately as possible. Pay attention to the figure and the order of the strokes as described by the numbered arrows."
+    }
+    {
+        "id": 1002,
+        "step": "encoding_step",
+        "stepLabel": "Encoding Step 2",
+        "instructions": "Reproduce the figure from the last step using the vertices given. Once again, pay attention to the figure and the order of the strokes as described by the numbered arrows."
+    }
+    {
+        "id": 1003,
+        "step": "encoding_step",
+        "stepLabel": "Encoding Step 3",
+        "instructions": "Reproduce the figure on the blank canvas using the numbered edges provided."
+    }
+    {
+        "id": 1004,
+        "step": "encoding_step",
+        "stepLabel": "Encoding Step 4",
+        "instructions": "Reproduce the figure from memory to the best of your ability."
+    }
+    {
+        "id": 1005,
+        "step": "distractor_step",
+        "stepLabel": "Distractor Step 1",
+        "instructions": "Count backwards from 100 to 50 by 7s."
+    }
+    {
+        "id": 1006,
+        "step": "distractor_step",
+        "stepLabel": "Distractor Step 2",
+        "instructions": "Alternate numbers and words through the entire alphabet (i.e. a1, b2, c3, d4, etc.)"
+    }
+    {
+        "id": 1007,
+        "step": "distractor_step",
+        "stepLabel": "Distractor Step 3",
+        "instructions": "Read the following story that is presented on the screen"
+    }
+    {
+        "id": 1008,
+        "step": "distractor_step",
+        "stepLabel": "Distractor Step 4",
+        "instructions": "Count the number of syllables in the following words: interested, machine, perspective, neglected. "
+    }
+    {
+        "id": 1009,
+        "step": "retrieval_step",
+        "stepLabel": "Retrieval Step 1",
+        "instructions": "Reproduce the figure from the encoding step from memory to the best of your ability."
+    }
+    {
+        "id": 1010,
+        "step": "retrieval_step",
+        "stepLabel": "Retrieval Step 2",
+        "instructions": "Given the following set of vertices, reproduce the figure from the encoding step to the best of your ability"
+    }
+    {
+        "id": 1011, 
+        "step": "retrieval_step_multiple_choice",
+        "stepLabel": "Retrieval Step 3",
+        "instructions": "Which of the follow best matches the figure from the encoding step? Record time till decision?"
+    }
+]
