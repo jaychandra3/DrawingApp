@@ -25,7 +25,7 @@ struct DrawingView: View {
     var body: some View {
         VStack(alignment: .center) {
 //                    Prompt type
-            switch trialList[trialnum].0 { //accesses the first index's first object
+            switch trialList[trialnum].0 {
             case .fast:
                 Text("Fast")
                     .textStyle(TitleTextStyle())
@@ -41,20 +41,11 @@ struct DrawingView: View {
                     Spacer()
                     
 //                    Shape type
-                    switch trialList[trialnum].1 { //accesses the first index's second object
-                    
+                    switch trialList[trialnum].1 {
                     case .circle:
                         Circle().stroke(lineWidth:3).opacity(0.5)
-                        Rectangle().stroke(lineWidth:3).opacity(0.5)
-                            .frame(width: 200, height: 200)
                     case .spirosquare:
                         SpiroSquare().stroke(lineWidth:3).opacity(0.5)
-                    case .rectangle:
-                        Rectangle().stroke(lineWidth:3).opacity(0.5)
-                            .frame(width: 200, height: 200)
-                    case .multipleshapes:
-                        MultipleShapes().stroke(lineWidth:3)
-                            .opacity(0.5)
                     }
                     
                     Spacer()
@@ -68,9 +59,9 @@ struct DrawingView: View {
             HStack {
 //                DELETE LATER, NOT NEEDED FOR FINAL VERSION
 //                Clears current drawing
-                Button(action: {self.drawings = [Drawing]()}, label: {
-                    Text("Clear Drawing")
-                }).buttonStyle(MainButtonStyle())
+//                Button(action: {self.drawings = [Drawing]()}, label: {
+//                    Text("Clear Drawing")
+//                }).buttonStyle(MainButtonStyle())
                 
                 
                 Spacer()
@@ -86,7 +77,7 @@ struct DrawingView: View {
                         self.data = DrawingData()
                     }
                 }, label: {
-                    if trialnum < trialList.count - 1 { //checks if there's still more trials left
+                    if trialnum < trialList.count - 1 {
                         Text("Next Trial").foregroundColor(.white)
                     } else {
                         Text("Finish Test").foregroundColor(.white)
@@ -97,14 +88,6 @@ struct DrawingView: View {
         }.navigationBarHidden(true)
         .navigationTitle("Trial " + (trialnum + 1).description + "/" + trials.description)
     }
+    
 }
 
-struct DrawingView_Previews: PreviewProvider {
-    @State static var value = true
-    static var previews: some View {
-        Group {
-            DrawingView(rootIsActive: $value, trials: 3, patient: "Elias")
-            DrawingView(rootIsActive: $value, trials: 3, patient: "Elias")
-        }
-    }
-}
