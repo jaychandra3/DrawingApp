@@ -130,6 +130,9 @@ class UserData {
     func getPatientCount() -> Int {
         return patients.count
     }
+    func printForm() -> String{
+        return CSVString()
+    }
     
     /**
      Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to CSV. Does this require us to restart the app to store the CSV?

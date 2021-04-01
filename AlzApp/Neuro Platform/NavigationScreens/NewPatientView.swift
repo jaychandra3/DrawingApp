@@ -76,6 +76,7 @@ struct NewPatientView: View {
                         hand != "Not Selected") {
                         let newUser = Patient(name: self.name, age: self.age, sex: self.sex, hand: self.hand)
                         patientData.updateForm(newPatient : newUser)
+                        // Print(patientData.printForm())
                         self.isActive.toggle()
                     } else {
                         self.showingAlert.toggle()
