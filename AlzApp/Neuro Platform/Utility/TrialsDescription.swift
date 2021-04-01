@@ -18,8 +18,9 @@ enum TrialShape {
     case circle
     case spirosquare
     case rectangle
+    case multipleshapes
 }
 
 var trialList : [(TrialType, TrialShape)] = [
-    (.accurate, .rectangle), (.fast, .circle), (.fast, .spirosquare)
+    (.accurate, .multipleshapes), (.fast, .circle), (.fast, .spirosquare), (.accurate, .rectangle)
 ]

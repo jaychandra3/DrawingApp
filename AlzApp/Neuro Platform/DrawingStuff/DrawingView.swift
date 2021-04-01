@@ -45,12 +45,16 @@ struct DrawingView: View {
                     
                     case .circle:
                         Circle().stroke(lineWidth:3).opacity(0.5)
+                        Rectangle().stroke(lineWidth:3).opacity(0.5)
+                            .frame(width: 200, height: 200)
                     case .spirosquare:
                         SpiroSquare().stroke(lineWidth:3).opacity(0.5)
                     case .rectangle:
                         Rectangle().stroke(lineWidth:3).opacity(0.5)
                             .frame(width: 200, height: 200)
-                    
+                    case .multipleshapes:
+                        MultipleShapes().stroke(lineWidth:3)
+                            .opacity(0.5)
                     }
                     
                     Spacer()
@@ -98,6 +102,9 @@ struct DrawingView: View {
 struct DrawingView_Previews: PreviewProvider {
     @State static var value = true
     static var previews: some View {
-        DrawingView(rootIsActive: $value, trials: 3, patient: "Elias")
+        Group {
+            DrawingView(rootIsActive: $value, trials: 3, patient: "Elias")
+            DrawingView(rootIsActive: $value, trials: 3, patient: "Elias")
+        }
     }
 }
