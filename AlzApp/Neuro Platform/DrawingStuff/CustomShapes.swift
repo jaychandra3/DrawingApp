@@ -31,6 +31,11 @@ struct SpiroSquare: Shape {
 struct MultipleShapes: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
+        
+                                                    //Circle specifications
+            path.addArc(center: CGPoint(x: 250, y: 447), radius: 200,
+                        startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
+        
                                                     //Triangle coords
            path.move(to: CGPoint(x: 650, y: 450))       //1
         path.addLine(to: CGPoint(x: 550, y: 600))       //2
@@ -51,10 +56,6 @@ struct MultipleShapes: Shape {
         path.addLine(to: CGPoint(x: 250, y: 550))       //C(1)
         path.addLine(to: CGPoint(x: 650, y: 550))       //C(6)
         
-                                                    //Circle specifications
-        path.move(to: CGPoint(x: 280, y: 420))
-        path.addArc(center: CGPoint(x: 280, y: 420), radius: 200,
-                    startAngle: .degrees(0), endAngle: .degrees(0), clockwise: true)
         
         
         return path
