@@ -10,8 +10,10 @@ import Foundation
 import SwiftUI
 
 enum TrialType {
-    case fast
-    case accurate
+    //case fast
+    //case accurate
+    case encoding_step1
+    case encoding_step2
 }
 
 enum TrialShape {
@@ -22,6 +24,14 @@ enum TrialShape {
     case archspiral
 }
 
+/*
+// this trialList is for Elias' original version
 var trialList : [(TrialType, TrialShape)] = [
     (.accurate, .archspiral), (.fast, .multipleshapes), (.fast, .spirosquare), (.accurate, .rectangle)
+]
+*/
+
+// this trialList is for Jason's new implemented version (integrating JSON); incomplete right now because we don't have that many custom shapes yet
+var trialList: [TrialType] = [
+    .encoding_step1, .encoding_step2
 ]

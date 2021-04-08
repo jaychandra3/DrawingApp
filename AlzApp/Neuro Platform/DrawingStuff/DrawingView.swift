@@ -19,11 +19,13 @@ struct DrawingView: View {
     let patient : String
     @State private var data = DrawingData()
     
+    
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
     var body: some View {
         VStack(alignment: .center) {
+            /*
 //                    Prompt type
             switch trialList[trialnum].0 { //accesses the first index's first object
             case .fast:
@@ -66,6 +68,14 @@ struct DrawingView: View {
                 TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data)
                     .opacity(0.1)
             }
+            */
+            switch trialList[trialnum] {
+            case .encoding_step1:
+                stepView(currentStep: stepList[0])
+            case .encoding_step2:
+                stepView(currentStep: stepList[1])
+            }
+            //stepView(currentStep: stepList[0])
             Spacer()
             HStack {
 //                DELETE LATER, NOT NEEDED FOR FINAL VERSION

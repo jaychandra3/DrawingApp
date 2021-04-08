@@ -107,6 +107,8 @@ class DrawingData {
     }
 }
 
+// commented out below: another type of patient data storage that we're steering away from
+/*
 struct Patient{
     var name : String
     var age : String
@@ -159,3 +161,4 @@ class UserData {
         return str
     }
 }
+*/

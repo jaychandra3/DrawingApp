@@ -36,6 +36,17 @@ struct stepView: View {
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data)
                         .opacity(0.1)
                 }
+            } else if currentStep.shape == "multiple_shapes_vertices" {
+                ZStack {
+                    //DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    HStack {
+                        MultipleShapes().stroke(lineWidth:3)
+                        Spacer()
+                        DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                        TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data)
+                            .opacity(0.1)
+                    }
+                }
             }
         }.padding()
     }
@@ -44,5 +55,6 @@ struct stepView: View {
 struct stepView_Previews: PreviewProvider {
     static var previews: some View {
         stepView(currentStep: stepList[0])
+        stepView(currentStep: stepList[1])
     }
 }
