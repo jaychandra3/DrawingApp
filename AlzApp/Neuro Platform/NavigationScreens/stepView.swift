@@ -40,7 +40,7 @@ struct stepView: View {
                 ZStack {
                     //DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
                     HStack {
-                        MultipleShapes().stroke(lineWidth:3)
+                        MultipleShapesVertices().stroke(lineWidth:5)
                         Spacer()
                         DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
                         TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data)
