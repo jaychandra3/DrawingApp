@@ -55,6 +55,9 @@ struct DrawingView: View {
                     case .multipleshapes:
                         MultipleShapes().stroke(lineWidth:3)
                             .opacity(0.5)
+                    case .archspiral:
+                        ArchSpiral().stroke(lineWidth:3)
+                            .opacity(0.5)
                     }
                     
                     Spacer()

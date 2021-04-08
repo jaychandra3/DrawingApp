@@ -28,6 +28,27 @@ struct SpiroSquare: Shape {
     }
 }
 
+struct ArchSpiral: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        for theta in stride(from: 0, through: 14*CGFloat.pi, by: 0.01) {
+            let x = 400 + cos(theta) * 16.8 * theta
+            let y = 400 + sin(theta) * 16.8 * theta
+            if x > 800 || y > 800  || x < 0 || y < 0 {
+                break
+            }
+            if theta == 0 {
+                path.move(to: CGPoint(x: x, y: y))
+            }
+            else {
+                path.addLine(to: CGPoint(x: x, y: y))
+            }
+            
+        }
+        return path
+    }
+}
+
 struct MultipleShapes: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
