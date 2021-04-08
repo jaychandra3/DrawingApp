@@ -37,15 +37,17 @@ struct stepView: View {
                         .opacity(0.1)
                 }
             } else if currentStep.shape == "multiple_shapes_vertices" {
-                ZStack {
-                    //DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    HStack {
-                        MultipleShapesVertices().stroke(lineWidth:5)
-                        Spacer()
+                HStack {
+                    MultipleShapesVertices().stroke(lineWidth:3)
+                        .scale(0.5)
+                        .offset(x: -110)
+                    Spacer()
+                    ZStack {
                         DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                        TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data)
+                        TouchCaptureView(currentDrawing:$currentDrawing, drawings: $drawings,data: $data)
                             .opacity(0.1)
                     }
+                    
                 }
             }
         }.padding()
