@@ -24,7 +24,7 @@ struct DrawingView: View {
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
     var body: some View {
-        VStack(alignment: .center) {
+        VStack {
             /*
 //                    Prompt type
             switch trialList[trialnum].0 { //accesses the first index's first object
