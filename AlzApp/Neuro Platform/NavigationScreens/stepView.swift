@@ -13,15 +13,30 @@ import CoreGraphics
 struct stepView: View {
     var currentStep: Step
     
+    @State private var currentDrawing : Drawing = Drawing()
+    @State private var drawings : [Drawing] = [Drawing]()
+    @State private var data = DrawingData()
+    
     var body: some View {
         VStack (alignment: .leading) {
             HStack {
-                //Text(verbatim: currentStep.stepLabel).bold().font(.system(size: 35))
+                Text(verbatim: currentStep.stepLabel).bold().font(.system(size: 35))
                 Spacer()
             }.padding(.bottom, 25)
             Text("Instructions").bold().font(.system(size: 28)).padding(.bottom, 15)
-            // Text(currentStep.instructions).font(.system(size: 25))
-            Text("Hello")
+            Text(currentStep.instructions).font(.system(size: 25))
+            
+            if currentStep.shape == "multiple_shapes" {
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    HStack {
+                        Spacer()
+                        MultipleShapes().stroke(lineWidth:3)
+                    }
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data)
+                        .opacity(0.1)
+                }
+            }
         }.padding()
     }
 }

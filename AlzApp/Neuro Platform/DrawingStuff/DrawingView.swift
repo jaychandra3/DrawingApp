@@ -65,7 +65,6 @@ struct DrawingView: View {
                 
                 TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data)
                     .opacity(0.1)
-                
             }
             Spacer()
             HStack {

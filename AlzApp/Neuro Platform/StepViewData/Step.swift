@@ -14,7 +14,7 @@ struct Step: Hashable, Codable, Identifiable {
     var id: Int
     var step: String
     var stepLabel: String
-    //var content: Shape // probably doesn't work right now, need to properly import the shape
+    var shape: String
     var instructions: String
 }
 
