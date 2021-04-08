@@ -16,7 +16,7 @@ struct stepView: View {
     var body: some View {
         VStack (alignment: .leading) {
             HStack {
-                Text(verbatim: currentStep.stepLabel).bold().font(.system(size: 35))
+                // Text(verbatim: currentStep.stepLabel).bold().font(.system(size: 35))
                 Spacer()
             }.padding(.bottom, 25)
             Text("Instructions").bold().font(.system(size: 28)).padding(.bottom, 15)
