@@ -85,7 +85,7 @@ struct DrawingView: View {
                 
                 Spacer()
                 Button(action: {
-                    if self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv") {
+                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv")) {
                         return
                     }
                     
