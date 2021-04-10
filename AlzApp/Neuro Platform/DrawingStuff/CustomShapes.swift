@@ -84,57 +84,45 @@ struct MultipleShapes: Shape {
 }
 
 struct MultipleShapesVertices: Shape {
+    struct Coordinate: Identifiable, Hashable {
+                var id: String {
+                    "\(x)\(y)"
+                }
+
+                let x: CGFloat
+                let y: CGFloat
+            }
+
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.addArc(center: CGPoint(x: 250, y: 447), radius: 200,
                     startAngle: .degrees(130), endAngle: .degrees(240), clockwise: false)
+        let coordinates = [
+                            Coordinate(x: 650, y: 450),
+                            Coordinate(x: 550, y: 600),
+                            Coordinate(x: 750, y: 600),
+                            Coordinate(x: 650, y: 450),
+                            
+                            Coordinate(x: 250, y: 550),
+                            Coordinate(x: 250, y: 350),
+                            Coordinate(x: 320, y: 260),
+                            Coordinate(x: 720, y: 260),
+                            Coordinate(x: 720, y: 460),
+                            Coordinate(x: 650, y: 550),
+                            Coordinate(x: 650, y: 350),
+                            Coordinate(x: 720, y: 260),
+                            Coordinate(x: 650, y: 350),
+                            Coordinate(x: 250, y: 350),
+                            Coordinate(x: 250, y: 550),
+                            Coordinate(x: 650, y: 550)
+                ]
+                
+                for coordinate in coordinates {
+                    path.move(to: CGPoint(x: coordinate.x, y: coordinate.y))
+                    path.addArc(center: CGPoint(x: coordinate.x, y: coordinate.y), radius: 2,
+                                startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
+                }
         
-        path.move(to: CGPoint(x: 650, y: 450))
-        path.addArc(center: CGPoint(x: 650, y: 450), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 550, y: 600))
-        path.addArc(center: CGPoint(x: 550, y: 600), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 750, y: 600))
-        path.addArc(center: CGPoint(x: 750, y: 600), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        
-        path.move(to: CGPoint(x: 250, y: 550))
-        path.addArc(center: CGPoint(x: 250, y: 550), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 250, y: 350))
-        path.addArc(center: CGPoint(x: 250, y: 350), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 320, y: 260))
-        path.addArc(center: CGPoint(x: 320, y: 260), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 720, y: 260))
-        path.addArc(center: CGPoint(x: 720, y: 260), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 720, y: 460))
-        path.addArc(center: CGPoint(x: 720, y: 460), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 650, y: 550))
-        path.addArc(center: CGPoint(x: 650, y: 550), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 650, y: 350))
-        path.addArc(center: CGPoint(x: 650, y: 350), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 720, y: 260))
-        path.addArc(center: CGPoint(x: 720, y: 260), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 650, y: 350))
-        path.addArc(center: CGPoint(x: 650, y: 350), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 250, y: 350))
-        path.addArc(center: CGPoint(x: 250, y: 350), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 250, y: 550))
-        path.addArc(center: CGPoint(x: 250, y: 550), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-        path.move(to: CGPoint(x: 650, y: 550))
-        path.addArc(center: CGPoint(x: 650, y: 550), radius: 2,
-                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
         return path
     }
 }

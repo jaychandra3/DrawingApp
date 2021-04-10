@@ -54,6 +54,7 @@ struct stepView: View {
 }
 
 struct stepView_Previews: PreviewProvider {
+    @State static var data = DrawingData()
     static var previews: some View {
         stepView(currentStep: stepList[0], data: $data)
         stepView(currentStep: stepList[1], data: $data)
