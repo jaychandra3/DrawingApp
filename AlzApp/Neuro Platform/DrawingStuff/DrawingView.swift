@@ -18,8 +18,6 @@ struct DrawingView: View {
     @State private var trialnum : Int = 0
     let patient : String
     @State private var data = DrawingData()
-    
-    
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
@@ -71,9 +69,9 @@ struct DrawingView: View {
             */
             switch trialList[trialnum] {
             case .encoding_step1:
-                stepView(currentStep: stepList[0])
+                stepView(currentStep: stepList[0], data: $data)
             case .encoding_step2:
-                stepView(currentStep: stepList[1])
+                stepView (currentStep: stepList[1], data: $data)
             }
             //stepView(currentStep: stepList[0])
             Spacer()
@@ -87,7 +85,10 @@ struct DrawingView: View {
                 
                 Spacer()
                 Button(action: {
-                    self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv")
+                    if self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv") {
+                        return
+                    }
+                    
                     trialnum += 1
                     if trialnum >= trialList.count {
                         self.rootIsActive.toggle()

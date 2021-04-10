@@ -14,7 +14,7 @@ struct stepView: View {
     
     @State private var currentDrawing : Drawing = Drawing()
     @State private var drawings : [Drawing] = [Drawing]()
-    @State private var data = DrawingData()
+    @Binding var data: DrawingData
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -34,8 +34,7 @@ struct stepView: View {
                     ZStack {
                         DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
                         MultipleShapes().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-175)
-                        TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data)
-                            .opacity(0.1)
+                        TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                     }.padding(.top, -10)
                 }
             } else if currentStep.shape == "multiple_shapes_vertices" {
@@ -46,8 +45,7 @@ struct stepView: View {
                     ZStack {
                         DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
                         MultipleShapesVertices().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-175)
-                        TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data)
-                            .opacity(0.1)
+                        TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                     }.padding(.top, -10)
                 }
             }
@@ -57,7 +55,8 @@ struct stepView: View {
 
 struct stepView_Previews: PreviewProvider {
     static var previews: some View {
-        stepView(currentStep: stepList[0])
-        stepView(currentStep: stepList[1])
+        stepView(currentStep: stepList[0], data: $data)
+        stepView(currentStep: stepList[1], data: $data)
     }
 }
+

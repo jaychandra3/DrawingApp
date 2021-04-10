@@ -72,7 +72,12 @@ class DrawingData {
     /**
      Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to CSV.
      */
-    func finishDrawing(patient : String, drawingName : String = "drawing.csv") {
+    func finishDrawing(patient : String, drawingName : String = "drawing.csv") -> Bool {
+        
+        if coordinates.count == 0 {
+            // add alert message here
+            return false
+        }
         let url : URL = getDocumentsDirectory(foldername: patient, filename: drawingName)
         do {
         let str : String = CSVString()
@@ -83,6 +88,7 @@ class DrawingData {
             print("Failed to write to disk")
             print(error.localizedDescription)
         }
+        return true
     }
     
     /**
