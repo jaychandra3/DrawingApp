@@ -71,12 +71,23 @@ struct DrawingView: View {
             switch trialList[trialnum] {
             case .practice_screen:
                 stepView(currentStep: stepList[0], data: $data)
+            /*
+            case .animation_screen:
+                stepView(currentStep: stepList[1], data: nil)
+            */
             case .encoding_step1:
-                stepView(currentStep: stepList[1], data: $data)
-            case .encoding_step2:
                 stepView(currentStep: stepList[2], data: $data)
+            case .encoding_step2:
+                stepView(currentStep: stepList[3], data: $data)
+            case .encoding_step3:
+                stepView(currentStep: stepList[4], data: $data)
+            case .distractor_step:
+                stepView(currentStep: stepList[5], data: $data)
+            case .retrieval_step1:
+                stepView(currentStep: stepList[6], data: $data)
+            case .retrieval_step2:
+                stepView(currentStep: stepList[7], data: $data)
             }
-            //stepView(currentStep: stepList[0])
             Spacer()
             HStack {
 //                DELETE LATER, NOT NEEDED FOR FINAL VERSION
@@ -95,7 +106,7 @@ struct DrawingView: View {
                 
                 Button(action: {
                     // if finishDrawing returns false, the coordinate count is 0 (no drawing has been made); return nothing (so when button is pressed, nothing will happen)
-                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv")) {
+                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv")) && trialList[trialnum] != .distractor_step {
                         // toggle showingAlert so that the alert message pops up when necessary
                         self.showingAlert.toggle()
                         return

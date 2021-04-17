@@ -72,6 +72,10 @@ struct NewPatientView: View {
                         let new_stored = old_stored + name + "," + age + "," + sex + "," + hand + "\n"
                         defaults.set(new_stored, forKey: "stored_patient_csv")
                         print(defaults.string(forKey: "stored_patient_csv") ?? "Error, not a string")
+                        
+                        let patientInfo: String = "Name: " + name + "\n" + "Age: " + age + "\n" + "Sex: " + sex + "\n" + "Dominant Hand: " + hand + "\n"
+                        finishInfo(patient: name, patientInfoCSV: patientInfo)
+                        
                         self.drawingActive.toggle()
                     } else {
                         self.showingAlert.toggle()
@@ -84,6 +88,19 @@ struct NewPatientView: View {
                 Spacer()
             }.padding()
         }
+    }
+}
+
+func finishInfo(patient: String, patientInfoCSV: String, formName : String = "patientInfo.csv") {
+    let url : URL = getDocumentsDirectory(foldername: patient, filename: formName)
+    do {
+    let str : String = patientInfoCSV
+        try str.write(to: url, atomically: true, encoding: .utf8)
+        let input = try String(contentsOf: url)
+        print(input)
+    } catch {
+        print("Failed to write to disk")
+        print(error.localizedDescription)
     }
 }
 

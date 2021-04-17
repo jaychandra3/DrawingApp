@@ -75,8 +75,6 @@ class DrawingData {
     func finishDrawing(patient : String, drawingName : String = "drawing.csv") -> Bool {
         
         if coordinates.count == 0 {
-            // add alert message here
-            
             return false
         }
         let url : URL = getDocumentsDirectory(foldername: patient, filename: drawingName)

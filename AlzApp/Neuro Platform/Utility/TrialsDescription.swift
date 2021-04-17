@@ -13,8 +13,14 @@ enum TrialType {
     //case fast
     //case accurate
     case practice_screen
+    // case animation_screen
     case encoding_step1
     case encoding_step2
+    case encoding_step3
+    case distractor_step
+    case retrieval_step1
+    case retrieval_step2
+    // case retrieval_step3 - this is the multiple choice question
 }
 
 enum TrialShape {
@@ -35,5 +41,5 @@ var trialList : [(TrialType, TrialShape)] = [
 
 // this trialList is for Jason's new implemented version (integrating JSON); incomplete right now because we don't have that many custom shapes yet
 var trialList: [TrialType] = [
-    .practice_screen, .encoding_step1, .encoding_step2
+    .practice_screen, .encoding_step1, .encoding_step2, .encoding_step3, .distractor_step, .retrieval_step1, .retrieval_step2
 ]
