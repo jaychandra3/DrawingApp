@@ -76,7 +76,7 @@ struct NewPatientView: View {
                     }
                 }.alert(isPresented: $showingAlert, content: {
                     Alert(title: Text("Form Incomplete"),
-                          message: Text("Please check each entry or selection"),
+                          message: Text("Please complete each entry or selection"),
                           dismissButton: .default(Text("Ok")))
                 }).buttonStyle(BorderlessButtonStyle()).font(.largeTitle).padding()
                 Spacer()
@@ -84,6 +84,7 @@ struct NewPatientView: View {
         }
     }
 }
+
 struct NewPatientView_Previews: PreviewProvider {
     static var previews: some View {
         NewPatientView()

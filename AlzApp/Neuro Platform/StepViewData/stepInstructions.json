@@ -1,76 +1,83 @@
 [
     {
         "id": 1001,
+        "step": "practice_screen",
+        "stepLabel": "Practice Drawing with the Apple Pencil!",
+        "shape": "none",
+        "instructions": "Use the blank screen below as a drawing pad and practice drawing with the Apple Pencil! Treat the screen as just a normal piece of paper. Try writing your name, or drawing a circle to the best of your ability!"
+    },
+    {
+        "id": 1002,
         "step": "encoding_step",
         "stepLabel": "Encoding Step 1",
         "shape": "multiple_shapes",
         "instructions": "Trace the figure below as accurately as possible. Pay attention to the figure and the order of the strokes as described by the numbered arrows."
     },
     {
-        "id": 1002,
+        "id": 1003,
         "step": "encoding_step",
         "stepLabel": "Encoding Step 2",
         "shape": "multiple_shapes_vertices",
         "instructions": "Reproduce the figure from the last step using the vertices given. Once again, pay attention to the figure and the order of the strokes as described by the numbered arrows."
     },
     {
-        "id": 1003,
+        "id": 1004,
         "step": "encoding_step",
         "stepLabel": "Encoding Step 3",
         "shape": "multiple_shapes_numbered_edges",
         "instructions": "Reproduce the figure on the blank canvas using the numbered edges provided."
     },
     {
-        "id": 1004,
+        "id": 1005,
         "step": "encoding_step",
         "stepLabel": "Encoding Step 4",
         "shape": "none",
         "instructions": "Reproduce the figure from memory to the best of your ability."
     },
     {
-        "id": 1005,
+        "id": 1006,
         "step": "distractor_step",
         "stepLabel": "Distractor Step 1",
         "shape": "none",
         "instructions": "Count backwards from 100 to 50 by 7s."
     },
     {
-        "id": 1006,
+        "id": 1007,
         "step": "distractor_step",
         "stepLabel": "Distractor Step 2",
         "shape": "none",
         "instructions": "Alternate numbers and words through the entire alphabet (i.e. a1, b2, c3, d4, etc.)"
     },
     {
-        "id": 1007,
+        "id": 1008,
         "step": "distractor_step",
         "stepLabel": "Distractor Step 3",
         "shape": "none",
         "instructions": "Read the following story that is presented on the screen"
     },
     {
-        "id": 1008,
+        "id": 1009,
         "step": "distractor_step",
         "stepLabel": "Distractor Step 4",
         "shape": "none",
         "instructions": "Count the number of syllables in the following words: interested, machine, perspective, neglected. "
     },
     {
-        "id": 1009,
+        "id": 1010,
         "step": "retrieval_step",
         "stepLabel": "Retrieval Step 1",
         "shape": "none",
         "instructions": "Reproduce the figure from the encoding step from memory to the best of your ability."
     },
     {
-        "id": 1010,
+        "id": 1011,
         "step": "retrieval_step",
         "stepLabel": "Retrieval Step 2",
         "shape": "multiple_shapes_vertices",
         "instructions": "Given the following set of vertices, reproduce the figure from the encoding step to the best of your ability"
     },
     {
-        "id": 1011, 
+        "id": 1012,
         "step": "retrieval_step_multiple_choice",
         "stepLabel": "Retrieval Step 3",
         "shape": "none",

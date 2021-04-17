@@ -13,11 +13,12 @@ struct DrawingView: View {
     @State private var drawings : [Drawing] = [Drawing]()
     @State private var color : Color = Color.black
     @State private var lineWidth : CGFloat = 3.0
-    @Binding var rootIsActive : Bool
+    @Binding var rootIsActive: Bool
     var trials : Int
     @State private var trialnum : Int = 0
     let patient : String
     @State private var data = DrawingData()
+    @State private var showingAlert = false
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
@@ -68,10 +69,12 @@ struct DrawingView: View {
             }
             */
             switch trialList[trialnum] {
-            case .encoding_step1:
+            case .practice_screen:
                 stepView(currentStep: stepList[0], data: $data)
+            case .encoding_step1:
+                stepView(currentStep: stepList[1], data: $data)
             case .encoding_step2:
-                stepView (currentStep: stepList[1], data: $data)
+                stepView(currentStep: stepList[2], data: $data)
             }
             //stepView(currentStep: stepList[0])
             Spacer()
@@ -82,10 +85,19 @@ struct DrawingView: View {
                     Text("Clear Drawing")
                 }).buttonStyle(MainButtonStyle())
                 
+                // this is an attempt to change the navigation link to the home page after we click finish test (doesn't work)
+                // need to change!
+                NavigationLink(destination: HomeView(), isActive: $rootIsActive) {
+                    EmptyView()
+                }.isDetailLink(false)
                 
                 Spacer()
+                
                 Button(action: {
+                    // if finishDrawing returns false, the coordinate count is 0 (no drawing has been made); return nothing (so when button is pressed, nothing will happen)
                     if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv")) {
+                        // toggle showingAlert so that the alert message pops up when necessary
+                        self.showingAlert.toggle()
                         return
                     }
                     
@@ -104,6 +116,8 @@ struct DrawingView: View {
                     } else {
                         Text("Finish Test").foregroundColor(.white)
                     }
+                }).alert(isPresented: $showingAlert, content: {
+                    Alert(title: Text("No Drawing"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK")))
                 }).buttonStyle(MainButtonStyle())
             }
             Spacer()

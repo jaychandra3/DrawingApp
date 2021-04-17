@@ -12,6 +12,7 @@ import SwiftUI
 enum TrialType {
     //case fast
     //case accurate
+    case practice_screen
     case encoding_step1
     case encoding_step2
 }
@@ -34,5 +35,5 @@ var trialList : [(TrialType, TrialShape)] = [
 
 // this trialList is for Jason's new implemented version (integrating JSON); incomplete right now because we don't have that many custom shapes yet
 var trialList: [TrialType] = [
-    .encoding_step1, .encoding_step2
+    .practice_screen, .encoding_step1, .encoding_step2
 ]

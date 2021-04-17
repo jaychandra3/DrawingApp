@@ -76,6 +76,7 @@ class DrawingData {
         
         if coordinates.count == 0 {
             // add alert message here
+            
             return false
         }
         let url : URL = getDocumentsDirectory(foldername: patient, filename: drawingName)
