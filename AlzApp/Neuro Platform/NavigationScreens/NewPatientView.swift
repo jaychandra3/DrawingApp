@@ -15,8 +15,10 @@ struct NewPatientView: View {
     @State var age: String = ""
     @State var sex: String = "Not Selected"
     @State var hand: String = "Not Selected"
-    @State private var isActive : Bool = false
+    @State private var drawingActive : Bool = false
     @State private var showingAlert = false
+    @Binding var rootActive: Bool
+    
     var body: some View {
         VStack {
             VStack{
@@ -55,7 +57,7 @@ struct NewPatientView: View {
                         Text("Right Hand").tag("Right Hand")
                     }.pickerStyle(SegmentedPickerStyle())
                 }
-                NavigationLink(destination: DrawingView(rootIsActive: $isActive, trials: 3, patient: name), isActive : $isActive) {
+                NavigationLink(destination: DrawingView(rootIsActive: $rootActive, trials: 3, patient: name), isActive : $drawingActive) {
                     EmptyView()
                 }.isDetailLink(false)
                 Spacer()
@@ -70,7 +72,7 @@ struct NewPatientView: View {
                         let new_stored = old_stored + name + "," + age + "," + sex + "," + hand + "\n"
                         defaults.set(new_stored, forKey: "stored_patient_csv")
                         print(defaults.string(forKey: "stored_patient_csv") ?? "Error, not a string")
-                        self.isActive.toggle()
+                        self.drawingActive.toggle()
                     } else {
                         self.showingAlert.toggle()
                     }
@@ -86,7 +88,8 @@ struct NewPatientView: View {
 }
 
 struct NewPatientView_Previews: PreviewProvider {
+    //@State var a: Bool =
     static var previews: some View {
-        NewPatientView()
+        NewPatientView(rootActive: Binding.constant(true))
     }
 }

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var testActive : Bool = false
+    @State var patientActive : Bool = false
     @State var recordsActive : Bool = false
     @State var instructionsActive : Bool = false
     @State var aboutAppActive : Bool = false
@@ -23,8 +23,8 @@ struct HomeView: View {
             // Note: these are EmpytViews so these links
             // are only semantic (invisible to user)
             NavigationLink(
-                destination: NewPatientView(),
-                isActive: $testActive,
+                destination: NewPatientView(rootActive: $patientActive),
+                isActive: $patientActive,
                 label: {
                     EmptyView()
                 })
@@ -53,7 +53,7 @@ struct HomeView: View {
             Text("Analysis Platform")
                 .textStyle(TitleTextStyle())
             
-            Button(action: {testActive.toggle()}, label: {
+            Button(action: {patientActive.toggle()}, label: {
                 Text("Take the Test")
             }).buttonStyle(MainButtonStyle())
             
