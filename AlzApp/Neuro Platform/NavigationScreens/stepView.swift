@@ -87,10 +87,10 @@ struct stepView: View {
                         Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                         ZStack {
                             DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                            MultipleShapes().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-175)
+                            MultipleShapes().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
                             TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                         }.padding(.top, -10)
-                    }
+                    }.padding()
                 } else if currentStep.shape == "multiple_shapes_vertices" {
                     VStack (alignment: .leading) {
                         Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
@@ -98,10 +98,10 @@ struct stepView: View {
                         Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                         ZStack {
                             DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                            MultipleShapesVertices().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-175)
+                            MultipleShapesVertices().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
                             TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                         }.padding(.top, -10)
-                    }
+                    }.padding()
                 } else {
                     Spacer()
                     EmptyView()
