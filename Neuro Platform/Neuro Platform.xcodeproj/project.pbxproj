@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3230C29B26310281008EDFD5 /* QuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3230C29A26310281008EDFD5 /* QuestionsView.swift */; };
 		52ADE809249570B200595A42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE808249570B200595A42 /* AppDelegate.swift */; };
 		52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE80A249570B200595A42 /* SceneDelegate.swift */; };
 		52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE80C249570B200595A42 /* Neuro_Platform.xcdatamodeld */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3230C29A26310281008EDFD5 /* QuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsView.swift; sourceTree = "<group>"; };
 		52ADE805249570B200595A42 /* Neuro Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Neuro Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52ADE808249570B200595A42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52ADE80A249570B200595A42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				AF4CBBCB2544ADF00049C80F /* NewPatientView.swift */,
 				AFDD0852259AA8B1001AF7DA /* InstructionsView.swift */,
 				AFDD0857259AAEBA001AF7DA /* AboutAppView.swift */,
+				3230C29A26310281008EDFD5 /* QuestionsView.swift */,
 			);
 			path = NavigationScreens;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				AFC37F19251FDB1E00825E5B /* TextFileView.swift in Sources */,
 				52ADE810249570B200595A42 /* ContentView.swift in Sources */,
 				AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */,
+				3230C29B26310281008EDFD5 /* QuestionsView.swift in Sources */,
 				52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */,
 				AF4CBBCC2544ADF00049C80F /* NewPatientView.swift in Sources */,
 				AF57DB32259FB96C005EDAB7 /* TrialsDescription.swift in Sources */,
