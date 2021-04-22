@@ -22,7 +22,7 @@ struct Answer: Identifiable {
 
 struct QuestionsView: View {
     
-  @State var homeActive : Bool = false
+  //@State var homeActive : Bool = false
   @State var quesInfoArr = [
     QuesInfo(id: 0, question: "What was one of the shapes you drew?",
       answers: [
@@ -35,12 +35,14 @@ struct QuestionsView: View {
 
   var body: some View {
     VStack{
+        Spacer()
+        /*
         NavigationLink(
           destination: HomeView(),
           isActive: $homeActive,
           label: {
               EmptyView()
-          })
+          }) */
 
       Text("Please answer the following question").textStyle(TitleTextStyle())
 
@@ -54,10 +56,10 @@ struct QuestionsView: View {
           }).buttonStyle(MainButtonStyle())
         }
       }
-
       Spacer()
     }
   }
+    
     private func next(id: Int) {
       if (id + 1 == quesInfoArr.count) {
         for question in quesInfoArr {
@@ -68,7 +70,7 @@ struct QuestionsView: View {
             }
           }
         }
-        homeActive.toggle()
+        //homeActive.toggle()
       }
       // else move to next question
     }

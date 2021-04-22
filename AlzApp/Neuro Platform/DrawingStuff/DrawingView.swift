@@ -87,7 +87,10 @@ struct DrawingView: View {
                 stepView(currentStep: stepList[6], data: $data)
             case .retrieval_step2:
                 stepView(currentStep: stepList[7], data: $data)
+            case .multiple_choice:
+                QuestionsView()
             }
+            
             Spacer()
             HStack {
 //                DELETE LATER, NOT NEEDED FOR FINAL VERSION
@@ -106,7 +109,8 @@ struct DrawingView: View {
                 
                 Button(action: {
                     // if finishDrawing returns false, the coordinate count is 0 (no drawing has been made); return nothing (so when button is pressed, nothing will happen)
-                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv")) && trialList[trialnum] != .distractor_step {
+                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv")) && (trialList[trialnum] != .distractor_step) &&
+                        (trialList[trialnum] != .multiple_choice) {
                         // toggle showingAlert so that the alert message pops up when necessary
                         self.showingAlert.toggle()
                         return
