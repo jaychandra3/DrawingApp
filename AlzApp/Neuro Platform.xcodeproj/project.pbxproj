@@ -18,8 +18,9 @@
 		52ADE823249570B400595A42 /* Neuro_PlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE822249570B400595A42 /* Neuro_PlatformTests.swift */; };
 		52ADE82E249570B400595A42 /* Neuro_PlatformUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */; };
 		52CF3E9424D7610000A36B60 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CF3E9324D7610000A36B60 /* MainView.swift */; };
+		9656AB4426425BFC00A8A6B3 /* stepinstructions.json in Resources */ = {isa = PBXBuildFile; fileRef = 9656AB4326425BFC00A8A6B3 /* stepinstructions.json */; };
 		96D7D0F22615417E0092E77A /* stepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D7D0F12615417E0092E77A /* stepView.swift */; };
-		96D7D0F726154AF20092E77A /* stepInstructions.json in Resources */ = {isa = PBXBuildFile; fileRef = 96D7D0F626154AF20092E77A /* stepInstructions.json */; };
+		96D7D0F726154AF20092E77A /* stepInstruction.json in Resources */ = {isa = PBXBuildFile; fileRef = 96D7D0F626154AF20092E77A /* stepInstruction.json */; };
 		96D7D0FC261550BE0092E77A /* readData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D7D0FB261550BE0092E77A /* readData.swift */; };
 		96D7D1012615513A0092E77A /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D7D1002615513A0092E77A /* Step.swift */; };
 		AF07AD1B253B8C8A002C61BB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF07AD1A253B8C8A002C61BB /* HomeView.swift */; };
@@ -78,8 +79,9 @@
 		52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neuro_PlatformUITests.swift; sourceTree = "<group>"; };
 		52ADE82F249570B400595A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52CF3E9324D7610000A36B60 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9656AB4326425BFC00A8A6B3 /* stepinstructions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stepinstructions.json; sourceTree = "<group>"; };
 		96D7D0F12615417E0092E77A /* stepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stepView.swift; sourceTree = "<group>"; };
-		96D7D0F626154AF20092E77A /* stepInstructions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stepInstructions.json; sourceTree = "<group>"; };
+		96D7D0F626154AF20092E77A /* stepInstruction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stepInstruction.json; sourceTree = "<group>"; };
 		96D7D0FB261550BE0092E77A /* readData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = readData.swift; sourceTree = "<group>"; };
 		96D7D1002615513A0092E77A /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		AF07AD1A253B8C8A002C61BB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -209,9 +211,10 @@
 		96D7D108261551410092E77A /* StepViewData */ = {
 			isa = PBXGroup;
 			children = (
-				96D7D0F626154AF20092E77A /* stepInstructions.json */,
+				96D7D0F626154AF20092E77A /* stepInstruction.json */,
 				96D7D0FB261550BE0092E77A /* readData.swift */,
 				96D7D1002615513A0092E77A /* Step.swift */,
+				9656AB4326425BFC00A8A6B3 /* stepinstructions.json */,
 			);
 			path = StepViewData;
 			sourceTree = "<group>";
@@ -386,7 +389,8 @@
 				52ADE815249570B400595A42 /* Preview Assets.xcassets in Resources */,
 				AFDFDDBD24BE74EE00EBDCA9 /* TouchCaptureViewController.xib in Resources */,
 				52ADE812249570B400595A42 /* Assets.xcassets in Resources */,
-				96D7D0F726154AF20092E77A /* stepInstructions.json in Resources */,
+				9656AB4426425BFC00A8A6B3 /* stepinstructions.json in Resources */,
+				96D7D0F726154AF20092E77A /* stepInstruction.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

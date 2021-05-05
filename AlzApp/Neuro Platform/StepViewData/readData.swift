@@ -8,7 +8,8 @@
 
 import Foundation
 
-var stepList: [Step] = load("stepInstructions.json")
+var stepList: [Step] = load("stepInstruction.json")
+var stepsList: [Step] = load("stepInstructions.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

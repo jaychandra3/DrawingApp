@@ -11,7 +11,7 @@ import Combine
 let defaults = UserDefaults.standard
 // Lets you add a new patient and then starts their drawing trials
 struct NewPatientView: View {
-    @State var name: String = ""
+    @State var id: String = ""
     @State var age: String = ""
     @State var sex: String = "Not Selected"
     @State var hand: String = "Not Selected"
@@ -27,9 +27,10 @@ struct NewPatientView: View {
                     .textStyle(TitleTextStyle())
                 Spacer()
                 HStack{
-                    Text("Patient Name").font(.system(size: 25))
-                    TextField("Enter Patient Name", text: $name).textFieldStyle(RoundedBorderTextFieldStyle()).border(Color.black)
+                    Text("Patient ID").font(.system(size: 25))
+                    TextField("Enter Patient ID", text: $id).textFieldStyle(RoundedBorderTextFieldStyle()).border(Color.black)
                 }.padding()
+                /*
                 HStack{
                     Text("Patient Age").font(.system(size: 25))
                     TextField("Enter Patient Age", text: $age).textFieldStyle(RoundedBorderTextFieldStyle()).border(Color.black).onReceive(Just(age)){ newValue in
@@ -48,6 +49,7 @@ struct NewPatientView: View {
                         }.pickerStyle(SegmentedPickerStyle())
                     }
                 }.padding()
+                */
             }
             VStack {
                 HStack {
@@ -55,26 +57,24 @@ struct NewPatientView: View {
                     Picker(selection: $hand, label: Text("Dominant Hand")) {
                         Text("Left Hand").tag("Left Hand")
                         Text("Right Hand").tag("Right Hand")
+                        Text("Ambidextrous").tag("Ambidextrous")
                     }.pickerStyle(SegmentedPickerStyle())
                 }
-                NavigationLink(destination: DrawingView(rootIsActive: $rootActive, trials: 3, patient: name), isActive : $drawingActive) {
+                NavigationLink(destination: DrawingView(rootIsActive: $rootActive, trials: 3, patient: id), isActive : $drawingActive) {
                     EmptyView()
                 }.isDetailLink(false)
                 Spacer()
                 Button("Start Task") {
-                    if(name.count > 0 &&
-                        age.count > 0 &&
-                        sex != "Not Selected" &&
-                        hand != "Not Selected") {
+                    if(id.count > 0 && hand != "Not Selected") {
                         /*let newUser = Patient(name: self.name, age: self.age, sex: self.sex, hand: self.hand)
                         patientData.updateForm(newPatient : newUser)*/
-                        let old_stored: String = defaults.string(forKey: "stored_patient_csv") ?? "Name,Age,Sex,Dominant Hand\n"
-                        let new_stored = old_stored + name + "," + age + "," + sex + "," + hand + "\n"
+                        let old_stored: String = defaults.string(forKey: "stored_patient_csv") ?? "ID,Dominant Hand\n"
+                        let new_stored = old_stored + id + "," + hand + "\n"
                         defaults.set(new_stored, forKey: "stored_patient_csv")
                         print(defaults.string(forKey: "stored_patient_csv") ?? "Error, not a string")
                         
-                        let patientInfo: String = "Name: " + name + "\n" + "Age: " + age + "\n" + "Sex: " + sex + "\n" + "Dominant Hand: " + hand + "\n"
-                        finishInfo(patient: name, patientInfoCSV: patientInfo)
+                        let patientInfo: String = "ID: " + id + "\n" + "Dominant Hand: " + hand + "\n"
+                        finishInfo(patient: id, patientInfoCSV: patientInfo)
                         
                         self.drawingActive.toggle()
                     } else {
