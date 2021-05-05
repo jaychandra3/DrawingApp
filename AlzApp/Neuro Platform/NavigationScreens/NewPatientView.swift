@@ -6,9 +6,11 @@
 //
 import SwiftUI
 import Combine
-//var patientData = UserData()
-// var patientCSV: NSString = "Name, Age, Sex, DominantHand\n"
+
 let defaults = UserDefaults.standard
+var patientInfo: String = ""
+var patientID: String = ""
+
 // Lets you add a new patient and then starts their drawing trials
 struct NewPatientView: View {
     @State var id: String = ""
@@ -28,7 +30,8 @@ struct NewPatientView: View {
                 Spacer()
                 HStack{
                     Text("Patient ID").font(.system(size: 25))
-                    TextField("Enter Patient ID", text: $id).textFieldStyle(RoundedBorderTextFieldStyle()).border(Color.black)
+                    TextField("Enter Patient ID", text:  $id
+                    ).textFieldStyle(RoundedBorderTextFieldStyle()).border(Color.black)
                 }.padding()
                 /*
                 HStack{
@@ -65,16 +68,14 @@ struct NewPatientView: View {
                 }.isDetailLink(false)
                 Spacer()
                 Button("Start Task") {
-                    if(id.count > 0 && hand != "Not Selected") {
-                        /*let newUser = Patient(name: self.name, age: self.age, sex: self.sex, hand: self.hand)
-                        patientData.updateForm(newPatient : newUser)*/
+                    patientID = id
+                    if(patientID.count > 0 && hand != "Not Selected") {
                         let old_stored: String = defaults.string(forKey: "stored_patient_csv") ?? "ID,Dominant Hand\n"
-                        let new_stored = old_stored + id + "," + hand + "\n"
+                        let new_stored = old_stored + patientID + "," + hand + "\n"
                         defaults.set(new_stored, forKey: "stored_patient_csv")
                         print(defaults.string(forKey: "stored_patient_csv") ?? "Error, not a string")
-                        
-                        let patientInfo: String = "ID: " + id + "\n" + "Dominant Hand: " + hand + "\n"
-                        finishInfo(patient: id, patientInfoCSV: patientInfo)
+                    
+                        patientInfo = "ID: " + patientID + "\n" + "Dominant Hand: " + hand + "\n"
                         
                         self.drawingActive.toggle()
                     } else {
@@ -88,19 +89,6 @@ struct NewPatientView: View {
                 Spacer()
             }.padding()
         }
-    }
-}
-
-func finishInfo(patient: String, patientInfoCSV: String, formName : String = "patientInfo.csv") {
-    let url : URL = getDocumentsDirectory(foldername: patient, filename: formName)
-    do {
-    let str : String = patientInfoCSV
-        try str.write(to: url, atomically: true, encoding: .utf8)
-        let input = try String(contentsOf: url)
-        print(input)
-    } catch {
-        print("Failed to write to disk")
-        print(error.localizedDescription)
     }
 }
 

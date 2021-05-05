@@ -65,14 +65,27 @@ struct QuestionsView: View {
         for question in quesInfoArr {
           for answer in question.answers {
             if answer.isSelected {
-              print(answer.answer)
-              // Change so that answers are stored rather than printed
+              patientInfo += "Answer Choice: " + answer.answer + "\n"
+              finishInfo(patient: patientID, patientInfoCSV: patientInfo)
             }
           }
         }
         //homeActive.toggle()
       }
       // else move to next question
+    }
+}
+
+func finishInfo(patient: String, patientInfoCSV: String, formName : String = "patientInfo.csv") {
+    let url : URL = getDocumentsDirectory(foldername: patient, filename: formName)
+    do {
+    let str : String = patientInfoCSV
+        try str.write(to: url, atomically: true, encoding: .utf8)
+        let input = try String(contentsOf: url)
+        print(input)
+    } catch {
+        print("Failed to write to disk")
+        print(error.localizedDescription)
     }
 }
 
