@@ -16,6 +16,7 @@ struct DrawingView: View {
     @Binding var rootIsActive: Bool
     var trials : Int
     @State private var trialnum : Int = 0
+    @State private var levelnum: Int = 3
     let patient : String
     @State private var data = DrawingData()
     @State private var showingAlert = false
@@ -114,6 +115,17 @@ struct DrawingView: View {
                         // toggle showingAlert so that the alert message pops up when necessary
                         self.showingAlert.toggle()
                         return
+                    }
+                    
+                    // increment levelnum if we're inside encoding step 1
+                    if trialList[trialnum] == .encoding_step1 {
+                        if stepList[1].levels[levelnum].passedTest {
+                            levelnum += 1
+                        } else {
+                            levelnum -= 1
+                        }
+                        
+                        // need to figure out how to exit encoding step 1 only after we have finished the calibration process
                     }
                     
                     trialnum += 1

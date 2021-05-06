@@ -33,6 +33,14 @@ enum TrialShape {
     case multipleshapesvertices
 }
 
+enum LevelNum {
+    case level1
+    case level2
+    case level3
+    case level4
+    case level5
+}
+
 /*
 // this trialList is for Elias' original version
 var trialList : [(TrialType, TrialShape)] = [
@@ -40,7 +48,10 @@ var trialList : [(TrialType, TrialShape)] = [
 ]
 */
 
-// this trialList is for Jason's new implemented version (integrating JSON); incomplete right now because we don't have that many custom shapes yet
 var trialList: [TrialType] = [
     .practice_screen, .encoding_step1, .encoding_step2, .encoding_step3, .distractor_step, .retrieval_step1, .retrieval_step2, .multiple_choice
+]
+
+var levelList: [LevelNum] = [
+    .level1, .level2, .level3, .level4, .level5
 ]

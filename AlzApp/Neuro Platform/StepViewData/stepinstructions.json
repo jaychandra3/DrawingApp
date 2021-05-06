@@ -3,54 +3,99 @@
         "id": 1001,
         "step": "practice_screen",
         "stepLabel": "Practice Drawing with the Apple Pencil!",
-        "instructions": "Use the blank screen below as a drawing pad and practice drawing with the Apple Pencil! Treat the screen as just a normal piece of paper. Try writing your name, or drawing a circle to the best of your ability!"
+        "instructions": "Use the blank screen below as a drawing pad and practice drawing with the Apple Pencil! Treat the screen as just a normal piece of paper. Try writing your name, or drawing a circle to the best of your ability!",
+        "levels": []
     },
     {
         "id": 1002,
-        "step": "encoding_step1",
         "stepLabel": "Encoding Step 1 - Initial Shape Testing & Level Placement",
-        "instructions": "Trace the figure below as accurately as possible. "
+        "instructions": "Trace the figure below as accurately as possible. ",
+        "levels":
+        [
+            {
+                "id": 10021,
+                "step": "encoding_step1_1",
+                "levelLabel": "level1",
+                "levelShape": "circle",
+                "passedTest": True
+            },
+            {
+                "id": 10022,
+                "step": "encoding_step1_2",
+                "levelLabel": "level2",
+                "levelShape": "infinity_symbol",
+                "passedTest": True
+            },
+            {
+                "id": 10023,
+                "step": "encoding_step1_3",
+                "levelLabel": "level3",
+                "levelShape": "prism",
+                "passedTest": True
+            },
+            {
+                "id": 10024,
+                "step": "encoding_step1_4",
+                "levelLabel": "level4",
+                "levelShape": "arch_spiral",
+                "passedTest": True
+            },
+            {
+                "id": 10025,
+                "step": "encoding_step1_5",
+                "levelLabel": "level5",
+                "levelShape": "level5shape (change later)",
+                "passedTest": True
+            }
+        ]
     },
     {
         "id": 1003,
         "step": "encoding_step2",
         "stepLabel": "Encoding Step 2 - Encoding of Highest Difficulty Level Shape Achieved",
-        "instructions": "Trace the figure below as accurately as possible. "
+        "instructions": "Trace the figure below as accurately as possible. ",
+        "levels": []
     },
     {
         "id": 1004,
         "step": "encoding_step3",
         "stepLabel": "Encoding Step 3 - Free Hand Drawing of Highest Difficulty Level Shape Achieved",
-        "instructions": "From your memory, draw the figure from the previous step as accurately as possible. "
+        "instructions": "From your memory, draw the figure from the previous step as accurately as possible. ",
+        "levels": []
     },
     {
         "id": 1005,
         "step": "distractor_step1",
         "stepLabel": "Distractor Step 1,
-        "instructions": "Complete the following task: \n\n • Count backwards from 100 to 50 by 7s. "
+        "instructions": "Complete the following task: \n\n • Count backwards from 100 to 50 by 7s. ",
+        "levels": []
     },
     {
         "id": 1006,
         "step": "distractor_step2",
         "stepLabel": "Distractor Step 2",
-        "instructions": "Complete the following task: \n\n • Alternate letters and numbers through the entire alphabet (i.e. a1, b2, c3, d4, etc.)"
+        "instructions": "Complete the following task: \n\n • Alternate letters and numbers through the entire alphabet (i.e. a1, b2, c3, d4, etc.)",
+        "levels": []
     },
     {
         "id": 1007,
         "step": "distractor_step3",
         "stepLabel": "Distractor Step 3",
-        "instructions": "Complete the following list of tasks: \n\n • Count the number of syllables in the following words: interested, machine, perspective, neglected. "
+        "instructions": "Complete the following list of tasks: \n\n • Count the number of syllables in the following words: interested, machine, perspective, neglected. ",
+        "levels": []
     },
     {
         "id": 1008,
         "step": "retrieval_step",
         "stepLabel": "Retrieval Step 1 - Free Hand Drawing",
-        "instructions": "Reproduce the last figure from the encoding step you drew from memory to the best of your ability."
+        "instructions": "Reproduce the last figure from the encoding step you drew from memory to the best of your ability.",
+        "levels": []
     },
     {
         "id": 1009,
         "step": "retrieval_step_multiple_choice",
         "stepLabel": "Retrieval Step 2 - Multiple Choice",
-        "instructions": "Which of the follow best matches the last figure you drew from the encoding step? (Record time till decision?)"
+        "instructions": "Which of the follow best matches the last figure you drew from the encoding step? (Record time till decision?)",
+        "levels": []
     }
 ]
