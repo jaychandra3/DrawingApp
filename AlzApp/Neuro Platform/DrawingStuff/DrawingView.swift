@@ -115,7 +115,59 @@ struct DrawingView: View {
                         self.showingAlert.toggle()
                         return
                     }
+                    var min_error : CGFloat = 0
+                    var circle_error: CGFloat = 0
+                    var total_error : CGFloat = 0
+                    var avg_error : CGFloat = 0
+                    var count : CGFloat = 0
+                    var error_arr : [CGFloat] = [CGFloat]()
+                    let circle_center : CGPoint =  CGPoint(x: 230, y: 222) // originally (250, 447), offset -20, -225
+                    let circle_radius : CGFloat = 140 // originally 200, scale by 0.7
+                    let triangle_centroid : CGPoint = CGPoint(x: 650, y: 550)
                     
+                    let x_offset : CGFloat = -20
+                    let y_offset : CGFloat = -225
+                    let scale_factor : CGFloat = 0.7
+                    print("Transformed X: " + transformPoint(p: CGPoint(x: 650, y: 450), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor).x.description
+                    + "\nTransformed Y: "  + transformPoint(p: CGPoint(x: 650, y: 450), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor).y.description)
+                    
+                    for point in data.coordinates{
+                        print("X: " + point.x.description
+                                + " Y: " + point.y.description)
+                        // Distance to Circle
+                        circle_error = abs(sqrt((point.x-circle_center.x)*(point.x-circle_center.x) + (point.y-circle_center.y)*(point.y-circle_center.y)) - circle_radius)
+                        error_arr.append(circle_error)
+                        
+                        // Distance to Triangle
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: transformPoint(p: CGPoint(x: 650, y: 450), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor), and: transformPoint(p: CGPoint(x: 550, y: 600), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor)))
+  
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: transformPoint(p: CGPoint(x: 550, y: 600), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor), and: transformPoint(p: CGPoint(x: 750, y: 600), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor)))
+                        
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: transformPoint(p: CGPoint(x: 750, y: 600), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor), and: transformPoint(p: CGPoint(x: 650, y: 450), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor)))
+
+                        /*
+                        // Distance to Prism
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 550), and: CGPoint(x: 250, y: 350)))
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 350), and: CGPoint(x: 320, y: 260)))
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 320, y: 260), and: CGPoint(x: 720, y: 260)))
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 260), and: CGPoint(x: 720, y: 460)))
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 460), and: CGPoint(x: 650, y: 550)))
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 550), and: CGPoint(x: 650, y: 350)))
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 350), and: CGPoint(x: 720, y: 260)))
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 260), and: CGPoint(x: 650, y: 350)))
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 350), and: CGPoint(x: 250, y: 350)))
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 350), and: CGPoint(x: 250, y: 550)))
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 550), and: CGPoint(x: 650, y: 550)))*/
+                        
+                        // Calculate min distance to overall figure
+                        min_error = arrayMin(arr: error_arr)
+                        print("Error: " + min_error.description)
+                        total_error += min_error
+                        error_arr.removeAll()
+                        count+=1
+                    }
+                    avg_error = total_error/count
+                    print("Avg Error: " + avg_error.description)
                     trialnum += 1
                     if trialnum >= trialList.count {
                         self.rootIsActive.toggle()
@@ -139,6 +191,55 @@ struct DrawingView: View {
         }.navigationBarHidden(true)
         .navigationTitle("Trial " + (trialnum + 1).description + "/" + trials.description)
     }
+}
+
+/* Distance from a point (p1) to line l1 l2 */
+func distanceFromPoint(p: CGPoint, toLineSegment v: CGPoint, and w: CGPoint) -> CGFloat {
+    let pv_dx = p.x - v.x
+    let pv_dy = p.y - v.y
+    let wv_dx = w.x - v.x
+    let wv_dy = w.y - v.y
+
+    let dot = pv_dx * wv_dx + pv_dy * wv_dy
+    let len_sq = wv_dx * wv_dx + wv_dy * wv_dy
+    let param = dot / len_sq
+
+    var int_x, int_y: CGFloat /* intersection of normal to vw that goes through p */
+
+    if param < 0 || (v.x == w.x && v.y == w.y) {
+        int_x = v.x
+        int_y = v.y
+    } else if param > 1 {
+        int_x = w.x
+        int_y = w.y
+    } else {
+        int_x = v.x + param * wv_dx
+        int_y = v.y + param * wv_dy
+    }
+
+    /* Components of normal */
+    let dx = p.x - int_x
+    let dy = p.y - int_y
+
+    return sqrt(dx * dx + dy * dy)
+}
+
+func arrayMin(arr: [CGFloat]) -> CGFloat{
+    var min : CGFloat = CGFloat.greatestFiniteMagnitude
+    for val in arr{
+        if val < min{
+            min = val
+        }
+    }
+    return min
+}
+
+// returns coordinates after translation/scaling figure
+// originally (650, 550), offset -20, -225
+
+func transformPoint(p: CGPoint, center: CGPoint, x_shift: CGFloat, y_shift: CGFloat, factor: CGFloat) -> CGPoint{
+    let new_p: CGPoint = CGPoint(x: factor*(p.x-center.x)+center.x+x_shift, y: factor*(p.y-center.y)+center.y+y_shift)
+    return new_p
 }
 
 struct DrawingView_Previews: PreviewProvider {

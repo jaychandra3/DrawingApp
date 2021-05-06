@@ -73,7 +73,7 @@ struct NewPatientView: View {
                         let old_stored: String = defaults.string(forKey: "stored_patient_csv") ?? "ID,Dominant Hand\n"
                         let new_stored = old_stored + patientID + "," + hand + "\n"
                         defaults.set(new_stored, forKey: "stored_patient_csv")
-                        print(defaults.string(forKey: "stored_patient_csv") ?? "Error, not a string")
+                        /*print(defaults.string(forKey: "stored_patient_csv") ?? "Error, not a string")*/
                     
                         patientInfo = "ID: " + patientID + "\n" + "Dominant Hand: " + hand + "\n"
                         
