@@ -11,6 +11,7 @@ import CoreGraphics
 
 struct stepView: View {
     var currentStep: Step
+    var levelnum: Int
     
     @State private var currentDrawing : Drawing = Drawing()
     @State private var drawings : [Drawing] = [Drawing]()
@@ -66,45 +67,26 @@ struct stepView: View {
             }.padding()
             
             VStack {
-                if currentStep.shape == "none" {
-                    // this is for the practice_screen (no shape, but has drawing pad)
-                    // also for the free hand drawing screens
+                if currentStep.step == "practice_screen" || currentStep.step == "retrieval_step" {
                     ZStack {
                         DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
                         TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                     }
-                } else if currentStep.shape == "animations" {
-                    // @Elias add animation here
-                    VStack {
-                        // full figure animation here
-                        // vertices-based animation here
-                    }
-                } else if currentStep.shape == "multiple_shapes" {
-                    VStack (alignment: .leading) {
-                        Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
-                        MultipleShapes().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
-                        Divider()
-                        Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
-                        ZStack {
-                            DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                            MultipleShapes().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
-                            TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
-                        }.padding(.top, -10)
-                    }.padding()
-                } else if currentStep.shape == "multiple_shapes_vertices" {
-                    VStack (alignment: .leading) {
-                        Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
-                        MultipleShapes().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
-                        Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
-                        ZStack {
-                            DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                            MultipleShapesVertices().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
-                            TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
-                        }.padding(.top, -10)
-                    }.padding()
-                } else {
-                    Spacer()
-                    EmptyView()
+                } else if currentStep.step == "encoding_step1" {
+                    if currentStep.levels[levelnum].levelShape == "circle" {
+                        shapeView(shape: Level1())
+                    } else if currentStep.levels[levelnum].levelShape == "infinity_symbol" {
+                        shapeView(shape: Infinity())
+                    } else if currentStep.levels[levelnum].levelShape == "prism" {
+                        shapeView(shape: Prism())
+                    } else if currentStep.levels[levelnum].levelShape == "arch_spiral" {
+                        shapeView(shape: ArchSpiral())
+                    } else {
+                        Spacer()
+                        EmptyView()
+                    } // need to include level 5 shape
+                } else if currentStep.step == "encoding_step2" {
+                    if
                 }
             }
         }

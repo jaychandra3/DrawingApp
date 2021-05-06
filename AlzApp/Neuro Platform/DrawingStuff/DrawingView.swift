@@ -74,11 +74,19 @@ struct DrawingView: View {
             switch trialList[trialnum] {
             case .practice_screen:
                 stepView(currentStep: stepList[0], data: $data)
-            /*
-            case .animation_screen:
-                stepView(currentStep: stepList[1], data: nil)
-            */
             case .encoding_step1:
+                switch levelList[levelnum] {
+                case .level1:
+                    stepView(currentStep: stepList[1], shape: )
+                case .level2:
+                    something
+                case .level3:
+                    something
+                case .level4:
+                    something
+                case .level5:
+                    something
+                }
                 stepView(currentStep: stepList[2], data: $data)
             case .encoding_step2:
                 stepView(currentStep: stepList[3], data: $data)

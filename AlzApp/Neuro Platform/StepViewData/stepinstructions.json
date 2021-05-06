@@ -8,6 +8,7 @@
     },
     {
         "id": 1002,
+        "step": "encoding_step1",
         "stepLabel": "Encoding Step 1 - Initial Shape Testing & Level Placement",
         "instructions": "Trace the figure below as accurately as possible. ",
         "levels":
@@ -17,35 +18,35 @@
                 "step": "encoding_step1_1",
                 "levelLabel": "level1",
                 "levelShape": "circle",
-                "passedTest": True
+                "passedTest": true
             },
             {
                 "id": 10022,
                 "step": "encoding_step1_2",
                 "levelLabel": "level2",
                 "levelShape": "infinity_symbol",
-                "passedTest": True
+                "passedTest": true
             },
             {
                 "id": 10023,
                 "step": "encoding_step1_3",
                 "levelLabel": "level3",
                 "levelShape": "prism",
-                "passedTest": True
+                "passedTest": true
             },
             {
                 "id": 10024,
                 "step": "encoding_step1_4",
                 "levelLabel": "level4",
                 "levelShape": "arch_spiral",
-                "passedTest": True
+                "passedTest": true
             },
             {
                 "id": 10025,
                 "step": "encoding_step1_5",
                 "levelLabel": "level5",
                 "levelShape": "level5shape (change later)",
-                "passedTest": True
+                "passedTest": true
             }
         ]
     },
@@ -66,22 +67,22 @@
     {
         "id": 1005,
         "step": "distractor_step1",
-        "stepLabel": "Distractor Step 1,
-        "instructions": "Complete the following task: \n\n • Count backwards from 100 to 50 by 7s. ",
+        "stepLabel": "Distractor Step 1",
+        "instructions": "Complete the following task:  \\n \\n - Count backwards from 100 to 50 by 7s. ",
         "levels": []
     },
     {
         "id": 1006,
         "step": "distractor_step2",
         "stepLabel": "Distractor Step 2",
-        "instructions": "Complete the following task: \n\n • Alternate letters and numbers through the entire alphabet (i.e. a1, b2, c3, d4, etc.)",
+        "instructions": "Complete the following task:  \\n \\n - Alternate letters and numbers through the entire alphabet (i.e. a1, b2, c3, d4, etc.)",
         "levels": []
     },
     {
         "id": 1007,
         "step": "distractor_step3",
         "stepLabel": "Distractor Step 3",
-        "instructions": "Complete the following list of tasks: \n\n • Count the number of syllables in the following words: interested, machine, perspective, neglected. ",
+        "instructions": "Complete the following list of tasks:  \\n \\n - Count the number of syllables in the following words: interested, machine, perspective, neglected. ",
         "levels": []
     },
     {
