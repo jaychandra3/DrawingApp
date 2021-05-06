@@ -121,12 +121,13 @@ struct DrawingView: View {
                     var avg_error : CGFloat = 0
                     var count : CGFloat = 0
                     var error_arr : [CGFloat] = [CGFloat]()
-                    let circle_center : CGPoint =  CGPoint(x: 230, y: 222) // originally (250, 447), offset -20, -225
+                    let circle_center : CGPoint = CGPoint(x: 266, y: 190) // originally (250, 447), offset -60, -275
                     let circle_radius : CGFloat = 140 // originally 200, scale by 0.7
                     let triangle_centroid : CGPoint = CGPoint(x: 650, y: 550)
                     
-                    let x_offset : CGFloat = -20
-                    let y_offset : CGFloat = -225
+                    // need to verify these values
+                    let x_offset : CGFloat = -60
+                    let y_offset : CGFloat = -275
                     let scale_factor : CGFloat = 0.7
                     print("Transformed X: " + transformPoint(p: CGPoint(x: 650, y: 450), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor).x.description
                     + "\nTransformed Y: "  + transformPoint(p: CGPoint(x: 650, y: 450), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor).y.description)
@@ -235,7 +236,7 @@ func arrayMin(arr: [CGFloat]) -> CGFloat{
 }
 
 // returns coordinates after translation/scaling figure
-// originally (650, 550), offset -20, -225
+// originally (650, 550), offset -60, -225
 
 func transformPoint(p: CGPoint, center: CGPoint, x_shift: CGFloat, y_shift: CGFloat, factor: CGFloat) -> CGPoint{
     let new_p: CGPoint = CGPoint(x: factor*(p.x-center.x)+center.x+x_shift, y: factor*(p.y-center.y)+center.y+y_shift)
