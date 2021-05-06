@@ -17,6 +17,8 @@ struct DrawingView: View {
     var trials : Int
     @State private var trialnum : Int = 0
     @State private var levelnum: Int = 3
+    @State private var calibrationDone: Bool = false
+    @State var finalShape: String = ""
     let patient : String
     @State private var data = DrawingData()
     @State private var showingAlert = false
@@ -119,13 +121,33 @@ struct DrawingView: View {
                     
                     // increment levelnum if we're inside encoding step 1
                     if trialList[trialnum] == .encoding_step1 {
-                        if stepList[1].levels[levelnum].passedTest {
-                            levelnum += 1
-                        } else {
-                            levelnum -= 1
+                        // set keeps track of the levelnums we already visited
+                        var set = Set<Int>()
+                        set.insert(levelnum)
+                        while (!calibrationDone) {
+                            // need to toggle passedTest parameter using shape-evaluating function
+                            if stepList[1].levels[levelnum].passedTest {
+                                levelnum += 1
+                                // if levelnum already present in set, calibration process is done
+                                if (!set.insert(levelnum).0) {
+                                    self.calibrationDone.toggle()
+                                }
+                                set.insert(levelnum)
+                            } else {
+                                levelnum -= 1
+                                if (!set.insert(levelnum).0) {
+                                    self.calibrationDone.toggle()
+                                }
+                                set.insert(levelnum)
+                            }
                         }
                         
-                        // need to figure out how to exit encoding step 1 only after we have finished the calibration process
+                        var maxLevel: Int = 0
+                        for number in set {
+                            if number > maxLevel { maxLevel = number }
+                        }
+                    
+                        finalShape = stepList[1].levels[maxLevel].levelLabel
                     }
                     
                     trialnum += 1
