@@ -9,25 +9,70 @@
 import SwiftUI
 
 struct shapeView: View {
-    var shape: Shape
+    var shape: String
+    
+    @State private var currentDrawing : Drawing = Drawing()
+    @State private var drawings : [Drawing] = [Drawing]()
+    @Binding var data: DrawingData
     
     var body: some View {
-        VStack (alignment: .leading) {
-            Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
-            shape.stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
-            Divider()
-            Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
-            ZStack {
-                DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                shape.stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
-                TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
-            }.padding(.top, -10)
-        }.padding()
+        if shape == "circle" {
+            VStack (alignment: .leading) {
+                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                Level1().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
+                Divider()
+                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    Level1().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                }.padding(.top, -10)
+            }.padding()
+        } else if shape == "infinity_symbol" {
+            VStack (alignment: .leading) {
+                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                Infinity().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
+                Divider()
+                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    Infinity().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                }.padding(.top, -10)
+            }.padding()
+        } else if shape == "prism" {
+            VStack (alignment: .leading) {
+                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                Prism().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
+                Divider()
+                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    Prism().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                }.padding(.top, -10)
+            }.padding()
+        } else if shape == "arch_spiral" {
+            VStack (alignment: .leading) {
+                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                ArchSpiral().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
+                Divider()
+                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    ArchSpiral().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                }.padding(.top, -10)
+            }.padding()
+        } else {
+            Spacer()
+            EmptyView()
+        } // need to add in level 5 shape
     }
 }
 
 struct shapeView_Previews: PreviewProvider {
     static var previews: some View {
-        shapeView()
+        shapeView(shape: "circle", data: $data)
     }
 }

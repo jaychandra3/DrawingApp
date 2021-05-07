@@ -11,7 +11,8 @@ import CoreGraphics
 
 struct stepView: View {
     var currentStep: Step
-    var levelnum: Int
+    var levelnum: Int?
+    var finalShape: String?
     
     @State private var currentDrawing : Drawing = Drawing()
     @State private var drawings : [Drawing] = [Drawing]()
@@ -65,28 +66,20 @@ struct stepView: View {
                 Text("Instructions").bold().font(.system(size: 28)).padding(.bottom, 15)
                 Text(currentStep.instructions).font(.system(size: 23))
             }.padding()
-            
             VStack {
-                if currentStep.step == "practice_screen" || currentStep.step == "retrieval_step" {
+                if currentStep.step == "practice_screen" || currentStep.step == "retrieval_step" || currentStep.step == "encoding_step3" {
                     ZStack {
                         DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
                         TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                     }
                 } else if currentStep.step == "encoding_step1" {
-                    if currentStep.levels[levelnum].levelShape == "circle" {
-                        shapeView(shape: Level1())
-                    } else if currentStep.levels[levelnum].levelShape == "infinity_symbol" {
-                        shapeView(shape: Infinity())
-                    } else if currentStep.levels[levelnum].levelShape == "prism" {
-                        shapeView(shape: Prism())
-                    } else if currentStep.levels[levelnum].levelShape == "arch_spiral" {
-                        shapeView(shape: ArchSpiral())
-                    } else {
-                        Spacer()
-                        EmptyView()
-                    } // need to include level 5 shape
+                    shapeView(shape: currentStep.levels[levelnum!].levelShape, data: $data)
                 } else if currentStep.step == "encoding_step2" {
-                    if
+                    shapeView(shape: finalShape!, data: $data)
+                } else {
+                    Spacer()
+                    EmptyView()
+                    // do we need to add data storage stuff for distractor steps here??
                 }
             }
         }
@@ -98,7 +91,6 @@ struct stepView_Previews: PreviewProvider {
     static var previews: some View {
         stepView(currentStep: stepList[0], data: $data)
         stepView(currentStep: stepList[1], data: $data)
-        stepView(currentStep: stepList[2], data: $data)
     }
 }
 

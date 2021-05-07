@@ -49,7 +49,7 @@ var trialList : [(TrialType, TrialShape)] = [
 */
 
 var trialList: [TrialType] = [
-    .practice_screen, .encoding_step1, .encoding_step2, .encoding_step3, .distractor_step, .retrieval_step1, .retrieval_step2, .multiple_choice
+    .practice_screen, .encoding_step1, .encoding_step2, .encoding_step3, .distractor_step1, .distractor_step2, .distractor_step3, .retrieval_step1, .retrieval_step2, .multiple_choice
 ]
 
 var levelList: [LevelNum] = [

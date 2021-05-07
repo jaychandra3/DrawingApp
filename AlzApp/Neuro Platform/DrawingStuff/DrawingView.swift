@@ -77,26 +77,27 @@ struct DrawingView: View {
             case .encoding_step1:
                 switch levelList[levelnum] {
                 case .level1:
-                    stepView(currentStep: stepList[1], shape: )
+                    stepView(currentStep: stepList[1], levelnum: levelnum, data: $data)
                 case .level2:
-                    something
+                    stepView(currentStep: stepList[1], levelnum: levelnum, data: $data)
                 case .level3:
-                    something
+                    stepView(currentStep: stepList[1], levelnum: levelnum, data: $data)
                 case .level4:
-                    something
+                    stepView(currentStep: stepList[1], levelnum: levelnum, data: $data)
                 case .level5:
-                    something
+                    stepView(currentStep: stepList[1], levelnum: levelnum, data: $data)
                 }
-                stepView(currentStep: stepList[2], data: $data)
             case .encoding_step2:
-                stepView(currentStep: stepList[3], data: $data)
+                stepView(currentStep: stepList[2], shape: finalShape, data: $data)
             case .encoding_step3:
+                stepView(currentStep: stepList[3], data: $data)
+            case .distractor_step1:
                 stepView(currentStep: stepList[4], data: $data)
-            case .distractor_step:
+            case .distractor_step2:
                 stepView(currentStep: stepList[5], data: $data)
-            case .retrieval_step1:
+            case .distractor_step3:
                 stepView(currentStep: stepList[6], data: $data)
-            case .retrieval_step2:
+            case .retrieval_step1:
                 stepView(currentStep: stepList[7], data: $data)
             case .multiple_choice:
                 QuestionsView()
@@ -132,7 +133,7 @@ struct DrawingView: View {
                         // set keeps track of the levelnums we already visited
                         var set = Set<Int>()
                         set.insert(levelnum)
-                        while (!calibrationDone) {
+                        while (!calibrationDone && levelnum < stepList[1].levels.count) {
                             // need to toggle passedTest parameter using shape-evaluating function
                             if stepList[1].levels[levelnum].passedTest {
                                 levelnum += 1
@@ -150,12 +151,7 @@ struct DrawingView: View {
                             }
                         }
                         
-                        var maxLevel: Int = 0
-                        for number in set {
-                            if number > maxLevel { maxLevel = number }
-                        }
-                    
-                        finalShape = stepList[1].levels[maxLevel].levelLabel
+                        finalShape = stepList[1].levels[set.max()!].levelShape
                     }
                     
                     trialnum += 1

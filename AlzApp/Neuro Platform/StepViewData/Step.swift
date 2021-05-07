@@ -34,11 +34,13 @@ struct Level: Hashable, Codable, Identifiable {
     var levelLabel: String
     var levelShape: String
     var passedTest: Bool
-    
-    index = 3
-    passed: Bool
-    if (passed == true) {
-        index ++
-    }
-    levelList[index]
 }
+
+/*
+index = 3
+passed: Bool
+if (passed == true) {
+    index ++
+}
+levelList[index]
+*/
