@@ -16,7 +16,7 @@ struct DrawingView: View {
     @Binding var rootIsActive: Bool
     var trials : Int
     @State private var trialnum : Int = 0
-    @State private var levelnum: Int = 3
+    @State private var levelnum: Int = 2
     @State private var calibrationDone: Bool = false
     @State var finalShape: String = ""
     let patient : String
@@ -77,18 +77,18 @@ struct DrawingView: View {
             case .encoding_step1:
                 switch levelList[levelnum] {
                 case .level1:
-                    stepView(currentStep: stepList[1], levelnum: levelnum, data: $data)
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .level2:
-                    stepView(currentStep: stepList[1], levelnum: levelnum, data: $data)
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .level3:
-                    stepView(currentStep: stepList[1], levelnum: levelnum, data: $data)
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .level4:
-                    stepView(currentStep: stepList[1], levelnum: levelnum, data: $data)
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .level5:
-                    stepView(currentStep: stepList[1], levelnum: levelnum, data: $data)
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 }
             case .encoding_step2:
-                stepView(currentStep: stepList[2], shape: finalShape, data: $data)
+                stepView(currentStep: stepList[2], finalShape: finalShape, data: $data)
             case .encoding_step3:
                 stepView(currentStep: stepList[3], data: $data)
             case .distractor_step1:
@@ -121,7 +121,7 @@ struct DrawingView: View {
                 
                 Button(action: {
                     // if finishDrawing returns false, the coordinate count is 0 (no drawing has been made); return nothing (so when button is pressed, nothing will happen)
-                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv")) && (trialList[trialnum] != .distractor_step) &&
+                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
                         (trialList[trialnum] != .multiple_choice) {
                         // toggle showingAlert so that the alert message pops up when necessary
                         self.showingAlert.toggle()
@@ -132,7 +132,6 @@ struct DrawingView: View {
                     if trialList[trialnum] == .encoding_step1 {
                         // set keeps track of the levelnums we already visited
                         var set = Set<Int>()
-                        set.insert(levelnum)
                         while (!calibrationDone && levelnum < stepList[1].levels.count) {
                             // need to toggle passedTest parameter using shape-evaluating function
                             if stepList[1].levels[levelnum].passedTest {
@@ -151,7 +150,7 @@ struct DrawingView: View {
                             }
                         }
                         
-                        finalShape = stepList[1].levels[set.max()!].levelShape
+                        self.finalShape = stepList[1].levels[set.max()!].levelShape
                     }
                     
                     trialnum += 1

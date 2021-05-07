@@ -11,7 +11,7 @@ import CoreGraphics
 
 struct stepView: View {
     var currentStep: Step
-    var levelnum: Int?
+    var levelNum: Int?
     var finalShape: String?
     
     @State private var currentDrawing : Drawing = Drawing()
@@ -73,7 +73,7 @@ struct stepView: View {
                         TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                     }
                 } else if currentStep.step == "encoding_step1" {
-                    shapeView(shape: currentStep.levels[levelnum!].levelShape, data: $data)
+                    shapeView(shape: currentStep.levels[levelNum!].levelShape, data: $data)
                 } else if currentStep.step == "encoding_step2" {
                     shapeView(shape: finalShape!, data: $data)
                 } else {

@@ -71,8 +71,10 @@ struct shapeView: View {
     }
 }
 
+/*
 struct shapeView_Previews: PreviewProvider {
     static var previews: some View {
         shapeView(shape: "circle", data: $data)
     }
 }
+*/
