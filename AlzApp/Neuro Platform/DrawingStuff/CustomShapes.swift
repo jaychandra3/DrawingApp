@@ -31,9 +31,9 @@ struct SpiroSquare: Shape {
 struct ArchSpiral: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        for theta in stride(from: 0, through: 20*CGFloat.pi, by: 0.01) {
-            let x = 400 + cos(theta) * 16.8 * theta
-            let y = 385 + sin(theta) * 16.8 * theta
+        for theta in stride(from: 0, through: 6.4*CGFloat.pi, by: 0.01) {
+            let x = 500 + cos(theta) * 14 * theta
+            let y = 250 + sin(theta) * 14 * theta
             if x > 800 || y > 800  || x < 0 || y < 0 {
                 break
             }
@@ -72,8 +72,8 @@ struct Infinity: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         for theta in stride(from: 0, through: 2*CGFloat.pi, by: 0.01) {
-            let x = 550 + (200 * cos(theta)) / (1 + (sin(theta) * sin(theta)))
-            let y = 500 + (200 * sin(theta) * cos(theta)) / (1 + (sin(theta) * sin(theta)))
+            let x = 500 + 2.2 * ((200 * cos(theta)) / (1 + (sin(theta) * sin(theta))))
+            let y = 250 + 2.2 * ((200 * sin(theta) * cos(theta)) / (1 + (sin(theta) * sin(theta))))
             if theta == 0 {
                 path.move(to: CGPoint(x: x, y: y))
             }
