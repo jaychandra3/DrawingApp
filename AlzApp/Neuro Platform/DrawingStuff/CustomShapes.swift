@@ -50,6 +50,25 @@ struct ArchSpiral: Shape {
     }
 }
 
+struct Prism: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+            path.move(to: CGPoint(x: 250, y: 550))       //1
+         path.addLine(to: CGPoint(x: 250, y: 350))       //2
+         path.addLine(to: CGPoint(x: 320, y: 260))       //3
+         path.addLine(to: CGPoint(x: 720, y: 260))       //4
+         path.addLine(to: CGPoint(x: 720, y: 460))       //5
+         path.addLine(to: CGPoint(x: 650, y: 550))       //6
+         path.addLine(to: CGPoint(x: 650, y: 350))       //7
+         path.addLine(to: CGPoint(x: 720, y: 260))       //wrap(4)
+         path.addLine(to: CGPoint(x: 650, y: 350))       //A(7)
+         path.addLine(to: CGPoint(x: 250, y: 350))       //B(2)
+         path.addLine(to: CGPoint(x: 250, y: 550))       //C(1)
+         path.addLine(to: CGPoint(x: 650, y: 550))       //C(6)
+        return path
+    }
+}
+
 struct Infinity: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -71,9 +90,9 @@ struct Infinity: Shape {
 struct Spirograph: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        for theta in stride(from: 0, through: 50*CGFloat.pi, by: 0.01) {
-            let x = 550 + 6 * (25 * cos(theta) + 15 * cos(1/3 * theta))
-            let y = 550 + 6 * (25 * sin(theta) - 15 * sin(1/3 * theta))
+        for theta in stride(from: 0, through: 100*CGFloat.pi, by: 0.01) {
+            let x = 550 + 6 * (25 * cos(theta) + 15 * cos(1/39 * theta))
+            let y = 550 + 6 * (25 * sin(theta) - 15 * sin(1/39 * theta))
             if theta == 0 {
                 path.move(to: CGPoint(x: x, y: y))
             }
