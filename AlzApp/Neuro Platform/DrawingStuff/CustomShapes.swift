@@ -10,6 +10,7 @@ import Foundation
 import CoreGraphics
 import SwiftUI
 
+// shapes with explicit names are for Parkinson's 
 struct SpiroSquare: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -85,6 +86,7 @@ struct Spirograph: Shape {
     }
 }
 
+// Levels are for Alzheimer's
 struct Level1: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
