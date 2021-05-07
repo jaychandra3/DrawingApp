@@ -10,6 +10,7 @@
 import Foundation
 import SwiftUI
 
+/*
 struct Step: Hashable, Codable, Identifiable {
     var id: Int
     var step: String
@@ -17,4 +18,34 @@ struct Step: Hashable, Codable, Identifiable {
     var shape: String
     var instructions: String
 }
+*/
 
+struct Step: Hashable, Codable, Identifiable {
+    var id: Int
+    var step: String
+    var stepLabel: String
+    var instructions: String
+    var levels: [Level]
+}
+
+struct Level: Hashable, Codable, Identifiable {
+    var id: Int
+    var step: String
+    var levelLabel: String
+    var levelShape: String
+    var passedTest: Bool?
+    
+    // assigns value to passedTest
+    mutating func evaluateLevel(passedTest: Bool) -> Void {
+        self.passedTest = passedTest
+    }
+}
+
+/*
+index = 3
+passed: Bool
+if (passed == true) {
+    index ++
+}
+levelList[index]
+*/
