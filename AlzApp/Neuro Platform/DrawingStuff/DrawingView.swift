@@ -183,14 +183,15 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
     var min_error : CGFloat = 0
     var circle_error : CGFloat = 0
     var spiral_error : CGFloat = 0
+    var infinity_error : CGFloat = 0
     var total_error : CGFloat = 0
     var avg_error : CGFloat = 0
     var count : CGFloat = 0
     var error_arr : [CGFloat] = [CGFloat]()
     let circle_center : CGPoint = CGPoint(x: 340, y: 237)
     let circle_radius : CGFloat = 200
-    let spiral_center : CGPoint = CGPoint(x: 400, y: 385)
-    let lemniscate_center : CGPoint = CGPoint(x: 400, y: 385)
+    let spiral_center : CGPoint = CGPoint(x: 500, y: 250)
+    let infinity_center : CGPoint = CGPoint(x: 550, y: 250)
     
     for point in data.coordinates{
         print("X: " + point.x.description
@@ -205,22 +206,25 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
             var theta : CGFloat = calcTheta(p: norm_point)
             let nearest_ring : CGFloat = CGFloat((sqrt(norm_point.x)*(norm_point.x) + (norm_point.y)*(norm_point.y) / (16.8*2*CGFloat.pi)).rounded())
             theta += 2*CGFloat.pi*nearest_ring
-            let corresp_point : CGPoint = CGPoint(x: spiral_center.x + 16.8*cos(theta)*theta, y: spiral_center.y + 16.8*sin(theta)*theta)
-            let corresp_radius : CGFloat = sqrt(16.8*cos(theta)*theta*16.8*cos(theta)*theta + 16.8*sin(theta)*theta*16.8*sin(theta)*theta)
-            spiral_error = abs(sqrt((point.x-corresp_point.x)*(point.x-corresp_point.x) + (point.y-corresp_point.y)*(point.y-corresp_point.y)) - corresp_radius)
+            let projected_point : CGPoint = CGPoint(x: spiral_center.x + 16.8*cos(theta)*theta, y: spiral_center.y + 16.8*sin(theta)*theta)
+            let projected_radius : CGFloat = sqrt(16.8*cos(theta)*theta*16.8*cos(theta)*theta + 16.8*sin(theta)*theta*16.8*sin(theta)*theta)
+            spiral_error = abs(sqrt((point.x-projected_point.x)*(point.x-projected_point.x) + (point.y-projected_point.y)*(point.y-projected_point.y)) - projected_radius)
             error_arr.append(spiral_error)
         }
         
-        // Distance to Lemniscate (Infinity Symbol)
+        // Distance to Infinity Symbol
         if (!isAlz && level == 2) {
-            let norm_point : CGPoint = CGPoint(x: point.x-lemniscate_center.x, y: point.y-lemniscate_center.y)
-            if (sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) < 50) {
+            let norm_point : CGPoint = CGPoint(x: point.x-infinity_center.x, y: point.y-infinity_center.y)
+            if (sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) < 200) {
                 // error is distance to closest of asymptotic lines
-                error_arr.append(distanceFromPoint(p: norm_point, toLineSegment: CGPoint(x: -50, y: -50), and: CGPoint(x: 50, y: 50)))
-                error_arr.append(distanceFromPoint(p: norm_point, toLineSegment: CGPoint(x: -50, y: 50), and: CGPoint(x: 50, y: -50)))
+                error_arr.append(min(distanceFromPoint(p: norm_point, toLineSegment: CGPoint(x: -200, y: -200), and: CGPoint(x: 200, y: 200)), distanceFromPoint(p: norm_point, toLineSegment: CGPoint(x: -200, y: 200), and: CGPoint(x: 200, y: -200))))
             }
-            else { // error is distance to theta-based projection onto lemniscate
-                var theta : CGFloat = calcTheta(p: norm_point)
+            else { // error is distance to theta-based projection onto infinity
+                let theta : CGFloat = calcTheta(p: norm_point)
+                let projected_point : CGPoint = CGPoint(x: infinity_center.x + 2.2 * ((200 * cos(theta)) / (1 + (sin(theta) * sin(theta)))), y: infinity_center.y + 2.2 * ((200 * sin(theta) * cos(theta)) / (1 + (sin(theta) * sin(theta)))))
+                let projected_radius : CGFloat = sqrt(2.2*200*2.2*200*cos(2*theta))
+                infinity_error = abs(sqrt((point.x-projected_point.x)*(point.x-projected_point.x) + (point.y-projected_point.y)*(point.y-projected_point.y)) - projected_radius)
+                error_arr.append(infinity_error)
             }
         }
         
@@ -268,13 +272,13 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
 func calcTheta(p: CGPoint) -> CGFloat{
     var theta : CGFloat = 0
     if (p.x >= 0 && p.y >= 0) {
-        theta = atan(p.x/p.y)
+        theta = atan(p.y/p.x)
     }
     else if (p.x < 0) {
-        theta = CGFloat.pi + atan(p.x/p.y)
+        theta = CGFloat.pi + atan(p.y/p.x)
     }
     else {
-        theta = 2*CGFloat.pi + atan(p.x/p.y)
+        theta = 2*CGFloat.pi + atan(p.y/p.x)
     }
     return theta
 }
