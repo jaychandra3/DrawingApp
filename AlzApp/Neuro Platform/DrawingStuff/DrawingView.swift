@@ -20,7 +20,7 @@ struct DrawingView: View {
     @State private var data = DrawingData()
     @State private var showingAlert : Bool = false
     @State private var pass : Bool = true
-    @State private var threshold : CGFloat = 75
+    @State private var threshold : CGFloat = 50
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
@@ -118,7 +118,7 @@ struct DrawingView: View {
                         return
                     }
                     
-                    let patient_error : CGFloat = calcError(trial: 1, data: self.data)
+                    let patient_error : CGFloat = calcError(level: 1, data: self.data)
                     if patient_error > threshold{
                         pass = false
                     }
@@ -192,55 +192,52 @@ func arrayMin(arr: [CGFloat]) -> CGFloat{
 // returns coordinates after translation/scaling figure
 // need to figure out if it actually works like this
 
-func transformPoint(p: CGPoint, center: CGPoint, x_shift: CGFloat, y_shift: CGFloat, factor: CGFloat) -> CGPoint{
+/*func transformPoint(p: CGPoint, center: CGPoint, x_shift: CGFloat, y_shift: CGFloat, factor: CGFloat) -> CGPoint{
     let new_p: CGPoint = CGPoint(x: factor*(p.x-center.x)+center.x+x_shift, y: factor*(p.y-center.y)+center.y+y_shift)
     return new_p
-}
+}*/
 
-func calcError(trial: Int, data: DrawingData) -> CGFloat{
+func calcError(level: Int, data: DrawingData) -> CGFloat{
     var min_error : CGFloat = 0
     var circle_error: CGFloat = 0
     var total_error : CGFloat = 0
     var avg_error : CGFloat = 0
     var count : CGFloat = 0
     var error_arr : [CGFloat] = [CGFloat]()
-    let circle_center : CGPoint = CGPoint(x: 270, y: 190) // originally (250, 447), offset -60, -275
-    let circle_radius : CGFloat = 140 // originally 200, scale by 0.7
-    let triangle_centroid : CGPoint = CGPoint(x: 650, y: 550)
-    
-    // need to verify these values
-    let x_offset : CGFloat = -80
-    let y_offset : CGFloat = -285
-    let scale_factor : CGFloat = 0.7
+    let circle_center : CGPoint = CGPoint(x: 340, y: 237)
+    let circle_radius : CGFloat = 200
     
     for point in data.coordinates{
         print("X: " + point.x.description
                 + " Y: " + point.y.description)
-        // Distance to Circle
         
-        circle_error = abs(sqrt((point.x-circle_center.x)*(point.x-circle_center.x) + (point.y-circle_center.y)*(point.y-circle_center.y)) - circle_radius)
-        error_arr.append(circle_error)
+        // Distance to Circle
+        if (level <= 4) {
+            circle_error = abs(sqrt((point.x-circle_center.x)*(point.x-circle_center.x) + (point.y-circle_center.y)*(point.y-circle_center.y)) - circle_radius)
+            error_arr.append(circle_error)
+        }
         
         // Distance to Triangle
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: transformPoint(p: CGPoint(x: 650, y: 450), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor), and: transformPoint(p: CGPoint(x: 550, y: 600), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor)))
+        if (level >= 2 && level <= 4) {
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 240), and: CGPoint(x: 640, y: 390)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 640, y: 390), and: CGPoint(x: 840, y: 390)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 840, y: 390), and: CGPoint(x: 740, y: 240)))
+        }
 
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: transformPoint(p: CGPoint(x: 550, y: 600), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor), and: transformPoint(p: CGPoint(x: 750, y: 600), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor)))
-        
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: transformPoint(p: CGPoint(x: 750, y: 600), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor), and: transformPoint(p: CGPoint(x: 650, y: 450), center: triangle_centroid, x_shift: x_offset, y_shift: y_offset, factor: scale_factor)))
-
-        /*
         // Distance to Prism
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 550), and: CGPoint(x: 250, y: 350)))
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 350), and: CGPoint(x: 320, y: 260)))
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 320, y: 260), and: CGPoint(x: 720, y: 260)))
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 260), and: CGPoint(x: 720, y: 460)))
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 460), and: CGPoint(x: 650, y: 550)))
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 550), and: CGPoint(x: 650, y: 350)))
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 350), and: CGPoint(x: 720, y: 260)))
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 260), and: CGPoint(x: 650, y: 350)))
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 350), and: CGPoint(x: 250, y: 350)))
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 350), and: CGPoint(x: 250, y: 550)))
-        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 550), and: CGPoint(x: 650, y: 550)))*/
+        if (level == 4){
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 340, y: 340), and: CGPoint(x: 340, y: 140)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 340, y: 140), and: CGPoint(x: 410, y: 50)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 410, y: 50), and: CGPoint(x: 810, y: 50)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 810, y: 50), and: CGPoint(x: 810, y: 250)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 810, y: 250), and: CGPoint(x: 740, y: 340)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 340), and: CGPoint(x: 740, y: 140)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 140), and: CGPoint(x: 810, y: 50)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 810, y: 50), and: CGPoint(x: 740, y: 140)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 140), and: CGPoint(x: 310, y: 140)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 310, y: 140), and: CGPoint(x: 340, y: 340)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 340, y: 340), and: CGPoint(x: 740, y: 340)))
+        }
         
         // Calculate min distance to overall figure
         min_error = arrayMin(arr: error_arr)
