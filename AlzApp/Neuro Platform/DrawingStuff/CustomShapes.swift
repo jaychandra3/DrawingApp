@@ -162,28 +162,28 @@ struct Level4: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         
-        path.addArc(center: CGPoint(x: 340, y: 237), radius: 200,
+        path.addArc(center: CGPoint(x: 340, y: 257), radius: 200,
                     startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
     
                                                 //Triangle coords
-       path.move(to: CGPoint(x: 740, y: 240))       //1
-    path.addLine(to: CGPoint(x: 640, y: 390))       //2
-    path.addLine(to: CGPoint(x: 840, y: 390))       //3
-    path.addLine(to: CGPoint(x: 740, y: 240))       //wrap(1)
+       path.move(to: CGPoint(x: 740, y: 260))       //1
+    path.addLine(to: CGPoint(x: 640, y: 410))       //2
+    path.addLine(to: CGPoint(x: 840, y: 410))       //3
+    path.addLine(to: CGPoint(x: 740, y: 260))       //wrap(1)
     
                                                 //Prism coords
-       path.move(to: CGPoint(x: 340, y: 340))       //1
-    path.addLine(to: CGPoint(x: 340, y: 140))       //2
-    path.addLine(to: CGPoint(x: 410, y: 50))       //3
-    path.addLine(to: CGPoint(x: 810, y: 50))       //4
-    path.addLine(to: CGPoint(x: 810, y: 250))       //5
-    path.addLine(to: CGPoint(x: 740, y: 340))       //6
-    path.addLine(to: CGPoint(x: 740, y: 140))       //7
-    path.addLine(to: CGPoint(x: 810, y: 50))       //wrap(4)
-    path.addLine(to: CGPoint(x: 740, y: 140))       //A(7)
-    path.addLine(to: CGPoint(x: 340, y: 140))       //B(2)
-    path.addLine(to: CGPoint(x: 340, y: 340))       //C(1)
-    path.addLine(to: CGPoint(x: 740, y: 340))       //C(6)
+       path.move(to: CGPoint(x: 340, y: 360))       //1
+    path.addLine(to: CGPoint(x: 340, y: 160))       //2
+    path.addLine(to: CGPoint(x: 410, y: 70))       //3
+    path.addLine(to: CGPoint(x: 810, y: 70))       //4
+    path.addLine(to: CGPoint(x: 810, y: 270))       //5
+    path.addLine(to: CGPoint(x: 740, y: 360))       //6
+    path.addLine(to: CGPoint(x: 740, y: 160))       //7
+    path.addLine(to: CGPoint(x: 810, y: 70))       //wrap(4)
+    path.addLine(to: CGPoint(x: 740, y: 160))       //A(7)
+    path.addLine(to: CGPoint(x: 340, y: 160))       //B(2)
+    path.addLine(to: CGPoint(x: 340, y: 360))       //C(1)
+    path.addLine(to: CGPoint(x: 740, y: 360))       //C(6)
         
         return path
         
