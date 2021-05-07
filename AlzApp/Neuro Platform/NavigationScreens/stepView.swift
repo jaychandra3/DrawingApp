@@ -82,7 +82,7 @@ struct stepView: View {
                 } else if currentStep.shape == "multiple_shapes" {
                     VStack (alignment: .leading) {
                         Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
-                        Level4().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
+                        Prism().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
                         Divider()
                         Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                         ZStack {
