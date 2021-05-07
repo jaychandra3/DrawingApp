@@ -30,7 +30,6 @@ enum TrialShape {
     case rectangle
     case multipleshapes
     case archspiral
-    case multipleshapesvertices
 }
 
 enum LevelNum {

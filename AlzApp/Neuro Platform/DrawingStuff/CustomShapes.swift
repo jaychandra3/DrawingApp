@@ -31,7 +31,7 @@ struct SpiroSquare: Shape {
 struct ArchSpiral: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        for theta in stride(from: 0, through: 14*CGFloat.pi, by: 0.01) {
+        for theta in stride(from: 0, through: 20*CGFloat.pi, by: 0.01) {
             let x = 400 + cos(theta) * 16.8 * theta
             let y = 385 + sin(theta) * 16.8 * theta
             if x > 800 || y > 800  || x < 0 || y < 0 {
@@ -49,7 +49,72 @@ struct ArchSpiral: Shape {
     }
 }
 
-struct MultipleShapes: Shape {
+struct Infinity: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        for theta in stride(from: 0, through: 2*CGFloat.pi, by: 0.01) {
+            let x = 550 + (200 * cos(theta)) / (1 + (sin(theta) * sin(theta)))
+            let y = 500 + (200 * sin(theta) * cos(theta)) / (1 + (sin(theta) * sin(theta)))
+            if theta == 0 {
+                path.move(to: CGPoint(x: x, y: y))
+            }
+            else {
+                path.addLine(to: CGPoint(x: x, y: y))
+            }
+            
+        }
+        return path
+    }
+}
+
+struct Spirograph: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        for theta in stride(from: 0, through: 50*CGFloat.pi, by: 0.01) {
+            let x = 550 + 6 * (25 * cos(theta) + 15 * cos(1/3 * theta))
+            let y = 550 + 6 * (25 * sin(theta) - 15 * sin(1/3 * theta))
+            if theta == 0 {
+                path.move(to: CGPoint(x: x, y: y))
+            }
+            else {
+                path.addLine(to: CGPoint(x: x, y: y))
+            }
+            
+        }
+        return path
+    }
+}
+
+struct Level1: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+                                                    //Circle specifications
+            path.addArc(center: CGPoint(x: 250, y: 447), radius: 200,
+                        startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
+        
+        return path
+    }
+}
+
+struct Level2: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        path.addArc(center: CGPoint(x: 250, y: 447), radius: 200,
+                    startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
+        
+                                                    //Triangle coords
+           path.move(to: CGPoint(x: 650, y: 450))       //1
+        path.addLine(to: CGPoint(x: 550, y: 600))       //2
+        path.addLine(to: CGPoint(x: 750, y: 600))       //3
+        path.addLine(to: CGPoint(x: 650, y: 450))       //wrap(1)
+        
+        return path
+    }
+}
+
+struct Level3: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         
@@ -64,6 +129,30 @@ struct MultipleShapes: Shape {
         path.addLine(to: CGPoint(x: 650, y: 450))       //wrap(1)
         
                                                     //Rectangle coords
+        path.addLine(to: CGPoint(x: 650, y: 350))       //A(7)
+        path.addLine(to: CGPoint(x: 250, y: 350))       //B(2)
+        path.addLine(to: CGPoint(x: 250, y: 550))       //C(1)
+        path.addLine(to: CGPoint(x: 650, y: 550))       //C(6)
+        
+        return path
+    }
+}
+
+struct Level4: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+                                                    //Circle specifications
+            path.addArc(center: CGPoint(x: 250, y: 447), radius: 200,
+                        startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
+        
+                                                    //Triangle coords
+           path.move(to: CGPoint(x: 650, y: 450))       //1
+        path.addLine(to: CGPoint(x: 550, y: 600))       //2
+        path.addLine(to: CGPoint(x: 750, y: 600))       //3
+        path.addLine(to: CGPoint(x: 650, y: 450))       //wrap(1)
+        
+                                                    //Prism coords
            path.move(to: CGPoint(x: 250, y: 550))       //1
         path.addLine(to: CGPoint(x: 250, y: 350))       //2
         path.addLine(to: CGPoint(x: 320, y: 260))       //3
@@ -78,53 +167,44 @@ struct MultipleShapes: Shape {
         path.addLine(to: CGPoint(x: 650, y: 550))       //C(6)
         
         
-        
         return path
     }
 }
 
-struct MultipleShapesVertices: Shape {
-    struct Coordinate: Identifiable, Hashable {
-                var id: String {
-                    "\(x)\(y)"
-                }
-
-                let x: CGFloat
-                let y: CGFloat
-            }
-
+struct Level5: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        path.addArc(center: CGPoint(x: 250, y: 447), radius: 200,
-                    startAngle: .degrees(130), endAngle: .degrees(240), clockwise: false)
-        let coordinates = [
-                            Coordinate(x: 650, y: 450),
-                            Coordinate(x: 550, y: 600),
-                            Coordinate(x: 750, y: 600),
-                            Coordinate(x: 650, y: 450),
-                            
-                            Coordinate(x: 250, y: 550),
-                            Coordinate(x: 250, y: 350),
-                            Coordinate(x: 320, y: 260),
-                            Coordinate(x: 720, y: 260),
-                            Coordinate(x: 720, y: 460),
-                            Coordinate(x: 650, y: 550),
-                            Coordinate(x: 650, y: 350),
-                            Coordinate(x: 720, y: 260),
-                            Coordinate(x: 650, y: 350),
-                            Coordinate(x: 250, y: 350),
-                            Coordinate(x: 250, y: 550),
-                            Coordinate(x: 650, y: 550)
-                ]
-                
-                for coordinate in coordinates {
-                    path.move(to: CGPoint(x: coordinate.x, y: coordinate.y))
-                    path.addArc(center: CGPoint(x: coordinate.x, y: coordinate.y), radius: 2,
-                                startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
-                }
         
+                                                    //Circle specifications
+            path.addArc(center: CGPoint(x: 250, y: 447), radius: 200,
+                        startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
+        
+                                                    //Triangle coords
+           path.move(to: CGPoint(x: 650, y: 450))       //1
+        path.addLine(to: CGPoint(x: 550, y: 600))       //2
+        path.addLine(to: CGPoint(x: 750, y: 600))       //3
+        path.addLine(to: CGPoint(x: 650, y: 450))       //wrap(1)
+        
+                                                    //Prism coords
+           path.move(to: CGPoint(x: 250, y: 550))       //1
+        path.addLine(to: CGPoint(x: 250, y: 350))       //2
+        path.addLine(to: CGPoint(x: 320, y: 260))       //3
+        path.addLine(to: CGPoint(x: 720, y: 260))       //4
+        path.addLine(to: CGPoint(x: 720, y: 460))       //5
+        path.addLine(to: CGPoint(x: 650, y: 550))       //6
+        path.addLine(to: CGPoint(x: 650, y: 350))       //7
+        path.addLine(to: CGPoint(x: 720, y: 260))       //wrap(4)
+        path.addLine(to: CGPoint(x: 650, y: 350))       //A(7)
+        path.addLine(to: CGPoint(x: 250, y: 350))       //B(2)
+        path.addLine(to: CGPoint(x: 250, y: 550))       //C(1)
+        path.addLine(to: CGPoint(x: 650, y: 550))       //C(6)
+
         return path
     }
 }
+
+
+
+
 
 
