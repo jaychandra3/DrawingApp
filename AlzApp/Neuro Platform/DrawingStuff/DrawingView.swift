@@ -22,7 +22,9 @@ struct DrawingView: View {
     @State var finalShape: String = ""
     let patient : String
     @State private var data = DrawingData()
-    @State private var showingAlert = false
+    @State private var showingAlert : Bool = false
+    @State private var passedTest : Bool = true
+    @State private var threshold : CGFloat = 50
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
@@ -129,6 +131,10 @@ struct DrawingView: View {
                         return
                     }
                     
+                    let patient_error : CGFloat = calcError(isAlz: true, level: 1, data: self.data)
+                    if patient_error > threshold{
+                        passedTest = false
+                    }
                     // increment levelnum if we're inside encoding step 1
                     estep1: if trialList[trialnum] == .encoding_step1 {
                         // 1. Evaluate the level
@@ -240,6 +246,137 @@ struct DrawingView: View {
         }.navigationBarHidden(true)
         .navigationTitle("Trial " + (trialnum + 1).description + "/" + trials.description)
     }
+}
+
+/* Distance from a point (p1) to line l1 l2 */
+func distanceFromPoint(p: CGPoint, toLineSegment v: CGPoint, and w: CGPoint) -> CGFloat {
+    let pv_dx = p.x - v.x
+    let pv_dy = p.y - v.y
+    let wv_dx = w.x - v.x
+    let wv_dy = w.y - v.y
+
+    let dot = pv_dx * wv_dx + pv_dy * wv_dy
+    let len_sq = wv_dx * wv_dx + wv_dy * wv_dy
+    let param = dot / len_sq
+
+    var int_x, int_y: CGFloat /* intersection of normal to vw that goes through p */
+
+    if param < 0 || (v.x == w.x && v.y == w.y) {
+        int_x = v.x
+        int_y = v.y
+    } else if param > 1 {
+        int_x = w.x
+        int_y = w.y
+    } else {
+        int_x = v.x + param * wv_dx
+        int_y = v.y + param * wv_dy
+    }
+
+    /* Components of normal */
+    let dx = p.x - int_x
+    let dy = p.y - int_y
+
+    return sqrt(dx * dx + dy * dy)
+}
+
+func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
+    var min_error : CGFloat = 0
+    var circle_error : CGFloat = 0
+    var spiral_error : CGFloat = 0
+    var total_error : CGFloat = 0
+    var avg_error : CGFloat = 0
+    var count : CGFloat = 0
+    var error_arr : [CGFloat] = [CGFloat]()
+    let circle_center : CGPoint = CGPoint(x: 340, y: 237)
+    let circle_radius : CGFloat = 200
+    let spiral_center : CGPoint = CGPoint(x: 400, y: 385)
+    let lemniscate_center : CGPoint = CGPoint(x: 400, y: 385)
+    
+    for point in data.coordinates{
+        print("X: " + point.x.description
+                + " Y: " + point.y.description)
+        
+        // Distance to Spiral
+        if (!isAlz && level == 4) {
+            // center everything at (0,0)
+            let norm_point : CGPoint = CGPoint(x: point.x-spiral_center.x, y: point.y-spiral_center.y)
+            
+            // distance to theta-based projection onto spiral
+            var theta : CGFloat = calcTheta(p: norm_point)
+            let nearest_ring : CGFloat = CGFloat((sqrt(norm_point.x)*(norm_point.x) + (norm_point.y)*(norm_point.y) / (16.8*2*CGFloat.pi)).rounded())
+            theta += 2*CGFloat.pi*nearest_ring
+            let corresp_point : CGPoint = CGPoint(x: spiral_center.x + 16.8*cos(theta)*theta, y: spiral_center.y + 16.8*sin(theta)*theta)
+            let corresp_radius : CGFloat = sqrt(16.8*cos(theta)*theta*16.8*cos(theta)*theta + 16.8*sin(theta)*theta*16.8*sin(theta)*theta)
+            spiral_error = abs(sqrt((point.x-corresp_point.x)*(point.x-corresp_point.x) + (point.y-corresp_point.y)*(point.y-corresp_point.y)) - corresp_radius)
+            error_arr.append(spiral_error)
+        }
+        
+        // Distance to Lemniscate (Infinity Symbol)
+        if (!isAlz && level == 2) {
+            let norm_point : CGPoint = CGPoint(x: point.x-lemniscate_center.x, y: point.y-lemniscate_center.y)
+            if (sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) < 50) {
+                // error is distance to closest of asymptotic lines
+                error_arr.append(distanceFromPoint(p: norm_point, toLineSegment: CGPoint(x: -50, y: -50), and: CGPoint(x: 50, y: 50)))
+                error_arr.append(distanceFromPoint(p: norm_point, toLineSegment: CGPoint(x: -50, y: 50), and: CGPoint(x: 50, y: -50)))
+            }
+            else { // error is distance to theta-based projection onto lemniscate
+                var theta : CGFloat = calcTheta(p: norm_point)
+            }
+        }
+        
+        // Distance to Circle
+        if (level == 1 || isAlz && level <= 4) {
+            circle_error = abs(sqrt((point.x-circle_center.x)*(point.x-circle_center.x) + (point.y-circle_center.y)*(point.y-circle_center.y)) - circle_radius)
+            error_arr.append(circle_error)
+        }
+        
+        // Distance to Triangle
+        if (isAlz && level >= 2 && level <= 4) {
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 240), and: CGPoint(x: 640, y: 390)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 640, y: 390), and: CGPoint(x: 840, y: 390)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 840, y: 390), and: CGPoint(x: 740, y: 240)))
+        }
+
+        // Distance to Prism
+        if (!isAlz && level == 3 || isAlz && level == 4){
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 340, y: 340), and: CGPoint(x: 340, y: 140)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 340, y: 140), and: CGPoint(x: 410, y: 50)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 410, y: 50), and: CGPoint(x: 810, y: 50)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 810, y: 50), and: CGPoint(x: 810, y: 250)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 810, y: 250), and: CGPoint(x: 740, y: 340)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 340), and: CGPoint(x: 740, y: 140)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 140), and: CGPoint(x: 810, y: 50)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 810, y: 50), and: CGPoint(x: 740, y: 140)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 140), and: CGPoint(x: 310, y: 140)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 310, y: 140), and: CGPoint(x: 340, y: 340)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 340, y: 340), and: CGPoint(x: 740, y: 340)))
+        }
+        
+        // Calculate min distance to overall figure
+        min_error = error_arr.min() ?? 0
+        print("Error: " + min_error.description)
+        total_error += min_error
+        error_arr.removeAll()
+        count+=1
+    }
+    avg_error = total_error/count
+    print("Avg Error: " + avg_error.description)
+    return avg_error
+}
+
+// returns polar angle in radians
+func calcTheta(p: CGPoint) -> CGFloat{
+    var theta : CGFloat = 0
+    if (p.x >= 0 && p.y >= 0) {
+        theta = atan(p.x/p.y)
+    }
+    else if (p.x < 0) {
+        theta = CGFloat.pi + atan(p.x/p.y)
+    }
+    else {
+        theta = 2*CGFloat.pi + atan(p.x/p.y)
+    }
+    return theta
 }
 
 struct DrawingView_Previews: PreviewProvider {
