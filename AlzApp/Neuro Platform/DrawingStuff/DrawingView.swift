@@ -118,7 +118,7 @@ struct DrawingView: View {
                         return
                     }
                     
-                    let patient_error : CGFloat = calcError(level: 1, data: self.data)
+                    let patient_error : CGFloat = calcError(park_or_alz: true, level: 1, data: self.data)
                     if patient_error > threshold{
                         pass = false
                     }
@@ -189,43 +189,59 @@ func arrayMin(arr: [CGFloat]) -> CGFloat{
     return min
 }
 
-// returns coordinates after translation/scaling figure
-// need to figure out if it actually works like this
-
-/*func transformPoint(p: CGPoint, center: CGPoint, x_shift: CGFloat, y_shift: CGFloat, factor: CGFloat) -> CGPoint{
-    let new_p: CGPoint = CGPoint(x: factor*(p.x-center.x)+center.x+x_shift, y: factor*(p.y-center.y)+center.y+y_shift)
-    return new_p
-}*/
-
-func calcError(level: Int, data: DrawingData) -> CGFloat{
+func calcError(park_or_alz: Bool, level: Int, data: DrawingData) -> CGFloat{
     var min_error : CGFloat = 0
-    var circle_error: CGFloat = 0
+    var circle_error : CGFloat = 0
+    var spiral_error : CGFloat = 0
     var total_error : CGFloat = 0
     var avg_error : CGFloat = 0
     var count : CGFloat = 0
     var error_arr : [CGFloat] = [CGFloat]()
     let circle_center : CGPoint = CGPoint(x: 340, y: 237)
     let circle_radius : CGFloat = 200
+    let spiral_center : CGPoint = CGPoint(x: 400, y: 385)
     
     for point in data.coordinates{
         print("X: " + point.x.description
                 + " Y: " + point.y.description)
         
+        // Distance to Spiral
+        if (!park_or_alz && level == 4) {
+            let norm_point : CGPoint = CGPoint(x: point.x-spiral_center.x, y: point.y-spiral_center.y)
+            
+            var theta : CGFloat = 0
+            if (norm_point.x >= 0 && norm_point.y >= 0) {
+                theta = atan(norm_point.x/norm_point.y)
+            }
+            else if (norm_point.x < 0) {
+                theta = CGFloat.pi + atan(norm_point.x/norm_point.y)
+            }
+            else {
+                theta = 2*CGFloat.pi + atan(norm_point.x/norm_point.y)
+            }
+            let nearest_ring : CGFloat = CGFloat((sqrt(norm_point.x)*(norm_point.x) + (norm_point.y)*(norm_point.y) / (16.8*2*CGFloat.pi)).rounded())
+            theta += 2*CGFloat.pi*nearest_ring
+            let corresp_point : CGPoint = CGPoint(x: spiral_center.x + 16.8*cos(theta)*theta, y: spiral_center.y + 16.8*sin(theta)*theta)
+            let corresp_radius : CGFloat = sqrt(16.8*cos(theta)*theta*16.8*cos(theta)*theta + 16.8*sin(theta)*theta*16.8*sin(theta)*theta)
+            spiral_error = abs(sqrt((point.x-corresp_point.x)*(point.x-corresp_point.x) + (point.y-corresp_point.y)*(point.y-corresp_point.y)) - corresp_radius)
+            error_arr.append(spiral_error)
+        }
+        
         // Distance to Circle
-        if (level <= 4) {
+        if (level == 1 || park_or_alz && level <= 4) {
             circle_error = abs(sqrt((point.x-circle_center.x)*(point.x-circle_center.x) + (point.y-circle_center.y)*(point.y-circle_center.y)) - circle_radius)
             error_arr.append(circle_error)
         }
         
         // Distance to Triangle
-        if (level >= 2 && level <= 4) {
+        if (park_or_alz && level >= 2 && level <= 4) {
             error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 240), and: CGPoint(x: 640, y: 390)))
             error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 640, y: 390), and: CGPoint(x: 840, y: 390)))
             error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 840, y: 390), and: CGPoint(x: 740, y: 240)))
         }
 
         // Distance to Prism
-        if (level == 4){
+        if (!park_or_alz && level == 3 || park_or_alz && level == 4){
             error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 340, y: 340), and: CGPoint(x: 340, y: 140)))
             error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 340, y: 140), and: CGPoint(x: 410, y: 50)))
             error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 410, y: 50), and: CGPoint(x: 810, y: 50)))
