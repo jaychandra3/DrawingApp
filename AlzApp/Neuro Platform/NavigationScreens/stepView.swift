@@ -75,7 +75,6 @@ struct stepView: View {
                 } else if currentStep.step == "encoding_step1" {
                     shapeView(shape: currentStep.levels[levelNum!].levelShape, data: $data)
                 } else if currentStep.step == "encoding_step2" {
-                    Text("final shape: \(finalShape!)")
                     shapeView(shape: finalShape!, data: $data)
                 } else {
                     Spacer()

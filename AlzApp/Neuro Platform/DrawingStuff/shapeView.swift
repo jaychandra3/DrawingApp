@@ -19,48 +19,48 @@ struct shapeView: View {
         if shape == "circle" {
             VStack (alignment: .leading) {
                 Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
-                Level1().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
+                Level1().stroke(lineWidth:3)
                 Divider()
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Level1().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
+                    Level1().stroke(lineWidth:3)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
         } else if shape == "infinity_symbol" {
             VStack (alignment: .leading) {
                 Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
-                Infinity().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
+                Infinity().stroke(lineWidth:3)
                 Divider()
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Infinity().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
+                    Infinity().stroke(lineWidth:3)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
         } else if shape == "prism" {
             VStack (alignment: .leading) {
                 Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
-                Prism().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
+                Prism().stroke(lineWidth:3)
                 Divider()
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Prism().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
+                    Prism().stroke(lineWidth:3)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
         } else if shape == "arch_spiral" {
             VStack (alignment: .leading) {
                 Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
-                ArchSpiral().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
+                ArchSpiral().stroke(lineWidth:3)
                 Divider()
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    ArchSpiral().stroke(lineWidth:3).scale(0.75).offset(x:-20, y:-200)
+                    ArchSpiral().stroke(lineWidth:3)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()

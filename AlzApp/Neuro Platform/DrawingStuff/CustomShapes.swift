@@ -32,9 +32,9 @@ struct SpiroSquare: Shape {
 struct ArchSpiral: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        for theta in stride(from: 0, through: 20*CGFloat.pi, by: 0.01) {
-            let x = 400 + cos(theta) * 16.8 * theta
-            let y = 385 + sin(theta) * 16.8 * theta
+        for theta in stride(from: 0, through: 6.0*CGFloat.pi, by: 0.01) {
+            let x = 500 + cos(theta) * 14 * theta
+            let y = 250 + sin(theta) * 14 * theta
             if x > 800 || y > 800  || x < 0 || y < 0 {
                 break
             }
@@ -44,7 +44,6 @@ struct ArchSpiral: Shape {
             else {
                 path.addLine(to: CGPoint(x: x, y: y))
             }
-            
         }
         return path
     }
@@ -53,18 +52,18 @@ struct ArchSpiral: Shape {
 struct Prism: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
-            path.move(to: CGPoint(x: 250, y: 550))       //1
-         path.addLine(to: CGPoint(x: 250, y: 350))       //2
-         path.addLine(to: CGPoint(x: 320, y: 260))       //3
-         path.addLine(to: CGPoint(x: 720, y: 260))       //4
-         path.addLine(to: CGPoint(x: 720, y: 460))       //5
-         path.addLine(to: CGPoint(x: 650, y: 550))       //6
-         path.addLine(to: CGPoint(x: 650, y: 350))       //7
-         path.addLine(to: CGPoint(x: 720, y: 260))       //wrap(4)
-         path.addLine(to: CGPoint(x: 650, y: 350))       //A(7)
-         path.addLine(to: CGPoint(x: 250, y: 350))       //B(2)
-         path.addLine(to: CGPoint(x: 250, y: 550))       //C(1)
-         path.addLine(to: CGPoint(x: 650, y: 550))       //C(6)
+            path.move(to: CGPoint(x: 250, y: 350))       //1
+         path.addLine(to: CGPoint(x: 250, y: 150))       //2
+         path.addLine(to: CGPoint(x: 320, y: 60))       //3
+         path.addLine(to: CGPoint(x: 720, y: 60))       //4
+         path.addLine(to: CGPoint(x: 720, y: 260))       //5
+         path.addLine(to: CGPoint(x: 650, y: 350))       //6
+         path.addLine(to: CGPoint(x: 650, y: 150))       //7
+         path.addLine(to: CGPoint(x: 720, y: 60))       //wrap(4)
+         path.addLine(to: CGPoint(x: 650, y: 150))       //A(7)
+         path.addLine(to: CGPoint(x: 250, y: 150))       //B(2)
+         path.addLine(to: CGPoint(x: 250, y: 350))       //C(1)
+         path.addLine(to: CGPoint(x: 650, y: 350))       //C(6)
         return path
     }
 }
@@ -73,8 +72,8 @@ struct Infinity: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         for theta in stride(from: 0, through: 2*CGFloat.pi, by: 0.01) {
-            let x = 550 + (200 * cos(theta)) / (1 + (sin(theta) * sin(theta)))
-            let y = 500 + (200 * sin(theta) * cos(theta)) / (1 + (sin(theta) * sin(theta)))
+            let x = 500 + 2.2 * ((200 * cos(theta)) / (1 + (sin(theta) * sin(theta))))
+            let y = 250 + 2.2 * ((200 * sin(theta) * cos(theta)) / (1 + (sin(theta) * sin(theta))))
             if theta == 0 {
                 path.move(to: CGPoint(x: x, y: y))
             }
@@ -111,7 +110,7 @@ struct Level1: Shape {
         var path = Path()
         
                                                     //Circle specifications
-            path.addArc(center: CGPoint(x: 250, y: 447), radius: 200,
+            path.addArc(center: CGPoint(x: 500, y: 247), radius: 200,
                         startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
         
         return path

@@ -24,7 +24,7 @@ struct DrawingView: View {
     @State private var data = DrawingData()
     @State private var showingAlert : Bool = false
     @State private var passedTest : Bool = true
-    @State private var threshold : CGFloat = 50
+    @State private var threshold : CGFloat = 1
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
@@ -131,15 +131,18 @@ struct DrawingView: View {
                         return
                     }
                     
-                    let patient_error : CGFloat = calcError(isAlz: true, level: 1, data: self.data)
-                    if patient_error > threshold{
-                        passedTest = false
-                    }
                     // increment levelnum if we're inside encoding step 1
                     estep1: if trialList[trialnum] == .encoding_step1 {
                         // 1. Evaluate the level
                         // TODO: Add the implementation for evaluation. Currently a simulation
                         var currentLevel: Level = stepList[1].levels[levelnum]
+                        let patient_error : CGFloat = calcError(isAlz: true, level: levelnum+1, data: self.data)
+                        if patient_error > threshold{
+                            passedTest = false
+                        }
+                        currentLevel.evaluateLevel(passedTest: self.passedTest)
+                        
+                        /*
                         if (levelnum == 2) { // Level 3: Prism
                             currentLevel.evaluateLevel(passedTest: false)
                         } else if (levelnum == 3) { // Level 4: Arch Spiral
@@ -151,6 +154,7 @@ struct DrawingView: View {
                         } else if (levelnum == 0) { // Level 1: Circle
                             currentLevel.evaluateLevel(passedTest: true)
                         } // Expected final level is 1 (levelnum = 0) Circle
+                        */
 
                         stepList[1].levels[levelnum] = currentLevel // Update the stepList data
                         print("current level: \(currentLevel.levelLabel)")
