@@ -35,6 +35,7 @@ struct Level: Hashable, Codable, Identifiable {
     var levelShape: String
     var passedTest: Bool?
     
+    // assigns value to passedTest
     mutating func evaluateLevel(passedTest: Bool) -> Void {
         self.passedTest = passedTest
     }

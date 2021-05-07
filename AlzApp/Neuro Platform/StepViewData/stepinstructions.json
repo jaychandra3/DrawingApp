@@ -63,21 +63,21 @@
         "id": 1005,
         "step": "distractor_step1",
         "stepLabel": "Distractor Step 1",
-        "instructions": "Complete the following task:  \\n \\n - Count backwards from 100 to 50 by 7s. ",
+        "instructions": "Complete the following task:  \n \n - Count backwards from 100 to 50 by 7s. ",
         "levels": []
     },
     {
         "id": 1006,
         "step": "distractor_step2",
         "stepLabel": "Distractor Step 2",
-        "instructions": "Complete the following task:  \\n \\n - Alternate letters and numbers through the entire alphabet (i.e. a1, b2, c3, d4, etc.)",
+        "instructions": "Complete the following task:  \n \n - Alternate letters and numbers through the entire alphabet (i.e. a1, b2, c3, d4, etc.)",
         "levels": []
     },
     {
         "id": 1007,
         "step": "distractor_step3",
         "stepLabel": "Distractor Step 3",
-        "instructions": "Complete the following list of tasks:  \\n \\n - Count the number of syllables in the following words: interested, machine, perspective, neglected. ",
+        "instructions": "Complete the following list of tasks:  \n \n - Count the number of syllables in the following words: interested, machine, perspective, neglected. ",
         "levels": []
     },
     {
