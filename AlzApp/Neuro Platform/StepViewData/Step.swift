@@ -33,7 +33,11 @@ struct Level: Hashable, Codable, Identifiable {
     var step: String
     var levelLabel: String
     var levelShape: String
-    var passedTest: Bool
+    var passedTest: Bool?
+    
+    mutating func evaluateLevel(passedTest: Bool) -> Void {
+        self.passedTest = passedTest
+    }
 }
 
 /*

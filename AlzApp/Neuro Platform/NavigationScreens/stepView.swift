@@ -75,6 +75,7 @@ struct stepView: View {
                 } else if currentStep.step == "encoding_step1" {
                     shapeView(shape: currentStep.levels[levelNum!].levelShape, data: $data)
                 } else if currentStep.step == "encoding_step2" {
+                    Text("final shape: \(finalShape!)")
                     shapeView(shape: finalShape!, data: $data)
                 } else {
                     Spacer()
@@ -89,8 +90,8 @@ struct stepView: View {
 struct stepView_Previews: PreviewProvider {
     @State static var data = DrawingData()
     static var previews: some View {
-        stepView(currentStep: stepList[0], data: $data)
-        stepView(currentStep: stepList[1], data: $data)
+        stepView(currentStep: steps[0], data: $data)
+        stepView(currentStep: steps[1], data: $data)
     }
 }
 

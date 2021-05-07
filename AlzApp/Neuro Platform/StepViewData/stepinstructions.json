@@ -18,35 +18,30 @@
                 "step": "encoding_step1_1",
                 "levelLabel": "level1",
                 "levelShape": "circle",
-                "passedTest": true
             },
             {
                 "id": 10022,
                 "step": "encoding_step1_2",
                 "levelLabel": "level2",
                 "levelShape": "infinity_symbol",
-                "passedTest": true
             },
             {
                 "id": 10023,
                 "step": "encoding_step1_3",
                 "levelLabel": "level3",
                 "levelShape": "prism",
-                "passedTest": false
             },
             {
                 "id": 10024,
                 "step": "encoding_step1_4",
                 "levelLabel": "level4",
                 "levelShape": "arch_spiral",
-                "passedTest": true
             },
             {
                 "id": 10025,
                 "step": "encoding_step1_5",
                 "levelLabel": "level5",
                 "levelShape": "level5shape (change later)",
-                "passedTest": true
             }
         ]
     },
