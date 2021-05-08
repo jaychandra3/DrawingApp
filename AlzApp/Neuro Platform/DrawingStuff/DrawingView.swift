@@ -265,38 +265,9 @@ struct DrawingView: View {
     }
 }
 
-/* Distance from a point (p1) to line l1 l2 */
-func distanceFromPoint(p: CGPoint, toLineSegment v: CGPoint, and w: CGPoint) -> CGFloat {
-    let pv_dx = p.x - v.x
-    let pv_dy = p.y - v.y
-    let wv_dx = w.x - v.x
-    let wv_dy = w.y - v.y
-
-    let dot = pv_dx * wv_dx + pv_dy * wv_dy
-    let len_sq = wv_dx * wv_dx + wv_dy * wv_dy
-    let param = dot / len_sq
-
-    var int_x, int_y: CGFloat /* intersection of normal to vw that goes through p */
-
-    if param < 0 || (v.x == w.x && v.y == w.y) {
-        int_x = v.x
-        int_y = v.y
-    } else if param > 1 {
-        int_x = w.x
-        int_y = w.y
-    } else {
-        int_x = v.x + param * wv_dx
-        int_y = v.y + param * wv_dy
-    }
-
-    /* Components of normal */
-    let dx = p.x - int_x
-    let dy = p.y - int_y
-
-    return sqrt(dx * dx + dy * dy)
-}
-
 func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
+    /*print("distance: " + distanceToParabola(p: CGPoint(x: 300, y: 153), a: -0.002, b: 1.1, c: 0).description)*/
+    
     var min_error : CGFloat = 0
     var circle_error : CGFloat = 0
     var spiral_error : CGFloat = 0
@@ -312,41 +283,70 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
     
     for point in data.coordinates{
         print("X: " + point.x.description + " Y: " + point.y.description)
-        /*
-        // Distance to Spiral
-        if (!isAlz && level == 4) {
+        
+        /*// Distance to Spiral
+        //if (!isAlz && level == 4) {
             // center everything at (0,0)
-            let norm_point : CGPoint = CGPoint(x: point.x-spiral_center.x, y: point.y-spiral_center.y)
-            
+        let norm_point : CGPoint = CGPoint(x: point.x-spiral_center.x, y: point.y-spiral_center.y)
+            if(norm_point.x*norm_point.x+norm_point.y+norm_point.y < 2000) {
+                error_arr.append(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y))
+            }
+            print("X': " + norm_point.x.description + " Y': " + norm_point.y.description)
             // distance to theta-based projection onto spiral
-            var theta : CGFloat = calcTheta(p: norm_point)
-            let nearest_ring : CGFloat = CGFloat((sqrt(norm_point.x)*(norm_point.x) + (norm_point.y)*(norm_point.y) / (16.8*2*CGFloat.pi)).rounded())
-            theta += 2*CGFloat.pi*nearest_ring
-            let projected_point : CGPoint = CGPoint(x: spiral_center.x + 16.8*cos(theta)*theta, y: spiral_center.y + 16.8*sin(theta)*theta)
-            let projected_radius : CGFloat = sqrt(16.8*cos(theta)*theta*16.8*cos(theta)*theta + 16.8*sin(theta)*theta*16.8*sin(theta)*theta)
-            spiral_error = abs(sqrt((point.x-projected_point.x)*(point.x-projected_point.x) + (point.y-projected_point.y)*(point.y-projected_point.y)) - projected_radius)
-            error_arr.append(spiral_error)
-        }*/
+            let theta : CGFloat = calcTheta(p: norm_point)
+            let nearest_ring : CGFloat = CGFloat(Int(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) / (14*2*CGFloat.pi)))
+            print("nearest ring: " + nearest_ring.description)
+            let theta1 : CGFloat = theta + 2*CGFloat.pi*nearest_ring
+            let theta2 : CGFloat = theta1 + 2*CGFloat.pi
+            print("theta: " + theta.description)
+            var projected_radius : CGFloat = 14*theta1
+            error_arr.append(abs(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) - projected_radius))
+            projected_radius = 14*theta2
+            error_arr.append(abs(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) - projected_radius))
+            if (nearest_ring >= 1) {
+                let theta3 : CGFloat = theta1 - 2*CGFloat.pi
+                projected_radius = 14*theta3
+                error_arr.append(abs(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) - projected_radius))
+            }
+            
+      //}*/
+        
+       
         
         // Distance to Infinity Symbol
         //if (!isAlz && level == 2) {
-        let norm_point : CGPoint = CGPoint(x: point.x-infinity_center.x, y: infinity_center.y - point.y)
+        
+            let norm_point : CGPoint = CGPoint(x: point.x-infinity_center.x, y: infinity_center.y-point.y)
             print("X': " + norm_point.x.description + " Y': " + norm_point.y.description)
-            if (norm_point.x*norm_point.x + norm_point.y*norm_point.y < 40000) {
-                // if point is within a circle with radius 200
-                // error is distance to closest of asymptotes
-                print("Within circle!!")
-                error_arr.append(min(distanceFromPoint(p: norm_point, toLineSegment: CGPoint(x: -200, y: -200), and: CGPoint(x: 200, y: 200)), distanceFromPoint(p: norm_point, toLineSegment: CGPoint(x: -200, y: 200), and: CGPoint(x: 200, y: -200))))
+            
+             // error is distance to theta-based projection onto infinity
+            let theta : CGFloat = calcTheta(p: norm_point)
+            //print("theta: " + theta.description)
+            let projected_radius : CGFloat = sqrt(2.2*200*2.2*200*cos(2*theta))
+            //print("proj_radius: " + projected_radius.description)
+            
+            if (norm_point.x*norm_point.x + norm_point.y*norm_point.y <= 136900 || norm_point.x*norm_point.x + norm_point.y*norm_point.y - projected_radius < 0) {
+                if (norm_point.x >= 0 && norm_point.y >= 0) {
+                    error_arr.append(distanceToParabola(p: norm_point, a: -0.002, b: 1.1, c: 0))
+                }
+                else if (norm_point.x < 0 && norm_point.y >= 0) {
+                    error_arr.append(distanceToParabola(p: norm_point, a: -0.002, b: -1.1, c: 0))
+                }
+                else if (norm_point.x < 0 && norm_point.y < 0) {
+                    error_arr.append(distanceToParabola(p: norm_point, a: 0.002, b: 1.1, c: 0))
+                }
+                else {
+                    error_arr.append(distanceToParabola(p: norm_point, a: 0.002, b: -1.1, c: 0))
+                }
+            // if point is within a circle with radius 370
+            // error is distance to form of parabola y = -(1/500)x(x-500)
             }
-            else { // error is distance to theta-based projection onto infinity
-                let theta : CGFloat = calcTheta(p: norm_point)
-                print("theta: " + theta.description)
-                /*let projected_point : CGPoint = CGPoint(x: infinity_center.x + 2.2 * ((200 * cos(theta)) / (1 + (sin(theta) * sin(theta)))), y: infinity_center.y + 2.2 * ((200 * sin(theta) * cos(theta)) / (1 + (sin(theta) * sin(theta)))))*/
-                let projected_radius : CGFloat = sqrt(2.2*200*2.2*200*cos(2*theta))
-                //print("proj_radius: " + projected_radius.description)
+  
+            if (norm_point.x*norm_point.x + norm_point.y*norm_point.y - projected_radius >= 0) {
                 infinity_error = abs(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) - projected_radius)
                 error_arr.append(infinity_error)
             }
+        
         //}*/
         /*// Distance to Large Circle
         //if (level == 1) {
@@ -406,6 +406,9 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
         }*/
         
         // Calculate min distance to overall figure
+        /*for element in error_arr {
+            print(element.description)
+        }*/
         min_error = error_arr.min() ?? -1
         print("Error: " + min_error.description)
         total_error += min_error
@@ -414,7 +417,39 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
     }
     avg_error = total_error/count
     print("Avg Error: " + avg_error.description)
+    print("--------------------------------------------------")
     return avg_error
+}
+
+/* Distance from a point (p1) to line l1 l2 */
+func distanceFromPoint(p: CGPoint, toLineSegment v: CGPoint, and w: CGPoint) -> CGFloat {
+    let pv_dx = p.x - v.x
+    let pv_dy = p.y - v.y
+    let wv_dx = w.x - v.x
+    let wv_dy = w.y - v.y
+
+    let dot = pv_dx * wv_dx + pv_dy * wv_dy
+    let len_sq = wv_dx * wv_dx + wv_dy * wv_dy
+    let param = dot / len_sq
+
+    var int_x, int_y: CGFloat /* intersection of normal to vw that goes through p */
+
+    if param < 0 || (v.x == w.x && v.y == w.y) {
+        int_x = v.x
+        int_y = v.y
+    } else if param > 1 {
+        int_x = w.x
+        int_y = w.y
+    } else {
+        int_x = v.x + param * wv_dx
+        int_y = v.y + param * wv_dy
+    }
+
+    /* Components of normal */
+    let dx = p.x - int_x
+    let dy = p.y - int_y
+
+    return sqrt(dx * dx + dy * dy)
 }
 
 // returns polar angle in radians
@@ -430,6 +465,116 @@ func calcTheta(p: CGPoint) -> CGFloat{
         theta = 2*CGFloat.pi + atan(p.y/p.x)
     }
     return theta
+}
+
+// y = ax^2 + bx + c
+func distanceToParabola(p: CGPoint, a: Double, b: Double, c: Double) -> CGFloat {
+    let x_coord : Double = solveCubicEquation(a: 2*a*a, b: 3*b*a, c: b*b+2*c*a-2*a*Double(p.y)+1, d: c*b-b*Double(p.y)-Double(p.x))[0]
+    let y_coord : Double = a*x_coord*x_coord + b*x_coord + c
+    return CGFloat(sqrt((Double(p.x)-x_coord)*(Double(p.x)-x_coord) + (Double(p.y)-y_coord)*(Double(p.y)-y_coord)))
+}
+
+// ax^3 + bx^2 + cx + d = 0, only real solutions
+func solveCubicEquation(a: Double, b: Double, c: Double, d: Double) -> [Double] {
+    if a == 0.0 {
+        return solveQuadraticEquation(a: b, b: c, c: d)
+    } else {
+        // should be delete `a`
+        let A = b / a
+        let B = c / a
+        let C = d / a
+        return solveCubicEquation(A: A, B: B, C: C)
+    }
+}
+
+// x^3 + Ax^2 + Bx + C = 0
+func solveCubicEquation(A: Double, B: Double, C: Double) -> [Double] {
+    if A == 0.0 {
+        return solveCubicEquation(p: B, q: C)
+    } else {
+        // x = X - A/3 (completing the cubic. should be delete `Ax^2`)
+        let p = B - (pow(A, 2.0) / 3.0)
+        let q = C - ((A * B) / 3.0) + ((2.0 / 27.0) * pow(A, 3.0))
+        let roots = solveCubicEquation(p: p, q: q)
+        return roots.map { $0 - A/3.0 }
+    }
+}
+
+// x^3 + px + q = 0
+func solveCubicEquation(p: Double, q: Double) -> [Double] {
+    let p3 = p / 3.0
+    let q2 = q / 2.0
+    let discriminant = pow(q2, 2.0) + pow(p3, 3.0) // D: discriminant
+    if discriminant < 0.0 {
+        // three possible real roots
+        let r = sqrt(pow(-p3, 3.0))
+        let t = -q / (2.0 * r)
+        let cosphi = min(max(t, -1.0), 1.0)
+        let phi = acos(cosphi)
+        let c = 2.0 * cuberoot(r)
+        let root1 = c * cos(phi/3.0)
+        let root2 = c * cos((phi+2.0*Double.pi)/3.0)
+        let root3 = c * cos((phi+4.0*Double.pi)/3.0)
+        return [root1, root2, root3]
+    } else if discriminant == 0.0 {
+        // three real roots, but two of them are equal
+        let u: Double
+        if q2 < 0.0 {
+            u = cuberoot(-q2)
+        } else {
+            u = -cuberoot(q2)
+        }
+        let root1 = 2.0 * u
+        let root2 = -u
+        return [root1, root2]
+    } else {
+        // one real root, two complex roots
+        let sd = sqrt(discriminant)
+        let u = cuberoot(sd - q2)
+        let v = cuberoot(sd + q2)
+        let root1 = u - v
+        return [root1]
+    }
+}
+
+func cuberoot(_ v: Double) -> Double {
+    let c = 1.0 / 3.0
+    if v < 0.0 {
+        return -pow(-v, c)
+    } else {
+        return pow(v, c)
+    }
+}
+
+// ax^2 + bx + c = 0
+func solveQuadraticEquation(a: Double, b: Double, c: Double) -> [Double] {
+    if a == 0.0 {
+        let root = solveLinearEquation(a: b, b: c)
+        return [root].filter({ !$0.isNaN })
+    }
+
+    let discriminant = pow(b, 2.0) - (4.0 * a * c) // D = b^2 - 4ac
+    if discriminant < 0.0 {
+        return []
+    } else if discriminant == 0.0 {
+        let root = -b / (2.0 * a)
+        return [root]
+    } else {
+        let d = sqrt(discriminant)
+        let root1 = (-b + d) / (2.0 * a)
+        let root2 = (-b - d) / (2.0 * a)
+        return [root1, root2]
+    }
+}
+
+// ax + b = 0
+func solveLinearEquation(a: Double, b: Double) -> Double {
+    if a == 0.0 {
+        return .nan
+    } else {
+        let root = -b / a
+        return root
+    }
 }
 
 struct DrawingView_Previews: PreviewProvider {
