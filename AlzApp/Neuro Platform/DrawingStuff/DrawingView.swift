@@ -324,7 +324,7 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
                 error_arr.append(distanceFromPoint(p: norm_point, toLineSegment: CGPoint(x: -50, y: 50), and: CGPoint(x: 50, y: -50)))
             }
             else { // error is distance to theta-based projection onto lemniscate
-                var theta : CGFloat = calcTheta(p: norm_point)
+                var _ : CGFloat = calcTheta(p: norm_point)
             }
         }
         

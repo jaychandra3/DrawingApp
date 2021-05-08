@@ -9,26 +9,23 @@
 import SwiftUI
 
 struct TimerView: View {
-    
+    static var defaultMinutes: Int = 0
+    static var defaultSeconds: Int = 30
 //    @State var hours: Int = 0
-    @State var minutes: Int = 0
-    @State var seconds: Int = 30
-    @State var timerIsStarted: Bool = false
-    @State var timerIsPaused: Bool = true
+    @State private var minutes: Int = defaultMinutes
+    @State private var seconds: Int = defaultSeconds
+    @State private var timerIsStarted: Bool = false
+    @State private var timerIsPaused: Bool = true
+    @State private var timesUp: Bool = false
 
-    @State var timer: Timer? = nil
+    @State private var timer: Timer? = nil
     
     var body: some View {
         VStack {
-            Text("\(minutes):\(seconds)").font(.system(size: 50)).bold()
+            Text("\(String(format: "%02d", minutes)) : \(String(format: "%02d", seconds))")
+                .font(.system(size: 50)).bold()
               if timerIsPaused {
                 HStack {
-                    Button(action: {
-                        self.restartTimer()
-                        print("RESTART")
-                    }){
-                        Text("Restart").font(.system(size:40)).bold()
-                    }.padding(.all)
                   Button(action:{
                     self.startTimer()
                     print("START")
@@ -39,23 +36,29 @@ struct TimerView: View {
                         Text("Start").font(.system(size:40)).bold()
                     }
                   }.padding(.all)
+                  .alert(isPresented: $timesUp) {
+                    Alert(title: Text("Time's Up!"))
+                  }
                 }
               } else {
-                Button(action:{
-                  print("PAUSE")
-                  self.stopTimer()
-                }){
-                  //Image(systemName: "stop.fill").padding(.all)
-                    Text("Pause").font(.system(size:40)).bold()
-                }
-                .padding(.all)
-              }
-            /*
-            if (minutes == 0 && seconds == 0) {
-                Button(action: {
+                HStack {
                     
-                })
-            }*/
+                    Button(action: {
+                        self.stopTimer()
+                        print("RESTART")
+                    }){
+                        Text("Restart").font(.system(size:40)).bold()
+                    }.padding(.all)
+                    Button(action:{
+                      print("PAUSE")
+                      self.pauseTimer()
+                    }){
+                      //Image(systemName: "stop.fill").padding(.all)
+                        Text("Pause").font(.system(size:40)).bold()
+                    }
+                    .padding(.all)
+                }
+              }
         }
     }
     
@@ -77,20 +80,28 @@ struct TimerView: View {
           }
         }
     }
-      
-    func stopTimer(){
-        //self.minutes = self.minutes
-        //self.seconds = self.seconds
+    
+    func pauseTimer() {
         timerIsPaused = true
         timer?.invalidate()
         timer = nil
     }
+      
+    func stopTimer(){
+        self.minutes = TimerView.defaultMinutes
+        self.seconds = TimerView.defaultSeconds
+        timerIsPaused = true
+        timerIsStarted = false
+        timesUp = true
+        timer?.invalidate()
+        timer = nil
+    }
     
+    /* This function doesn't stop the timer but goes back to default value and continues decrement */
     func restartTimer(){
-        minutes = 0
-        seconds = 30
+        minutes = TimerView.defaultMinutes
+        seconds = TimerView.defaultSeconds
         timerIsStarted.toggle()
-//      hours = 0
     }
 }
 
