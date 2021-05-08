@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D636E0426460DB9000DC884 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D636E0326460DB9000DC884 /* TimerView.swift */; };
 		3230C2A026311EF0008EDFD5 /* QuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3230C29F26311EF0008EDFD5 /* QuestionsView.swift */; };
 		52ADE809249570B200595A42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE808249570B200595A42 /* AppDelegate.swift */; };
 		52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE80A249570B200595A42 /* SceneDelegate.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D636E0326460DB9000DC884 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		3230C29F26311EF0008EDFD5 /* QuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsView.swift; sourceTree = "<group>"; };
 		52ADE805249570B200595A42 /* Neuro Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Neuro Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52ADE808249570B200595A42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D636DF726460D73000DC884 /* DistractorViews */ = {
+			isa = PBXGroup;
+			children = (
+				1D636E0326460DB9000DC884 /* TimerView.swift */,
+			);
+			path = DistractorViews;
+			sourceTree = "<group>";
+		};
 		52ADE7FC249570B200595A42 = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +165,7 @@
 		52ADE807249570B200595A42 /* Neuro Platform */ = {
 			isa = PBXGroup;
 			children = (
+				1D636DF726460D73000DC884 /* DistractorViews */,
 				96D7D108261551410092E77A /* StepViewData */,
 				AF4CBBCA2544ADCF0049C80F /* NavigationScreens */,
 				52CF3E9224D75FB000A36B60 /* Home */,
@@ -442,6 +453,7 @@
 				AFC37F19251FDB1E00825E5B /* TextFileView.swift in Sources */,
 				52ADE810249570B200595A42 /* ContentView.swift in Sources */,
 				AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */,
+				1D636E0426460DB9000DC884 /* TimerView.swift in Sources */,
 				52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */,
 				AF4CBBCC2544ADF00049C80F /* NewPatientView.swift in Sources */,
 				AF57DB32259FB96C005EDAB7 /* TrialsDescription.swift in Sources */,
