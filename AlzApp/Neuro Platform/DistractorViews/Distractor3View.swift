@@ -6,12 +6,14 @@
 //  Copyright © 2021 NDDP. All rights reserved.
 //
 /*
+ // might be changing distractor step 3 altogether (syllables test might not be the test)
 import SwiftUI
 
 struct Distractor3View: View {
-    var buttonIn: Bool = false
-    var buttonTe: Bool = false
-    var 
+    @State var interestedNumber: Int
+    @State var machineNumber: Int
+    @State var perspective: Int
+    @State var neglected: Int
     
     var body: some View {
         VStack {

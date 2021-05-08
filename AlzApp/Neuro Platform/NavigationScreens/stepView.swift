@@ -78,13 +78,13 @@ struct stepView: View {
                     shapeView(shape: finalShape!, data: $data)
                 } else if currentStep.step == "distractor_step1" {
                     Spacer()
-                    TimerView()
-                    Distractor1View()
+                    TimerView().padding()
+                    Distractor1View().padding()
                     Spacer()
                 } else if currentStep.step == "distractor_step2" {
                     Spacer()
-                    TimerView()
-                    Distractor2View()
+                    TimerView().padding()
+                    Distractor2View().padding()
                     Spacer()
                 } else if currentStep.step == "distractor_step3" {
                     
