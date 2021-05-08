@@ -11,48 +11,56 @@ import SwiftUI
 struct TimerView: View {
     
 //    @State var hours: Int = 0
-    @State var minutes: Int = 2
-    @State var seconds: Int = 0
+    @State var minutes: Int = 0
+    @State var seconds: Int = 30
+    @State var timerIsStarted: Bool = false
     @State var timerIsPaused: Bool = true
 
     @State var timer: Timer? = nil
     
     var body: some View {
         VStack {
-              Text("\(minutes):\(seconds)")
+            Text("\(minutes):\(seconds)").font(.system(size: 50)).bold()
               if timerIsPaused {
                 HStack {
-                  Button(action:{
-                    print("RESTART")
-                  }){
-                    Image(systemName: "backward.end.alt")
-                      .padding(.all)
-                  }
-                  .padding(.all)
+                    Button(action: {
+                        self.restartTimer()
+                        print("RESTART")
+                    }){
+                        Text("Restart").font(.system(size:40)).bold()
+                    }.padding(.all)
                   Button(action:{
                     self.startTimer()
                     print("START")
                   }){
-                    Image(systemName: "play.fill")
-                      .padding(.all)
-                  }
-                  .padding(.all)
+                    if timerIsStarted {
+                        Text("Continue").font(.system(size:40)).bold()
+                    } else {
+                        Text("Start").font(.system(size:40)).bold()
+                    }
+                  }.padding(.all)
                 }
               } else {
                 Button(action:{
-                  print("STOP")
+                  print("PAUSE")
                   self.stopTimer()
                 }){
-                  Image(systemName: "stop.fill")
-                    .padding(.all)
+                  //Image(systemName: "stop.fill").padding(.all)
+                    Text("Pause").font(.system(size:40)).bold()
                 }
                 .padding(.all)
               }
+            if (minutes == 0 && seconds == 0) {
+                Button(action: {
+                    
+                })
+            }
         }
     }
     
     func startTimer(){
         timerIsPaused = false
+        timerIsStarted = true
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true){ tempTimer in
           if self.seconds == 0 {
             if self.minutes == 0 {
@@ -70,17 +78,18 @@ struct TimerView: View {
     }
       
     func stopTimer(){
-        self.minutes = 2
-        self.seconds = 0
+        //self.minutes = self.minutes
+        //self.seconds = self.seconds
         timerIsPaused = true
         timer?.invalidate()
         timer = nil
     }
     
     func restartTimer(){
+        minutes = 0
+        seconds = 30
+        timerIsStarted.toggle()
 //      hours = 0
-      minutes = 2
-      seconds = 0
     }
 }
 
