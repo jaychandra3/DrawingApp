@@ -81,6 +81,16 @@ struct stepView: View {
                     TimerView()
                     Distractor1View()
                     Spacer()
+                } else if currentStep.step == "distractor_step2" {
+                    Spacer()
+                    TimerView()
+                    Distractor2View()
+                    Spacer()
+                } else if currentStep.step == "distractor_step3" {
+                    
+                    // CHANGE LATER
+                    Spacer()
+                    EmptyView()
                 } else {
                     Spacer()
                     EmptyView()
