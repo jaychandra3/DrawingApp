@@ -124,19 +124,32 @@ struct DrawingView: View {
                 
                 Button(action: {
                     // if finishDrawing returns false, the coordinate count is 0 (no drawing has been made); return nothing (so when button is pressed, nothing will happen)
-                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
+                    /*for point in data.coordinates{
+                        print("X: " + point.x.description
+                            + " Y: " + point.y.description)
+                    }*/
+                    /*for index in 0...data.coordinates.count - 1{
+                        print("X: " + data.coordinates[index].x.description
+                                + " Y: " + data.coordinates[index].y.description)
+                    }*/
+                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + "level" + (levelnum+1).description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
                         (trialList[trialnum] != .multiple_choice) {
                         // toggle showingAlert so that the alert message pops up when necessary
                         self.showingAlert.toggle()
                         return
                     }
                     
+                    /*for point in self.data.coordinates{
+                        print("X: " + point.x.description
+                            + " Y: " + point.y.description)
+                    }*/
                     // increment levelnum if we're inside encoding step 1
                     estep1: if trialList[trialnum] == .encoding_step1 {
                         // 1. Evaluate the level
                         // TODO: Add the implementation for evaluation. Currently a simulation
                         var currentLevel: Level = stepList[1].levels[levelnum]
                         let patient_error : CGFloat = calcError(isAlz: true, level: levelnum+1, data: self.data)
+                        self.data.coordinates.removeAll()
                         if patient_error > threshold{
                             passedTest = false
                         }
@@ -292,15 +305,14 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
     var avg_error : CGFloat = 0
     var count : CGFloat = 0
     var error_arr : [CGFloat] = [CGFloat]()
-    let circle_center : CGPoint = CGPoint(x: 340, y: 237)
+    let circle_center : CGPoint = CGPoint(x: 500, y: 247) // large circle
     let circle_radius : CGFloat = 200
     let spiral_center : CGPoint = CGPoint(x: 500, y: 250)
-    let infinity_center : CGPoint = CGPoint(x: 550, y: 250)
+    let infinity_center : CGPoint = CGPoint(x: 500, y: 250)
     
     for point in data.coordinates{
-        print("X: " + point.x.description
-                + " Y: " + point.y.description)
-        
+        print("X: " + point.x.description + " Y: " + point.y.description)
+        /*
         // Distance to Spiral
         if (!isAlz && level == 4) {
             // center everything at (0,0)
@@ -314,54 +326,87 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
             let projected_radius : CGFloat = sqrt(16.8*cos(theta)*theta*16.8*cos(theta)*theta + 16.8*sin(theta)*theta*16.8*sin(theta)*theta)
             spiral_error = abs(sqrt((point.x-projected_point.x)*(point.x-projected_point.x) + (point.y-projected_point.y)*(point.y-projected_point.y)) - projected_radius)
             error_arr.append(spiral_error)
-        }
+        }*/
         
         // Distance to Infinity Symbol
-        if (!isAlz && level == 2) {
-            let norm_point : CGPoint = CGPoint(x: point.x-infinity_center.x, y: point.y-infinity_center.y)
-            if (sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) < 200) {
-                // error is distance to closest of asymptotic lines
+        //if (!isAlz && level == 2) {
+        let norm_point : CGPoint = CGPoint(x: point.x-infinity_center.x, y: infinity_center.y - point.y)
+            print("X': " + norm_point.x.description + " Y': " + norm_point.y.description)
+            if (norm_point.x*norm_point.x + norm_point.y*norm_point.y < 40000) {
+                // if point is within a circle with radius 200
+                // error is distance to closest of asymptotes
+                print("Within circle!!")
                 error_arr.append(min(distanceFromPoint(p: norm_point, toLineSegment: CGPoint(x: -200, y: -200), and: CGPoint(x: 200, y: 200)), distanceFromPoint(p: norm_point, toLineSegment: CGPoint(x: -200, y: 200), and: CGPoint(x: 200, y: -200))))
             }
             else { // error is distance to theta-based projection onto infinity
                 let theta : CGFloat = calcTheta(p: norm_point)
-                let projected_point : CGPoint = CGPoint(x: infinity_center.x + 2.2 * ((200 * cos(theta)) / (1 + (sin(theta) * sin(theta)))), y: infinity_center.y + 2.2 * ((200 * sin(theta) * cos(theta)) / (1 + (sin(theta) * sin(theta)))))
+                print("theta: " + theta.description)
+                /*let projected_point : CGPoint = CGPoint(x: infinity_center.x + 2.2 * ((200 * cos(theta)) / (1 + (sin(theta) * sin(theta)))), y: infinity_center.y + 2.2 * ((200 * sin(theta) * cos(theta)) / (1 + (sin(theta) * sin(theta)))))*/
                 let projected_radius : CGFloat = sqrt(2.2*200*2.2*200*cos(2*theta))
-                infinity_error = abs(sqrt((point.x-projected_point.x)*(point.x-projected_point.x) + (point.y-projected_point.y)*(point.y-projected_point.y)) - projected_radius)
+                //print("proj_radius: " + projected_radius.description)
+                infinity_error = abs(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) - projected_radius)
                 error_arr.append(infinity_error)
             }
-        }
-        
-        // Distance to Circle
-        if (level == 1 || isAlz && level <= 4) {
+        //}*/
+        /*// Distance to Large Circle
+        //if (level == 1) {
             circle_error = abs(sqrt((point.x-circle_center.x)*(point.x-circle_center.x) + (point.y-circle_center.y)*(point.y-circle_center.y)) - circle_radius)
             error_arr.append(circle_error)
-        }
-        
-        // Distance to Triangle
+        //}*/
+        /*
+        // Distance to Large Prism (Parkinson lvl 3)
+        //if (!isAlz && level == 3) {(
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 350), and: CGPoint(x: 250, y: 150)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 150), and: CGPoint(x: 320, y: 60)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 320, y: 60), and: CGPoint(x: 720, y: 60)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 60), and: CGPoint(x: 720, y: 260)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 260), and: CGPoint(x: 650, y: 350)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 350), and: CGPoint(x: 650, y: 150)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 150), and: CGPoint(x: 720, y: 60)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 60), and: CGPoint(x: 650, y: 150)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 150), and: CGPoint(x: 250, y: 150)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 150), and: CGPoint(x: 250, y: 350)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 350), and: CGPoint(x: 650, y: 350)))
+        }*/
+        /*
+        // Distance to Small Circle (in Alz)
+        if (isAlz && level>=2 && level <= 4) {
+            circle_error = abs(sqrt((point.x-250)*(point.x-250) + (point.y-447)*(point.y-447)) - circle_radius)
+            error_arr.append(circle_error)
+        }*/
+     
+        /*// Distance to Triangle
         if (isAlz && level >= 2 && level <= 4) {
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 240), and: CGPoint(x: 640, y: 390)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 640, y: 390), and: CGPoint(x: 840, y: 390)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 840, y: 390), and: CGPoint(x: 740, y: 240)))
-        }
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 450), and: CGPoint(x: 550, y: 600)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 550, y: 600), and: CGPoint(x: 750, y: 600)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 750, y: 600), and: CGPoint(x: 650, y: 450)))
+        }*/
+        
+        /*// Distance to Rectangle
+        if (isAlz && level == 3) {
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 350), and: CGPoint(x: 250, y: 350)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 350), and: CGPoint(x: 250, y: 550)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 550), and: CGPoint(x: 650, y: 550)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 550), and: CGPoint(x: 650, y: 350)))
+        }*/
 
-        // Distance to Prism
-        if (!isAlz && level == 3 || isAlz && level == 4){
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 340, y: 340), and: CGPoint(x: 340, y: 140)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 340, y: 140), and: CGPoint(x: 410, y: 50)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 410, y: 50), and: CGPoint(x: 810, y: 50)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 810, y: 50), and: CGPoint(x: 810, y: 250)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 810, y: 250), and: CGPoint(x: 740, y: 340)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 340), and: CGPoint(x: 740, y: 140)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 140), and: CGPoint(x: 810, y: 50)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 810, y: 50), and: CGPoint(x: 740, y: 140)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 740, y: 140), and: CGPoint(x: 310, y: 140)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 310, y: 140), and: CGPoint(x: 340, y: 340)))
-            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 340, y: 340), and: CGPoint(x: 740, y: 340)))
-        }
+        /*// Distance to Small Prism (in Alz)
+        if (isAlz && level == 4){
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 550), and: CGPoint(x: 250, y: 350)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 350), and: CGPoint(x: 320, y: 260)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 320, y: 260), and: CGPoint(x: 720, y: 260)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 260), and: CGPoint(x: 720, y: 460)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 460), and: CGPoint(x: 650, y: 550)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 550), and: CGPoint(x: 650, y: 350)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 350), and: CGPoint(x: 720, y: 260)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 260), and: CGPoint(x: 650, y: 350)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 350), and: CGPoint(x: 250, y: 350)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 350), and: CGPoint(x: 250, y: 550)))
+            error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 550), and: CGPoint(x: 650, y: 550)))
+        }*/
         
         // Calculate min distance to overall figure
-        min_error = error_arr.min() ?? 0
+        min_error = error_arr.min() ?? -1
         print("Error: " + min_error.description)
         total_error += min_error
         error_arr.removeAll()

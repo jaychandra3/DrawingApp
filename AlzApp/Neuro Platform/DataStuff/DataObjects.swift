@@ -82,7 +82,7 @@ class DrawingData {
         let str : String = CSVString()
             try str.write(to: url, atomically: true, encoding: .utf8)
             let input = try String(contentsOf: url)
-            print(input)
+            //print(input)
         } catch {
             print("Failed to write to disk")
             print(error.localizedDescription)
@@ -111,59 +111,3 @@ class DrawingData {
 //        TODO
     }
 }
-
-// commented out below: another type of patient data storage that we're steering away from
-/*
-struct Patient{
-    var name : String
-    var age : String
-    var sex : String
-    var hand : String
-}
-
-// User Data Form
-class UserData {
-    
-    private var patients : [Patient] // array of Patient Objects
-    
-    init() {
-        patients = [Patient]()
-    }
-    
-    func updateForm(newPatient : Patient) {
-        patients.append(newPatient)
-    }
-    
-    func getPatientCount() -> Int {
-        return patients.count
-    }
-    func printForm() -> String{
-        return CSVString()
-    }
-    
-    /**
-     Called when a drawing is finished. Saves contents of this object to system storage for later access and conversion to CSV. Does this require us to restart the app to store the CSV?
-     */
-    
-    func finishForm(formName : String = "patientForm.csv") {
-        let url : URL = getDocumentsDirectory(foldername: formName, filename: formName)
-        do {
-        let str : String = CSVString()
-            try str.write(to: url, atomically: true, encoding: .utf8)
-            let input = try String(contentsOf: url)
-            print(input)
-        } catch {
-            print("Failed to write to disk")
-            print(error.localizedDescription)
-        }
-    }
-    
-    private func CSVString() -> String {
-        var str : String = "Name, Age, Sex, Dominant Hand\n"
-        for index in 0...patients.count - 1 {
-            str = str + "\"" + patients[index].name + "," + patients[index].age + "\"," + patients[index].sex + "," + patients[index].hand + "\n"
-        }
-        return str
-    }
-}
-*/
