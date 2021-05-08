@@ -50,11 +50,12 @@ struct TimerView: View {
                 }
                 .padding(.all)
               }
+            /*
             if (minutes == 0 && seconds == 0) {
                 Button(action: {
                     
                 })
-            }
+            }*/
         }
     }
     
