@@ -18,6 +18,7 @@
 		52ADE823249570B400595A42 /* Neuro_PlatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE822249570B400595A42 /* Neuro_PlatformTests.swift */; };
 		52ADE82E249570B400595A42 /* Neuro_PlatformUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE82D249570B400595A42 /* Neuro_PlatformUITests.swift */; };
 		52CF3E9424D7610000A36B60 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CF3E9324D7610000A36B60 /* MainView.swift */; };
+		6C7523F6264E0CBA0047A440 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA45A99249C1120003A6144 /* DrawingView.swift */; };
 		9656AB4426425BFC00A8A6B3 /* stepinstructions.json in Resources */ = {isa = PBXBuildFile; fileRef = 9656AB4326425BFC00A8A6B3 /* stepinstructions.json */; };
 		96D7D0F22615417E0092E77A /* stepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D7D0F12615417E0092E77A /* stepView.swift */; };
 		96D7D0F726154AF20092E77A /* stepInstruction.json in Resources */ = {isa = PBXBuildFile; fileRef = 96D7D0F626154AF20092E77A /* stepInstruction.json */; };
@@ -34,7 +35,6 @@
 		AF9244D824D4B46B00EEA283 /* FileManagerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9244D724D4B46B00EEA283 /* FileManagerItemView.swift */; };
 		AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF94D03524A8112E000EBEF4 /* CustomShapes.swift */; };
 		AFA02B1624CF944C00B74E33 /* FileHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA02B1524CF944C00B74E33 /* FileHelpers.swift */; };
-		AFA45A9A249C1120003A6144 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA45A99249C1120003A6144 /* DrawingView.swift */; };
 		AFAE31D524D38E4400D3A27B /* FileManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE31D424D38E4400D3A27B /* FileManagerView.swift */; };
 		AFB86AF224DA0CDD007D6329 /* ViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB86AF124DA0CDD007D6329 /* ViewHelpers.swift */; };
 		AFC37F19251FDB1E00825E5B /* TextFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC37F18251FDB1E00825E5B /* TextFileView.swift */; };
@@ -96,7 +96,7 @@
 		AF9244D724D4B46B00EEA283 /* FileManagerItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerItemView.swift; sourceTree = "<group>"; };
 		AF94D03524A8112E000EBEF4 /* CustomShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapes.swift; sourceTree = "<group>"; };
 		AFA02B1524CF944C00B74E33 /* FileHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelpers.swift; sourceTree = "<group>"; };
-		AFA45A99249C1120003A6144 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		AFA45A99249C1120003A6144 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		AFAE31D424D38E4400D3A27B /* FileManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerView.swift; sourceTree = "<group>"; };
 		AFB86AF124DA0CDD007D6329 /* ViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelpers.swift; sourceTree = "<group>"; };
 		AFC37F18251FDB1E00825E5B /* TextFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFileView.swift; sourceTree = "<group>"; };
@@ -418,7 +418,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFA45A9A249C1120003A6144 /* DrawingView.swift in Sources */,
 				52ADE809249570B200595A42 /* AppDelegate.swift in Sources */,
 				AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */,
 				AFA02B1624CF944C00B74E33 /* FileHelpers.swift in Sources */,
@@ -426,6 +425,7 @@
 				AF4EE253249BD4F800603E42 /* Drawing.swift in Sources */,
 				AF15515424AD44D800162800 /* DataObjects.swift in Sources */,
 				AF10991825991CDC0076A89E /* Configurations.swift in Sources */,
+				6C7523F6264E0CBA0047A440 /* DrawingView.swift in Sources */,
 				AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */,
 				52CF3E9424D7610000A36B60 /* MainView.swift in Sources */,
 				AFAE31D524D38E4400D3A27B /* FileManagerView.swift in Sources */,

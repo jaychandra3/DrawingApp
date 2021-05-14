@@ -149,10 +149,16 @@ struct DrawingView: View {
                         // TODO: Add the implementation for evaluation. Currently a simulation
                         var currentLevel: Level = stepList[1].levels[levelnum]
                         let patient_error : CGFloat = calcError(isAlz: false, level: levelnum+1, data: self.data)
-                        self.data.coordinates.removeAll()
-                        if patient_error > threshold{
+                        if (patient_error > threshold || !drawingComplete(isAlz: false, level: levelnum+1, data: self.data)) {
                             passedTest = false
                         }
+                        if (passedTest) {
+                            print("PASSED TEST!!! :(")
+                        }
+                        else {
+                            print("FAILED TEST!!! :(")
+                        }
+                        self.data.coordinates.removeAll()
                         currentLevel.evaluateLevel(passedTest: self.passedTest)
                         
                         /*
@@ -267,9 +273,6 @@ struct DrawingView: View {
 
 func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
     var min_error : CGFloat = 0
-    var circle_error : CGFloat = 0
-    var spiral_error : CGFloat = 0
-    var infinity_error : CGFloat = 0
     var total_error : CGFloat = 0
     var avg_error : CGFloat = 0
     var count : CGFloat = 0
@@ -284,7 +287,7 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
         
         // Distance to Spiral
         if (!isAlz && level == 4) {
-            // center everything at (0,0)
+        // center everything at (0,0)
         let norm_point : CGPoint = CGPoint(x: point.x-spiral_center.x, y: point.y-spiral_center.y)
             if(norm_point.x*norm_point.x+norm_point.y+norm_point.y < 2000) {
                 error_arr.append(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y))
@@ -308,8 +311,6 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
             }
         }
         
-       
-        
         // Distance to Infinity Symbol
         if (!isAlz && level == 2) {
             print("infinity")
@@ -317,10 +318,12 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
             let norm_point : CGPoint = CGPoint(x: point.x-infinity_center.x, y: infinity_center.y-point.y)
             print("X': " + norm_point.x.description + " Y': " + norm_point.y.description)
             
-             // error is distance to theta-based projection onto infinity
+             // one error is distance to theta-based projection onto infinity
             let theta : CGFloat = calcTheta(p: norm_point)
             let projected_radius : CGFloat = sqrt(2.2*200*2.2*200*cos(2*theta))
             
+            // if point is within a circle with radius 370
+            // another error is distance to form of parabola y = -(1/500)x(x-500)
             if (norm_point.x*norm_point.x + norm_point.y*norm_point.y <= 136900 || norm_point.x*norm_point.x + norm_point.y*norm_point.y - projected_radius < 0) {
                 if (norm_point.x >= 0 && norm_point.y >= 0) {
                     error_arr.append(distanceToParabola(p: norm_point, a: -0.002, b: 1.1, c: 0))
@@ -334,21 +337,17 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
                 else {
                     error_arr.append(distanceToParabola(p: norm_point, a: 0.002, b: -1.1, c: 0))
                 }
-            // if point is within a circle with radius 370
-            // error is distance to form of parabola y = -(1/500)x(x-500)
             }
   
             if (norm_point.x*norm_point.x + norm_point.y*norm_point.y - projected_radius >= 0) {
-                infinity_error = abs(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) - projected_radius)
-                error_arr.append(infinity_error)
+                error_arr.append(abs(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) - projected_radius))
             }
         
         }
         // Distance to Large Circle
         if (level == 1) {
             print("large circle")
-            circle_error = abs(sqrt((point.x-circle_center.x)*(point.x-circle_center.x) + (point.y-circle_center.y)*(point.y-circle_center.y)) - circle_radius)
-            error_arr.append(circle_error)
+            error_arr.append(abs(sqrt((point.x-circle_center.x)*(point.x-circle_center.x) + (point.y-circle_center.y)*(point.y-circle_center.y)) - circle_radius))
         }
         
         // Distance to Large Prism (Parkinson lvl 3)
@@ -368,9 +367,8 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
         }
         
         // Distance to Small Circle (in Alz)
-        if (isAlz && level>=2 && level <= 4) {
-            circle_error = abs(sqrt((point.x-250)*(point.x-250) + (point.y-447)*(point.y-447)) - circle_radius)
-            error_arr.append(circle_error)
+        if (isAlz && level >= 2 && level <= 4) {
+            error_arr.append(abs(sqrt((point.x-250)*(point.x-250) + (point.y-447)*(point.y-447)) - circle_radius))
         }
      
         // Distance to Triangle
@@ -416,7 +414,133 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
     return avg_error
 }
 
-/* Distance from a point (p1) to line l1 l2 */
+// ensures that the subject can't "cheat" by not tracing the whole figure
+// each "zone" is a key point on the figure that the tracing must pass by
+func drawingComplete(isAlz: Bool, level: Int, data: DrawingData) -> Bool {
+    var zones : [CGPoint] = []
+    let radius : CGFloat = 35 // have different radii for diff figures?
+    // Check Spiral
+    if (!isAlz && level == 4) {
+        zones.append(CGPoint(x: 500, y: 250))
+        zones.append(CGPoint(x: 500, y: 184.027))
+        zones.append(CGPoint(x: 500, y: 359.956))
+        zones.append(CGPoint(x: 500, y: 96.062))
+        zones.append(CGPoint(x: 500, y: 447.920))
+        zones.append(CGPoint(x: 456.018, y: 250))
+        zones.append(CGPoint(x: 587.966, y: 250))
+        zones.append(CGPoint(x: 368.053, y: 250))
+        zones.append(CGPoint(x: 675.929, y: 250))
+        zones.append(CGPoint(x: 368.053, y: 250))
+        zones.append(CGPoint(x: 280.089, y: 250))
+        zones.append(CGPoint(x: 763.894, y: 250))
+    }
+    
+    // Check Infinity Symbol
+    if (!isAlz && level == 2) {
+        zones.append(CGPoint(x: 500, y: 250))
+        zones.append(CGPoint(x: 940, y: 250))
+        zones.append(CGPoint(x: 60, y: 250))
+        zones.append(CGPoint(x: 769.627, y: 405.563))
+        zones.append(CGPoint(x: 230.373, y: 405.563))
+        zones.append(CGPoint(x: 769.627, y: 94.437))
+        zones.append(CGPoint(x: 230.373, y: 94.437))
+    }
+    
+    // Check Large Circle
+    if (level == 1) {
+        zones.append(CGPoint(x: 700, y: 247))
+        zones.append(CGPoint(x: 300, y: 247))
+        zones.append(CGPoint(x: 500, y: 447))
+        zones.append(CGPoint(x: 500, y: 47))
+        zones.append(CGPoint(x: 641.421, y: 388.421))
+        zones.append(CGPoint(x: 358.579, y: 388.421))
+        zones.append(CGPoint(x: 641.421, y: 105.579))
+        zones.append(CGPoint(x: 358.579, y: 105.579))
+    }
+    
+    // Check Large Prism
+    if (!isAlz && level == 3) {
+        zones.append(CGPoint(x: 250, y: 350))
+        zones.append(CGPoint(x: 250, y: 150))
+        zones.append(CGPoint(x: 320, y: 60))
+        zones.append(CGPoint(x: 720, y: 60))
+        zones.append(CGPoint(x: 720, y: 260))
+        zones.append(CGPoint(x: 650, y: 350))
+        zones.append(CGPoint(x: 650, y: 150))
+        zones.append(CGPoint(x: 720, y: 60))
+        zones.append(CGPoint(x: 650, y: 150))
+        zones.append(CGPoint(x: 250, y: 150))
+        zones.append(CGPoint(x: 250, y: 350))
+        zones.append(CGPoint(x: 650, y: 350))
+    }
+    
+    // Check Small Circle
+    if (isAlz && level >= 2 && level <= 4) {
+        zones.append(CGPoint(x: 450, y: 447))
+        zones.append(CGPoint(x: 50, y: 447))
+        zones.append(CGPoint(x: 250, y: 647))
+        zones.append(CGPoint(x: 250, y: 247))
+        zones.append(CGPoint(x: 391.421, y: 588.421))
+        zones.append(CGPoint(x: 108.579, y: 588.421))
+        zones.append(CGPoint(x: 391.421, y: 305.579))
+        zones.append(CGPoint(x: 108.579, y: 305.579))
+    }
+ 
+    // Check Triangle
+    if (isAlz && level >= 2 && level <= 4) {
+        zones.append(CGPoint(x: 650, y: 450))
+        zones.append(CGPoint(x: 550, y: 600))
+        zones.append(CGPoint(x: 750, y: 600))
+    }
+    
+    // Check Rectangle
+    if (isAlz && level == 3) {
+        zones.append(CGPoint(x: 650, y: 350))
+        zones.append(CGPoint(x: 250, y: 350))
+        zones.append(CGPoint(x: 250, y: 550))
+        zones.append(CGPoint(x: 650, y: 550))
+    }
+
+    // Check Small Prism
+    if (isAlz && level == 4){
+        zones.append(CGPoint(x: 250, y: 550))
+        zones.append(CGPoint(x: 250, y: 350))
+        zones.append(CGPoint(x: 320, y: 260))
+        zones.append(CGPoint(x: 720, y: 260))
+        zones.append(CGPoint(x: 720, y: 460))
+        zones.append(CGPoint(x: 650, y: 550))
+        zones.append(CGPoint(x: 650, y: 350))
+        zones.append(CGPoint(x: 720, y: 260))
+        zones.append(CGPoint(x: 650, y: 350))
+        zones.append(CGPoint(x: 250, y: 350))
+        zones.append(CGPoint(x: 250, y: 550))
+        zones.append(CGPoint(x: 650, y: 550))
+    }
+    
+    return checkZones(data: data, zones: zones, radius: radius)
+}
+
+func checkZones(data: DrawingData, zones: [CGPoint], radius: CGFloat) -> Bool {
+    var checkList = Array(repeating: false, count: zones.count)
+    for point in data.coordinates {
+        for index in 0...zones.count - 1{
+            if (!checkList[index] && (point.x-zones[index].x)*(point.x-zones[index].x) + (point.y-zones[index].y)*(point.y-zones[index].y) <= radius*radius) {
+                checkList[index] = true
+            }
+        }
+    }
+    for element in checkList {
+        if (!element) {
+            print("Drawing Incomplete")
+            return false
+        }
+    }
+    print("Drawing Complete")
+
+    return true
+}
+
+// Distance from a point (p1) to line l1 l2
 func distanceFromPoint(p: CGPoint, toLineSegment v: CGPoint, and w: CGPoint) -> CGFloat {
     let pv_dx = p.x - v.x
     let pv_dy = p.y - v.y
@@ -427,7 +551,7 @@ func distanceFromPoint(p: CGPoint, toLineSegment v: CGPoint, and w: CGPoint) -> 
     let len_sq = wv_dx * wv_dx + wv_dy * wv_dy
     let param = dot / len_sq
 
-    var int_x, int_y: CGFloat /* intersection of normal to vw that goes through p */
+    var int_x, int_y: CGFloat // intersection of normal to vw that goes through p
 
     if param < 0 || (v.x == w.x && v.y == w.y) {
         int_x = v.x
@@ -440,7 +564,7 @@ func distanceFromPoint(p: CGPoint, toLineSegment v: CGPoint, and w: CGPoint) -> 
         int_y = v.y + param * wv_dy
     }
 
-    /* Components of normal */
+    // Components of normal
     let dx = p.x - int_x
     let dy = p.y - int_y
 
