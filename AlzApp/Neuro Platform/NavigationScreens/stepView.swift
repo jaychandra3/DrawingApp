@@ -76,21 +76,6 @@ struct stepView: View {
                     shapeView(shape: currentStep.levels[levelNum!].levelShape, data: $data)
                 } else if currentStep.step == "encoding_step2" {
                     shapeView(shape: finalShape!, data: $data)
-                } else if currentStep.step == "distractor_step1" {
-                    Spacer()
-                    TimerView().padding()
-                    Distractor1View().padding()
-                    Spacer()
-                } else if currentStep.step == "distractor_step2" {
-                    Spacer()
-                    TimerView().padding()
-                    Distractor2View().padding()
-                    Spacer()
-                } else if currentStep.step == "distractor_step3" {
-                    
-                    // CHANGE LATER
-                    Spacer()
-                    EmptyView()
                 } else {
                     Spacer()
                     EmptyView()
