@@ -153,13 +153,14 @@ struct DrawingView: View {
                             passedTest = false
                         }
                         if (passedTest) {
-                            print("PASSED TEST!!! :(")
+                            print("PASSED TEST!!! :)")
                         }
                         else {
                             print("FAILED TEST!!! :(")
                         }
-                        self.data.coordinates.removeAll()
                         currentLevel.evaluateLevel(passedTest: self.passedTest)
+                        self.data.coordinates.removeAll()
+                        passedTest = true
                         
                         /*
                         if (levelnum == 2) { // Level 3: Prism
@@ -183,6 +184,7 @@ struct DrawingView: View {
                             // Halt at level 5, 2 and 1
                             if (levelnum == 4 || levelnum == 1 || levelnum == 0) {
                                 finalShape = currentLevel.levelShape
+                                patientInfo += "Final Shape: " + finalShape + "\n"
                                 calibrationDone.toggle()
                                 break estep1
                             } else {
@@ -191,6 +193,7 @@ struct DrawingView: View {
                         } else {
                             if levelnum == 0 {
                                 finalShape = currentLevel.levelShape
+                                patientInfo += "Final Shape: " + finalShape + "\n"
                                 calibrationDone.toggle()
                                 break estep1
                             } else {
@@ -198,6 +201,7 @@ struct DrawingView: View {
                                 let lowerLevel = stepList[1].levels[levelnum - 1]
                                 if (lowerLevel.passedTest ?? false) {
                                     finalShape = lowerLevel.levelShape
+                                    patientInfo += "Final Shape: " + finalShape + "\n"
                                     calibrationDone.toggle()
                                     break estep1
                                 } else {
@@ -205,8 +209,6 @@ struct DrawingView: View {
                                 }
                             }
                         }
-                        print("final shape " + finalShape)
-                        
                         
                         // set keeps track of the levelnums we already visited
 //                        var set = Set<Int>()
@@ -240,7 +242,6 @@ struct DrawingView: View {
 //                        }
 //
 //                        self.finalShape = stepList[1].levels[set.max()!].levelShape
-//                        print(finalShape)
                     }
                     
                     // Only increase trial if calibration is complete or if it is not .encoding_step1

@@ -65,9 +65,18 @@ struct shapeView: View {
                 }.padding(.top, -10)
             }.padding()
         } else {
-            Spacer()
-            EmptyView()
-        } // need to add in level 5 shape
+            VStack (alignment: .leading) {
+                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                Spirograph().stroke(lineWidth:3)
+                Divider()
+                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    Spirograph().stroke(lineWidth:3)
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                }.padding(.top, -10)
+            }.padding()
+        }
     }
 }
 
