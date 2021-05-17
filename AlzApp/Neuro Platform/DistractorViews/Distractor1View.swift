@@ -6,53 +6,37 @@
 //  Copyright © 2021 NDDP. All rights reserved.
 //
 import SwiftUI
+
+struct DistractorResults: Identifiable {
+    let id: UUID = UUID()
+    var num: Int = 0
+    var isToggled = false
+    
+    init(num: Int) {
+        self.num = num
+    }
+}
+
 struct Distractor1View: View {
     @State var button100: Bool = false
-    @State var button93: Bool = false
-    @State var button86: Bool = false
-    @State var button79: Bool = false
-    @State var button72: Bool = false
-    @State var button65: Bool = false
-    @State var button58: Bool = false
-    @State var button51: Bool = false
+    @State var results: Dictionary<Int, Bool> = [Int: Bool]()
+    
+    init() {
+        // Set up results dictionary
+        for num in DistractorAnswers.step1 {
+            results[num] = false
+        }
+    }
+    
     var body: some View {
-        HStack {
-            VStack(alignment: .trailing) {
+        ScrollView() {
+            GridView(columns: 5, list: DistractorAnswers.step1) { num in
                 HStack {
-                    Text("100").font(.system(size:30))
-                    Toggle("100", isOn: $button100).labelsHidden()
-                }.padding()
-                HStack {
-                    Text("93").font(.system(size:30))
-                    Toggle("93", isOn: $button93).labelsHidden()
-                }.padding()
-                HStack {
-                    Text("86").font(.system(size:30))
-                    Toggle("86", isOn: $button86).labelsHidden()
-                }.padding()
-                HStack {
-                    Text("79").font(.system(size:30))
-                    Toggle("79", isOn: $button79).labelsHidden()
-                }.padding()
-            }.padding()
-            VStack(alignment: .trailing) {
-                HStack {
-                    Text("72").font(.system(size:30))
-                    Toggle("72", isOn: $button72).labelsHidden()
-                }.padding()
-                HStack {
-                    Text("65").font(.system(size:30))
-                    Toggle("65", isOn: $button65).labelsHidden()
-                }.padding()
-                HStack {
-                    Text("58").font(.system(size:30))
-                    Toggle("58", isOn: $button58).labelsHidden()
-                }.padding()
-                HStack {
-                    Text("51").font(.system(size:30))
-                    Toggle("51", isOn: $button51).labelsHidden()
-                }.padding()
-            }.padding()
+                    Text(String(num)).font(.system(size:30))
+                    // MARK: TODO - Implement the toggle
+                    Toggle(String(num), isOn: $button100).labelsHidden()
+                }
+            }
         }
     }
 }

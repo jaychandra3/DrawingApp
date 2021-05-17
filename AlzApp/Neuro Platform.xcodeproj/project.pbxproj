@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1D636E0426460DB9000DC884 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D636E0326460DB9000DC884 /* TimerView.swift */; };
+		1D7D52212652B3C200997B9B /* DistractorAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D52202652B3C200997B9B /* DistractorAnswers.swift */; };
+		1D7D52232652BA7D00997B9B /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D52222652BA7D00997B9B /* GridView.swift */; };
 		3230C2A026311EF0008EDFD5 /* QuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3230C29F26311EF0008EDFD5 /* QuestionsView.swift */; };
 		52ADE809249570B200595A42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE808249570B200595A42 /* AppDelegate.swift */; };
 		52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE80A249570B200595A42 /* SceneDelegate.swift */; };
@@ -68,6 +70,8 @@
 
 /* Begin PBXFileReference section */
 		1D636E0326460DB9000DC884 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		1D7D52202652B3C200997B9B /* DistractorAnswers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistractorAnswers.swift; sourceTree = "<group>"; };
+		1D7D52222652BA7D00997B9B /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		3230C29F26311EF0008EDFD5 /* QuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsView.swift; sourceTree = "<group>"; };
 		52ADE805249570B200595A42 /* Neuro Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Neuro Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52ADE808249570B200595A42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 				96FDA7A02646357900184838 /* Distractor1View.swift */,
 				96FDA7A226463A2200184838 /* Distractor3View.swift */,
 				96FDA7A426463D9900184838 /* Distractor2View.swift */,
+				1D7D52202652B3C200997B9B /* DistractorAnswers.swift */,
+				1D7D52222652BA7D00997B9B /* GridView.swift */,
 			);
 			path = DistractorViews;
 			sourceTree = "<group>";
@@ -438,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D7D52212652B3C200997B9B /* DistractorAnswers.swift in Sources */,
 				AFA45A9A249C1120003A6144 /* DrawingView.swift in Sources */,
 				52ADE809249570B200595A42 /* AppDelegate.swift in Sources */,
 				AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */,
@@ -447,6 +454,7 @@
 				AF15515424AD44D800162800 /* DataObjects.swift in Sources */,
 				AF10991825991CDC0076A89E /* Configurations.swift in Sources */,
 				AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */,
+				1D7D52232652BA7D00997B9B /* GridView.swift in Sources */,
 				52CF3E9424D7610000A36B60 /* MainView.swift in Sources */,
 				AFAE31D524D38E4400D3A27B /* FileManagerView.swift in Sources */,
 				96D7D1012615513A0092E77A /* Step.swift in Sources */,
