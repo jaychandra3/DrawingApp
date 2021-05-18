@@ -5,41 +5,52 @@
 //  Created by Nathan on 5/7/21.
 //  Copyright © 2021 NDDP. All rights reserved.
 //
+
 import SwiftUI
 
-struct DistractorResults: Identifiable {
-    let id: UUID = UUID()
-    var num: Int = 0
-    var isToggled = false
-    
-    init(num: Int) {
-        self.num = num
-    }
-}
-
 struct Distractor1View: View {
-    @State var button100: Bool = false
-    @State var results: Dictionary<Int, Bool> = [Int: Bool]()
+    @State var results: [String:Bool] = DistractorAnswers.step1InitResults
     
-    init() {
-        // Set up results dictionary
-        for num in DistractorAnswers.step1 {
-            results[num] = false
+    // Computed property: Calculate score when results state changes
+    var score: Int {
+        var score: Int = 0
+        for (_, value) in results {
+            if value {
+                score += 1
+            }
         }
+        
+        return score
     }
     
     var body: some View {
-        ScrollView() {
-            GridView(columns: 5, list: DistractorAnswers.step1) { num in
+        VStack {
+            GridView(columns: 5, list: DistractorAnswers.step1AnswerKey) { num in
                 HStack {
                     Text(String(num)).font(.system(size:30))
-                    // MARK: TODO - Implement the toggle
-                    Toggle(String(num), isOn: $button100).labelsHidden()
+                    Toggle(String(num), isOn: self.binding(for: String(num)))
+                        // For debugging: print dictionary of results
+                        .onReceive([self.results].publisher.first(), perform: { value in
+                            print(value)
+                        })
+                        .labelsHidden()
                 }
             }
+            Text("Correct answers: \(score) / \(self.results.count)")
         }
     }
+    
+    /*
+     Bind the toggle to corresponding value in dictionary results
+     Code reference: https://forums.swift.org/t/swiftui-how-to-use-dictionary-as-binding/34967
+     */
+    private func binding(for key: String) -> Binding<Bool> {
+        return .init(
+            get: { self.results[key, default: false]},
+            set: { self.results[key] = $0 })
+    }
 }
+
 
 struct Distractor1View_Previews: PreviewProvider {
     static var previews: some View {

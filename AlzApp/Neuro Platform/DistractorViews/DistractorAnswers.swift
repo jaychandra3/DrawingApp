@@ -9,7 +9,7 @@
 import Foundation
 
 struct DistractorAnswers {
-    static var step1: [Int] {
+    static var step1AnswerKey: [Int] {
         get {
             var answers: [Int] = []
             
@@ -18,6 +18,18 @@ struct DistractorAnswers {
             }
             
             return answers
+        }
+    }
+    
+    static var step1InitResults: [String:Bool] {
+        get {
+            var initialResults = [String:Bool]()
+            
+            for i in stride(from: 100, to: 0, by: -7) {
+                initialResults[String(i)] = false
+            }
+            
+            return initialResults
         }
     }
 }

@@ -67,7 +67,7 @@ struct GridView_Previews: PreviewProvider {
     
     static var previews: some View {
         ScrollView() {
-            GridView(columns: 5, list: DistractorAnswers.step1) { num in
+            GridView(columns: 5, list: DistractorAnswers.step1AnswerKey) { num in
                 HStack {
                     Text(String(num)).font(.system(size:30))
                     Toggle(String(num), isOn: $button100).labelsHidden()
