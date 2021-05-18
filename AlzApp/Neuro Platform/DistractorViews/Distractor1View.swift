@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct Distractor1View: View {
-    @State var results: [String:Bool] = DistractorAnswers.step1InitResults
+    // MARK: Final data for analysis
+    @State private var results: [String:Bool] = DistractorAnswers.step1InitResults
     
     // Computed property: Calculate score when results state changes
     var score: Int {
@@ -40,8 +41,8 @@ struct Distractor1View: View {
         }
     }
     
-    /*
-     Bind the toggle to corresponding value in dictionary results
+    /**
+     Bind the toggle to corresponding value in dictionary results instead of declaring multiple state variables
      Code reference: https://forums.swift.org/t/swiftui-how-to-use-dictionary-as-binding/34967
      */
     private func binding(for key: String) -> Binding<Bool> {

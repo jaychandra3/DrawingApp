@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-/*
+/**
  This is a generic grid view that is populated from a given list
  Code reference: https://www.swiftpal.io/articles/how-to-create-a-grid-view-in-swiftui-for-ios-13
  */

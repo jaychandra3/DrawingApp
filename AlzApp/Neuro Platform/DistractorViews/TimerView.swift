@@ -11,7 +11,6 @@ import SwiftUI
 struct TimerView: View {
     static var defaultMinutes: Int = 0
     static var defaultSeconds: Int = 30
-//    @State var hours: Int = 0
     @State private var minutes: Int = defaultMinutes
     @State private var seconds: Int = defaultSeconds
     @State private var timerIsStarted: Bool = false
@@ -97,7 +96,7 @@ struct TimerView: View {
         timer = nil
     }
     
-    /* This function doesn't stop the timer but goes back to default value and continues decrement */
+    /** This function doesn't stop the timer but goes back to default value and continues decrement */
     func restartTimer(){
         minutes = TimerView.defaultMinutes
         seconds = TimerView.defaultSeconds
