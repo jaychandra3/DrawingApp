@@ -9,10 +9,12 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var patientActive : Bool = false
+    @State var parkinsonsTestActive : Bool = false
+    @State var alzheimersTestActive: Bool = false
     @State var recordsActive : Bool = false
     @State var instructionsActive : Bool = false
     @State var aboutAppActive : Bool = false
+    @State var testType: String = ""
     
     var body: some View {
         VStack{
@@ -23,8 +25,14 @@ struct HomeView: View {
             // Note: these are EmpytViews so these links
             // are only semantic (invisible to user)
             NavigationLink(
-                destination: NewPatientView(rootActive: $patientActive),
-                isActive: $patientActive,
+                destination: NewPatientView(rootActive: $parkinsonsTestActive, test: $testType),
+                isActive: $parkinsonsTestActive,
+                label: {
+                    EmptyView()
+                })
+            NavigationLink(
+                destination: NewPatientView(rootActive: $alzheimersTestActive, test: $testType),
+                isActive: $alzheimersTestActive,
                 label: {
                     EmptyView()
                 })
@@ -52,22 +60,27 @@ struct HomeView: View {
             // deal with styles and stuff here
             Text("Analysis Platform")
                 .textStyle(TitleTextStyle())
-            
-            Button(action: {patientActive.toggle()}, label: {
-                Text("Take the Test")
-            }).buttonStyle(MainButtonStyle())
-            
-            Button(action: {recordsActive.toggle()}, label: {
-                Text("View Patient Records")
-            }).buttonStyle(MainButtonStyle())
-            
-            Button(action: {instructionsActive.toggle()}, label: {
-                Text("Instructions Overview")
-            }).buttonStyle(MainButtonStyle())
-            
-            Button(action: {aboutAppActive.toggle()}, label: {
-                Text("About the App")
-            }).buttonStyle(MainButtonStyle())
+            Group {
+                Button(action: {parkinsonsTestActive.toggle(); testType = "parkinsons"}, label: {
+                    Text("Take the Parkinson's Test")
+                }).buttonStyle(MainButtonStyle())
+                
+                Button(action: {alzheimersTestActive.toggle(); testType = "alzheimers"}, label: {
+                    Text("Take the Alzheimer's Test")
+                }).buttonStyle(MainButtonStyle())
+                
+                Button(action: {recordsActive.toggle()}, label: {
+                    Text("View Patient Records")
+                }).buttonStyle(MainButtonStyle())
+                
+                Button(action: {instructionsActive.toggle()}, label: {
+                    Text("Instructions Overview")
+                }).buttonStyle(MainButtonStyle())
+                
+                Button(action: {aboutAppActive.toggle()}, label: {
+                    Text("About the App")
+                }).buttonStyle(MainButtonStyle())
+            }
             
         }.navigationBarHidden(true)
     }

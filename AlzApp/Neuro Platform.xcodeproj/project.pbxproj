@@ -43,6 +43,8 @@
 		AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDFDDBA24BE74EE00EBDCA9 /* TouchCaptureViewController.swift */; };
 		AFDFDDBD24BE74EE00EBDCA9 /* TouchCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFDFDDBB24BE74EE00EBDCA9 /* TouchCaptureViewController.xib */; };
 		AFDFDDBF24BE771200EBDCA9 /* TouchCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDFDDBE24BE771200EBDCA9 /* TouchCaptureView.swift */; };
+		D8987F182650F10F00080476 /* Override.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8987F172650F10F00080476 /* Override.swift */; };
+		D8987F1A26548F7D00080476 /* stepInstructionsAlz.json in Resources */ = {isa = PBXBuildFile; fileRef = D8987F1926548F7D00080476 /* stepInstructionsAlz.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		AFDFDDBA24BE74EE00EBDCA9 /* TouchCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCaptureViewController.swift; sourceTree = "<group>"; };
 		AFDFDDBB24BE74EE00EBDCA9 /* TouchCaptureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TouchCaptureViewController.xib; sourceTree = "<group>"; };
 		AFDFDDBE24BE771200EBDCA9 /* TouchCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCaptureView.swift; sourceTree = "<group>"; };
+		D8987F172650F10F00080476 /* Override.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Override.swift; sourceTree = "<group>"; };
+		D8987F1926548F7D00080476 /* stepInstructionsAlz.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stepInstructionsAlz.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +221,8 @@
 				96D7D0FB261550BE0092E77A /* readData.swift */,
 				96D7D1002615513A0092E77A /* Step.swift */,
 				9656AB4326425BFC00A8A6B3 /* stepinstructions.json */,
+				D8987F1926548F7D00080476 /* stepInstructionsAlz.json */,
+				D8987F172650F10F00080476 /* Override.swift */,
 			);
 			path = StepViewData;
 			sourceTree = "<group>";
@@ -389,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52ADE818249570B400595A42 /* LaunchScreen.storyboard in Resources */,
+				D8987F1A26548F7D00080476 /* stepInstructionsAlz.json in Resources */,
 				52ADE815249570B400595A42 /* Preview Assets.xcassets in Resources */,
 				AFDFDDBD24BE74EE00EBDCA9 /* TouchCaptureViewController.xib in Resources */,
 				52ADE812249570B400595A42 /* Assets.xcassets in Resources */,
@@ -442,6 +449,7 @@
 				AFC37F19251FDB1E00825E5B /* TextFileView.swift in Sources */,
 				52ADE810249570B200595A42 /* ContentView.swift in Sources */,
 				AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */,
+				D8987F182650F10F00080476 /* Override.swift in Sources */,
 				52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */,
 				AF4CBBCC2544ADF00049C80F /* NewPatientView.swift in Sources */,
 				AF57DB32259FB96C005EDAB7 /* TrialsDescription.swift in Sources */,

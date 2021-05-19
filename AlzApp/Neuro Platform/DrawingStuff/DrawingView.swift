@@ -14,6 +14,7 @@ struct DrawingView: View {
     @State private var color : Color = Color.black
     @State private var lineWidth : CGFloat = 3.0
     @Binding var rootIsActive: Bool
+    @Binding var testing: String
     @State var stepList: Array<Step> = steps
     var trials : Int
     @State private var trialnum : Int = 0
@@ -29,6 +30,7 @@ struct DrawingView: View {
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
     var body: some View {
+        
         VStack {
             /*
 //                    Prompt type
@@ -74,6 +76,7 @@ struct DrawingView: View {
                     .opacity(0.1)
             }
             */
+            
             switch trialList[trialnum] {
             case .practice_screen:
                 stepView(currentStep: stepList[0], data: $data)

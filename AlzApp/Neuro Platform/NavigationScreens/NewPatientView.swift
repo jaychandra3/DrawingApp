@@ -20,6 +20,7 @@ struct NewPatientView: View {
     @State private var drawingActive : Bool = false
     @State private var showingAlert = false
     @Binding var rootActive: Bool
+    @Binding var test: String
     
     var body: some View {
         VStack {
@@ -63,7 +64,7 @@ struct NewPatientView: View {
                         Text("Ambidextrous").tag("Ambidextrous")
                     }.pickerStyle(SegmentedPickerStyle())
                 }
-                NavigationLink(destination: DrawingView(rootIsActive: $rootActive, trials: 3, patient: id), isActive : $drawingActive) {
+                NavigationLink(destination: DrawingView(rootIsActive: $rootActive, testing: $test, trials: 3, patient: id), isActive : $drawingActive) {
                     EmptyView()
                 }.isDetailLink(false)
                 Spacer()
@@ -95,6 +96,7 @@ struct NewPatientView: View {
 struct NewPatientView_Previews: PreviewProvider {
     //@State var a: Bool =
     static var previews: some View {
-        NewPatientView(rootActive: Binding.constant(true))
+        NewPatientView(rootActive: Binding.constant(true),
+                       test: Binding.constant("alzheimers"))
     }
 }
