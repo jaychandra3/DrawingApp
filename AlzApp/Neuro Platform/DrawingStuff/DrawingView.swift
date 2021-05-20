@@ -14,7 +14,6 @@ struct DrawingView: View {
     @State private var color : Color = Color.black
     @State private var lineWidth : CGFloat = 3.0
     @Binding var rootIsActive: Bool
-    @Binding var testing: String
     @State var stepList: Array<Step> = steps
     var trials : Int
     @State private var trialnum : Int = 0
@@ -26,11 +25,19 @@ struct DrawingView: View {
     @State private var showingAlert : Bool = false
     @State private var passedTest : Bool = true
     @State private var threshold : CGFloat = 15
+    @EnvironmentObject var testType: TestType
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
+    
+    //updates stepList based on the testType environment variable: ultimately shows different shapes if alzheimer's or parkinson's
+    func changeStepList() {
+        if testType.test.wrappedValue == "alzheimer's" {
+            stepList = steps_alz
+        }
+    }
+    
     var body: some View {
-        
         VStack {
             /*
 //                    Prompt type
@@ -76,7 +83,6 @@ struct DrawingView: View {
                     .opacity(0.1)
             }
             */
-            
             switch trialList[trialnum] {
             case .practice_screen:
                 stepView(currentStep: stepList[0], data: $data)

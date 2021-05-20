@@ -8,14 +8,21 @@
 
 import SwiftUI
 
+class TestType: ObservableObject {
+    @Published var test: Binding<String> = .constant("parkinson's")
+    
+    func changeTest() {
+        test.wrappedValue = "alzheimer's"
+    }
+}
+
 struct HomeView: View {
     @State var parkinsonsTestActive : Bool = false
     @State var alzheimersTestActive: Bool = false
     @State var recordsActive : Bool = false
     @State var instructionsActive : Bool = false
     @State var aboutAppActive : Bool = false
-    @State var testType: String = ""
-    
+    @EnvironmentObject var testType: TestType
     var body: some View {
         VStack{
             // These buttons link to the various screens
@@ -25,13 +32,13 @@ struct HomeView: View {
             // Note: these are EmpytViews so these links
             // are only semantic (invisible to user)
             NavigationLink(
-                destination: NewPatientView(rootActive: $parkinsonsTestActive, test: $testType),
+                destination: NewPatientView(rootActive: $parkinsonsTestActive),
                 isActive: $parkinsonsTestActive,
                 label: {
                     EmptyView()
                 })
             NavigationLink(
-                destination: NewPatientView(rootActive: $alzheimersTestActive, test: $testType),
+                destination: NewPatientView(rootActive: $alzheimersTestActive),
                 isActive: $alzheimersTestActive,
                 label: {
                     EmptyView()
@@ -61,11 +68,11 @@ struct HomeView: View {
             Text("Analysis Platform")
                 .textStyle(TitleTextStyle())
             Group {
-                Button(action: {parkinsonsTestActive.toggle(); testType = "parkinsons"}, label: {
+                Button(action: {parkinsonsTestActive.toggle()}, label: {
                     Text("Take the Parkinson's Test")
                 }).buttonStyle(MainButtonStyle())
                 
-                Button(action: {alzheimersTestActive.toggle(); testType = "alzheimers"}, label: {
+                Button(action: {alzheimersTestActive.toggle(); self.testType.changeTest()}, label: {
                     Text("Take the Alzheimer's Test")
                 }).buttonStyle(MainButtonStyle())
                 
@@ -88,6 +95,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView().environmentObject(TestType())
     }
 }
