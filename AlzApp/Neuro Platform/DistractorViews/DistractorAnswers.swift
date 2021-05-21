@@ -73,4 +73,26 @@ struct DistractorAnswers {
             return initialResults
         }
     }
+    
+    // MARK: Distractor Step 3
+    
+    static var step3AnswerKey: [String] {
+        get {
+            let words: Array<String> = ["idea", "skin", "water", "diesel", "brown", "nice", "zucchini", "painter", "air", "train"]
+            return words
+        }
+    }
+    
+    static var step3InitResults: [String:Bool] {
+        get {
+            var initialResults = [String:Bool]()
+            let answers = step3AnswerKey
+            
+            for answer in answers {
+                initialResults[answer] = false
+            }
+            
+            return initialResults
+        }
+    }
 }
