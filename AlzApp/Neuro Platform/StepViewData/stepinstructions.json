@@ -63,21 +63,21 @@
         "id": 1005,
         "step": "distractor_step1",
         "stepLabel": "Distractor Step 1",
-        "instructions": "Complete the following task:  \n \n - Count backwards from 100 to 50 by 7s. ",
+        "instructions": "For this part of the test, please hand the iPad to the test administrator after you read the following instructions (do not press the Start button!). \n \n Complete the following task:  \n \n - Count backwards from 100 to 50 by 7s. \n\n Instructions for the test administrator: Please toggle each number answered correctly to green. ",
         "levels": []
     },
     {
         "id": 1006,
         "step": "distractor_step2",
         "stepLabel": "Distractor Step 2",
-        "instructions": "Complete the following task:  \n \n - Alternate letters and numbers through the entire alphabet (i.e. a1, b2, c3, d4, etc.)",
+        "instructions": "For this part of the test, please hand the iPad to the test administrator after you read the following instructions (do not press the Start button!). \n \n Complete the following task:  \n \n - Alternate letters and numbers through the entire alphabet (i.e. a1, b2, c3, d4, etc.) \n\n Instructions for the test administrator: Please toggle each letter/number combination answered correctly to green. ",
         "levels": []
     },
     {
         "id": 1007,
         "step": "distractor_step3",
         "stepLabel": "Distractor Step 3",
-        "instructions": "Complete the following list of tasks:  \n \n - Count the number of syllables in the following words: interested, machine, perspective, neglected. ",
+        "instructions": "For this part of the test, please hand the iPad to the test administrator after you read the following instructions (do not press the Start button!). \n \n Complete the following list of tasks:  \n \n - Count the number of syllables in the following words: interested, machine, perspective, neglected. \n\n Instructions for the test administrator: ?????????",
         "levels": []
     },
     {

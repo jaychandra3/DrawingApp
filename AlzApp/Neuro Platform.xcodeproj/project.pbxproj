@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D636E0426460DB9000DC884 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D636E0326460DB9000DC884 /* TimerView.swift */; };
+		1D7D52212652B3C200997B9B /* DistractorAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D52202652B3C200997B9B /* DistractorAnswers.swift */; };
+		1D7D52232652BA7D00997B9B /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D52222652BA7D00997B9B /* GridView.swift */; };
 		3230C2A026311EF0008EDFD5 /* QuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3230C29F26311EF0008EDFD5 /* QuestionsView.swift */; };
 		52ADE809249570B200595A42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE808249570B200595A42 /* AppDelegate.swift */; };
 		52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADE80A249570B200595A42 /* SceneDelegate.swift */; };
@@ -25,6 +28,9 @@
 		96D7D0FC261550BE0092E77A /* readData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D7D0FB261550BE0092E77A /* readData.swift */; };
 		96D7D1012615513A0092E77A /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D7D1002615513A0092E77A /* Step.swift */; };
 		96FDA7972643A05200184838 /* shapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FDA7962643A05200184838 /* shapeView.swift */; };
+		96FDA7A12646357900184838 /* Distractor1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FDA7A02646357900184838 /* Distractor1View.swift */; };
+		96FDA7A326463A2300184838 /* Distractor3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FDA7A226463A2200184838 /* Distractor3View.swift */; };
+		96FDA7A526463D9900184838 /* Distractor2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FDA7A426463D9900184838 /* Distractor2View.swift */; };
 		AF07AD1B253B8C8A002C61BB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF07AD1A253B8C8A002C61BB /* HomeView.swift */; };
 		AF10991825991CDC0076A89E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF10991725991CDC0076A89E /* Configurations.swift */; };
 		AF15515424AD44D800162800 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF15515324AD44D800162800 /* DataObjects.swift */; };
@@ -63,6 +69,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D636E0326460DB9000DC884 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		1D7D52202652B3C200997B9B /* DistractorAnswers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistractorAnswers.swift; sourceTree = "<group>"; };
+		1D7D52222652BA7D00997B9B /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		3230C29F26311EF0008EDFD5 /* QuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsView.swift; sourceTree = "<group>"; };
 		52ADE805249570B200595A42 /* Neuro Platform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Neuro Platform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52ADE808249570B200595A42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +95,9 @@
 		96D7D0FB261550BE0092E77A /* readData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = readData.swift; sourceTree = "<group>"; };
 		96D7D1002615513A0092E77A /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		96FDA7962643A05200184838 /* shapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shapeView.swift; sourceTree = "<group>"; };
+		96FDA7A02646357900184838 /* Distractor1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distractor1View.swift; sourceTree = "<group>"; };
+		96FDA7A226463A2200184838 /* Distractor3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distractor3View.swift; sourceTree = "<group>"; };
+		96FDA7A426463D9900184838 /* Distractor2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distractor2View.swift; sourceTree = "<group>"; };
 		AF07AD1A253B8C8A002C61BB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		AF10991725991CDC0076A89E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		AF15515324AD44D800162800 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
@@ -132,6 +144,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D636DF726460D73000DC884 /* DistractorViews */ = {
+			isa = PBXGroup;
+			children = (
+				1D636E0326460DB9000DC884 /* TimerView.swift */,
+				96FDA7A02646357900184838 /* Distractor1View.swift */,
+				96FDA7A226463A2200184838 /* Distractor3View.swift */,
+				96FDA7A426463D9900184838 /* Distractor2View.swift */,
+				1D7D52202652B3C200997B9B /* DistractorAnswers.swift */,
+				1D7D52222652BA7D00997B9B /* GridView.swift */,
+			);
+			path = DistractorViews;
+			sourceTree = "<group>";
+		};
 		52ADE7FC249570B200595A42 = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +180,7 @@
 		52ADE807249570B200595A42 /* Neuro Platform */ = {
 			isa = PBXGroup;
 			children = (
+				1D636DF726460D73000DC884 /* DistractorViews */,
 				96D7D108261551410092E77A /* StepViewData */,
 				AF4CBBCA2544ADCF0049C80F /* NavigationScreens */,
 				52CF3E9224D75FB000A36B60 /* Home */,
@@ -418,6 +444,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D7D52212652B3C200997B9B /* DistractorAnswers.swift in Sources */,
+				AFA45A9A249C1120003A6144 /* DrawingView.swift in Sources */,
 				52ADE809249570B200595A42 /* AppDelegate.swift in Sources */,
 				AF4EE251249BD33A00603E42 /* DrawingPad.swift in Sources */,
 				AFA02B1624CF944C00B74E33 /* FileHelpers.swift in Sources */,
@@ -427,12 +455,14 @@
 				AF10991825991CDC0076A89E /* Configurations.swift in Sources */,
 				6C7523F6264E0CBA0047A440 /* DrawingView.swift in Sources */,
 				AF94D03624A8112E000EBEF4 /* CustomShapes.swift in Sources */,
+				1D7D52232652BA7D00997B9B /* GridView.swift in Sources */,
 				52CF3E9424D7610000A36B60 /* MainView.swift in Sources */,
 				AFAE31D524D38E4400D3A27B /* FileManagerView.swift in Sources */,
 				96D7D1012615513A0092E77A /* Step.swift in Sources */,
 				AF07AD1B253B8C8A002C61BB /* HomeView.swift in Sources */,
 				AFDD0858259AAEBA001AF7DA /* AboutAppView.swift in Sources */,
 				96FDA7972643A05200184838 /* shapeView.swift in Sources */,
+				96FDA7A12646357900184838 /* Distractor1View.swift in Sources */,
 				96D7D0FC261550BE0092E77A /* readData.swift in Sources */,
 				52ADE80E249570B200595A42 /* Neuro_Platform.xcdatamodeld in Sources */,
 				AFB86AF224DA0CDD007D6329 /* ViewHelpers.swift in Sources */,
@@ -442,7 +472,10 @@
 				AFC37F19251FDB1E00825E5B /* TextFileView.swift in Sources */,
 				52ADE810249570B200595A42 /* ContentView.swift in Sources */,
 				AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */,
+				1D636E0426460DB9000DC884 /* TimerView.swift in Sources */,
 				52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */,
+				96FDA7A326463A2300184838 /* Distractor3View.swift in Sources */,
+				96FDA7A526463D9900184838 /* Distractor2View.swift in Sources */,
 				AF4CBBCC2544ADF00049C80F /* NewPatientView.swift in Sources */,
 				AF57DB32259FB96C005EDAB7 /* TrialsDescription.swift in Sources */,
 				3230C2A026311EF0008EDFD5 /* QuestionsView.swift in Sources */,
