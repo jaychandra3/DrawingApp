@@ -45,7 +45,7 @@ struct Distractor3View: View {
     
     var body: some View {
         VStack {
-            GridView(columns: 4, list: DistractorAnswers.step3AnswerKey) { num in
+            GridView(columns: 3, list: DistractorAnswers.step3AnswerKey) { num in
                 HStack {
                     Text(String(num)).font(.system(size:30))
                     Toggle(String(num), isOn: self.binding(for: String(num)))

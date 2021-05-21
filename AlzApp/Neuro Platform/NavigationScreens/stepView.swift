@@ -87,10 +87,10 @@ struct stepView: View {
                     Distractor2View().padding()
                     Spacer()
                 } else if currentStep.step == "distractor_step3" {
-                    
-                    // CHANGE LATER
                     Spacer()
-                    EmptyView()
+                    TimerView().padding()
+                    Distractor3View().padding()
+                    Spacer()
                 } else {
                     Spacer()
                     EmptyView()

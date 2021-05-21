@@ -78,7 +78,7 @@ struct DistractorAnswers {
     
     static var step3AnswerKey: [String] {
         get {
-            let words: Array<String> = ["idea", "skin", "water", "diesel", "brown", "nice", "zucchini", "painter", "air", "train"]
+            let words: Array<String> = ["idea", "skin", "water", "diesel", "brown"]
             return words
         }
     }
