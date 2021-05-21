@@ -39,6 +39,7 @@ struct DrawingView: View {
     
     var body: some View {
         VStack {
+            //self.changeStepList()
             /*
 //                    Prompt type
             switch trialList[trialnum].0 { //accesses the first index's first object
