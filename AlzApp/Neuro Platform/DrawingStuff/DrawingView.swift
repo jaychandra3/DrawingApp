@@ -39,51 +39,6 @@ struct DrawingView: View {
     
     var body: some View {
         VStack {
-            //self.changeStepList()
-            /*
-//                    Prompt type
-            switch trialList[trialnum].0 { //accesses the first index's first object
-            case .fast:
-                Text("Fast")
-                    .textStyle(TitleTextStyle())
-            case .accurate:
-                Text("Accurate")
-                    .textStyle(TitleTextStyle())
-            }
-            
-            ZStack {
-                DrawingPad(currentDrawing: $currentDrawing,
-                           drawings: $drawings)
-                HStack {
-                    Spacer()
-                    
-//                    Shape type
-                    switch trialList[trialnum].1 { //accesses the first index's second object
-                    
-                    case .circle:
-                        Circle().stroke(lineWidth:3).opacity(0.5)
-                        Rectangle().stroke(lineWidth:3).opacity(0.5)
-                            .frame(width: 200, height: 200)
-                    case .spirosquare:
-                        SpiroSquare().stroke(lineWidth:3).opacity(0.5)
-                    case .rectangle:
-                        Rectangle().stroke(lineWidth:3).opacity(0.5)
-                            .frame(width: 200, height: 200)
-                    case .multipleshapes:
-                        MultipleShapes().stroke(lineWidth:3)
-                            .opacity(0.5)
-                    case .archspiral:
-                        ArchSpiral().stroke(lineWidth:3)
-                            .opacity(0.5)
-                    }
-                    
-                    Spacer()
-                }
-                
-                TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data)
-                    .opacity(0.1)
-            }
-            */
             switch trialList[trialnum] {
             case .practice_screen:
                 stepView(currentStep: stepList[0], data: $data)
@@ -164,6 +119,7 @@ struct DrawingView: View {
                         // TODO: Add the implementation for evaluation. Currently a simulation
                         var currentLevel: Level = stepList[1].levels[levelnum]
                         let patient_error : CGFloat = calcError(isAlz: false, level: levelnum+1, data: self.data)
+                        patientInfo += "\(currentLevel.levelLabel)" + " Error: " + patient_error.description + "\n"
                         if (patient_error > threshold || !drawingComplete(isAlz: false, level: levelnum+1, data: self.data)) {
                             passedTest = false
                         }
@@ -176,20 +132,6 @@ struct DrawingView: View {
                         currentLevel.evaluateLevel(passedTest: self.passedTest)
                         self.data.coordinates.removeAll()
                         passedTest = true
-                        
-                        /*
-                        if (levelnum == 2) { // Level 3: Prism
-                            currentLevel.evaluateLevel(passedTest: false)
-                        } else if (levelnum == 3) { // Level 4: Arch Spiral
-                            currentLevel.evaluateLevel(passedTest: false)
-                        } else if (levelnum == 4) { // Level 5: Unknown
-                            currentLevel.evaluateLevel(passedTest: false)
-                        } else if (levelnum == 1) { // Level 2: Infinity
-                            currentLevel.evaluateLevel(passedTest: false)
-                        } else if (levelnum == 0) { // Level 1: Circle
-                            currentLevel.evaluateLevel(passedTest: true)
-                        } // Expected final level is 1 (levelnum = 0) Circle
-                        */
 
                         stepList[1].levels[levelnum] = currentLevel // Update the stepList data
                         print("current level: \(currentLevel.levelLabel)")
@@ -224,39 +166,6 @@ struct DrawingView: View {
                                 }
                             }
                         }
-                        
-                        // set keeps track of the levelnums we already visited
-//                        var set = Set<Int>()
-//                        while (!calibrationDone && levelnum < stepList[1].levels.count) {
-//                            // need to toggle passedTest parameter using shape-evaluating function
-//                            // 1. Evaluate the level
-//                            var currentLevel: Level = stepList[1].levels[levelnum]
-//                            if (levelnum == 2) {
-//                                currentLevel.evaluateLevel(passedTest: true)
-//                            } else if (levelnum == 3) {
-//                                currentLevel.evaluateLevel(passedTest: false)
-//                            } // Expected final level is 3 (levelnum = 2)
-//
-//                            print("current level: \(currentLevel.levelLabel) - \(currentLevel.passedTest!)")
-//
-//                            // 2. Proceed to the next page based on passedTest
-//                            if currentLevel.passedTest! {
-//                                levelnum += 1
-//                                // if levelnum already present in set, calibration process is done
-//                                if (!set.insert(levelnum).0) {
-//                                    self.calibrationDone.toggle()
-//                                }
-//                                set.insert(levelnum)
-//                            } else {
-//                                levelnum -= 1
-//                                if (!set.insert(levelnum).0) {
-//                                    self.calibrationDone.toggle()
-//                                }
-//                                set.insert(levelnum)
-//                            }
-//                        }
-//
-//                        self.finalShape = stepList[1].levels[set.max()!].levelShape
                     }
                     
                     // Only increase trial if calibration is complete or if it is not .encoding_step1
@@ -288,6 +197,9 @@ struct DrawingView: View {
 }
 
 func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
+    let p = CGPoint(x: 0, y: -1)
+    print("dist to circle: " + distanceToCircle(p: p, center: CGPoint(x: -100, y: 100), radius: 197).description)
+    print("dist to ellipse: " + distanceToEllipse(p: p, center: CGPoint(x: 0, y: 100), x_radius: 100, y_radius: 120).description)
     var min_error : CGFloat = 0
     var total_error : CGFloat = 0
     var avg_error : CGFloat = 0
@@ -297,6 +209,7 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
     let circle_radius : CGFloat = 200
     let spiral_center : CGPoint = CGPoint(x: 500, y: 250)
     let infinity_center : CGPoint = CGPoint(x: 500, y: 250)
+    let spirograph_center: CGPoint = CGPoint(x: 500, y: 250)
     
     for point in data.coordinates{
         print("X: " + point.x.description + " Y: " + point.y.description)
@@ -329,17 +242,17 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
         
         // Distance to Infinity Symbol
         if (!isAlz && level == 2) {
-            print("infinity")
+            //print("infinity")
         
             let norm_point : CGPoint = CGPoint(x: point.x-infinity_center.x, y: infinity_center.y-point.y)
-            print("X': " + norm_point.x.description + " Y': " + norm_point.y.description)
+            //print("X': " + norm_point.x.description + " Y': " + norm_point.y.description)
             
              // one error is distance to theta-based projection onto infinity
             let theta : CGFloat = calcTheta(p: norm_point)
             let projected_radius : CGFloat = sqrt(2.2*200*2.2*200*cos(2*theta))
             
             // if point is within a circle with radius 370
-            // another error is distance to form of parabola y = -(1/500)x(x-500)
+            // another error is distance to approximating parabola y = -(1/500)x(x-500)
             if (norm_point.x*norm_point.x + norm_point.y*norm_point.y <= 136900 || norm_point.x*norm_point.x + norm_point.y*norm_point.y - projected_radius < 0) {
                 if (norm_point.x >= 0 && norm_point.y >= 0) {
                     error_arr.append(distanceToParabola(p: norm_point, a: -0.002, b: 1.1, c: 0))
@@ -360,10 +273,47 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
             }
         
         }
+        
+        // Distance to Spirograph
+        if (!isAlz && level == 5) {
+            print("spirograph")
+            let norm_point : CGPoint = CGPoint(x: point.x-spirograph_center.x, y: spirograph_center.y-point.y)
+            print("X': " + norm_point.x.description + " Y': " + norm_point.y.description)
+            // based on the quadrant, distance to various approximating circles and ellipses are calculated
+            if (norm_point.x >= 0 && norm_point.y >= 0) {
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: 100), radius: 197))
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: -100), radius: 197))
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: -100), radius: 197))
+                error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 100, y: 0), x_radius: 120, y_radius: 100))
+                error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: 100), x_radius: 100, y_radius: 120))
+            }
+            else if (norm_point.x < 0 && norm_point.y >= 0) {
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: 100), radius: 197))
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: -100), radius: 197))
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: -100), radius: 197))
+                error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: 100), x_radius: 100, y_radius: 120))
+                error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: -100, y: 0), x_radius: 120, y_radius: 100))
+            }
+            else if (norm_point.x < 0 && norm_point.y < 0) {
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: 100), radius: 197))
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: 100), radius: 197))
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: -100), radius: 197))
+                error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: -100, y: 0), x_radius: 120, y_radius: 100))
+                error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: -100), x_radius: 100, y_radius: 120))
+            }
+            else {
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: 100), radius: 197))
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: 100), radius: 197))
+                error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: -100), radius: 197))
+                error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 100, y: 0), x_radius: 120, y_radius: 100))
+                error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: -100), x_radius: 100, y_radius: 120))
+            }
+        }
+        
         // Distance to Large Circle
         if (level == 1) {
             print("large circle")
-            error_arr.append(abs(sqrt((point.x-circle_center.x)*(point.x-circle_center.x) + (point.y-circle_center.y)*(point.y-circle_center.y)) - circle_radius))
+            error_arr.append(distanceToCircle(p: point, center: circle_center, radius: circle_radius))
         }
         
         // Distance to Large Prism (Parkinson lvl 3)
@@ -384,7 +334,7 @@ func calcError(isAlz: Bool, level: Int, data: DrawingData) -> CGFloat{
         
         // Distance to Small Circle (in Alz)
         if (isAlz && level >= 2 && level <= 4) {
-            error_arr.append(abs(sqrt((point.x-250)*(point.x-250) + (point.y-447)*(point.y-447)) - circle_radius))
+            error_arr.append(distanceToCircle(p: point, center: CGPoint(x: 250, y: 447), radius: circle_radius))
         }
      
         // Distance to Triangle
@@ -460,6 +410,23 @@ func drawingComplete(isAlz: Bool, level: Int, data: DrawingData) -> Bool {
         zones.append(CGPoint(x: 230.373, y: 405.563))
         zones.append(CGPoint(x: 769.627, y: 94.437))
         zones.append(CGPoint(x: 230.373, y: 94.437))
+    }
+    
+    // Check Spirograph
+    if (!isAlz && level == 5) {
+        // + 500, 250
+        zones.append(CGPoint(x: 720, y: 250))
+        zones.append(CGPoint(x: 500, y: 470))
+        zones.append(CGPoint(x: 280, y: 250))
+        zones.append(CGPoint(x: 500, y: 30))
+        zones.append(CGPoint(x: 598.385, y: 348.385))
+        zones.append(CGPoint(x: 598.385, y: 151.615))
+        zones.append(CGPoint(x: 401.615, y: 348.385))
+        zones.append(CGPoint(x: 401.615, y: 151.615))
+        zones.append(CGPoint(x: 569.570, y: 250))
+        zones.append(CGPoint(x: 500, y: 319.570))
+        zones.append(CGPoint(x: 430.43, y: 250))
+        zones.append(CGPoint(x: 500, y: 180.43))
     }
     
     // Check Large Circle
@@ -591,7 +558,12 @@ func distanceFromPoint(p: CGPoint, toLineSegment v: CGPoint, and w: CGPoint) -> 
 func calcTheta(p: CGPoint) -> CGFloat{
     var theta : CGFloat = 0
     if (p.x >= 0 && p.y >= 0) {
-        theta = atan(p.y/p.x)
+        if (p.x == 0) {
+            theta = atan(p.y/(p.x+0.000001))
+        }
+        else {
+            theta = atan(p.y/(p.x))
+        }
     }
     else if (p.x < 0) {
         theta = CGFloat.pi + atan(p.y/p.x)
@@ -600,6 +572,17 @@ func calcTheta(p: CGPoint) -> CGFloat{
         theta = 2*CGFloat.pi + atan(p.y/p.x)
     }
     return theta
+}
+
+func distanceToCircle(p: CGPoint, center: CGPoint, radius: CGFloat) -> CGFloat {
+    return abs(sqrt((p.x-center.x)*(p.x-center.x) + (p.y-center.y)*(p.y-center.y)) - radius)
+}
+
+func distanceToEllipse(p: CGPoint, center: CGPoint, x_radius: CGFloat, y_radius: CGFloat) -> CGFloat {
+    let theta = calcTheta(p: CGPoint(x: p.x+center.x, y: p.y+center.y))
+    let x_coord = center.x + x_radius*cos(theta)
+    let y_coord = center.y + y_radius*sin(theta)
+    return sqrt((p.x-x_coord)*(p.x-x_coord) + (p.y-y_coord)*(p.y-y_coord))
 }
 
 // y = ax^2 + bx + c
