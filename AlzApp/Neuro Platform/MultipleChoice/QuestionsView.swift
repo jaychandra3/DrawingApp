@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+struct MultipleChoiceView: View {
+    
+}
+/*
 struct QuesInfo: Identifiable {
   let id: Int
   let question: String
@@ -21,17 +25,21 @@ struct Answer: Identifiable {
 }
 
 struct QuestionsView: View {
+    @Binding var finalShape: String
     
+    
+    
+    /*
   //@State var homeActive : Bool = false
-  @State var quesInfoArr = [
-    QuesInfo(id: 0, question: "What was one of the shapes you drew?",
+    @State var quesInfoArr = [
+    QuesInfo(id: 0, question: "What was the final shape you drew?",
       answers: [
         Answer(id: 0, answer: "Rectangle", isSelected: false),
         Answer(id: 1, answer: "Circle", isSelected: false),
         Answer(id: 2, answer: "Diamond", isSelected: false),
         Answer(id: 3, answer: "Triangle", isSelected: false)
     ]),
-  ]
+    ]*/
 
   var body: some View {
     VStack{
@@ -94,3 +102,4 @@ struct QuestionsView_Previews: PreviewProvider {
     QuestionsView()
   }
 }
+*/
