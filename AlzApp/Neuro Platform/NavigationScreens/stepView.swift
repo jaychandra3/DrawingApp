@@ -40,7 +40,7 @@ struct stepView: View {
                         TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                     }.padding(.top, -10)
                 }
-            } else if currentSt ep.shape == "multiple_shapes_vertices" {
+            } else if currentStep.shape == "multiple_shapes_vertices" {
                 VStack (alignment: .leading) {
                     Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
                     MultipleShapes().stroke(lineWidth:3).scale(0.7).offset(x:-20, y:-225)
