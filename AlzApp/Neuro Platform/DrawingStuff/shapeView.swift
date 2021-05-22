@@ -64,7 +64,80 @@ struct shapeView: View {
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
-        } else {
+        } else if shape == "arch_spiral" {
+            VStack (alignment: .leading) {
+                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                ArchSpiral().stroke(lineWidth:3)
+                Divider()
+                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    ArchSpiral().stroke(lineWidth:3)
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                }.padding(.top, -10)
+            }.padding()
+        } else if shape == "circle_alz" {
+            VStack (alignment: .leading) {
+                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                Level1().stroke(lineWidth:3)
+                Divider()
+                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    Level1().stroke(lineWidth:3)
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                }.padding(.top, -10)
+            }.padding()
+        } else if shape == "circle_triangle" {
+            VStack (alignment: .leading) {
+                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                Level2().stroke(lineWidth:3)
+                Divider()
+                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    Level2().stroke(lineWidth:3)
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                }.padding(.top, -10)
+            }.padding()
+        } else if shape == "circle_triangle_rect" {
+            VStack (alignment: .leading) {
+                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                Level3().stroke(lineWidth:3)
+                Divider()
+                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    Level3().stroke(lineWidth:3)
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                }.padding(.top, -10)
+            }.padding()
+        } else if shape == "circle_prism_triangle" {
+            VStack (alignment: .leading) {
+                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                Level4().stroke(lineWidth:3)
+                Divider()
+                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    Level4().stroke(lineWidth:3)
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                }.padding(.top, -10)
+            }.padding()
+        } else if shape == "level5_undecided" {
+            VStack (alignment: .leading) {
+                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                Level5().stroke(lineWidth:3)
+                Divider()
+                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                ZStack {
+                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                    Level5().stroke(lineWidth:3)
+                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                }.padding(.top, -10)
+            }.padding()
+        }
+        else {
             VStack (alignment: .leading) {
                 Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
                 Spirograph().stroke(lineWidth:3)
