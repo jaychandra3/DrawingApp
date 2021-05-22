@@ -87,9 +87,12 @@ struct DistractorAnswers {
             var initialResults = [String:Bool]()
             let answers = step3AnswerKey
             
+            initialResults["inOrder"] = false
+            
             for answer in answers {
                 initialResults[answer] = false
             }
+            
             
             return initialResults
         }

@@ -45,7 +45,7 @@ struct Distractor3View: View {
     
     var body: some View {
         VStack {
-            GridView(columns: 3, list: DistractorAnswers.step3AnswerKey) { num in
+            GridView(columns: 1, list: DistractorAnswers.step3AnswerKey) { num in
                 HStack {
                     Text(String(num)).font(.system(size:30))
                     Toggle(String(num), isOn: self.binding(for: String(num)))
@@ -56,7 +56,11 @@ struct Distractor3View: View {
                         .labelsHidden()
                 }
             }
-            Text("Correct answers: \(score) / \(self.results.count)")
+            Text("Correct answers: \(score) / \(self.results.count)").padding()
+            HStack {
+                Text("Recited in correct order?")
+                Toggle("Recited in correct order?", isOn: self.binding(for: "inOrder")).labelsHidden()
+            }.padding()
         }
     }
     
