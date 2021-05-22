@@ -25,11 +25,21 @@ struct DrawingView: View {
     @State private var showingAlert : Bool = false
     @State private var passedTest : Bool = true
     @State private var threshold : CGFloat = 15
+    //@EnvironmentObject var testType: TestType
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
+    
+    //updates stepList based on the testType environment variable: ultimately shows different shapes if alzheimer's or parkinson's
+    func changeStepList() {
+        if testType == "alzheimer's" {
+            stepList = steps_alz
+        }
+    }
+    
     var body: some View {
         VStack {
+            //self.changeStepList()
             /*
 //                    Prompt type
             switch trialList[trialnum].0 { //accesses the first index's first object
@@ -123,6 +133,11 @@ struct DrawingView: View {
                 Spacer()
                 
                 Button(action: {
+                    if (trialList[trialnum] == .practice_screen) {
+                        if testType == "alzheimer's" {
+                            stepList = steps_alz
+                        }
+                    }
                     // if finishDrawing returns false, the coordinate count is 0 (no drawing has been made); return nothing (so when button is pressed, nothing will happen)
                     /*for point in data.coordinates{
                         print("X: " + point.x.description
