@@ -43,7 +43,8 @@ struct TimerView: View {
                 HStack {
                     
                     Button(action: {
-                        self.stopTimer()
+                        self.restartTimer()
+                        self.pauseTimer()
                         print("RESTART")
                     }){
                         Text("Restart").font(.system(size:40)).bold()
