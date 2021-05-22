@@ -8,13 +8,15 @@
 
 import SwiftUI
 
-class TestType: ObservableObject {
+/*class TestType: ObservableObject {
     @Published var test: Binding<String> = .constant("parkinson's")
     
     func changeTest() {
         test.wrappedValue = "alzheimer's"
     }
-}
+}*/
+
+var testType: String = ""
 
 struct HomeView: View {
     @State var parkinsonsTestActive : Bool = false
@@ -22,7 +24,7 @@ struct HomeView: View {
     @State var recordsActive : Bool = false
     @State var instructionsActive : Bool = false
     @State var aboutAppActive : Bool = false
-    @EnvironmentObject var testType: TestType
+    //@EnvironmentObject var testType: TestType
     var body: some View {
         VStack{
             // These buttons link to the various screens
@@ -68,11 +70,13 @@ struct HomeView: View {
             Text("Analysis Platform")
                 .textStyle(TitleTextStyle())
             Group {
-                Button(action: {parkinsonsTestActive.toggle()}, label: {
+                Button(action: {parkinsonsTestActive.toggle();
+                    testType = "parkinson's"
+                }, label: {
                     Text("Take the Parkinson's Test")
                 }).buttonStyle(MainButtonStyle())
                 
-                Button(action: {alzheimersTestActive.toggle(); self.testType.changeTest()}, label: {
+                Button(action: {alzheimersTestActive.toggle(); testType = "alzheimer's"}, label: {
                     Text("Take the Alzheimer's Test")
                 }).buttonStyle(MainButtonStyle())
                 
@@ -95,6 +99,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environmentObject(TestType())
+        HomeView()
     }
 }

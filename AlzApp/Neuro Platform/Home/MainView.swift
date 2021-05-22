@@ -19,7 +19,7 @@ class NavigationMetaData : ObservableObject {
 // should probably also be defined here
 struct MainView: View {
     @ObservedObject var NavData = NavigationMetaData()
-    @StateObject var testType = TestType()
+    //@StateObject var testType = TestType()
         var body: some View {
         NavigationView {
             // I believe these are the remnants of a sidebar menu
@@ -42,7 +42,7 @@ struct MainView: View {
             HomeView()
         }
             .environmentObject(NavData)
-        .environmentObject(testType)
+        //.environmentObject(testType)
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }
