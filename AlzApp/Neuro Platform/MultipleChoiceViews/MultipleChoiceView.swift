@@ -29,11 +29,12 @@ struct MultipleChoiceView: View {
         // Alzheimer's shapes:
     ]
     
+    
     @State var circleChoices: [AnswerChoice] = [AnswerChoice(image:Image("circle")), AnswerChoice(image:Image("ellipse_x_major_axis")), AnswerChoice(image:Image("ellipse_x_major_axis2")), AnswerChoice(image:Image("ellipse_y_major_axis"))]
 
     var body: some View {
         //var selected: Bool = true
-        var answerChoices: [AnswerChoice] = multipleChoiceContent[finalShape] ?? []
+        @State var answerChoices: [AnswerChoice] = multipleChoiceContent[finalShape] ?? []
         VStack (alignment: .leading) {
             Spacer()
             Text("Retrieval Step 2 - Multiple Choice").font(.system(size:35)).bold().padding()
