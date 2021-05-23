@@ -52,6 +52,7 @@ struct Distractor3View: View {
                         // For debugging: print dictionary of results
                         .onReceive([self.results].publisher.first(), perform: { value in
                             print(value)
+                            DistractorAnswers.step3FinalResult = value
                         })
                         .labelsHidden()
                 }
@@ -59,7 +60,12 @@ struct Distractor3View: View {
             Text("Correct answers: \(score) / \(self.results.count)").padding()
             HStack {
                 Text("Recited in correct order?")
-                Toggle("Recited in correct order?", isOn: self.binding(for: "inOrder")).labelsHidden()
+                Toggle("Recited in correct order?", isOn: self.binding(for: "inOrder"))
+                    .onReceive([self.results].publisher.first(), perform: { value in
+                        print(value)
+                        DistractorAnswers.step3FinalResult = value
+                    })
+                    .labelsHidden()
             }.padding()
         }
     }
