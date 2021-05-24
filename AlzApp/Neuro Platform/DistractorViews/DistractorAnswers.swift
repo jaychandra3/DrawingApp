@@ -14,8 +14,9 @@ struct DistractorAnswers {
      These variables should be populated when 'Next Trial' button is clicked for easy data access.
      */
     // Conceptually, this should be an instance variable (not static) ??? At risk of illegal overrides from other views.
-    static var step1FinalResult: Array<Dictionary<String, Any>> = []
-    static var step2FinalResult: Array<Dictionary<String, Any>> = []
+    static var step1FinalResult: Dictionary<String, Any> = [:]
+    static var step2FinalResult: Dictionary<String, Any> = [:]
+    static var step3FinalResult: Dictionary<String, Any> = [:]
     
     
     // MARK: Distractor Step 1
@@ -87,9 +88,12 @@ struct DistractorAnswers {
             var initialResults = [String:Bool]()
             let answers = step3AnswerKey
             
+            initialResults["inOrder"] = false
+            
             for answer in answers {
                 initialResults[answer] = false
             }
+            
             
             return initialResults
         }
