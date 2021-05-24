@@ -16,7 +16,6 @@ struct AnswerChoice {
 
 struct MultipleChoiceView: View {
     var finalShape: String
-    var numAnswers: Int
     
     @State var multipleChoiceContent: [String:[AnswerChoice]] = [
         // Parkinson's shapes:
@@ -30,13 +29,8 @@ struct MultipleChoiceView: View {
     ]
     
     @State var currentChoiceIdx: Int? = nil
-    
-    
-    @State var circleChoices: [AnswerChoice] = [AnswerChoice(image:Image("circle")), AnswerChoice(image:Image("ellipse_x_major_axis")), AnswerChoice(image:Image("ellipse_x_major_axis2")), AnswerChoice(image:Image("ellipse_y_major_axis"))]
 
     var body: some View {
-        //var selected: Bool = true
-//        let answerChoices: [AnswerChoice] = multipleChoiceContent[finalShape] ?? []
         VStack (alignment: .leading) {
             Spacer()
             Text("Retrieval Step 2 - Multiple Choice").font(.system(size:35)).bold().padding()
@@ -83,6 +77,6 @@ struct MultipleChoiceView: View {
 
 struct MultipleChoiceView_Previews: PreviewProvider {
     static var previews: some View {
-        MultipleChoiceView(finalShape: "circle", numAnswers: 1)
+        MultipleChoiceView(finalShape: "circle")
     }
 }
