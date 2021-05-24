@@ -74,18 +74,6 @@ struct DrawingView: View {
             
             Spacer()
             HStack {
-//                DELETE LATER, NOT NEEDED FOR FINAL VERSION
-//                Clears current drawing
-                Button(action: {self.drawings = [Drawing]()}, label: {
-                    Text("Clear Drawing")
-                }).buttonStyle(MainButtonStyle())
-                
-                // this is an attempt to change the navigation link to the home page after we click finish test (doesn't work)
-                // need to change!
-                NavigationLink(destination: HomeView(), isActive: $rootIsActive) {
-                    EmptyView()
-                }.isDetailLink(false)
-                
                 Spacer()
                 
                 Button(action: {

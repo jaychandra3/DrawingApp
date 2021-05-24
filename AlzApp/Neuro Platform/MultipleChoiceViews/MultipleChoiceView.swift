@@ -65,10 +65,10 @@ struct MultipleChoiceView: View {
                                     Image(systemName: "checkmark.circle.fill").resizable().frame(width:35, height:35)
                                             .foregroundColor(.green)
                                             .animation(.easeIn)
-                                    Text("isSelected = true")
+//                                    Text("isSelected = true")
                                 } else {
                                     Image(systemName: "circle").resizable().frame(width:35, height:35).foregroundColor(.primary).animation(.easeOut)
-                                    Text("isSelected = false")
+//                                    Text("isSelected = false")
                                 }
                                 multipleChoiceContent[finalShape]![index].image.resizable().scaledToFit().frame(width:250, height:250)
                             }
