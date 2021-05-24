@@ -14,6 +14,12 @@ struct AnswerChoice {
     var isSelected: Bool = false
 }
 
+struct MCQFinalAnswer {
+    static var shape: String? = nil
+    static var answer: Int? = nil
+    static var correctAnswer: Int? = nil
+}
+
 struct MultipleChoiceView: View {
     var finalShape: String
     var numAnswers: Int
@@ -59,6 +65,9 @@ struct MultipleChoiceView: View {
                             
                             // 3. Update the index of current selected option
                             currentChoiceIdx = index
+                            
+                            MCQFinalAnswer.shape = finalShape
+                            MCQFinalAnswer.answer = index + 1
                         }) {
                             HStack {
                                 if multipleChoiceContent[finalShape]![index].isSelected {
