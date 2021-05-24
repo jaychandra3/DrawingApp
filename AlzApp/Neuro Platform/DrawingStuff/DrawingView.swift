@@ -113,7 +113,7 @@ struct DrawingView: View {
             case .retrieval_step1:
                 stepView(currentStep: stepList[7], data: $data)
             case .multiple_choice:
-                MultipleChoiceView(finalShape:$finalShape, numAnswers:1)
+                MultipleChoiceView(finalShape: finalShape, numAnswers:1)
             }
             
             Spacer()
@@ -177,7 +177,7 @@ struct DrawingView: View {
                         self.data.coordinates.removeAll()
                         passedTest = true
                         
-                        /*
+                        /* // Test logic
                         if (levelnum == 2) { // Level 3: Prism
                             currentLevel.evaluateLevel(passedTest: false)
                         } else if (levelnum == 3) { // Level 4: Arch Spiral
@@ -224,39 +224,6 @@ struct DrawingView: View {
                                 }
                             }
                         }
-                        
-                        // set keeps track of the levelnums we already visited
-//                        var set = Set<Int>()
-//                        while (!calibrationDone && levelnum < stepList[1].levels.count) {
-//                            // need to toggle passedTest parameter using shape-evaluating function
-//                            // 1. Evaluate the level
-//                            var currentLevel: Level = stepList[1].levels[levelnum]
-//                            if (levelnum == 2) {
-//                                currentLevel.evaluateLevel(passedTest: true)
-//                            } else if (levelnum == 3) {
-//                                currentLevel.evaluateLevel(passedTest: false)
-//                            } // Expected final level is 3 (levelnum = 2)
-//
-//                            print("current level: \(currentLevel.levelLabel) - \(currentLevel.passedTest!)")
-//
-//                            // 2. Proceed to the next page based on passedTest
-//                            if currentLevel.passedTest! {
-//                                levelnum += 1
-//                                // if levelnum already present in set, calibration process is done
-//                                if (!set.insert(levelnum).0) {
-//                                    self.calibrationDone.toggle()
-//                                }
-//                                set.insert(levelnum)
-//                            } else {
-//                                levelnum -= 1
-//                                if (!set.insert(levelnum).0) {
-//                                    self.calibrationDone.toggle()
-//                                }
-//                                set.insert(levelnum)
-//                            }
-//                        }
-//
-//                        self.finalShape = stepList[1].levels[set.max()!].levelShape
                     }
                     
                     // Only increase trial if calibration is complete or if it is not .encoding_step1

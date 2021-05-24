@@ -15,7 +15,7 @@ struct AnswerChoice {
 }
 
 struct MultipleChoiceView: View {
-    @Binding var finalShape: String
+    var finalShape: String
     var numAnswers: Int
     
     @State var multipleChoiceContent: [String:[AnswerChoice]] = [
@@ -29,30 +29,39 @@ struct MultipleChoiceView: View {
         // Alzheimer's shapes:
     ]
     
+    @State var currentChoiceIdx: Int? = nil
+    
     
     @State var circleChoices: [AnswerChoice] = [AnswerChoice(image:Image("circle")), AnswerChoice(image:Image("ellipse_x_major_axis")), AnswerChoice(image:Image("ellipse_x_major_axis2")), AnswerChoice(image:Image("ellipse_y_major_axis"))]
 
     var body: some View {
         //var selected: Bool = true
-        @State var answerChoices: [AnswerChoice] = multipleChoiceContent[finalShape] ?? []
+//        let answerChoices: [AnswerChoice] = multipleChoiceContent[finalShape] ?? []
         VStack (alignment: .leading) {
             Spacer()
             Text("Retrieval Step 2 - Multiple Choice").font(.system(size:35)).bold().padding()
             Text("What was the final shape you drew?").font(.system(size:20)).padding()
             
+            /// @Jason, I updated the values straight from multipleChoiceContent state variable. Previously, answerChoices wasn't a state variable so any updates won't re-render the view to display the content. I also made it such that only 1 option can be selected - nicole 🤟🏽
+            
             List {
-                ForEach(0..<answerChoices.count) {index in
+                ForEach(0..<multipleChoiceContent[finalShape]!.count) {index in
                     HStack {
                         
                         Button(action: {
-                            answerChoices[index].isSelected = answerChoices[index].isSelected ? false:true
-                            //selected = answerChoices[index].isSelected
-                            print(answerChoices[index].isSelected)
-                            //print(selected)
-                            //self.numAnswers += 1
+                            // 1. If there is an existing option selected, deselect that option
+                            if (currentChoiceIdx != nil) {
+                                multipleChoiceContent[finalShape]![currentChoiceIdx!].isSelected.toggle()
+                            }
+                            
+                            // 2. Toggle the selected option
+                            multipleChoiceContent[finalShape]?[index].isSelected.toggle()
+                            
+                            // 3. Update the index of current selected option
+                            currentChoiceIdx = index
                         }) {
                             HStack {
-                                if answerChoices[index].isSelected {
+                                if multipleChoiceContent[finalShape]![index].isSelected {
                                     Image(systemName: "checkmark.circle.fill").resizable().frame(width:35, height:35)
                                             .foregroundColor(.green)
                                             .animation(.easeIn)
@@ -61,10 +70,7 @@ struct MultipleChoiceView: View {
                                     Image(systemName: "circle").resizable().frame(width:35, height:35).foregroundColor(.primary).animation(.easeOut)
                                     Text("isSelected = false")
                                 }
-                                answerChoices[index].image.resizable().scaledToFit().frame(width:250, height:250)
-                                /*Button(action: {
-                                    print(answerChoices[index])
-                                }) { Text("Print array") }*/
+                                multipleChoiceContent[finalShape]![index].image.resizable().scaledToFit().frame(width:250, height:250)
                             }
                         }.buttonStyle(BorderlessButtonStyle())
                     }
@@ -75,9 +81,8 @@ struct MultipleChoiceView: View {
     }
 }
 
-/*
 struct MultipleChoiceView_Previews: PreviewProvider {
     static var previews: some View {
-        MultipleChoiceView(finalShape:"circle", numAnswers: 1)
+        MultipleChoiceView(finalShape: "circle", numAnswers: 1)
     }
-}*/
+}
