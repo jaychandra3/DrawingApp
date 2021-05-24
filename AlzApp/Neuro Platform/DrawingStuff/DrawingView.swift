@@ -22,6 +22,7 @@ struct DrawingView: View {
     @State var finalShape: String = ""
     let patient : String
     @State private var data = DrawingData()
+    @State private var showPopup: Bool = false
     @State private var showingAlert : Bool = false
     @State private var passedTest : Bool = true
     @State private var threshold : CGFloat = 15
@@ -133,6 +134,7 @@ struct DrawingView: View {
                 Spacer()
                 
                 Button(action: {
+//                    self.showPopup = false
                     if (trialList[trialnum] == .practice_screen) {
                         if testType == "alzheimer's" {
                             stepList = steps_alz
@@ -150,8 +152,12 @@ struct DrawingView: View {
                     if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + "level" + (levelnum+1).description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
                         (trialList[trialnum] != .multiple_choice) {
                         // toggle showingAlert so that the alert message pops up when necessary
-                        self.showingAlert.toggle()
+                        self.showingAlert = true // No drawing alert
+                        self.showPopup = true // The actual alert
                         return
+                    } else {
+                        self.showingAlert = false
+                        self.showPopup = true
                     }
                     
                     /*for point in self.data.coordinates{
@@ -224,39 +230,6 @@ struct DrawingView: View {
                                 }
                             }
                         }
-                        
-                        // set keeps track of the levelnums we already visited
-//                        var set = Set<Int>()
-//                        while (!calibrationDone && levelnum < stepList[1].levels.count) {
-//                            // need to toggle passedTest parameter using shape-evaluating function
-//                            // 1. Evaluate the level
-//                            var currentLevel: Level = stepList[1].levels[levelnum]
-//                            if (levelnum == 2) {
-//                                currentLevel.evaluateLevel(passedTest: true)
-//                            } else if (levelnum == 3) {
-//                                currentLevel.evaluateLevel(passedTest: false)
-//                            } // Expected final level is 3 (levelnum = 2)
-//
-//                            print("current level: \(currentLevel.levelLabel) - \(currentLevel.passedTest!)")
-//
-//                            // 2. Proceed to the next page based on passedTest
-//                            if currentLevel.passedTest! {
-//                                levelnum += 1
-//                                // if levelnum already present in set, calibration process is done
-//                                if (!set.insert(levelnum).0) {
-//                                    self.calibrationDone.toggle()
-//                                }
-//                                set.insert(levelnum)
-//                            } else {
-//                                levelnum -= 1
-//                                if (!set.insert(levelnum).0) {
-//                                    self.calibrationDone.toggle()
-//                                }
-//                                set.insert(levelnum)
-//                            }
-//                        }
-//
-//                        self.finalShape = stepList[1].levels[set.max()!].levelShape
                     }
                     
                     // Only increase trial if calibration is complete or if it is not .encoding_step1
@@ -277,8 +250,13 @@ struct DrawingView: View {
                     } else {
                         Text("Finish Test").foregroundColor(.white)
                     }
-                }).alert(isPresented: $showingAlert, content: {
-                    Alert(title: Text("No Drawing"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK")))
+                }).alert(isPresented: $showPopup, content: {
+                    if (showingAlert) {
+                        return Alert(title: Text("No Drawing"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
+                    } else {
+                        return Alert(title: Text("Override"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK")))
+                    }
+                    
                 }).buttonStyle(MainButtonStyle())
             }
             Spacer()
