@@ -114,11 +114,7 @@ struct DrawingView: View {
                         (trialList[trialnum] != .multiple_choice) {
                         // toggle showingAlert so that the alert message pops up when necessary
                         self.showingAlert = true // No drawing alert
-                        self.showPopup = true // The actual alert
                         return
-                    } else {
-                        self.showingAlert = false
-                        self.showPopup = true
                     }
                     
                     /*for point in self.data.coordinates{
@@ -144,7 +140,7 @@ struct DrawingView: View {
                         }
                         currentLevel.evaluateLevel(passedTest: self.passedTest)
                         self.data.coordinates.removeAll()
-                        passedTest = true
+                        passedTest = true // reset passedTest state variable
 
                         stepList[1].levels[levelnum] = currentLevel // Update the stepList data
                         print("current level: \(currentLevel.levelLabel)")
@@ -199,13 +195,8 @@ struct DrawingView: View {
                     } else {
                         Text("Finish Test").foregroundColor(.white)
                     }
-                }).alert(isPresented: $showPopup, content: {
-                    if (showingAlert) {
-                        return Alert(title: Text("No Drawing"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
-                    } else {
-                        return Alert(title: Text("Override"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK")))
-                    }
-                    
+                }).alert(isPresented: $showingAlert, content: {
+                    Alert(title: Text("No Drawing"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK")))
                 }).buttonStyle(MainButtonStyle())
             }
             Spacer()
