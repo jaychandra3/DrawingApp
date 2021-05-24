@@ -33,6 +33,7 @@ struct Distractor1View: View {
                         // For debugging: print dictionary of results
                         .onReceive([self.results].publisher.first(), perform: { value in
                             print(value)
+                            DistractorAnswers.step1FinalResult = value
                         })
                         .labelsHidden()
                 }
