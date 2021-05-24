@@ -69,7 +69,7 @@ struct DrawingView: View {
             case .retrieval_step1:
                 stepView(currentStep: stepList[7], data: $data)
             case .multiple_choice:
-                MultipleChoiceView(finalShape: finalShape, numAnswers:1)
+                MultipleChoiceView(finalShape: finalShape)
             }
             
             Spacer()
