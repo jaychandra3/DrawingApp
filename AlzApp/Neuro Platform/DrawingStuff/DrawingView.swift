@@ -108,25 +108,6 @@ struct DrawingView: View {
                         let d3inOrder: Bool = DistractorAnswers.step3FinalResult["inOrder"] as! Bool
                         patientInfo += "Distractor Step 3 InOrder: " + d3inOrder.description + "\n"
                     }
-                    /*
-                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + "level" + (levelnum+1).description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
-                        (trialList[trialnum] != .multiple_choice) {
-                        // toggle showingAlert so that the alert message pops up when necessary
-                        self.showingAlert = true // No drawing alert
-                        self.showPopup = true // The actual alert
-                        return
-                    } else if trialList[trialnum] == .multiple_choice {
-                        if MCQFinalAnswer.answer != nil {
-                            self.answerSelected = true
-                            self.showPopup = false
-                            self.showingAlert = false
-                        } else {
-                            self.showPopup = true
-                            return
-                        }
-                    } else {
-                        self.showPopup = false
-                    }*/
                     
                     if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + "level" + (levelnum+1).description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
                         (trialList[trialnum] != .multiple_choice) {
@@ -135,6 +116,8 @@ struct DrawingView: View {
                         self.showingAlert = true // Drawing alert
                         return
                     }
+                    
+                    // Show MCQ 'No Answer' Alert
                     if (trialList[trialnum] == .multiple_choice && MCQFinalAnswer.answer == nil) {
                         self.showPopup = true
                         self.showingAlert = false
@@ -206,6 +189,7 @@ struct DrawingView: View {
                             patientInfo += "MCQ Correctness: " + (MCQFinalAnswer.answer! == 3).description + "\n"
                             self.rootIsActive.toggle()
                             print(patientInfo)
+                            MCQFinalAnswer.reset() // Resets MCQFinalAnswer struct after saving
     //                        avoid OOB
                             trialnum -= 1
                         } else {

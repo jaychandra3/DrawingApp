@@ -18,6 +18,12 @@ struct MCQFinalAnswer {
     static var shape: String? = nil
     static var answer: Int? = nil
     static var correctAnswer: Int? = nil
+    
+    static func reset() {
+        MCQFinalAnswer.shape = nil
+        MCQFinalAnswer.answer = nil
+        MCQFinalAnswer.correctAnswer = nil
+    }
 }
 
 struct MultipleChoiceView: View {
