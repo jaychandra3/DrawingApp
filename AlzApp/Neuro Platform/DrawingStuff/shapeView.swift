@@ -24,7 +24,7 @@ struct shapeView: View {
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Level1().stroke(lineWidth:3)
+                    Level1().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
@@ -36,7 +36,7 @@ struct shapeView: View {
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Infinity().stroke(lineWidth:3)
+                    Infinity().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
@@ -48,7 +48,7 @@ struct shapeView: View {
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Prism().stroke(lineWidth:3)
+                    Prism().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
@@ -60,7 +60,7 @@ struct shapeView: View {
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    ArchSpiral().stroke(lineWidth:3)
+                    ArchSpiral().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
@@ -72,7 +72,7 @@ struct shapeView: View {
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    ArchSpiral().stroke(lineWidth:3)
+                    ArchSpiral().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
@@ -84,7 +84,7 @@ struct shapeView: View {
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Level1().stroke(lineWidth:3)
+                    Level1().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
@@ -96,7 +96,7 @@ struct shapeView: View {
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Level2().stroke(lineWidth:3)
+                    Level2().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
@@ -108,7 +108,7 @@ struct shapeView: View {
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Level3().stroke(lineWidth:3)
+                    Level3().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
@@ -120,7 +120,7 @@ struct shapeView: View {
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Level4().stroke(lineWidth:3)
+                    Level4().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
@@ -132,7 +132,7 @@ struct shapeView: View {
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Level5().stroke(lineWidth:3)
+                    Level5().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
@@ -145,7 +145,7 @@ struct shapeView: View {
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                    Spirograph().stroke(lineWidth:3)
+                    Spirograph().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()

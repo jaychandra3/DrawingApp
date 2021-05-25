@@ -31,7 +31,7 @@ struct MultipleChoiceView: View {
         "infinity_symbol": [AnswerChoice(image:Image("infinity_squeezed")),  AnswerChoice(image:Image("infinity_stretched")),
             AnswerChoice(image:Image("infinity_correct")),
             AnswerChoice(image:Image("infinity_triangular"))],
-        "prism": [AnswerChoice(image:Image("prism_incorrect_orientation")), AnswerChoice(image:Image("prism_triangular")), AnswerChoice(image:Image("prism_correct")), AnswerChoice(image:Image("rectangular_prism_backlines")), ],
+        "prism": [AnswerChoice(image:Image("prism_incorrect_orientation")), AnswerChoice(image:Image("prism_triangular")), AnswerChoice(image:Image("prism_correct")), AnswerChoice(image:Image("rectangular_prism_backlines"))],
         "arch_spiral": [AnswerChoice(image:Image("arch_spiral_cclock")), AnswerChoice(image:Image("arch_spiral_cclock_diff_start_pt")), AnswerChoice(image:Image("arch_spiral_correct")), AnswerChoice(image:Image("arch_spiral_diff_start_pt"))],
         "spirograph": [],
         
@@ -94,9 +94,9 @@ struct MultipleChoiceView: View {
         }
     }
 }
-
+/*
 struct MultipleChoiceView_Previews: PreviewProvider {
     static var previews: some View {
-        MultipleChoiceView(finalShape: "circle")
+        MultipleChoiceView(finalShape: "circle", answerSelected:$answerSelected)
     }
-}
+}*/

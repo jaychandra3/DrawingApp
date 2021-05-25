@@ -26,6 +26,8 @@ struct DrawingView: View {
     @State private var passedTest : Bool = true
     @State private var isAlz : Bool = true
     @State private var threshold : CGFloat = 15
+    @State var answerSelected: Bool = false
+    @State var showPopup: Bool = false
     //@EnvironmentObject var testType: TestType
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
@@ -91,7 +93,7 @@ struct DrawingView: View {
                     if (trialList[trialnum] == .distractor_step1) {
                         patientInfo += "Distractor Step 1 Results : " + DistractorAnswers.step1FinalResult.description + "\n"
                         
-                        let d1score: Double = DistractorAnswers.step1FinalResult["score"] as! Double
+                        let d1score: Double = DistractorAnswers.step1FinalResult["score"] as? Double ?? 0
                         patientInfo += "Distractor Step 1 Score: " + d1score.description + "%\n"
                     }
                     if (trialList[trialnum] == .distractor_step2) {
@@ -106,11 +108,36 @@ struct DrawingView: View {
                         let d3inOrder: Bool = DistractorAnswers.step3FinalResult["inOrder"] as! Bool
                         patientInfo += "Distractor Step 3 InOrder: " + d3inOrder.description + "\n"
                     }
-                  
+                    /*
                     if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + "level" + (levelnum+1).description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
                         (trialList[trialnum] != .multiple_choice) {
                         // toggle showingAlert so that the alert message pops up when necessary
-                        self.showingAlert.toggle()
+                        self.showingAlert = true // No drawing alert
+                        self.showPopup = true // The actual alert
+                        return
+                    } else if trialList[trialnum] == .multiple_choice {
+                        if MCQFinalAnswer.answer != nil {
+                            self.answerSelected = true
+                            self.showPopup = false
+                            self.showingAlert = false
+                        } else {
+                            self.showPopup = true
+                            return
+                        }
+                    } else {
+                        self.showPopup = false
+                    }*/
+                    
+                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + "level" + (levelnum+1).description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
+                        (trialList[trialnum] != .multiple_choice) {
+                        // toggle showingAlert so that the alert message pops up when necessary
+                        self.showPopup = true // Actual alert
+                        self.showingAlert = true // Drawing alert
+                        return
+                    }
+                    if (trialList[trialnum] == .multiple_choice && MCQFinalAnswer.answer == nil) {
+                        self.showPopup = true
+                        self.showingAlert = false
                         return
                     }
                     
@@ -190,10 +217,14 @@ struct DrawingView: View {
                     if trialnum < trialList.count - 1 { //checks if there's still more trials left
                         Text("Next Trial").foregroundColor(.white)
                     } else {
-                        Text("Finish TeHst").foregroundColor(.white)
+                        Text("Finish Test").foregroundColor(.white)
                     }
-                }).alert(isPresented: $showingAlert, content: {
-                    Alert(title: Text("No Drawing"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK")))
+                }).alert(isPresented: $showPopup, content: {
+                     if (showingAlert) {
+                         return Alert(title: Text("No Drawing"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
+                     } else {
+                         return Alert(title: Text("No Answer Selected"), message: Text("Please select an answer before finishing the test"), dismissButton: .default(Text("OK")))
+                     }
                 }).buttonStyle(MainButtonStyle())
             }
             Spacer()
