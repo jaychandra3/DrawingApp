@@ -114,6 +114,7 @@ startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
         return path
     }
 }
+
 struct Level2: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()

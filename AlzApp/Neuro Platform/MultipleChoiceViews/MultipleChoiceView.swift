@@ -44,10 +44,10 @@ struct MultipleChoiceView: View {
         // Alzheimer's shapes:
         // circle_alz multiple choices are the same with the Parkinson's circle above
         "circle_alz": [ AnswerChoice(image:Image("ellipse_x_major_axis")), AnswerChoice(image:Image("ellipse_x_major_axis2")), AnswerChoice(image:Image("circle")), AnswerChoice(image:Image("ellipse_y_major_axis"))],
-        "circle_triangle": [AnswerChoice(image:Image("triangle_circle")), AnswerChoice(image:Image("circle_square")), AnswerChoice(image:Image("square_triangle"))
+        "circle_triangle": [AnswerChoice(image:Image("triangle_circle")), AnswerChoice(image:Image("circle_square")), AnswerChoice(image:Image("circle_tri_correct")), AnswerChoice(image:Image("square_triangle"))
         ],
-        "circle_triangle_rect": [AnswerChoice(image:Image("circle_rect_tri_1")), AnswerChoice(image:Image("circle_rect_tri_2")), AnswerChoice(image:Image("circle_rect_tri_3"))],
-        "circle_prism_triangle": [AnswerChoice(image:Image("circle_prism_tri_1")), AnswerChoice(image:Image("circle_prism_tri_2")), AnswerChoice(image:Image("circle_prism_tri_3"))],
+        "circle_triangle_rect": [AnswerChoice(image:Image("circle_rect_tri_1")), AnswerChoice(image:Image("circle_rect_tri_2")), AnswerChoice(image:Image("circle_rect_tri_correct")), AnswerChoice(image:Image("circle_rect_tri_3"))],
+        "circle_prism_triangle": [AnswerChoice(image:Image("circle_prism_tri_1")), AnswerChoice(image:Image("circle_prism_tri_2")), AnswerChoice(image:Image("circle_prism_tri_correct")), AnswerChoice(image:Image("circle_prism_tri_3"))],
         "level5_undecided": []
     ]
     
