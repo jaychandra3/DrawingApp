@@ -44,7 +44,7 @@ struct Distractor3View: View {
     }
     
     var scoreInPercent: Double {
-        return Double(score) / Double(self.results.count - 1) * Double(100)
+        return Double(score) / Double(self.results.count-1) * Double(100)
     }
     
     var body: some View {
