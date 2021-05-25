@@ -43,6 +43,10 @@ struct Distractor3View: View {
         return score
     }
     
+    var scoreInPercent: Double {
+        return Double(score) / Double(self.results.count - 1) * Double(100)
+    }
+    
     var body: some View {
         VStack {
             GridView(columns: 1, list: DistractorAnswers.step3AnswerKey) { num in
@@ -51,13 +55,16 @@ struct Distractor3View: View {
                     Toggle(String(num), isOn: self.binding(for: String(num)))
                         // For debugging: print dictionary of results
                         .onReceive([self.results].publisher.first(), perform: { value in
-                            print(value)
+//                            print(value)
                             DistractorAnswers.step3FinalResult = value
+                            DistractorAnswers.step3FinalResult["score"] = scoreInPercent
+//                            print(DistractorAnswers.step3FinalResult)
+//                            print(scoreInPercent)
                         })
                         .labelsHidden()
                 }
             }
-            Text("Correct answers: \(score) / \(self.results.count)").padding()
+            Text("Correct answers: \(score) / \(self.results.count - 1)").padding()
             HStack {
                 Text("Recited in correct order?")
                 Toggle("Recited in correct order?", isOn: self.binding(for: "inOrder"))

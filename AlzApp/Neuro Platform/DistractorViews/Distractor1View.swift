@@ -24,6 +24,10 @@ struct Distractor1View: View {
         return score
     }
     
+    var scoreInPercent: Double {
+        return Double(score) / Double(self.results.count) * Double(100)
+    }
+    
     var body: some View {
         VStack {
             GridView(columns: 5, list: DistractorAnswers.step1AnswerKey) { num in
@@ -32,8 +36,11 @@ struct Distractor1View: View {
                     Toggle(String(num), isOn: self.binding(for: String(num)))
                         // For debugging: print dictionary of results
                         .onReceive([self.results].publisher.first(), perform: { value in
-                            print(value)
+//                            print(value)
                             DistractorAnswers.step1FinalResult = value
+                            DistractorAnswers.step1FinalResult["score"] = scoreInPercent
+//                            print(DistractorAnswers.step1FinalResult)
+//                            print(scoreInPercent)
                         })
                         .labelsHidden()
                 }

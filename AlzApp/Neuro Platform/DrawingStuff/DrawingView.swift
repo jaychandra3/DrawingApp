@@ -179,7 +179,7 @@ struct DrawingView: View {
                     if trialnum < trialList.count - 1 { //checks if there's still more trials left
                         Text("Next Trial").foregroundColor(.white)
                     } else {
-                        Text("Finish Test").foregroundColor(.white)
+                        Text("Finish TeHst").foregroundColor(.white)
                     }
                 }).alert(isPresented: $showingAlert, content: {
                     Alert(title: Text("No Drawing"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK")))
