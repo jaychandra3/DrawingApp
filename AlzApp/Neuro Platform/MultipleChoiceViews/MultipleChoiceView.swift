@@ -25,18 +25,23 @@ struct MultipleChoiceView: View {
     
     @State var multipleChoiceContent: [String:[AnswerChoice]] = [
         // Parkinson's shapes:
-        "circle": [AnswerChoice(image:Image("circle")), AnswerChoice(image:Image("ellipse_x_major_axis")), AnswerChoice(image:Image("ellipse_x_major_axis2")), AnswerChoice(image:Image("ellipse_y_major_axis"))],
-        "infinity_symbol": [AnswerChoice(image:Image("infinity_squeezed")), AnswerChoice(image:Image("infinity_correct")), AnswerChoice(image:Image("infinity_stretched")), AnswerChoice(image:Image("infinity_triangular"))],
-        "prism": [AnswerChoice(image:Image("prism_incorrect_orientation")), AnswerChoice(image:Image("prism_triangular")), AnswerChoice(image:Image("rectangular_prism_backlines")), AnswerChoice(image:Image("prism_correct"))],
+        "circle": [ AnswerChoice(image:Image("ellipse_x_major_axis")), AnswerChoice(image:Image("ellipse_x_major_axis2")),
+            AnswerChoice(image:Image("circle")),
+            AnswerChoice(image:Image("ellipse_y_major_axis"))],
+        "infinity_symbol": [AnswerChoice(image:Image("infinity_squeezed")),  AnswerChoice(image:Image("infinity_stretched")),
+            AnswerChoice(image:Image("infinity_correct")),
+            AnswerChoice(image:Image("infinity_triangular"))],
+        "prism": [AnswerChoice(image:Image("prism_incorrect_orientation")), AnswerChoice(image:Image("prism_triangular")), AnswerChoice(image:Image("prism_correct")), AnswerChoice(image:Image("rectangular_prism_backlines")), ],
         "arch_spiral": [AnswerChoice(image:Image("arch_spiral_cclock")), AnswerChoice(image:Image("arch_spiral_cclock_diff_start_pt")), AnswerChoice(image:Image("arch_spiral_correct")), AnswerChoice(image:Image("arch_spiral_diff_start_pt"))],
         "spirograph": [],
         
         // Alzheimer's shapes:
         // circle_alz multiple choices are the same with the Parkinson's circle above
-        "circle_alz": [AnswerChoice(image:Image("circle")), AnswerChoice(image:Image("ellipse_x_major_axis")), AnswerChoice(image:Image("ellipse_x_major_axis2")), AnswerChoice(image:Image("ellipse_y_major_axis"))],
-        "circle_triangle": [],
-        "circle_triangle_rect": [],
-        "circle_prism_triangle": [],
+        "circle_alz": [ AnswerChoice(image:Image("ellipse_x_major_axis")), AnswerChoice(image:Image("ellipse_x_major_axis2")), AnswerChoice(image:Image("circle")), AnswerChoice(image:Image("ellipse_y_major_axis"))],
+        "circle_triangle": [AnswerChoice(image:Image("triangle_circle")), AnswerChoice(image:Image("circle_square")), AnswerChoice(image:Image("square_triangle"))
+        ],
+        "circle_triangle_rect": [AnswerChoice(image:Image("circle_rect_tri_1")), AnswerChoice(image:Image("circle_rect_tri_2")), AnswerChoice(image:Image("circle_rect_tri_3"))],
+        "circle_prism_triangle": [AnswerChoice(image:Image("circle_prism_tri_1")), AnswerChoice(image:Image("circle_prism_tri_2")), AnswerChoice(image:Image("circle_prism_tri_3"))],
         "level5_undecided": []
     ]
     
