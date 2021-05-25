@@ -34,13 +34,9 @@ struct Distractor1View: View {
                 HStack {
                     Text(String(num)).font(.system(size:30))
                     Toggle(String(num), isOn: self.binding(for: String(num)))
-                        // For debugging: print dictionary of results
                         .onReceive([self.results].publisher.first(), perform: { value in
-//                            print(value)
                             DistractorAnswers.step1FinalResult = value
                             DistractorAnswers.step1FinalResult["score"] = scoreInPercent
-//                            print(DistractorAnswers.step1FinalResult)
-//                            print(scoreInPercent)
                         })
                         .labelsHidden()
                 }

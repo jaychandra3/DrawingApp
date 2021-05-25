@@ -10,23 +10,6 @@
 import SwiftUI
 
 struct Distractor3View: View {
-    /*
-    @State var interestedNumber: Int
-    @State var machineNumber: Int
-    @State var perspective: Int
-    @State var neglected: Int
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Text("Syllables of Interested: ")
-                HStack {
-                    Toggle("In", isOn: $buttonIn).labelsHidden()
-                }
-            }
-        }
-    }*/
-    
     
     // MARK: Final data for analysis
     @State private var results: [String:Bool] = DistractorAnswers.step3InitResults
@@ -53,13 +36,9 @@ struct Distractor3View: View {
                 HStack {
                     Text(String(num)).font(.system(size:30))
                     Toggle(String(num), isOn: self.binding(for: String(num)))
-                        // For debugging: print dictionary of results
                         .onReceive([self.results].publisher.first(), perform: { value in
-//                            print(value)
                             DistractorAnswers.step3FinalResult = value
                             DistractorAnswers.step3FinalResult["score"] = scoreInPercent
-//                            print(DistractorAnswers.step3FinalResult)
-//                            print(scoreInPercent)
                         })
                         .labelsHidden()
                 }
@@ -69,8 +48,8 @@ struct Distractor3View: View {
                 Text("Recited in correct order?")
                 Toggle("Recited in correct order?", isOn: self.binding(for: "inOrder"))
                     .onReceive([self.results].publisher.first(), perform: { value in
-                        print(value)
                         DistractorAnswers.step3FinalResult = value
+                        DistractorAnswers.step3FinalResult["score"] = scoreInPercent
                     })
                     .labelsHidden()
             }.padding()
