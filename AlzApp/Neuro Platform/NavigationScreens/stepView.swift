@@ -14,6 +14,8 @@ struct stepView: View {
     var levelNum: Int?
     var finalShape: String?
     
+    @State var displayDistractorView: Bool = false
+    
     @State private var currentDrawing : Drawing = Drawing()
     @State private var drawings : [Drawing] = [Drawing]()
     @Binding var data: DrawingData
@@ -78,17 +80,19 @@ struct stepView: View {
                     shapeView(shape: finalShape!, data: $data)
                 } else if currentStep.step == "distractor_step1" {
                     Spacer()
-                    TimerView().padding()
-                    Distractor1View().padding()
+                    TimerView(displayDistractorView: $displayDistractorView).padding()
+                    if displayDistractorView {
+                        Distractor1View().padding()
+                    }
                     Spacer()
                 } else if currentStep.step == "distractor_step2" {
                     Spacer()
-                    TimerView().padding()
+                    TimerView(displayDistractorView: $displayDistractorView).padding()
                     Distractor2View().padding()
                     Spacer()
                 } else if currentStep.step == "distractor_step3" {
                     Spacer()
-                    TimerView().padding()
+                    TimerView(displayDistractorView: $displayDistractorView).padding()
                     Distractor3View().padding()
                     Spacer()
                 } else {
@@ -101,11 +105,12 @@ struct stepView: View {
     }
 }
 
+/*
 struct stepView_Previews: PreviewProvider {
     @State static var data = DrawingData()
     static var previews: some View {
-        stepView(currentStep: steps[0], data: $data)
-        stepView(currentStep: steps[1], data: $data)
+        stepView(currentStep: steps[0], displayDistractorView: false, data: $data)
+        stepView(currentStep: steps[1], displayDistractorView: false, data: $data)
     }
-}
+}*/
 

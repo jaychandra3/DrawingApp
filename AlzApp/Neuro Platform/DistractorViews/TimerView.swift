@@ -16,6 +16,7 @@ struct TimerView: View {
     @State private var timerIsStarted: Bool = false
     @State private var timerIsPaused: Bool = true
     @State private var timesUp: Bool = false
+    @Binding var displayDistractorView: Bool
 
     @State private var timer: Timer? = nil
     
@@ -26,6 +27,9 @@ struct TimerView: View {
               if timerIsPaused {
                 HStack {
                   Button(action:{
+                    if !timerIsStarted {
+                        displayDistractorView.toggle()
+                    }
                     self.startTimer()
                     print("START")
                   }){
@@ -45,6 +49,7 @@ struct TimerView: View {
                     Button(action: {
                         self.restartTimer()
                         self.pauseTimer()
+                        displayDistractorView.toggle()
                         print("RESTART")
                     }){
                         Text("Restart").font(.system(size:40)).bold()
@@ -104,9 +109,9 @@ struct TimerView: View {
         timerIsStarted.toggle()
     }
 }
-
+/*
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView()
+        TimerView(displayDistractorView: displayDistractorView.wrappedValue = false)
     }
-}
+}*/

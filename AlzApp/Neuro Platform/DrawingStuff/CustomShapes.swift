@@ -104,6 +104,7 @@ struct Spirograph: Shape {
 }
 
 // Levels are for Alzheimer's
+// Level1 - circle
 struct Level1: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -116,6 +117,7 @@ struct Level1: Shape {
     }
 }
 
+// Level2 - circle + triangle
 struct Level2: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -133,6 +135,7 @@ struct Level2: Shape {
     }
 }
 
+// Level3 - circle + rectangle + triangle
 struct Level3: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -157,6 +160,7 @@ struct Level3: Shape {
     }
 }
 
+// Level4 - circle + prism + triangle
 struct Level4: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
