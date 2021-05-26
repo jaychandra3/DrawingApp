@@ -103,8 +103,8 @@ struct DrawingView: View {
                     }
                     if (trialList[trialnum] == .distractor_step3) {
                         patientInfo += "Distractor Step 3 Results : " + DistractorAnswers.step3FinalResult.description + "\n"
-                        /*let d3score: Double = DistractorAnswers.step3FinalResult["score"] as! Double
-                        patientInfo += "Distractor Step 3 Score: " + d3score.description + "%\n"*/
+                        let d3score: Double = DistractorAnswers.step3FinalResult["score"] as! Double
+                        patientInfo += "Distractor Step 3 Score: " + d3score.description + "%\n"
                         let d3inOrder: Bool = DistractorAnswers.step3FinalResult["inOrder"] as! Bool
                         patientInfo += "Distractor Step 3 InOrder: " + d3inOrder.description + "\n"
                     }
