@@ -75,19 +75,6 @@ struct QuestionsView: View {
     }
 }
 
-func finishInfo(patient: String, patientInfoCSV: String, formName : String = "patientInfo.csv") {
-    let url : URL = getDocumentsDirectory(foldername: patient, filename: formName)
-    do {
-    let str : String = patientInfoCSV
-        try str.write(to: url, atomically: true, encoding: .utf8)
-        let input = try String(contentsOf: url)
-        print(input)
-    } catch {
-        print("Failed to write to disk")
-        print(error.localizedDescription)
-    }
-}
-
 struct QuestionsView_Previews: PreviewProvider {
   static var previews: some View {
     QuestionsView()
