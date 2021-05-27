@@ -45,7 +45,7 @@ struct Distractor3View: View {
             }
             Text("Correct answers: \(score) / \(self.results.count - 1)").padding()
             HStack {
-                Text("Recited in correct order?")
+                Text("All Recited in correct order?")
                 Toggle("Recited in correct order?", isOn: self.binding(for: "inOrder"))
                     .onReceive([self.results].publisher.first(), perform: { value in
                         DistractorAnswers.step3FinalResult = value
