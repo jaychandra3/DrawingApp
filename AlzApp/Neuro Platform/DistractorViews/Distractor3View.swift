@@ -43,7 +43,7 @@ struct Distractor3View: View {
                         .labelsHidden()
                 }
             }
-            Text("Correct answers: \(score) / \(self.results.count - 1)").padding()
+            Text("Correct answers: \(score) / \(self.results.count)").padding()
             HStack {
                 Text("All Recited in correct order?")
                 Toggle("Recited in correct order?", isOn: self.binding(for: "inOrder"))
