@@ -191,6 +191,7 @@ struct DrawingView: View {
                             print(patientInfo)
                             MCQFinalAnswer.reset() // Resets MCQFinalAnswer struct after saving
     //                        avoid OOB
+                            finishInfo(patient: patientID, patientInfoCSV: patientInfo)
                             trialnum -= 1
                         } else {
                             self.drawings = [Drawing]()
@@ -214,6 +215,19 @@ struct DrawingView: View {
             Spacer()
         }.navigationBarHidden(true)
         .navigationTitle("Trial " + (trialnum + 1).description + "/" + trials.description)
+    }
+}
+
+func finishInfo(patient: String, patientInfoCSV: String, formName : String = "patientInfo.csv") {
+    let url : URL = getDocumentsDirectory(foldername: patient, filename: formName)
+    do {
+    let str : String = patientInfoCSV
+        try str.write(to: url, atomically: true, encoding: .utf8)
+        let input = try String(contentsOf: url)
+        print(input)
+    } catch {
+        print("Failed to write to disk")
+        print(error.localizedDescription)
     }
 }
 
