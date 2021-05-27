@@ -77,7 +77,7 @@
         "id": 1007,
         "step": "distractor_step3",
         "stepLabel": "Distractor Step 3",
-        "instructions": "Complete the following task:  \n \n - Review and try to memorize the following list of words, paying special attention to the order in which the words appear. \n\n Instructions for the test administrator: Please toggle each word recited correctly to green and note whether the patient recited in order. ",
+        "instructions": "Complete the following task:  \n \n - Listen to the following list of words, paying special attention to the order in which the words appear. \n\n Instructions for the test administrator: Please toggle each word recited correctly to green and note whether the patient recited in order. ",
         "levels": []
     },
     {
