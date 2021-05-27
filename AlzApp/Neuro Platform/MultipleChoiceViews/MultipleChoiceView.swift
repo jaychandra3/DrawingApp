@@ -39,7 +39,7 @@ struct MultipleChoiceView: View {
             AnswerChoice(image:Image("infinity_triangular"))],
         "prism": [AnswerChoice(image:Image("prism_incorrect_orientation")), AnswerChoice(image:Image("prism_triangular")), AnswerChoice(image:Image("prism_correct")), AnswerChoice(image:Image("rectangular_prism_backlines"))],
         "arch_spiral": [AnswerChoice(image:Image("arch_spiral_cclock")), AnswerChoice(image:Image("arch_spiral_cclock_diff_start_pt")), AnswerChoice(image:Image("arch_spiral_correct")), AnswerChoice(image:Image("arch_spiral_diff_start_pt"))],
-        "spirograph": [],
+        "spirograph": [AnswerChoice(image:Image("spirograph_3")), AnswerChoice(image:Image("spirograph_6")), AnswerChoice(image:Image("spirograph_correct")), AnswerChoice(image:Image("spirograph_5"))],
         
         // Alzheimer's shapes:
         // circle_alz multiple choices are the same with the Parkinson's circle above
@@ -48,7 +48,7 @@ struct MultipleChoiceView: View {
         ],
         "circle_triangle_rect": [AnswerChoice(image:Image("circle_rect_tri_1")), AnswerChoice(image:Image("circle_rect_tri_2")), AnswerChoice(image:Image("circle_rect_tri_correct")), AnswerChoice(image:Image("circle_rect_tri_3"))],
         "circle_prism_triangle": [AnswerChoice(image:Image("circle_prism_tri_1")), AnswerChoice(image:Image("circle_prism_tri_2")), AnswerChoice(image:Image("circle_prism_tri_correct")), AnswerChoice(image:Image("circle_prism_tri_3"))],
-        "level5_undecided": []
+        "level5_undecided": [AnswerChoice(image:Image("park_lvl5_1")), AnswerChoice(image:Image("park_lvl5_2")), AnswerChoice(image:Image("park_lvl5_correct")), AnswerChoice(image:Image("park_lvl5_3"))]
     ]
     
     @State var currentChoiceIdx: Int? = nil
