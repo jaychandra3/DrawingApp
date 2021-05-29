@@ -6,9 +6,32 @@
 //  Copyright © 2021 NDDP. All rights reserved.
 //
 
- // might be changing distractor step 3 altogether (syllables test might not be the test)
 import SwiftUI
 
+struct Distractor3View: View {
+    @State private var words = ["Idea", "Skin", "Water", "Diesel", "Brown"]
+
+    var body: some View {
+        VStack (alignment: .leading) {
+            Text("Instructions for the test administrator:").font(.system(size:26)).bold().padding()
+            Text("Please drag the words below into the order the patient recited the words.").font(.system(size:25)).padding()
+            
+            List {
+                ForEach(words, id: \.self) { word in
+                    Text(word).font(.system(size:25))
+                }.onMove(perform: move)
+            }.listStyle(InsetGroupedListStyle())
+            Spacer()
+        }
+    }
+
+    func move(from source: IndexSet, to destination: Int) {
+        words.move(fromOffsets: source, toOffset: destination)
+        print(words)
+    }
+}
+
+/*
 struct Distractor3View: View {
     
     // MARK: Final data for analysis
@@ -66,7 +89,8 @@ struct Distractor3View: View {
             set: { self.results[key] = $0 })
     }
 }
-
+*/
+ 
 struct Distractor3View_Previews: PreviewProvider {
     static var previews: some View {
         Distractor3View()

@@ -50,7 +50,7 @@ struct stepView: View {
                 } else if currentStep.step == "distractor_step2" {
                     Spacer()
                     TimerView(displayDistractorView: $displayDistractorView).padding()
-                    Distractor2View().padding()
+                    Distractor3View().padding()
                     Spacer()
                 } else if currentStep.step == "distractor_step3" {
                     Spacer()

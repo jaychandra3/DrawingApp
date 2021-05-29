@@ -9,6 +9,21 @@
 import SwiftUI
 
 struct Distractor1View: View {
+    @State private var results: String = ""
+    
+    public struct CustomTextFieldStyle: TextFieldStyle {
+        public func _body(configuration: TextField<Self._Label>) -> some View {
+            configuration.padding(10).frame(height: 250).background(RoundedRectangle(cornerRadius:5).strokeBorder(Color.primary.opacity(0.5)))
+        }
+    }
+    
+    var body: some View {
+        TextField("Record answers here, with each answer separated by commas. (ex. 100,93,86,79...) ", text: $results).textFieldStyle(CustomTextFieldStyle()).border(Color.black).font(Font.system(size:25)).padding().multilineTextAlignment(.leading)
+    }
+}
+
+/*
+struct Distractor1View: View {
     // MARK: Final data for analysis
     @State private var results: [String:Bool] = DistractorAnswers.step1InitResults
     
@@ -55,7 +70,7 @@ struct Distractor1View: View {
             set: { self.results[key] = $0 })
     }
 }
-
+*/
 
 struct Distractor1View_Previews: PreviewProvider {
     static var previews: some View {
