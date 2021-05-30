@@ -9,13 +9,27 @@
 import SwiftUI
 
 struct Distractor3View: View {
+    @State private var results: String = ""
+    
+    public struct CustomTextFieldStyle: TextFieldStyle {
+        public func _body(configuration: TextField<Self._Label>) -> some View {
+            configuration.padding(10).frame(height: 250).background(RoundedRectangle(cornerRadius:5).strokeBorder(Color.primary.opacity(0.5)))
+        }
+    }
+    
+    var body: some View {
+        TextField("Record answers here, with each answer separated by a comma. (ex. idea,skin,water,diesel,brown) ", text: $results).textFieldStyle(CustomTextFieldStyle()).border(Color.black).font(Font.system(size:25)).padding().multilineTextAlignment(.leading)
+    }
+}
+
+/*
+// drag and drop
+struct Distractor3View: View {
     @State private var words = ["Idea", "Skin", "Water", "Diesel", "Brown"]
 
     var body: some View {
         VStack (alignment: .leading) {
-            Text("Instructions for the test administrator:").font(.system(size:26)).bold().padding()
-            Text("Please drag the words below into the order the patient recited the words.").font(.system(size:25)).padding()
-            
+            Text("Instructor: Please drag the words below into the order the patient recited the words.").font(.system(size:25)).padding()
             List {
                 ForEach(words, id: \.self) { word in
                     Text(word).font(.system(size:25))
@@ -30,6 +44,7 @@ struct Distractor3View: View {
         print(words)
     }
 }
+ */
 
 /*
 struct Distractor3View: View {
