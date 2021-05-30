@@ -33,13 +33,6 @@ struct DrawingView: View {
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
     
-    //updates stepList based on the testType environment variable: ultimately shows different shapes if alzheimer's or parkinson's
-    func changeStepList() {
-        if testType == "alzheimer's" {
-            stepList = steps_alz
-        }
-    }
-    
     var body: some View {
         VStack {
             switch trialList[trialnum] {
