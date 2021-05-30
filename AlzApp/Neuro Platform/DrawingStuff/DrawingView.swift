@@ -15,6 +15,7 @@ struct DrawingView: View {
     @State private var lineWidth : CGFloat = 3.0
     @Binding var rootIsActive: Bool
     @State var stepList: Array<Step> = steps
+    @State var trialList: Array<TrialType> = trialListParkinson
     var trials : Int
     @State private var trialnum : Int = 0
     @State private var levelnum: Int = 2
@@ -82,6 +83,7 @@ struct DrawingView: View {
                     if (trialList[trialnum] == .practice_screen) {
                         if testType == "alzheimer's" {
                             stepList = steps_alz
+                            trialList = trialListAlz
                             patientInfo += "Test Type: Alzheimer's\n"
                         }
                         else {
@@ -184,12 +186,14 @@ struct DrawingView: View {
                     if (calibrationDone || trialList[trialnum] != .encoding_step1) {
                         trialnum += 1
                         if trialnum >= trialList.count {
-                            patientInfo += "MCQ Selection: " + MCQFinalAnswer.answer!.description + "\n"
-                            // assuming correct answer is always C
-                            patientInfo += "MCQ Correctness: " + (MCQFinalAnswer.answer! == 3).description + "\n"
+                            if testType == "alzheimer's" {
+                                patientInfo += "MCQ Selection: " + MCQFinalAnswer.answer!.description + "\n"
+                                // assuming correct answer is always C
+                                patientInfo += "MCQ Correctness: " + (MCQFinalAnswer.answer! == 3).description + "\n"
+                                print(patientInfo)
+                                MCQFinalAnswer.reset() // Resets MCQFinalAnswer struct after saving
+                            }
                             self.rootIsActive.toggle()
-                            print(patientInfo)
-                            MCQFinalAnswer.reset() // Resets MCQFinalAnswer struct after saving
     //                        avoid OOB
                             finishInfo(patient: patientID, patientInfoCSV: patientInfo)
                             trialnum -= 1

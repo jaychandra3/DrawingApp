@@ -47,7 +47,11 @@ var trialList : [(TrialType, TrialShape)] = [
 ]
 */
 
-var trialList: [TrialType] = [
+var trialListParkinson: [TrialType] = [
+    .practice_screen, .encoding_step1, .encoding_step2, .encoding_step3
+]
+
+var trialListAlz: [TrialType] = [
     .practice_screen, .encoding_step1, .encoding_step2, .encoding_step3, .distractor_step1, .distractor_step2, .distractor_step3, .retrieval_step1, .multiple_choice
 ]
 

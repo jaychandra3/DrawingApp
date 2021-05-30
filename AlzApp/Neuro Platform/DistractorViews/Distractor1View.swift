@@ -11,6 +11,7 @@ import SwiftUI
 struct Distractor1View: View {
     @State private var results: String = ""
     
+    // custom TextFieldStyle to provide a TextField of greater height
     public struct CustomTextFieldStyle: TextFieldStyle {
         public func _body(configuration: TextField<Self._Label>) -> some View {
             configuration.padding(10).frame(height: 250).background(RoundedRectangle(cornerRadius:5).strokeBorder(Color.primary.opacity(0.5)))
