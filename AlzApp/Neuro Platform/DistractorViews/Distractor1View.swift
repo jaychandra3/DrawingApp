@@ -21,7 +21,7 @@ struct Distractor1View: View {
     var body: some View {
         TextField("Record answers here, with each answer separated by commas. (ex. 100,93,86,79...) ", text: $results, onEditingChanged: { isEditingDone in
             if !isEditingDone {
-                DistractorAnswers.calculateScore(result: results)
+                DistractorAnswers.calculateStep1Score(result: results)
             }
         })
             .textFieldStyle(CustomTextFieldStyle()).border(Color.black).font(Font.system(size:25)).padding().multilineTextAlignment(.leading)

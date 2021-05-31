@@ -101,14 +101,14 @@ struct DrawingView: View {
                     }
                     if (trialList[trialnum] == .distractor_step2) {
                         patientInfo += "Distractor Step 2 Results : " + DistractorAnswers.step2FinalResult.description + "\n"
-                        let d2score: Double = DistractorAnswers.step2FinalResult["score"] as! Double
+                        let d2score: String = DistractorAnswers.step2FinalResult["score"] ?? "0"
                         patientInfo += "Distractor Step 2 Score: " + d2score.description + "%\n"
                     }
                     if (trialList[trialnum] == .distractor_step3) {
                         patientInfo += "Distractor Step 3 Results : " + DistractorAnswers.step3FinalResult.description + "\n"
-                        let d3score: Double = DistractorAnswers.step3FinalResult["score"] as! Double
+                        let d3score: String = DistractorAnswers.step3FinalResult["score"] ?? "0"
                         patientInfo += "Distractor Step 3 Score: " + d3score.description + "%\n"
-                        let d3inOrder: Bool = DistractorAnswers.step3FinalResult["inOrder"] as! Bool
+                        let d3inOrder: String = DistractorAnswers.step3FinalResult["inOrder"] ?? "false"
                         patientInfo += "Distractor Step 3 InOrder: " + d3inOrder.description + "\n"
                     }
                     

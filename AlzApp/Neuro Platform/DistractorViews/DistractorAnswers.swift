@@ -45,7 +45,7 @@ struct DistractorAnswers {
         }
     }
     
-    static func calculateScore(result: String) {
+    static func calculateStep1Score(result: String) {
         let separators = CharacterSet(charactersIn: ",")
         let resultArray = result.components(separatedBy: separators)
         var score: Int = 0
@@ -66,7 +66,7 @@ struct DistractorAnswers {
     
     static var step2AnswerKey: [String] {
         get {
-            let alphabet: Array<Character> = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+            let alphabet: Array<Character> = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
             var answers: [String] = []
             
             for (index, letter) in alphabet.enumerated() {
@@ -88,6 +88,21 @@ struct DistractorAnswers {
             
             return initialResults
         }
+    }
+    
+    static func calculateStep2Score(result: String) {
+        let separators = CharacterSet(charactersIn: ",")
+        let resultArray = result.components(separatedBy: separators)
+        var score: Int = 0
+        
+        for res in resultArray {
+            if step2AnswerKey.contains(res.uppercased()) {
+                score += 1
+            }
+        }
+        
+        let scoreInPercent: Double = Double(score) / Double(step2AnswerKey.count) * Double(100)
+        step2FinalResult = ["result": result, "score": String(scoreInPercent)]
     }
     
     // MARK: Distractor Step 3
