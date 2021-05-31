@@ -80,6 +80,7 @@ struct DrawingView: View {
                 Spacer()
                 
                 Button(action: {
+                    print(trialList[trialnum])
                     if (trialList[trialnum] == .practice_screen) {
                         if testType == "alzheimer's" {
                             stepList = steps_alz
@@ -95,7 +96,7 @@ struct DrawingView: View {
                     if (trialList[trialnum] == .distractor_step1) {
                         patientInfo += "Distractor Step 1 Results : " + DistractorAnswers.step1FinalResult.description + "\n"
                         
-                        let d1score: Double = DistractorAnswers.step1FinalResult["score"] as? Double ?? 0
+                        let d1score: String = DistractorAnswers.step1FinalResult["score"] ?? "0"
                         patientInfo += "Distractor Step 1 Score: " + d1score.description + "%\n"
                     }
                     if (trialList[trialnum] == .distractor_step2) {

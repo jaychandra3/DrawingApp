@@ -14,9 +14,9 @@ struct DistractorAnswers {
      These variables should be populated when 'Next Trial' button is clicked for easy data access.
      */
     // Conceptually, this should be an instance variable (not static) ??? At risk of illegal overrides from other views.
-    static var step1FinalResult: Dictionary<String, Any> = [:]
-    static var step2FinalResult: Dictionary<String, Any> = [:]
-    static var step3FinalResult: Dictionary<String, Any> = [:]
+    static var step1FinalResult: Dictionary<String, String> = [:]
+    static var step2FinalResult: Dictionary<String, String> = [:]
+    static var step3FinalResult: Dictionary<String, String> = [:]
     
     
     // MARK: Distractor Step 1
@@ -43,6 +43,22 @@ struct DistractorAnswers {
             
             return initialResults
         }
+    }
+    
+    static func calculateScore(result: String) {
+        let separators = CharacterSet(charactersIn: ",")
+        let resultArray = result.components(separatedBy: separators)
+        var score: Int = 0
+        
+        print(resultArray)
+        for res in resultArray {
+            if step1AnswerKey.contains(Int(res) ?? -1) {
+                score += 1
+            }
+        }
+        
+        let scoreInPercent: Double = Double(score) / Double(step1AnswerKey.count) * Double(100)
+        step1FinalResult = ["result": result, "score": String(scoreInPercent)]
     }
     
     
