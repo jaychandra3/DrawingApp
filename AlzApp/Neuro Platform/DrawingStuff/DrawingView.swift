@@ -61,8 +61,10 @@ struct DrawingView: View {
                 }
             case .encoding_step2:
                 stepView(currentStep: stepList[2], finalShape: finalShape, data: $data)
+            case .fast:
+                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
             case .encoding_step3:
-                stepView(currentStep: stepList[3], data: $data)
+                stepView(currentStep: stepList[4], data: $data)
             case .distractor_step1:
                 stepView(currentStep: stepList[4], data: $data)
             case .distractor_step2:

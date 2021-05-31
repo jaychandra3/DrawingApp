@@ -48,12 +48,19 @@
     {
         "id": 1003,
         "step": "encoding_step2",
-        "stepLabel": "Step 2 - Encoding of Highest Difficulty Level Shape Achieved",
+        "stepLabel": "Step 2 - Accurate Tracing",
         "instructions": "Trace the figure below as accurately as possible. ",
         "levels": []
     },
     {
         "id": 1004,
+        "step": "fast",
+        "stepLabel": "Step 3 - Fast Tracing",
+        "instructions": "Trace the figure below as quickly as possible. ",
+        "levels": []
+    },
+    {
+        "id": 1005,
         "step": "encoding_step3",
         "stepLabel": "Step 3 - Free Hand Drawing of Highest Difficulty Level Shape Achieved",
         "instructions": "From your memory, draw the figure from the previous step as accurately as possible. ",

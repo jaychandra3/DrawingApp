@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 enum TrialType {
-    //case fast
+    case fast
     //case accurate
     case practice_screen
     // case animation_screen
@@ -40,15 +40,8 @@ enum LevelNum {
     case level5
 }
 
-/*
-// this trialList is for Elias' original version
-var trialList : [(TrialType, TrialShape)] = [
-    (.accurate, .archspiral), (.fast, .multipleshapes), (.fast, .spirosquare), (.accurate, .rectangle)
-]
-*/
-
 var trialListParkinson: [TrialType] = [
-    .practice_screen, .encoding_step1, .encoding_step2, .encoding_step3
+    .practice_screen, .encoding_step1, .encoding_step2, .fast, .encoding_step3
 ]
 
 var trialListAlz: [TrialType] = [
