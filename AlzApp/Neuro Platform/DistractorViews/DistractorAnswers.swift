@@ -63,7 +63,6 @@ struct DistractorAnswers {
         
         let scoreInPercent: Double = Double(score) / Double(step1AnswerKey.count) * Double(100)
         step1FinalResult = ["result": result, "score": String(scoreInPercent)]
-        let fr = step1FinalResult
     }
     
     
@@ -112,7 +111,6 @@ struct DistractorAnswers {
         
         let scoreInPercent: Double = Double(score) / Double(step2AnswerKey.count) * Double(100)
         step2FinalResult = ["result": result, "score": String(scoreInPercent)]
-        let fr = step2FinalResult
     }
     
     // MARK: Distractor Step 3
@@ -161,6 +159,5 @@ struct DistractorAnswers {
         
         let scoreInPercent: Double = Double(score) / Double(step3AnswerKey.count) * Double(100)
         step3FinalResult = ["result": result, "score": String(scoreInPercent), "inOrder": String(inOrder)]
-        let fr = step3FinalResult
     }
 }
