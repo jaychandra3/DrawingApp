@@ -25,6 +25,9 @@ struct Distractor1View: View {
             }
         })
             .textFieldStyle(CustomTextFieldStyle()).border(Color.black).font(Font.system(size:25)).padding().multilineTextAlignment(.leading)
+        .onDisappear {
+            DistractorAnswers.calculateStep1Score(result: results)
+        }
     }
 }
 

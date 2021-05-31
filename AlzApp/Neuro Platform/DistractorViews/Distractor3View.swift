@@ -23,6 +23,9 @@ struct Distractor3View: View {
                 DistractorAnswers.calculateStep3Score(result: results)
             }
         }).textFieldStyle(CustomTextFieldStyle()).border(Color.black).font(Font.system(size:25)).padding().multilineTextAlignment(.leading)
+        .onDisappear {
+            DistractorAnswers.calculateStep3Score(result: results)
+        }
     }
 }
 
