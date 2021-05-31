@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Distractor3View: View {
-    @State private var results: String = ""
+    static private var results: String = ""
     
     public struct CustomTextFieldStyle: TextFieldStyle {
         public func _body(configuration: TextField<Self._Label>) -> some View {
