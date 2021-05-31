@@ -49,16 +49,21 @@ struct DistractorAnswers {
         let separators = CharacterSet(charactersIn: ",")
         let resultArray = result.components(separatedBy: separators)
         var score: Int = 0
+        var checked: [String] = []
         
         print(resultArray)
         for res in resultArray {
             if step1AnswerKey.contains(Int(res) ?? -1) {
-                score += 1
+                if !checked.contains(res) {
+                    score += 1
+                    checked.append(res)
+                }
             }
         }
         
         let scoreInPercent: Double = Double(score) / Double(step1AnswerKey.count) * Double(100)
         step1FinalResult = ["result": result, "score": String(scoreInPercent)]
+        let fr = step1FinalResult
     }
     
     
@@ -94,15 +99,20 @@ struct DistractorAnswers {
         let separators = CharacterSet(charactersIn: ",")
         let resultArray = result.components(separatedBy: separators)
         var score: Int = 0
+        var checked: [String] = []
         
         for res in resultArray {
             if step2AnswerKey.contains(res.uppercased()) {
-                score += 1
+                if !checked.contains(res.uppercased()) {
+                    score += 1
+                    checked.append(res.uppercased())
+                }
             }
         }
         
         let scoreInPercent: Double = Double(score) / Double(step2AnswerKey.count) * Double(100)
         step2FinalResult = ["result": result, "score": String(scoreInPercent)]
+        let fr = step2FinalResult
     }
     
     // MARK: Distractor Step 3
@@ -125,8 +135,32 @@ struct DistractorAnswers {
                 initialResults[answer] = false
             }
             
-            
             return initialResults
         }
+    }
+    
+    static func calculateStep3Score(result: String) {
+        let separators = CharacterSet(charactersIn: ",")
+        let resultArray = result.components(separatedBy: separators)
+        var score: Int = 0
+        var inOrder: Bool = true
+        var checked: [String] = []
+        
+        for (index, res) in resultArray.enumerated() {
+            if step3AnswerKey.contains(res.lowercased()) {
+                if !checked.contains(res.lowercased()) {
+                    score += 1
+                    checked.append(res.lowercased())
+                }
+            }
+            
+            if (index < step3AnswerKey.count && res.lowercased() != step3AnswerKey[index]) {
+                inOrder = false
+            }
+        }
+        
+        let scoreInPercent: Double = Double(score) / Double(step3AnswerKey.count) * Double(100)
+        step3FinalResult = ["result": result, "score": String(scoreInPercent), "inOrder": String(inOrder)]
+        let fr = step3FinalResult
     }
 }
