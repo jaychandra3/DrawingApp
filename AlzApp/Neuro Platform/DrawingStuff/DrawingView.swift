@@ -93,25 +93,6 @@ struct DrawingView: View {
                         }
                     }
                     
-                    if (trialList[trialnum] == .distractor_step1) {
-                        patientInfo += "Distractor Step 1 Results : " + DistractorAnswers.step1FinalResult.description + "\n"
-                        
-                        let d1score: String = DistractorAnswers.step1FinalResult["score"] ?? "0"
-                        patientInfo += "Distractor Step 1 Score: " + d1score.description + "%\n"
-                    }
-                    if (trialList[trialnum] == .distractor_step2) {
-                        patientInfo += "Distractor Step 2 Results : " + DistractorAnswers.step2FinalResult.description + "\n"
-                        let d2score: String = DistractorAnswers.step2FinalResult["score"] ?? "0"
-                        patientInfo += "Distractor Step 2 Score: " + d2score.description + "%\n"
-                    }
-                    if (trialList[trialnum] == .distractor_step3) {
-                        patientInfo += "Distractor Step 3 Results : " + DistractorAnswers.step3FinalResult.description + "\n"
-                        let d3score: String = DistractorAnswers.step3FinalResult["score"] ?? "0"
-                        patientInfo += "Distractor Step 3 Score: " + d3score.description + "%\n"
-                        let d3inOrder: String = DistractorAnswers.step3FinalResult["inOrder"] ?? "false"
-                        patientInfo += "Distractor Step 3 InOrder: " + d3inOrder.description + "\n"
-                    }
-                    
                     if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + "level" + (levelnum+1).description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
                         (trialList[trialnum] != .multiple_choice) {
                         // toggle showingAlert so that the alert message pops up when necessary
@@ -188,6 +169,23 @@ struct DrawingView: View {
                         trialnum += 1
                         if trialnum >= trialList.count {
                             if testType == "alzheimer's" {
+                                let d1result: String = DistractorAnswers.step1FinalResult["result"] ?? ""
+                                patientInfo += "Distractor Step 1 Results : " + d1result + "\n"
+                                //let d1score: String = DistractorAnswers.step1FinalResult["score"] ?? "0"
+                                //patientInfo += "Distractor Step 1 Score: " + d1score.description + "%\n"
+                            
+                                let d2result: String = DistractorAnswers.step2FinalResult["result"] ?? ""
+                                patientInfo += "Distractor Step 2 Results : " + d2result + "\n"
+                                //let d2score: String = DistractorAnswers.step2FinalResult["score"] ?? "0"
+                                //patientInfo += "Distractor Step 2 Score: " + d2score.description + "%\n"
+                                
+                                let d3result: String = DistractorAnswers.step3FinalResult["result"] ?? ""
+                                patientInfo += "Distractor Step 3 Results : " + d3result + "\n"
+                                //let d3score: String = DistractorAnswers.step3FinalResult["score"] ?? "0"
+                                //patientInfo += "Distractor Step 3 Score: " + d3score.description + "%\n"
+                                let d3inOrder: String = DistractorAnswers.step3FinalResult["inOrder"] ?? "false"
+                                patientInfo += "Distractor Step 3 InOrder: " + d3inOrder.description + "\n"
+                                
                                 patientInfo += "MCQ Selection: " + MCQFinalAnswer.answer!.description + "\n"
                                 // assuming correct answer is always C
                                 patientInfo += "MCQ Correctness: " + (MCQFinalAnswer.answer! == 3).description + "\n"
