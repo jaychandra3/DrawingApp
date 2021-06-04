@@ -178,6 +178,7 @@ struct Level4: Shape {
         return path
     }
 }
+
 struct Level5: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -203,11 +204,12 @@ struct Level5: Shape {
     path.addLine(to: CGPoint(x: 350, y: 350))       //C(1)
     path.addLine(to: CGPoint(x: 750, y: 350))       //C(6)
                                                 //Trapezoid coords
-       path.move(to: CGPoint(x: 500, y: 250))       //1
-    path.addLine(to: CGPoint(x: 200, y: 250))       //2
-    path.addLine(to: CGPoint(x: 250, y: 400))       //3
-    path.addLine(to: CGPoint(x: 450, y: 400))       //4
-    path.addLine(to: CGPoint(x: 500, y: 250))       //wrap(4)
+       path.move(to: CGPoint(x: 500, y: 230))       //1
+    path.addLine(to: CGPoint(x: 200, y: 130))       //2
+    path.addLine(to: CGPoint(x: 280, y: 350))       //3
+    path.addLine(to: CGPoint(x: 320, y: 300))       //4
+    path.addLine(to: CGPoint(x: 380, y: 400))       //5
+    path.addLine(to: CGPoint(x: 500, y: 230))        //wrap
         return path
     }
 }
