@@ -64,7 +64,11 @@ struct DrawingView: View {
             case .fast:
                 stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
             case .encoding_step3:
-                stepView(currentStep: stepList[4], data: $data)
+                if testType == "alzheimer's" {
+                    stepView(currentStep: stepList[3], data: $data)
+                } else {
+                    stepView(currentStep: stepList[4], data: $data)
+                }
             case .distractor_step1:
                 stepView(currentStep: stepList[4], data: $data)
             case .distractor_step2:
