@@ -11,6 +11,7 @@ import SwiftUI
 struct Distractor1View: View {
     @State private var results: String = ""
     
+    // custom TextFieldStyle to provide a TextField of greater height
     public struct CustomTextFieldStyle: TextFieldStyle {
         public func _body(configuration: TextField<Self._Label>) -> some View {
             configuration.padding(10).frame(height: 250).background(RoundedRectangle(cornerRadius:5).strokeBorder(Color.primary.opacity(0.5)))
@@ -18,7 +19,15 @@ struct Distractor1View: View {
     }
     
     var body: some View {
-        TextField("Record answers here, with each answer separated by commas. (ex. 100,93,86,79...) ", text: $results).textFieldStyle(CustomTextFieldStyle()).border(Color.black).font(Font.system(size:25)).padding().multilineTextAlignment(.leading)
+        TextField("Record answers here, with each answer separated by commas. (ex. 100,93,86,79...) ", text: $results, onEditingChanged: { isEditingDone in
+            if !isEditingDone {
+                DistractorAnswers.calculateStep1Score(result: results)
+            }
+        })
+            .textFieldStyle(CustomTextFieldStyle()).border(Color.black).font(Font.system(size:25)).padding().multilineTextAlignment(.leading)
+        .onDisappear {
+            DistractorAnswers.calculateStep1Score(result: results)
+        }
     }
 }
 

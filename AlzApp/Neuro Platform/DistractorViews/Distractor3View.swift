@@ -18,7 +18,14 @@ struct Distractor3View: View {
     }
     
     var body: some View {
-        TextField("Record answers here, with each answer separated by a comma. (ex. idea,skin,water,diesel,brown) ", text: $results).textFieldStyle(CustomTextFieldStyle()).border(Color.black).font(Font.system(size:25)).padding().multilineTextAlignment(.leading)
+        TextField("Record answers here, with each answer separated by a comma. (ex. idea,skin,water,diesel,brown) ", text: $results, onEditingChanged: { isEditingDone in
+            if !isEditingDone {
+                DistractorAnswers.calculateStep3Score(result: results)
+            }
+        }).textFieldStyle(CustomTextFieldStyle()).border(Color.black).font(Font.system(size:25)).padding().multilineTextAlignment(.leading)
+        .onDisappear {
+            DistractorAnswers.calculateStep3Score(result: results)
+        }
     }
 }
 

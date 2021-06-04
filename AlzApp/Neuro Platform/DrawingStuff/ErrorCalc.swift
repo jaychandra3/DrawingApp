@@ -183,12 +183,13 @@ class ErrorCalc {
                 error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 350, y: 350), and: CGPoint(x: 750, y: 350)))
             }
             
-            // Distance to Trapezoid
+            // Distance to Blob
             if (isAlz && level == 5) {
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 500, y: 250), and: CGPoint(x: 200, y: 250)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 200, y: 250), and: CGPoint(x: 250, y: 400)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 400), and: CGPoint(x: 450, y: 400)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 450, y: 400), and: CGPoint(x: 500, y: 250)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 500, y: 230), and: CGPoint(x: 200, y: 130)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 200, y: 130), and: CGPoint(x: 280, y: 350)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 280, y: 350), and: CGPoint(x: 320, y: 300)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 320, y: 300), and: CGPoint(x: 380, y: 400)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 380, y: 400), and: CGPoint(x: 500, y: 230)))
             }
             
             // Calculate min distance to overall figure
@@ -344,6 +345,16 @@ class ErrorCalc {
             zones.append(CGPoint(x: 350, y: 150))
             zones.append(CGPoint(x: 350, y: 350))
             zones.append(CGPoint(x: 750, y: 350))
+        }
+        
+        // Check Blob
+        if (isAlz && level == 5) {
+            radius = 20
+            zones.append(CGPoint(x: 500, y: 230))
+            zones.append(CGPoint(x: 200, y: 130))
+            zones.append(CGPoint(x: 280, y: 350))
+            zones.append(CGPoint(x: 320, y: 300))
+            zones.append(CGPoint(x: 380, y: 400))
         }
         
         return checkZones(data: data, zones: zones, radius: radius)

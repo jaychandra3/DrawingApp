@@ -9,7 +9,7 @@
     {
         "id": 1002,
         "step": "encoding_step1",
-        "stepLabel": "Encoding Step 1 - Initial Shape Testing & Level Placement",
+        "stepLabel": "Step 1 - Initial Shape Testing & Level Placement",
         "instructions": "Trace the figure below as accurately as possible. ",
         "levels":
         [
@@ -48,50 +48,22 @@
     {
         "id": 1003,
         "step": "encoding_step2",
-        "stepLabel": "Encoding Step 2 - Encoding of Highest Difficulty Level Shape Achieved",
+        "stepLabel": "Step 2 - Accurate Tracing",
         "instructions": "Trace the figure below as accurately as possible. ",
         "levels": []
     },
     {
         "id": 1004,
-        "step": "encoding_step3",
-        "stepLabel": "Encoding Step 3 - Free Hand Drawing of Highest Difficulty Level Shape Achieved",
-        "instructions": "From your memory, draw the figure from the previous step as accurately as possible. ",
+        "step": "fast",
+        "stepLabel": "Step 3 - Fast Tracing",
+        "instructions": "Trace the figure below as quickly as possible. ",
         "levels": []
     },
     {
         "id": 1005,
-        "step": "distractor_step1",
-        "stepLabel": "Distractor Step 1",
-        "instructions": "For this part of the test, after reading the following instructions, please hand the iPad to the test administrator (do not press the Start button!). After you complete this task, listen to the administrator for further instructions. \n \n Complete the following task:  \n \n - Count backwards from 100 by 7s. ",
-        "levels": []
-    },
-    {
-        "id": 1006,
-        "step": "distractor_step2",
-        "stepLabel": "Distractor Step 2",
-        "instructions": "Complete the following task:  \n \n - Alternate letters and numbers through the entire alphabet (i.e. a1, b2, c3, d4, etc.)",
-        "levels": []
-    },
-    {
-        "id": 1007,
-        "step": "distractor_step3",
-        "stepLabel": "Distractor Step 3",
-        "instructions": "Complete the following task:  \n \n - Listen to the following list of words, paying special attention to the order in which the words appear. \n\n Instructions for the test administrator: Please toggle each word recited correctly to green and note whether the patient recited in order. ",
-        "levels": []
-    },
-    {
-        "id": 1008,
-        "step": "retrieval_step",
-        "stepLabel": "Retrieval Step 1 - Free Hand Drawing",
-        "instructions": "Reproduce the last figure from the encoding step you drew from memory to the best of your ability.",
-        "levels": []
-    },
-    {
-        "id": 1009,
-        "step": "retrieval_step_multiple_choice",
-        "stepLabel": "Retrieval Step 2 - Multiple Choice",
-        "instructions": "Which of the follow best matches the last figure you drew from the encoding step? (Record time till decision?)",
+        "step": "encoding_step3",
+        "stepLabel": "Step 3 - Free Hand Drawing of Highest Difficulty Level Shape Achieved",
+        "instructions": "From your memory, draw the figure from the previous step as accurately as possible. ",
         "levels": []
     }
 ]
