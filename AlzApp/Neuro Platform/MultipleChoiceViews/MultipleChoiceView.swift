@@ -48,7 +48,7 @@ struct MultipleChoiceView: View {
         ],
         "circle_triangle_rect": [AnswerChoice(image:Image("circle_rect_tri_1")), AnswerChoice(image:Image("circle_rect_tri_2")), AnswerChoice(image:Image("circle_rect_tri_correct")), AnswerChoice(image:Image("circle_rect_tri_3"))],
         "circle_prism_triangle": [AnswerChoice(image:Image("circle_prism_tri_1")), AnswerChoice(image:Image("circle_prism_tri_2")), AnswerChoice(image:Image("circle_prism_tri_correct")), AnswerChoice(image:Image("circle_prism_tri_3"))],
-        "level5_undecided": [AnswerChoice(image:Image("park_lvl5_1")), AnswerChoice(image:Image("park_lvl5_2")), AnswerChoice(image:Image("park_lvl5_correct")), AnswerChoice(image:Image("park_lvl5_3"))]
+        "level5_undecided": [AnswerChoice(image:Image("alz_lvl5_1")), AnswerChoice(image:Image("alz_lvl5_2")), AnswerChoice(image:Image("alz_lvl5_correct")), AnswerChoice(image:Image("alz_lvl5_3"))]
     ]
     
     @State var currentChoiceIdx: Int? = nil
