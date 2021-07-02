@@ -31,11 +31,19 @@ struct SpiroSquare: Shape {
 
 struct ArchSpiral: Shape {
     func path(in rect: CGRect) -> Path {
+        print("height \(UIScreen.screenHeight)")
+        print("width \(UIScreen.screenWidth)")
+        let screenWidth : CGFloat = UIScreen.screenWidth
+        let screenHeight : CGFloat = UIScreen.screenHeight
+        let xFactor : CGFloat = 2.048
+        let yFactor : CGFloat = 5.464
+        let woundDistance : CGFloat = (14.0 / 1024.0) * screenWidth
+
         var path = Path()
         for theta in stride(from: 0, through: 6.0*CGFloat.pi, by: 0.01) {
-            let x = 500 + cos(theta) * 14 * theta
-            let y = 250 + sin(theta) * 14 * theta
-            if x > 800 || y > 800  || x < 0 || y < 0 {
+            let x = screenWidth / xFactor + cos(theta) * woundDistance * theta
+            let y = screenHeight / yFactor + sin(theta) * woundDistance * theta
+            if x > screenWidth || y > screenHeight  || x < 0 || y < 0 {
                 break
             }
             if theta == 0 {
@@ -48,6 +56,28 @@ struct ArchSpiral: Shape {
         return path
     }
 }
+
+//struct ArchSpiral: Shape {
+//    func path(in rect: CGRect) -> Path {
+//        print("height \(UIScreen.screenHeight)")
+//        print("width \(UIScreen.screenWidth)")
+//        var path = Path()
+//        for theta in stride(from: 0, through: 6.0*CGFloat.pi, by: 0.01) {
+//            let x = 500 + cos(theta) * 14 * theta
+//            let y = 250 + sin(theta) * 14 * theta
+//            if x > 800 || y > 800  || x < 0 || y < 0 {
+//                break
+//            }
+//            if theta == 0 {
+//                path.move(to: CGPoint(x: x, y: y))
+//            }
+//            else {
+//                path.addLine(to: CGPoint(x: x, y: y))
+//            }
+//        }
+//        return path
+//    }
+//}
 
 struct Prism: Shape {
     func path(in rect: CGRect) -> Path {
