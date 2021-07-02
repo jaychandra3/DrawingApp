@@ -116,8 +116,7 @@ struct Level1: Shape {
         let scalar : CGFloat = UIScreen.screenWidth/1024
         var path = Path()
         //Circle specifications
-        path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200,
-        startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
+        path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200, startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
         return path
     }
 }
@@ -168,12 +167,12 @@ struct Level4: Shape {
             path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200,
                         startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
                                                     //Triangle coords
-           path.move(to: CGPoint(x: scalar * 750, y: scalar * 250))       //1
+            path.move(to: CGPoint(x: scalar * 750, y: scalar * 250))       //1
         path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 400))       //2
         path.addLine(to: CGPoint(x: scalar * 850, y: scalar * 400))       //3
         path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 250))       //wrap(1)
                                                     //Prism coords
-           path.move(to: CGPoint(x: scalar * 350, y: scalar * 350))       //1
+            path.move(to: CGPoint(x: scalar * 350, y: scalar * 350))       //1
         path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 150))       //2
         path.addLine(to: CGPoint(x: scalar * 420, y: scalar * 060))       //3
         path.addLine(to: CGPoint(x: scalar * 820, y: scalar * 060))       //4
@@ -194,7 +193,7 @@ struct Level5: Shape {
         let scalar : CGFloat = UIScreen.screenWidth/1024
         var path = Path()
                                                 //Circle specifications
-        path.addArc(center: CGPoint(x: 350, y: 247), radius: 200,
+        path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200,
                     startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
                                                 //Triangle coords
        path.move(to: CGPoint(x: scalar * 750, y: scalar * 250))       //1
@@ -214,7 +213,7 @@ struct Level5: Shape {
     path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 150))       //B(2)
     path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 350))       //C(1)
     path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 350))       //C(6)
-                                                //Trapezoid coords
+                                                //Blob coords
        path.move(to: CGPoint(x: scalar * 500, y: scalar * 230))       //1
     path.addLine(to: CGPoint(x: scalar * 200, y: scalar * 130))       //2
     path.addLine(to: CGPoint(x: scalar * 280, y: scalar * 350))       //3

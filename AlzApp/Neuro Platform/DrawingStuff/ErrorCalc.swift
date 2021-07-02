@@ -2,7 +2,7 @@
 //  ErrorCalc.swift
 //  Neuro Platform
 //
-//  Created by md on 5/23/21.
+//  Created by Richard Deng on 5/23/21.
 //  Copyright © 2021 NDDP. All rights reserved.
 //
 
@@ -26,32 +26,33 @@ class ErrorCalc {
         var avg_error : CGFloat = 0
         var count : CGFloat = 0
         var error_arr : [CGFloat] = [CGFloat]()
-        let spiral_center : CGPoint = CGPoint(x: 500, y: 250)
-        let infinity_center : CGPoint = CGPoint(x: 500, y: 250)
-        let spirograph_center: CGPoint = CGPoint(x: 500, y: 250)
+        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let spiral_center : CGPoint = CGPoint(x: scalar*500, y: scalar*250)
+        let infinity_center : CGPoint = CGPoint(x: scalar*500, y: scalar*250)
+        let spirograph_center: CGPoint = CGPoint(x: scalar*500, y: scalar*250)
         
         for point in data.coordinates{
             print("X: " + point.x.description + " Y: " + point.y.description)
             
             // Distance to Spiral
             if (!isAlz && level == 4) {
-            // center everything at (0,0)
-            let norm_point : CGPoint = CGPoint(x: point.x-spiral_center.x, y: point.y-spiral_center.y)
-                if(norm_point.x*norm_point.x+norm_point.y+norm_point.y < 2000) {
-                    error_arr.append(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y))
+                // center everything at (0,0)
+                let norm_point : CGPoint = CGPoint(x: point.x-spiral_center.x, y: point.y-spiral_center.y)
+                if(norm_point.x*norm_point.x+norm_point.y+norm_point.y < scalar*2000) {
+                        error_arr.append(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y))
                 }
                 // distance to theta-based projection onto spiral
                 let theta : CGFloat = calcTheta(p: norm_point)
-                let nearest_ring : CGFloat = CGFloat(Int(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) / (14*2*CGFloat.pi)))
+                let nearest_ring : CGFloat = CGFloat(Int(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) / (scalar*14*2*CGFloat.pi)))
                 let theta1 : CGFloat = theta + 2*CGFloat.pi*nearest_ring
                 let theta2 : CGFloat = theta1 + 2*CGFloat.pi
-                var projected_radius : CGFloat = 14*theta1
+                var projected_radius : CGFloat = scalar*14*theta1
                 error_arr.append(abs(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) - projected_radius))
-                projected_radius = 14*theta2
+                projected_radius = scalar*14*theta2
                 error_arr.append(abs(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) - projected_radius))
                 if (nearest_ring >= 1) {
                     let theta3 : CGFloat = theta1 - 2*CGFloat.pi
-                    projected_radius = 14*theta3
+                    projected_radius = scalar*14*theta3
                     error_arr.append(abs(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) - projected_radius))
                 }
             }
@@ -62,22 +63,22 @@ class ErrorCalc {
                 
                  // one error is distance to theta-based projection onto infinity
                 let theta : CGFloat = calcTheta(p: norm_point)
-                let projected_radius : CGFloat = sqrt(2.2*200*2.2*200*cos(2*theta))
+                let projected_radius : CGFloat = sqrt(scalar*2.2*200*scalar*2.2*200*cos(2*theta))
                 
                 // if point is within a circle with radius 370
                 // another error is distance to approximating parabola y = -(1/500)x(x-500)
                 if (norm_point.x*norm_point.x + norm_point.y*norm_point.y <= 136900 || norm_point.x*norm_point.x + norm_point.y*norm_point.y - projected_radius < 0) {
                     if (norm_point.x >= 0 && norm_point.y >= 0) {
-                        error_arr.append(distanceToParabola(p: norm_point, a: -0.002, b: 1.1, c: 0))
+                        error_arr.append(distanceToParabola(p: norm_point, a: Double(-0.002*scalar*scalar), b: Double(1.1*scalar), c: 0))
                     }
                     else if (norm_point.x < 0 && norm_point.y >= 0) {
-                        error_arr.append(distanceToParabola(p: norm_point, a: -0.002, b: -1.1, c: 0))
+                        error_arr.append(distanceToParabola(p: norm_point, a: Double(-0.002*scalar*scalar), b: Double(-1.1*scalar), c: 0))
                     }
                     else if (norm_point.x < 0 && norm_point.y < 0) {
-                        error_arr.append(distanceToParabola(p: norm_point, a: 0.002, b: 1.1, c: 0))
+                        error_arr.append(distanceToParabola(p: norm_point, a: Double(0.002*scalar*scalar), b: Double(1.1*scalar), c: 0))
                     }
                     else {
-                        error_arr.append(distanceToParabola(p: norm_point, a: 0.002, b: -1.1, c: 0))
+                        error_arr.append(distanceToParabola(p: norm_point, a: Double(0.002*scalar*scalar), b: Double(-1.1*scalar), c: 0))
                     }
                 }
       
@@ -93,103 +94,103 @@ class ErrorCalc {
                 print("X': " + norm_point.x.description + " Y': " + norm_point.y.description)
                 // based on the quadrant, distance to various approximating circles and ellipses are calculated
                 if (norm_point.x >= 0 && norm_point.y >= 0) {
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: 100), radius: 197))
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: -100), radius: 197))
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: -100), radius: 197))
-                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 100, y: 0), x_radius: 120, y_radius: 100))
-                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: 100), x_radius: 100, y_radius: 120))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100*scalar, y: 100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100*scalar, y: -100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100*scalar, y: -100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 100*scalar, y: 0), x_radius: 120*scalar, y_radius: 100*scalar))
+                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: 100*scalar), x_radius: 100*scalar, y_radius: 120*scalar))
                 }
                 else if (norm_point.x < 0 && norm_point.y >= 0) {
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: 100), radius: 197))
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: -100), radius: 197))
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: -100), radius: 197))
-                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: 100), x_radius: 100, y_radius: 120))
-                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: -100, y: 0), x_radius: 120, y_radius: 100))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100*scalar, y: 100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100*scalar, y: -100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100*scalar, y: -100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: 100*scalar), x_radius: 100*scalar, y_radius: 120*scalar))
+                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: -100*scalar, y: 0), x_radius: 120*scalar, y_radius: 100*scalar))
                 }
                 else if (norm_point.x < 0 && norm_point.y < 0) {
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: 100), radius: 197))
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: 100), radius: 197))
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: -100), radius: 197))
-                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: -100, y: 0), x_radius: 120, y_radius: 100))
-                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: -100), x_radius: 100, y_radius: 120))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100*scalar, y: 100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100*scalar, y: 100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100*scalar, y: -100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: -100*scalar, y: 0), x_radius: 120*scalar, y_radius: 100*scalar))
+                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: -100*scalar), x_radius: 100*scalar, y_radius: 120*scalar))
                 }
                 else {
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100, y: 100), radius: 197))
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: 100), radius: 197))
-                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100, y: -100), radius: 197))
-                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 100, y: 0), x_radius: 120, y_radius: 100))
-                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: -100), x_radius: 100, y_radius: 120))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: 100*scalar, y: 100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100*scalar, y: 100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToCircle(p: norm_point, center: CGPoint(x: -100*scalar, y: -100*scalar), radius: 197*scalar))
+                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 100*scalar, y: 0), x_radius: 120*scalar, y_radius: 100*scalar))
+                    error_arr.append(distanceToEllipse(p: norm_point, center: CGPoint(x: 0, y: -100*scalar), x_radius: 100*scalar, y_radius: 120*scalar))
                 }
             }
             
             // Distance to Wave (need to figure out level)
             if (level == -1) {
                 print("wave")
-                error_arr.append(abs(250 + 0.2 * point.x * sin(0.05 * point.x) - point.y))
+                error_arr.append(abs(scalar * (250 + 0.2 * point.x * sin(0.05 * point.x)) - point.y))
             }
             
             // Distance to Park Circle
             if (!isAlz && level == 1) {
-                error_arr.append(distanceToCircle(p: point, center: CGPoint(x: 500,y: 247), radius: 200))
+                error_arr.append(distanceToCircle(p: point, center: CGPoint(x: scalar*350,y: scalar*247), radius: scalar*200))
             }
             
             // Distance to Park Prism
             if (!isAlz && level == 3) {
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 350), and: CGPoint(x: 250, y: 150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 150), and: CGPoint(x: 320, y: 60)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 320, y: 60), and: CGPoint(x: 720, y: 60)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 60), and: CGPoint(x: 720, y: 260)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 260), and: CGPoint(x: 650, y: 350)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 350), and: CGPoint(x: 650, y: 150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 150), and: CGPoint(x: 720, y: 60)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 720, y: 60), and: CGPoint(x: 650, y: 150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 150), and: CGPoint(x: 250, y: 150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 150), and: CGPoint(x: 250, y: 350)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 250, y: 350), and: CGPoint(x: 650, y: 350)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*350), and: CGPoint(x: scalar*250, y: scalar*150)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*150), and: CGPoint(x: scalar*320, y: scalar*60)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*320, y: scalar*60), and: CGPoint(x: scalar*720, y: scalar*60)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*720, y: scalar*60), and: CGPoint(x: scalar*720, y: scalar*260)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*720, y: scalar*260), and: CGPoint(x: scalar*650, y: scalar*350)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*650, y: scalar*350), and: CGPoint(x: scalar*650, y: scalar*150)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*650, y: scalar*150), and: CGPoint(x: scalar*720, y: scalar*60)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*720, y: scalar*60), and: CGPoint(x: scalar*650, y: scalar*150)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*650, y: scalar*150), and: CGPoint(x: scalar*250, y: scalar*150)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*150), and: CGPoint(x: scalar*250, y: scalar*350)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*350), and: CGPoint(x: scalar*650, y: scalar*350)))
             }
             
             // Distance to Alz Circle
             if (isAlz) {
-                error_arr.append(distanceToCircle(p: point, center: CGPoint(x: 350,y: 247), radius: 200))
+                error_arr.append(distanceToCircle(p: point, center: CGPoint(x: scalar*350,y: scalar*247), radius: scalar*200))
             }
          
             // Distance to Triangle
             if (isAlz && level >= 2 && level <= 5) {
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 750, y: 250), and: CGPoint(x: 650, y: 400)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 650, y: 400), and: CGPoint(x: 850, y: 400)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 850, y: 400), and: CGPoint(x: 750, y: 250)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*750, y: scalar*250), and: CGPoint(x: scalar*650, y: scalar*400)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*650, y: scalar*400), and: CGPoint(x: scalar*850, y: scalar*400)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*850, y: scalar*400), and: CGPoint(x: scalar*750, y: scalar*250)))
             }
             
             // Distance to Rectangle
             if (isAlz && level == 3) {
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 750, y: 150), and: CGPoint(x: 350, y: 150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 350, y: 150), and: CGPoint(x: 350, y: 350)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 350, y: 350), and: CGPoint(x: 750, y: 350)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 750, y: 350), and: CGPoint(x: 750, y: 150)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*750, y: scalar*150), and: CGPoint(x: scalar*350, y: scalar*150)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*350, y: scalar*150), and: CGPoint(x: scalar*350, y: scalar*350)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*350, y: scalar*350), and: CGPoint(x: scalar*750, y: scalar*350)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*750, y: scalar*350), and: CGPoint(x: scalar*750, y: scalar*150)))
             }
 
             // Distance to Alz Prism
             if (isAlz && level >= 4) {
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 350, y: 350), and: CGPoint(x: 350, y: 150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 350, y: 150), and: CGPoint(x: 420, y: 60)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 420, y: 60), and: CGPoint(x: 820, y: 60)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 820, y: 60), and: CGPoint(x: 820, y: 260)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 820, y: 260), and: CGPoint(x: 750, y: 350)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 750, y: 350), and: CGPoint(x: 750, y: 150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 750, y: 150), and: CGPoint(x: 820, y: 60)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 820, y: 60), and: CGPoint(x: 750, y: 150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 750, y: 150), and: CGPoint(x: 350, y: 150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 350, y: 150), and: CGPoint(x: 350, y: 350)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 350, y: 350), and: CGPoint(x: 750, y: 350)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*350, y: scalar*350), and: CGPoint(x: scalar*350, y: scalar*150)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*350, y: scalar*150), and: CGPoint(x: scalar*420, y: scalar*60)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*420, y: scalar*60), and: CGPoint(x: scalar*820, y: scalar*60)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*820, y: scalar*60), and: CGPoint(x: scalar*820, y: scalar*260)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*820, y: scalar*260), and: CGPoint(x: scalar*750, y: scalar*350)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*750, y: scalar*350), and: CGPoint(x: scalar*750, y: scalar*150)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*750, y: scalar*150), and: CGPoint(x: scalar*820, y: scalar*60)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*820, y: scalar*60), and: CGPoint(x: scalar*750, y: scalar*150)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*750, y: scalar*150), and: CGPoint(x: scalar*350, y: scalar*150)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*350, y: scalar*150), and: CGPoint(x: scalar*350, y: scalar*350)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*350, y: scalar*350), and: CGPoint(x: scalar*750, y: scalar*350)))
             }
             
             // Distance to Blob
             if (isAlz && level == 5) {
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 500, y: 230), and: CGPoint(x: 200, y: 130)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 200, y: 130), and: CGPoint(x: 280, y: 350)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 280, y: 350), and: CGPoint(x: 320, y: 300)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 320, y: 300), and: CGPoint(x: 380, y: 400)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: 380, y: 400), and: CGPoint(x: 500, y: 230)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*500, y: scalar*230), and: CGPoint(x: scalar*200, y: scalar*130)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*200, y: scalar*130), and: CGPoint(x: scalar*280, y: scalar*350)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*280, y: scalar*350), and: CGPoint(x: scalar*320, y: scalar*300)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*320, y: scalar*300), and: CGPoint(x: scalar*380, y: scalar*400)))
+                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*380, y: scalar*400), and: CGPoint(x: scalar*500, y: scalar*230)))
             }
             
             // Calculate min distance to overall figure
@@ -209,152 +210,142 @@ class ErrorCalc {
     // each "zone" is a key point on the figure that the tracing must pass by
     func drawingComplete() -> Bool {
         var zones : [CGPoint] = []
-        var radius : CGFloat = 35 // have different radii for diff figures
+        let scalar : CGFloat = UIScreen.screenWidth/1024
+        var radius : CGFloat = scalar*35 // have different radii for diff figures
+
         // Check Spiral
         if (!isAlz && level == 4) {
-            radius = 20
-            zones.append(CGPoint(x: 500, y: 250))
-            zones.append(CGPoint(x: 500, y: 184.027))
-            zones.append(CGPoint(x: 500, y: 359.956))
-            zones.append(CGPoint(x: 500, y: 96.062))
-            zones.append(CGPoint(x: 500, y: 447.920))
-            zones.append(CGPoint(x: 456.018, y: 250))
-            zones.append(CGPoint(x: 587.966, y: 250))
-            zones.append(CGPoint(x: 368.053, y: 250))
-            zones.append(CGPoint(x: 675.929, y: 250))
-            zones.append(CGPoint(x: 368.053, y: 250))
-            zones.append(CGPoint(x: 280.089, y: 250))
-            zones.append(CGPoint(x: 763.894, y: 250))
+            radius = scalar*20
+            zones.append(CGPoint(x: scalar*500, y: scalar*250))
+            zones.append(CGPoint(x: scalar*500, y: scalar*184.027))
+            zones.append(CGPoint(x: scalar*500, y: scalar*359.956))
+            zones.append(CGPoint(x: scalar*500, y: scalar*96.062))
+            zones.append(CGPoint(x: scalar*500, y: scalar*447.920))
+            zones.append(CGPoint(x: scalar*456.018, y: scalar*250))
+            zones.append(CGPoint(x: scalar*587.966, y: scalar*250))
+            zones.append(CGPoint(x: scalar*368.053, y: scalar*250))
+            zones.append(CGPoint(x: scalar*675.929, y: scalar*250))
+            zones.append(CGPoint(x: scalar*368.053, y: scalar*250))
+            zones.append(CGPoint(x: scalar*280.089, y: scalar*250))
+            zones.append(CGPoint(x: scalar*763.894, y: scalar*250))
         }
         
         // Check Infinity Symbol
         if (!isAlz && level == 2) {
-            zones.append(CGPoint(x: 500, y: 250))
-            zones.append(CGPoint(x: 940, y: 250))
-            zones.append(CGPoint(x: 60, y: 250))
-            zones.append(CGPoint(x: 769.627, y: 405.563))
-            zones.append(CGPoint(x: 230.373, y: 405.563))
-            zones.append(CGPoint(x: 769.627, y: 94.437))
-            zones.append(CGPoint(x: 230.373, y: 94.437))
+            zones.append(CGPoint(x: scalar*500, y: scalar*250))
+            zones.append(CGPoint(x: scalar*940, y: scalar*250))
+            zones.append(CGPoint(x: scalar*60, y: scalar*250))
+            zones.append(CGPoint(x: scalar*769.627, y: scalar*405.563))
+            zones.append(CGPoint(x: scalar*230.373, y: scalar*405.563))
+            zones.append(CGPoint(x: scalar*769.627, y: scalar*94.437))
+            zones.append(CGPoint(x: scalar*230.373, y: scalar*94.437))
         }
         
         // Check Spirograph
         if (!isAlz && level == 5) {
-            zones.append(CGPoint(x: 720, y: 250))
-            zones.append(CGPoint(x: 500, y: 470))
-            zones.append(CGPoint(x: 280, y: 250))
-            zones.append(CGPoint(x: 500, y: 30))
-            zones.append(CGPoint(x: 598.385, y: 348.385))
-            zones.append(CGPoint(x: 598.385, y: 151.615))
-            zones.append(CGPoint(x: 401.615, y: 348.385))
-            zones.append(CGPoint(x: 401.615, y: 151.615))
-            zones.append(CGPoint(x: 569.570, y: 250))
-            zones.append(CGPoint(x: 500, y: 319.570))
-            zones.append(CGPoint(x: 430.43, y: 250))
-            zones.append(CGPoint(x: 500, y: 180.43))
+            zones.append(CGPoint(x: scalar*720, y: scalar*250))
+            zones.append(CGPoint(x: scalar*500, y: scalar*470))
+            zones.append(CGPoint(x: scalar*280, y: scalar*250))
+            zones.append(CGPoint(x: scalar*500, y: scalar*30))
+            zones.append(CGPoint(x: scalar*598.385, y: scalar*348.385))
+            zones.append(CGPoint(x: scalar*598.385, y: scalar*151.615))
+            zones.append(CGPoint(x: scalar*401.615, y: scalar*348.385))
+            zones.append(CGPoint(x: scalar*401.615, y: scalar*151.615))
+            zones.append(CGPoint(x: scalar*569.570, y: scalar*250))
+            zones.append(CGPoint(x: scalar*500, y: scalar*319.570))
+            zones.append(CGPoint(x: scalar*430.43, y: scalar*250))
+            zones.append(CGPoint(x: scalar*500, y: scalar*180.43))
         }
         
         // Check Wave (need to figure out level)
         if (level == -1) {
-            radius = 20
-            zones.append(CGPoint(x: 0, y: 250))
-            zones.append(CGPoint(x: 40.575, y: 257.279))
-            zones.append(CGPoint(x: 98.264, y: 230.742))
-            zones.append(CGPoint(x: 159.573, y: 281.667))
-            zones.append(CGPoint(x: 221.711, y: 205.837))
-            zones.append(CGPoint(x: 284.149, y: 306.689))
-            zones.append(CGPoint(x: 346.728, y: 180.77))
-            zones.append(CGPoint(x: 409.383, y: 331.779))
-            zones.append(CGPoint(x: 472.086, y: 155.667))
-            zones.append(CGPoint(x: 534.818, y: 356.889))
-            zones.append(CGPoint(x: 597.572, y: 130.553))
-            zones.append(CGPoint(x: 660.340, y: 382.007))
-            zones.append(CGPoint(x: 723.119, y: 105.431))
-            zones.append(CGPoint(x: 785.907, y: 407.131))
-            zones.append(CGPoint(x: 848.701, y: 80.307))
-            zones.append(CGPoint(x: 911.501, y: 432.256))
-            zones.append(CGPoint(x: 974.304, y: 55.18))
-        }
-        
-        // Check Park Circle
-        if (level == 1) {
-            zones.append(CGPoint(x: 700, y: 247))
-            zones.append(CGPoint(x: 300, y: 247))
-            zones.append(CGPoint(x: 500, y: 447))
-            zones.append(CGPoint(x: 500, y: 47))
-            zones.append(CGPoint(x: 641.421, y: 388.421))
-            zones.append(CGPoint(x: 358.579, y: 388.421))
-            zones.append(CGPoint(x: 641.421, y: 105.579))
-            zones.append(CGPoint(x: 358.579, y: 105.579))
+            radius = scalar*20
+            zones.append(CGPoint(x: 0, y: scalar*250))
+            zones.append(CGPoint(x: scalar*40.575, y: scalar*257.279))
+            zones.append(CGPoint(x: scalar*98.264, y: scalar*230.742))
+            zones.append(CGPoint(x: scalar*159.573, y: scalar*281.667))
+            zones.append(CGPoint(x: scalar*221.711, y: scalar*205.837))
+            zones.append(CGPoint(x: scalar*284.149, y: scalar*306.689))
+            zones.append(CGPoint(x: scalar*346.728, y: scalar*180.77))
+            zones.append(CGPoint(x: scalar*409.383, y: scalar*331.779))
+            zones.append(CGPoint(x: scalar*472.086, y: scalar*155.667))
+            zones.append(CGPoint(x: scalar*534.818, y: scalar*356.889))
+            zones.append(CGPoint(x: scalar*597.572, y: scalar*130.553))
+            zones.append(CGPoint(x: scalar*660.340, y: scalar*382.007))
+            zones.append(CGPoint(x: scalar*723.119, y: scalar*105.431))
+            zones.append(CGPoint(x: scalar*785.907, y: scalar*407.131))
+            zones.append(CGPoint(x: scalar*848.701, y: scalar*80.307))
+            zones.append(CGPoint(x: scalar*911.501, y: scalar*432.256))
+            zones.append(CGPoint(x: scalar*974.304, y: scalar*55.18))
         }
         
         // Check Park Prism
         if (!isAlz && level == 3) {
-            zones.append(CGPoint(x: 250, y: 350))
-            zones.append(CGPoint(x: 250, y: 150))
-            zones.append(CGPoint(x: 320, y: 60))
-            zones.append(CGPoint(x: 720, y: 60))
-            zones.append(CGPoint(x: 720, y: 260))
-            zones.append(CGPoint(x: 650, y: 350))
-            zones.append(CGPoint(x: 650, y: 150))
-            zones.append(CGPoint(x: 720, y: 60))
-            zones.append(CGPoint(x: 650, y: 150))
-            zones.append(CGPoint(x: 250, y: 150))
-            zones.append(CGPoint(x: 250, y: 350))
-            zones.append(CGPoint(x: 650, y: 350))
+            zones.append(CGPoint(x: scalar*250, y: scalar*350))
+            zones.append(CGPoint(x: scalar*250, y: scalar*150))
+            zones.append(CGPoint(x: scalar*320, y: scalar*60))
+            zones.append(CGPoint(x: scalar*720, y: scalar*60))
+            zones.append(CGPoint(x: scalar*720, y: scalar*260))
+            zones.append(CGPoint(x: scalar*650, y: scalar*350))
+            zones.append(CGPoint(x: scalar*650, y: scalar*150))
+            zones.append(CGPoint(x: scalar*720, y: scalar*60))
+            zones.append(CGPoint(x: scalar*650, y: scalar*150))
+            zones.append(CGPoint(x: scalar*250, y: scalar*150))
+            zones.append(CGPoint(x: scalar*250, y: scalar*350))
+            zones.append(CGPoint(x: scalar*650, y: scalar*350))
         }
         
-        // Check Alz Circle
-        if (isAlz) {
-            zones.append(CGPoint(x: 550, y: 247))
-            zones.append(CGPoint(x: 150, y: 247))
-            zones.append(CGPoint(x: 350, y: 447))
-            zones.append(CGPoint(x: 350, y: 47))
-            zones.append(CGPoint(x: 491.421, y: 388.421))
-            zones.append(CGPoint(x: 208.579, y: 388.421))
-            zones.append(CGPoint(x: 491.421, y: 105.579))
-            zones.append(CGPoint(x: 208.579, y: 105.579))
+        // Check Circle
+        if (isAlz || level == 1) {
+            zones.append(CGPoint(x: scalar*550, y: scalar*247))
+            zones.append(CGPoint(x: scalar*150, y: scalar*247))
+            zones.append(CGPoint(x: scalar*350, y: scalar*447))
+            zones.append(CGPoint(x: scalar*350, y: scalar*47))
+            zones.append(CGPoint(x: scalar*491.421, y: scalar*388.421))
+            zones.append(CGPoint(x: scalar*208.579, y: scalar*388.421))
+            zones.append(CGPoint(x: scalar*491.421, y: scalar*105.579))
+            zones.append(CGPoint(x: scalar*208.579, y: scalar*105.579))
         }
      
         // Check Triangle
         if (isAlz && level >= 2 && level <= 5) {
-            zones.append(CGPoint(x: 750, y: 250))
-            zones.append(CGPoint(x: 650, y: 400))
-            zones.append(CGPoint(x: 850, y: 400))
+            zones.append(CGPoint(x: scalar*750, y: scalar*250))
+            zones.append(CGPoint(x: scalar*650, y: scalar*400))
+            zones.append(CGPoint(x: scalar*850, y: scalar*400))
         }
         
         // Check Rectangle
         if (isAlz && level == 3) {
-            zones.append(CGPoint(x: 750, y: 150))
-            zones.append(CGPoint(x: 350, y: 150))
-            zones.append(CGPoint(x: 350, y: 350))
-            zones.append(CGPoint(x: 750, y: 350))
+            zones.append(CGPoint(x: scalar*750, y: scalar*150))
+            zones.append(CGPoint(x: scalar*350, y: scalar*150))
+            zones.append(CGPoint(x: scalar*350, y: scalar*350))
+            zones.append(CGPoint(x: scalar*750, y: scalar*350))
         }
 
         // Check Alz Prism
         if (isAlz && level >= 4){
-            zones.append(CGPoint(x: 350, y: 350))
-            zones.append(CGPoint(x: 350, y: 150))
-            zones.append(CGPoint(x: 420, y: 60))
-            zones.append(CGPoint(x: 820, y: 60))
-            zones.append(CGPoint(x: 820, y: 260))
-            zones.append(CGPoint(x: 750, y: 350))
-            zones.append(CGPoint(x: 750, y: 150))
-            zones.append(CGPoint(x: 820, y: 60))
-            zones.append(CGPoint(x: 750, y: 150))
-            zones.append(CGPoint(x: 350, y: 150))
-            zones.append(CGPoint(x: 350, y: 350))
-            zones.append(CGPoint(x: 750, y: 350))
+            zones.append(CGPoint(x: scalar*350, y: scalar*350))
+            zones.append(CGPoint(x: scalar*350, y: scalar*150))
+            zones.append(CGPoint(x: scalar*420, y: scalar*60))
+            zones.append(CGPoint(x: scalar*820, y: scalar*60))
+            zones.append(CGPoint(x: scalar*820, y: scalar*260))
+            zones.append(CGPoint(x: scalar*750, y: scalar*350))
+            zones.append(CGPoint(x: scalar*750, y: scalar*150))
+            zones.append(CGPoint(x: scalar*820, y: scalar*60))
+            zones.append(CGPoint(x: scalar*750, y: scalar*150))
+            zones.append(CGPoint(x: scalar*350, y: scalar*150))
+            zones.append(CGPoint(x: scalar*350, y: scalar*350))
+            zones.append(CGPoint(x: scalar*750, y: scalar*350))
         }
         
         // Check Blob
         if (isAlz && level == 5) {
-            radius = 20
-            zones.append(CGPoint(x: 500, y: 230))
-            zones.append(CGPoint(x: 200, y: 130))
-            zones.append(CGPoint(x: 280, y: 350))
-            zones.append(CGPoint(x: 320, y: 300))
-            zones.append(CGPoint(x: 380, y: 400))
+            radius = scalar*20
+            zones.append(CGPoint(x: scalar*500, y: scalar*230))
+            zones.append(CGPoint(x: scalar*200, y: scalar*130))
+            zones.append(CGPoint(x: scalar*280, y: scalar*350))
+            zones.append(CGPoint(x: scalar*320, y: scalar*300))
+            zones.append(CGPoint(x: scalar*380, y: scalar*400))
         }
         
         return checkZones(data: data, zones: zones, radius: radius)
