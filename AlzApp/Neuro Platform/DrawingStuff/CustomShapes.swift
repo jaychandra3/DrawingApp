@@ -29,21 +29,16 @@ struct SpiroSquare: Shape {
     }
 }
 
+// height x width is 1366 x 1024 for 5th generation iPad
+
 struct ArchSpiral: Shape {
     func path(in rect: CGRect) -> Path {
-        print("height \(UIScreen.screenHeight)")
-        print("width \(UIScreen.screenWidth)")
-        let screenWidth : CGFloat = UIScreen.screenWidth
-        let screenHeight : CGFloat = UIScreen.screenHeight
-        let xFactor : CGFloat = 2.048
-        let yFactor : CGFloat = 5.464
-        let woundDistance : CGFloat = (14.0 / 1024.0) * screenWidth
-
+        let scalar : CGFloat = UIScreen.screenWidth/1024
         var path = Path()
         for theta in stride(from: 0, through: 6.0*CGFloat.pi, by: 0.01) {
-            let x = screenWidth / xFactor + cos(theta) * woundDistance * theta
-            let y = screenHeight / yFactor + sin(theta) * woundDistance * theta
-            if x > screenWidth || y > screenHeight  || x < 0 || y < 0 {
+            let x = scalar * (500 + cos(theta) * 14 * theta)
+            let y = scalar * (250 + sin(theta) * 14 * theta)
+            if x > UIScreen.screenWidth || y > UIScreen.screenHeight  || x < 0 || y < 0 {
                 break
             }
             if theta == 0 {
@@ -57,53 +52,34 @@ struct ArchSpiral: Shape {
     }
 }
 
-//struct ArchSpiral: Shape {
-//    func path(in rect: CGRect) -> Path {
-//        print("height \(UIScreen.screenHeight)")
-//        print("width \(UIScreen.screenWidth)")
-//        var path = Path()
-//        for theta in stride(from: 0, through: 6.0*CGFloat.pi, by: 0.01) {
-//            let x = 500 + cos(theta) * 14 * theta
-//            let y = 250 + sin(theta) * 14 * theta
-//            if x > 800 || y > 800  || x < 0 || y < 0 {
-//                break
-//            }
-//            if theta == 0 {
-//                path.move(to: CGPoint(x: x, y: y))
-//            }
-//            else {
-//                path.addLine(to: CGPoint(x: x, y: y))
-//            }
-//        }
-//        return path
-//    }
-//}
-
 struct Prism: Shape {
     func path(in rect: CGRect) -> Path {
+        let scalar : CGFloat = UIScreen.screenWidth/1024
         var path = Path()
-            path.move(to: CGPoint(x: 250, y: 350))       //1
-         path.addLine(to: CGPoint(x: 250, y: 150))       //2
-         path.addLine(to: CGPoint(x: 320, y: 60))       //3
-         path.addLine(to: CGPoint(x: 720, y: 60))       //4
-         path.addLine(to: CGPoint(x: 720, y: 260))       //5
-         path.addLine(to: CGPoint(x: 650, y: 350))       //6
-         path.addLine(to: CGPoint(x: 650, y: 150))       //7
-         path.addLine(to: CGPoint(x: 720, y: 60))       //wrap(4)
-         path.addLine(to: CGPoint(x: 650, y: 150))       //A(7)
-         path.addLine(to: CGPoint(x: 250, y: 150))       //B(2)
-         path.addLine(to: CGPoint(x: 250, y: 350))       //C(1)
-         path.addLine(to: CGPoint(x: 650, y: 350))       //C(6)
+            path.move(to: CGPoint(x: scalar * 250, y: scalar * 350))       //1
+         path.addLine(to: CGPoint(x: scalar * 250, y: scalar * 150))       //2
+         path.addLine(to: CGPoint(x: scalar * 320, y: scalar * 60))       //3
+         path.addLine(to: CGPoint(x: scalar * 720, y: scalar * 60))       //4
+         path.addLine(to: CGPoint(x: scalar * 720, y: scalar * 260))       //5
+         path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 350))       //6
+         path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 150))       //7
+         path.addLine(to: CGPoint(x: scalar * 720, y: scalar * 60))       //wrap(4)
+         path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 150))       //A(7)
+         path.addLine(to: CGPoint(x: scalar * 250, y: scalar * 150))       //B(2)
+         path.addLine(to: CGPoint(x: scalar * 250, y: scalar * 350))       //C(1)
+         path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 350))       //C(6)
         return path
     }
 }
 
 struct Infinity: Shape {
     func path(in rect: CGRect) -> Path {
+        let scalar : CGFloat = UIScreen.screenWidth/1024
         var path = Path()
         for theta in stride(from: 0, through: 2*CGFloat.pi, by: 0.01) {
-            let x = 500 + 2.2 * ((200 * cos(theta)) / (1 + (sin(theta) * sin(theta))))
-            let y = 250 + 2.2 * ((200 * sin(theta) * cos(theta)) / (1 + (sin(theta) * sin(theta))))
+            let x = scalar * (500 + 2.2 * ((200 * cos(theta)) / (1 + (sin(theta) * sin(theta)))))
+            let y = scalar * (250 + 2.2 * ((200 * sin(theta) * cos(theta)) / (1 + (sin(theta) * sin(theta)))))
+
             if theta == 0 {
                 path.move(to: CGPoint(x: x, y: y))
             }
@@ -118,10 +94,11 @@ struct Infinity: Shape {
 
 struct Spirograph: Shape {
     func path(in rect: CGRect) -> Path {
+        let scalar : CGFloat = UIScreen.screenWidth/1024
         var path = Path()
         for theta in stride(from: 0, through: 100*CGFloat.pi, by: 0.01) {
-            let x = 500 + 5.5 * (25 * cos(theta) + 15 * cos(1/3 * theta))
-            let y = 250 + 5.5 * (25 * sin(theta) - 15 * sin(1/3 * theta))
+            let x = scalar * (500 + 5.5 * (25 * cos(theta) + 15 * cos(1/3 * theta)))
+            let y = scalar * (250 + 5.5 * (25 * sin(theta) - 15 * sin(1/3 * theta)))
             if theta == 0 {
                 path.move(to: CGPoint(x: x, y: y))
             }
@@ -134,112 +111,116 @@ struct Spirograph: Shape {
 }
 
 // Levels are for Alzheimer's
-// Levels are for Alzheimer's
 struct Level1: Shape {
     func path(in rect: CGRect) -> Path {
+        let scalar : CGFloat = UIScreen.screenWidth/1024
         var path = Path()
         //Circle specifications
-path.addArc(center: CGPoint(x: 350, y: 247), radius: 200,
-startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
+        path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200,
+        startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
         return path
     }
 }
 
 struct Level2: Shape {
     func path(in rect: CGRect) -> Path {
+        let scalar : CGFloat = UIScreen.screenWidth/1024
         var path = Path()
                 //Circle specifications
-        path.addArc(center: CGPoint(x: 350, y: 247), radius: 200,
+        path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200,
         startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
                                                     //Triangle coords
                 //Triangle coords
-        path.move(to: CGPoint(x: 750, y: 250))       //1
-        path.addLine(to: CGPoint(x: 650, y: 400))       //2
-        path.addLine(to: CGPoint(x: 850, y: 400))       //3
-        path.addLine(to: CGPoint(x: 750, y: 250))       //wrap(1)
+        path.move(to: CGPoint(x: scalar * 750, y: scalar * 250))       //1
+        path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 400))       //2
+        path.addLine(to: CGPoint(x: scalar * 850, y: scalar * 400))       //3
+        path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 250))       //wrap(1)
         return path
     }
 }
 struct Level3: Shape {
     func path(in rect: CGRect) -> Path {
+        let scalar : CGFloat = UIScreen.screenWidth/1024
         var path = Path()
                                                     //Circle specifications
-        path.addArc(center: CGPoint(x: 350, y: 247), radius: 200,
+        path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200,
         startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
                                                     //Triangle coords
                 //Triangle coords
-        path.move(to: CGPoint(x: 750, y: 250))       //1
-        path.addLine(to: CGPoint(x: 650, y: 400))       //2
-        path.addLine(to: CGPoint(x: 850, y: 400))       //3
-        path.addLine(to: CGPoint(x: 750, y: 250))       //wrap(1)
+        path.move(to: CGPoint(x: scalar * 750, y: scalar * 250))       //1
+        path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 400))       //2
+        path.addLine(to: CGPoint(x: scalar * 850, y: scalar * 400))       //3
+        path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 250))       //wrap(1)
                                                     //Rectangle coords
-        path.addLine(to: CGPoint(x: 750, y: 150))       //A(7)
-        path.addLine(to: CGPoint(x: 350, y: 150))       //B(2)
-        path.addLine(to: CGPoint(x: 350, y: 350))       //C(1)
-        path.addLine(to: CGPoint(x: 750, y: 350))       //C(6)
-        path.addLine(to: CGPoint(x: 750, y: 250))       //wrap(1)
+        path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 150))       //A(7)
+        path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 150))       //B(2)
+        path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 350))       //C(1)
+        path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 350))       //C(6)
+        path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 250))       //wrap(1)
         return path
     }
 }
 struct Level4: Shape {
     func path(in rect: CGRect) -> Path {
+        let scalar : CGFloat = UIScreen.screenWidth/1024
         var path = Path()
                                                     //Circle specifications
-            path.addArc(center: CGPoint(x: 350, y: 247), radius: 200,
+            path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200,
                         startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
                                                     //Triangle coords
-           path.move(to: CGPoint(x: 750, y: 250))       //1
-        path.addLine(to: CGPoint(x: 650, y: 400))       //2
-        path.addLine(to: CGPoint(x: 850, y: 400))       //3
-        path.addLine(to: CGPoint(x: 750, y: 250))       //wrap(1)
+           path.move(to: CGPoint(x: scalar * 750, y: scalar * 250))       //1
+        path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 400))       //2
+        path.addLine(to: CGPoint(x: scalar * 850, y: scalar * 400))       //3
+        path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 250))       //wrap(1)
                                                     //Prism coords
-           path.move(to: CGPoint(x: 350, y: 350))       //1
-        path.addLine(to: CGPoint(x: 350, y: 150))       //2
-        path.addLine(to: CGPoint(x: 420, y: 060))       //3
-        path.addLine(to: CGPoint(x: 820, y: 060))       //4
-        path.addLine(to: CGPoint(x: 820, y: 260))       //5
-        path.addLine(to: CGPoint(x: 750, y: 350))       //6
-        path.addLine(to: CGPoint(x: 750, y: 150))       //7
-        path.addLine(to: CGPoint(x: 820, y: 060))       //wrap(4)
-        path.addLine(to: CGPoint(x: 750, y: 150))       //A(7)
-        path.addLine(to: CGPoint(x: 350, y: 150))       //B(2)
-        path.addLine(to: CGPoint(x: 350, y: 350))       //C(1)
-        path.addLine(to: CGPoint(x: 750, y: 350))       //C(6)
+           path.move(to: CGPoint(x: scalar * 350, y: scalar * 350))       //1
+        path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 150))       //2
+        path.addLine(to: CGPoint(x: scalar * 420, y: scalar * 060))       //3
+        path.addLine(to: CGPoint(x: scalar * 820, y: scalar * 060))       //4
+        path.addLine(to: CGPoint(x: scalar * 820, y: scalar * 260))       //5
+        path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 350))       //6
+        path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 150))       //7
+        path.addLine(to: CGPoint(x: scalar * 820, y: scalar * 060))       //wrap(4)
+        path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 150))       //A(7)
+        path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 150))       //B(2)
+        path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 350))       //C(1)
+        path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 350))       //C(6)
         return path
     }
 }
 
 struct Level5: Shape {
     func path(in rect: CGRect) -> Path {
+        let scalar : CGFloat = UIScreen.screenWidth/1024
         var path = Path()
-                                                    //Circle specifications
+                                                //Circle specifications
         path.addArc(center: CGPoint(x: 350, y: 247), radius: 200,
                     startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
                                                 //Triangle coords
-       path.move(to: CGPoint(x: 750, y: 250))       //1
-    path.addLine(to: CGPoint(x: 650, y: 400))       //2
-    path.addLine(to: CGPoint(x: 850, y: 400))       //3
-    path.addLine(to: CGPoint(x: 750, y: 250))       //wrap(1)
+       path.move(to: CGPoint(x: scalar * 750, y: scalar * 250))       //1
+    path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 400))       //2
+    path.addLine(to: CGPoint(x: scalar * 850, y: scalar * 400))       //3
+    path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 250))       //wrap(1)
                                                 //Prism coords
-       path.move(to: CGPoint(x: 350, y: 350))       //1
-    path.addLine(to: CGPoint(x: 350, y: 150))       //2
-    path.addLine(to: CGPoint(x: 420, y: 060))       //3
-    path.addLine(to: CGPoint(x: 820, y: 060))       //4
-    path.addLine(to: CGPoint(x: 820, y: 260))       //5
-    path.addLine(to: CGPoint(x: 750, y: 350))       //6
-    path.addLine(to: CGPoint(x: 750, y: 150))       //7
-    path.addLine(to: CGPoint(x: 820, y: 060))       //wrap(4)
-    path.addLine(to: CGPoint(x: 750, y: 150))       //A(7)
-    path.addLine(to: CGPoint(x: 350, y: 150))       //B(2)
-    path.addLine(to: CGPoint(x: 350, y: 350))       //C(1)
-    path.addLine(to: CGPoint(x: 750, y: 350))       //C(6)
+        path.move(to: CGPoint(x: scalar * 350, y: scalar * 350))       //1
+    path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 150))       //2
+    path.addLine(to: CGPoint(x: scalar * 420, y: scalar * 060))       //3
+    path.addLine(to: CGPoint(x: scalar * 820, y: scalar * 060))       //4
+    path.addLine(to: CGPoint(x: scalar * 820, y: scalar * 260))       //5
+    path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 350))       //6
+    path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 150))       //7
+    path.addLine(to: CGPoint(x: scalar * 820, y: scalar * 060))       //wrap(4)
+    path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 150))       //A(7)
+    path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 150))       //B(2)
+    path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 350))       //C(1)
+    path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 350))       //C(6)
                                                 //Trapezoid coords
-       path.move(to: CGPoint(x: 500, y: 230))       //1
-    path.addLine(to: CGPoint(x: 200, y: 130))       //2
-    path.addLine(to: CGPoint(x: 280, y: 350))       //3
-    path.addLine(to: CGPoint(x: 320, y: 300))       //4
-    path.addLine(to: CGPoint(x: 380, y: 400))       //5
-    path.addLine(to: CGPoint(x: 500, y: 230))        //wrap
+       path.move(to: CGPoint(x: scalar * 500, y: scalar * 230))       //1
+    path.addLine(to: CGPoint(x: scalar * 200, y: scalar * 130))       //2
+    path.addLine(to: CGPoint(x: scalar * 280, y: scalar * 350))       //3
+    path.addLine(to: CGPoint(x: scalar * 320, y: scalar * 300))       //4
+    path.addLine(to: CGPoint(x: scalar * 380, y: scalar * 400))       //5
+    path.addLine(to: CGPoint(x: scalar * 500, y: scalar * 230))        //wrap
         return path
     }
 }
