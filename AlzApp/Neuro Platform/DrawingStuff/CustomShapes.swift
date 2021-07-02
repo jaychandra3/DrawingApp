@@ -30,10 +30,11 @@ struct SpiroSquare: Shape {
 }
 
 // height x width is 1366 x 1024 for 5th generation iPad
+// divide by 1200 to accomdate for variations in aspect ratios
 
 struct ArchSpiral: Shape {
     func path(in rect: CGRect) -> Path {
-        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let scalar : CGFloat = UIScreen.screenWidth/1200
         var path = Path()
         for theta in stride(from: 0, through: 6.0*CGFloat.pi, by: 0.01) {
             let x = scalar * (500 + cos(theta) * 14 * theta)
@@ -54,7 +55,7 @@ struct ArchSpiral: Shape {
 
 struct Prism: Shape {
     func path(in rect: CGRect) -> Path {
-        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let scalar : CGFloat = UIScreen.screenWidth/1200
         var path = Path()
             path.move(to: CGPoint(x: scalar * 250, y: scalar * 350))       //1
          path.addLine(to: CGPoint(x: scalar * 250, y: scalar * 150))       //2
@@ -74,7 +75,7 @@ struct Prism: Shape {
 
 struct Infinity: Shape {
     func path(in rect: CGRect) -> Path {
-        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let scalar : CGFloat = UIScreen.screenWidth/1200
         var path = Path()
         for theta in stride(from: 0, through: 2*CGFloat.pi, by: 0.01) {
             let x = scalar * (500 + 2.2 * ((200 * cos(theta)) / (1 + (sin(theta) * sin(theta)))))
@@ -94,7 +95,7 @@ struct Infinity: Shape {
 
 struct Spirograph: Shape {
     func path(in rect: CGRect) -> Path {
-        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let scalar : CGFloat = UIScreen.screenWidth/1200
         var path = Path()
         for theta in stride(from: 0, through: 100*CGFloat.pi, by: 0.01) {
             let x = scalar * (500 + 5.5 * (25 * cos(theta) + 15 * cos(1/3 * theta)))
@@ -113,7 +114,7 @@ struct Spirograph: Shape {
 // Levels are for Alzheimer's
 struct Level1: Shape {
     func path(in rect: CGRect) -> Path {
-        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let scalar : CGFloat = UIScreen.screenWidth/1200
         var path = Path()
         //Circle specifications
         path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200, startAngle: .degrees(0), endAngle: .degrees(359.99999), clockwise: false)
@@ -123,7 +124,7 @@ struct Level1: Shape {
 
 struct Level2: Shape {
     func path(in rect: CGRect) -> Path {
-        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let scalar : CGFloat = UIScreen.screenWidth/1200
         var path = Path()
                 //Circle specifications
         path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200,
@@ -137,9 +138,10 @@ struct Level2: Shape {
         return path
     }
 }
+
 struct Level3: Shape {
     func path(in rect: CGRect) -> Path {
-        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let scalar : CGFloat = UIScreen.screenWidth/1200
         var path = Path()
                                                     //Circle specifications
         path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200,
@@ -161,7 +163,7 @@ struct Level3: Shape {
 }
 struct Level4: Shape {
     func path(in rect: CGRect) -> Path {
-        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let scalar : CGFloat = UIScreen.screenWidth/1200
         var path = Path()
                                                     //Circle specifications
             path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200,
@@ -190,7 +192,7 @@ struct Level4: Shape {
 
 struct Level5: Shape {
     func path(in rect: CGRect) -> Path {
-        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let scalar : CGFloat = UIScreen.screenWidth/1200
         var path = Path()
                                                 //Circle specifications
         path.addArc(center: CGPoint(x: scalar * 350, y: scalar * 247), radius: scalar * 200,

@@ -26,7 +26,7 @@ class ErrorCalc {
         var avg_error : CGFloat = 0
         var count : CGFloat = 0
         var error_arr : [CGFloat] = [CGFloat]()
-        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let scalar : CGFloat = UIScreen.screenWidth/1200
         let spiral_center : CGPoint = CGPoint(x: scalar*500, y: scalar*250)
         let infinity_center : CGPoint = CGPoint(x: scalar*500, y: scalar*250)
         let spirograph_center: CGPoint = CGPoint(x: scalar*500, y: scalar*250)
@@ -210,7 +210,7 @@ class ErrorCalc {
     // each "zone" is a key point on the figure that the tracing must pass by
     func drawingComplete() -> Bool {
         var zones : [CGPoint] = []
-        let scalar : CGFloat = UIScreen.screenWidth/1024
+        let scalar : CGFloat = UIScreen.screenWidth/1200
         var radius : CGFloat = scalar*35 // have different radii for diff figures
 
         // Check Spiral
