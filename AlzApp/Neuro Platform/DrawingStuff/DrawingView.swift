@@ -26,7 +26,7 @@ struct DrawingView: View {
     @State private var showingAlert : Bool = false
     @State private var passedTest : Bool = true
     @State private var isAlz : Bool = true
-    @State private var threshold : CGFloat = 15
+    @State private var threshold : CGFloat = 15*UIScreen.screenWidth/1150
     @State var answerSelected: Bool = false
     @State var showPopup: Bool = false
     //@EnvironmentObject var testType: TestType

@@ -28,6 +28,7 @@ struct MCQFinalAnswer {
 
 struct MultipleChoiceView: View {
     var finalShape: String
+    let scalar: CGFloat = UIScreen.screenWidth/1150
     
     @State var multipleChoiceContent: [String:[AnswerChoice]] = [
         // Parkinson's shapes:
@@ -90,7 +91,7 @@ struct MultipleChoiceView: View {
                                     Image(systemName: "circle").resizable().frame(width:35, height:35).foregroundColor(.primary).animation(.easeOut)
 //                                    Text("isSelected = false")
                                 }
-                                multipleChoiceContent[finalShape]![index].image.resizable().scaledToFit().frame(width:250, height:250)
+                                multipleChoiceContent[finalShape]![index].image.resizable().scaledToFit().frame(width:250*scalar, height:250*scalar)
                             }
                         }.buttonStyle(BorderlessButtonStyle())
                     }
