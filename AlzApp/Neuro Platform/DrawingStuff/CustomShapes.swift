@@ -87,7 +87,6 @@ struct Infinity: Shape {
             else {
                 path.addLine(to: CGPoint(x: x, y: y))
             }
-            
         }
         return path
     }
@@ -97,7 +96,7 @@ struct Spirograph: Shape {
     func path(in rect: CGRect) -> Path {
         let scalar : CGFloat = UIScreen.screenWidth/1150
         var path = Path()
-        for theta in stride(from: 0, through: 100*CGFloat.pi, by: 0.01) {
+        for theta in stride(from: 0, through: 6*CGFloat.pi, by: 0.01) {
             let x = scalar * (500 + 5.5 * (25 * cos(theta) + 15 * cos(1/3 * theta)))
             let y = scalar * (250 + 5.5 * (25 * sin(theta) - 15 * sin(1/3 * theta)))
             if theta == 0 {
