@@ -26,14 +26,12 @@ struct FileManagerItemView: View {
                 }
             } else {
                 HStack {
-                
                     NavigationLink(
                         destination: TextFileView(url : self.url)) {
                         Rectangle()
                         .foregroundColor(.gray)
                         .cornerRadius(20)
                     }
-                    Button("Open File", action: {})
                 }
             }
             HStack {
