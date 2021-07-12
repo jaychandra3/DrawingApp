@@ -188,6 +188,8 @@ struct DrawingView: View {
                                 patientInfo += "MCQ Selection: " + MCQFinalAnswer.answer!.description + "\n"
                                 // assuming correct answer is always C
                                 patientInfo += "MCQ Correctness: " + (MCQFinalAnswer.answer! == 3).description + "\n"
+                                patientInfo += "Device Height: \(UIScreen.screenHeight)\n"
+                                patientInfo += "Device Width: \(UIScreen.screenWidth)"
                                 print(patientInfo)
                                 MCQFinalAnswer.reset() // Resets MCQFinalAnswer struct after saving
                             }
