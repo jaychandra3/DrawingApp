@@ -94,7 +94,8 @@ class DrawingData {
     Converts file contents to a CSV string that can be printed to a file
      */
     private func CSVString() -> String {
-        var str : String = "Coordinates ("  + frameWidth.description + "\",\" " + frameHeight.description + "),Timestamp,Velocity,force,azimuthAngle,altitudeAngle\n"
+        var str : String = "Coordinates,"/*  + frameWidth.description + "\",\" " + frameHeight.description + "),*/ + "Timestamp,Velocity,force,azimuthAngle,altitudeAngle\n"
+        // store frame info in patientinfo?
         for index in 0...coordinates.count - 1 {
             str = str + "\"" + coordinates[index].x.description + "," + coordinates[index].y.description + "\"," + timestamps[index].description + "," + velocities[index].description + "," + forces[index].description + "," + azimii[index].description + "," + altitudes[index].description + "\n"
         }
