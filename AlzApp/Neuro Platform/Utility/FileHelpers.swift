@@ -30,8 +30,12 @@ func getDocumentsDirectory(foldername foldercomponent : String?, filename pathco
 
 // App root directory URL, only really called in above function getDocumentsDirectory
 func getDocumentsDirectoryRoot() -> URL {
-    let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     .first!
+    
+//    path.appendPathComponent(patientID)
+//
+//    print("\(path)")
     
     return path
 }

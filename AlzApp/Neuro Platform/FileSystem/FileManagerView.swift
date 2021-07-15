@@ -40,7 +40,6 @@ struct FileManagerView: View {
             }
             .fileMover(isPresented: $isMovingSelection, file: getDocumentsDirectoryRoot()) {
                 if case .success = $0 {
-                    
                 } else {
                     // Handle Failure
                 }
