@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 
 // get URL of folder and/or filename passed in
+// used in DrawingView finishInfo and DataObjects finishDrawing functions
 func getDocumentsDirectory(foldername foldercomponent : String?, filename pathcomponent : String) -> URL {
     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         .first!
@@ -28,16 +29,56 @@ func getDocumentsDirectory(foldername foldercomponent : String?, filename pathco
     }
 }
 
-// App root directory URL, only really called in above function getDocumentsDirectory
+// Original app root directory URL
 func getDocumentsDirectoryRoot() -> URL {
-     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    .first!
-    
-//    path.appendPathComponent(patientID)
+    return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+}
+
+// Updates the URL path to create differently named directories every time we export (named based on date & time of export)
+func updateDocumentsPath(createDirectory: Bool) -> URL {
+    // root documents directory
+    let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    print("\(createDirectory)")
+    if (createDirectory) {
+        // get current date to add as name of new directory in documents directory (to export)
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM-d-y-HH:mm"
+        let folderName: String = formatter.string(from: now)
+        
+        do {
+            try FileManager.default.createDirectory(at: path.appendingPathComponent(folderName), withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            print("Could not create directory \(folderName) at \(path)")
+        }
+        
+        let newRootDirectory = path.appendingPathComponent(folderName, isDirectory: true)
+        print("newRootDirectory: \(newRootDirectory)")
+        
+//        let urls : [URL]
+//        do {
+//            try urls = FileManager.default.contentsOfDirectory(at: getDocumentsDirectoryRoot(), includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
+//        } catch {
+//            print("urls array did not get initialized")
+//            urls = [URL]()
+//        }
+//        print("urls: \(urls)")
 //
-//    print("\(path)")
-    
-    return path
+//        for url in urls {
+//            print("Original url: \(url)")
+//            do {
+//                try FileManager.default.moveItem(at: url, to: newRootDirectory)
+//            } catch {
+//                print("Could not move item from \(url) to \(newRootDirectory)")
+//            }
+//            print("new url: \(url)")
+//        }
+        
+        return newRootDirectory
+    } else {
+        print("boolean is false")
+        return path
+    }
 }
 
 // Generate FileManagerItemView for each file/folder in the given URL
@@ -53,6 +94,7 @@ func generateFileItemViews(url : URL = getDocumentsDirectoryRoot()) -> [FileMana
     }
     
     for url in urls {
+        //print("\(url)")
         let temp = FileManagerItemView(label: url.lastPathComponent, url: url, isDirectory: url.hasDirectoryPath)
         items.append(temp)
     }

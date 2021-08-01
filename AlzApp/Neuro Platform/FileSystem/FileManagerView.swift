@@ -36,16 +36,20 @@ struct FileManagerView: View {
                 }
             }
             .toolbar {
-                Button("Export All Files", action : {isMovingSelection = true})
+                Button("Export All Files", action : {
+                        isMovingSelection = true
+                        print("button is pressed - toggle to true")
+                })
             }
-            .fileMover(isPresented: $isMovingSelection, file: getDocumentsDirectoryRoot()) {
-                if case .success = $0 {
-                } else {
-                    // Handle Failure
+            .fileMover(isPresented: $isMovingSelection, file: updateDocumentsPath(createDirectory: isMovingSelection)){ result in
+                switch result {
+                case .success(let url):
+                    print("Saved to \(url)")
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
             }
         }
-            
     }
 }
 
