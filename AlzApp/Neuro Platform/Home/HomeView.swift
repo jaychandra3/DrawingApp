@@ -67,7 +67,7 @@ struct HomeView: View {
             
             // Define actual user seen interface
             // deal with styles and stuff here
-            Text("Analysis Platform")
+            Text("Inscribe")
                 .textStyle(TitleTextStyle())
             Group {
                 Button(action: {parkinsonsTestActive.toggle();
