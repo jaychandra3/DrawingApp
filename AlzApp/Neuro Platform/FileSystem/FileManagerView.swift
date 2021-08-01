@@ -28,6 +28,7 @@ struct FileManagerView: View {
         VStack {
             Text("Patients")
                 .textStyle(TitleTextStyle())
+            Text("Reminder: refresh the app before and after each export.").font(.system(size: 20))
             ScrollView {
                 VStack {
                     ForEach(items, id: \.label) { item in

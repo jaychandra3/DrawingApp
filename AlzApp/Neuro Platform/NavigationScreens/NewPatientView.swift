@@ -19,6 +19,7 @@ struct NewPatientView: View {
     @State var hand: String = "Not Selected"
     @State private var drawingActive : Bool = false
     @State private var showingAlert = false
+    @State private var showingDuplicatePatientError = false
     @Binding var rootActive: Bool
     
     var body: some View {
@@ -33,26 +34,6 @@ struct NewPatientView: View {
                     TextField("Enter Patient ID", text:  $id
                     ).textFieldStyle(RoundedBorderTextFieldStyle()).border(Color.black)
                 }.padding()
-                /*
-                HStack{
-                    Text("Patient Age").font(.system(size: 25))
-                    TextField("Enter Patient Age", text: $age).textFieldStyle(RoundedBorderTextFieldStyle()).border(Color.black).onReceive(Just(age)){ newValue in
-                            let filtered = newValue.filter { "0123456789".contains($0) }
-                            if filtered != newValue {
-                                self.age = filtered
-                            }
-                    }
-                }.padding()
-                HStack {
-                    Text("Biological Sex").font(.system(size: 25))
-                    VStack{
-                        Picker(selection: $sex, label: Text("Sex")) {
-                            Text("Male").tag("Male")
-                            Text("Female").tag("Female")
-                        }.pickerStyle(SegmentedPickerStyle())
-                    }
-                }.padding()
-                */
             }
             VStack {
                 HStack {
@@ -69,22 +50,36 @@ struct NewPatientView: View {
                 Spacer()
                 Button("Start Task") {
                     patientID = id
-                    if(patientID.count > 0 && hand != "Not Selected") {
+                    if (patientID.count > 0 && hand != "Not Selected") {
                         let old_stored: String = defaults.string(forKey: "stored_patient_csv") ?? "ID,Dominant Hand\n"
                         let new_stored = old_stored + patientID + "," + hand + "\n"
                         defaults.set(new_stored, forKey: "stored_patient_csv")
-                        /*print(defaults.string(forKey: "stored_patient_csv") ?? "Error, not a string")*/
                     
                         patientInfo = "ID: " + patientID + "\n" + "Dominant Hand: " + hand + "\n"
                         
-                        self.drawingActive.toggle()
+                        var stored_patients: [String] = defaults.stringArray(forKey: "stored_patient_array") ?? [String]()
+                        if (stored_patients.contains(patientID)) {
+                            self.showingDuplicatePatientError.toggle()
+                            self.showingAlert = true
+                        } else {
+                            stored_patients.append(patientID)
+                            defaults.set(stored_patients, forKey: "stored_patient_array")
+                            self.drawingActive.toggle()
+                        }
+                        print("Stored patients: \(stored_patients)")
                     } else {
-                        self.showingAlert.toggle()
+                        self.showingAlert = true
                     }
                 }.alert(isPresented: $showingAlert, content: {
-                    Alert(title: Text("Form Incomplete"),
-                          message: Text("Please complete each entry or selection"),
-                          dismissButton: .default(Text("Ok")))
+                    if (showingDuplicatePatientError) {
+                        return Alert(title: Text("Duplicate Patient ID"),
+                              message: Text("This patient ID already exists. If this is a test performed on the same patient, please label it with _ followed by the test number. (ex. _2 for the 2nd test)"), dismissButton: .default(Text("OK")))
+                    } else {
+                        
+                        return Alert(title: Text("Form Incomplete"),
+                              message: Text("Please complete each entry or selection"),
+                              dismissButton: .default(Text("OK")))
+                    }
                 }).buttonStyle(BorderlessButtonStyle()).font(.largeTitle).padding()
                 Spacer()
             }.padding()

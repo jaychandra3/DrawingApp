@@ -38,7 +38,6 @@ func getDocumentsDirectoryRoot() -> URL {
 func updateDocumentsPath(createDirectory: Bool) -> URL {
     // root documents directory
     let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    print("\(createDirectory)")
     if (createDirectory) {
         // get current date to add as name of new directory in documents directory (to export)
         let now = Date()
@@ -53,30 +52,26 @@ func updateDocumentsPath(createDirectory: Bool) -> URL {
         }
         
         let newRootDirectory = path.appendingPathComponent(folderName, isDirectory: true)
-        print("newRootDirectory: \(newRootDirectory)")
         
-//        let urls : [URL]
-//        do {
-//            try urls = FileManager.default.contentsOfDirectory(at: getDocumentsDirectoryRoot(), includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
-//        } catch {
-//            print("urls array did not get initialized")
-//            urls = [URL]()
-//        }
-//        print("urls: \(urls)")
-//
-//        for url in urls {
-//            print("Original url: \(url)")
-//            do {
-//                try FileManager.default.moveItem(at: url, to: newRootDirectory)
-//            } catch {
-//                print("Could not move item from \(url) to \(newRootDirectory)")
-//            }
-//            print("new url: \(url)")
-//        }
+        let urls : [URL]
+        do {
+            try urls = FileManager.default.contentsOfDirectory(at: getDocumentsDirectoryRoot(), includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
+        } catch {
+            print("urls array did not get initialized")
+            urls = [URL]()
+        }
+
+        for url in urls {
+            let newURL = newRootDirectory.appendingPathComponent(url.lastPathComponent)
+            do {
+                try FileManager.default.moveItem(at: url, to: newURL)
+            } catch {
+                print("Could not move item from \(url) to \(newURL)")
+            }
+        }
         
         return newRootDirectory
     } else {
-        print("boolean is false")
         return path
     }
 }
