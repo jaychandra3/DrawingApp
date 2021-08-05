@@ -45,6 +45,7 @@ struct FileManagerView: View {
             .fileMover(isPresented: $isMovingSelection, file: updateDocumentsPath(createDirectory: isMovingSelection)){ result in
                 switch result {
                 case .success(let url):
+                    defaults.set([], forKey: "stored_patient_array")
                     print("Saved to \(url)")
                 case .failure(let error):
                     print(error.localizedDescription)

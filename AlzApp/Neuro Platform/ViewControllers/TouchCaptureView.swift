@@ -21,7 +21,7 @@ struct TouchCaptureView: UIViewControllerRepresentable {
         }
         
         func didStartDrag(_ sender: TouchCaptureViewController, _ touch : UITouch) {
-            if touch.azimuthAngle(in: sender.view) == 0 && touch.force == 0 {
+            if (touch.type != .pencil) {
                 return
             }
             parent.data.update(value : touch, view : sender.view)
@@ -29,7 +29,7 @@ struct TouchCaptureView: UIViewControllerRepresentable {
         }
         
         func didDrag(_ sender: TouchCaptureViewController, _ touch : UITouch) {
-            if touch.azimuthAngle(in: sender.view) == 0 && touch.force == 0 {
+            if (touch.type != .pencil) {
                 return
             }
             parent.data.update(value : touch, view : sender.view)
@@ -37,7 +37,7 @@ struct TouchCaptureView: UIViewControllerRepresentable {
         }
         
         func didFinishDrag(_ sender: TouchCaptureViewController, _ touch : UITouch) {
-            if touch.azimuthAngle(in: sender.view) == 0 && touch.force == 0 {
+            if (touch.type != .pencil) {
                 return
             }
             parent.data.update(value: touch, view: sender.view)
