@@ -59,7 +59,7 @@ struct NewPatientView: View {
                         
                         var stored_patients: [String] = defaults.stringArray(forKey: "stored_patient_array") ?? [String]()
                         if (stored_patients.contains(patientID)) {
-                            self.showingDuplicatePatientError.toggle()
+                            self.showingDuplicatePatientError = true
                             self.showingAlert = true
                         } else {
                             stored_patients.append(patientID)
@@ -75,7 +75,6 @@ struct NewPatientView: View {
                         return Alert(title: Text("Duplicate Patient ID"),
                               message: Text("This patient ID already exists. If this is a test performed on the same patient, please label it with _ followed by the test number. (ex. _2 for the 2nd test)"), dismissButton: .default(Text("OK")))
                     } else {
-                        
                         return Alert(title: Text("Form Incomplete"),
                               message: Text("Please complete each entry or selection"),
                               dismissButton: .default(Text("OK")))

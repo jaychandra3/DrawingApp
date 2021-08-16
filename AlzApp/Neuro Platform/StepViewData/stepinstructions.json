@@ -29,13 +29,13 @@
                 "id": 10023,
                 "step": "encoding_step1_3",
                 "levelLabel": "level3",
-                "levelShape": "prism",
+                "levelShape": "arch_spiral",
             },
             {
                 "id": 10024,
                 "step": "encoding_step1_4",
                 "levelLabel": "level4",
-                "levelShape": "arch_spiral",
+                "levelShape": "prism",
             },
             {
                 "id": 10025,

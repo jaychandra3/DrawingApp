@@ -37,7 +37,6 @@ struct stepView: View {
                         TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                     }
                 } else if currentStep.step == "encoding_step1" {
-//                    Distractor1View().padding()
                     shapeView(shape: currentStep.levels[levelNum!].levelShape, data: $data)
                 } else if currentStep.step == "encoding_step2" {
                     shapeView(shape: finalShape!, data: $data)
