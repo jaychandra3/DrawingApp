@@ -35,7 +35,7 @@ class ErrorCalc {
             print("X: " + point.x.description + " Y: " + point.y.description)
             
             // Distance to Spiral
-            if (!isAlz && level == 4) {
+            if (!isAlz && level == 3) {
                 // center everything at (0,0)
                 let norm_point : CGPoint = CGPoint(x: point.x-spiral_center.x, y: point.y-spiral_center.y)
                 if(norm_point.x*norm_point.x+norm_point.y+norm_point.y < scalar*2000) {
@@ -135,7 +135,7 @@ class ErrorCalc {
             }
             
             // Distance to Park Prism
-            if (!isAlz && level == 3) {
+            if (!isAlz && level == 4) {
                 error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*350), and: CGPoint(x: scalar*250, y: scalar*150)))
                 error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*150), and: CGPoint(x: scalar*320, y: scalar*60)))
                 error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*320, y: scalar*60), and: CGPoint(x: scalar*720, y: scalar*60)))
@@ -214,8 +214,8 @@ class ErrorCalc {
         var radius : CGFloat = scalar*35 // have different radii for diff figures
 
         // Check Spiral
-        if (!isAlz && level == 4) {
-            radius = scalar*20
+        if (!isAlz && level == 3) {
+            radius = scalar*30
             zones.append(CGPoint(x: scalar*500, y: scalar*250))
             zones.append(CGPoint(x: scalar*500, y: scalar*184.027))
             zones.append(CGPoint(x: scalar*500, y: scalar*359.956))
@@ -280,7 +280,7 @@ class ErrorCalc {
         }
         
         // Check Park Prism
-        if (!isAlz && level == 3) {
+        if (!isAlz && level == 4) {
             zones.append(CGPoint(x: scalar*250, y: scalar*350))
             zones.append(CGPoint(x: scalar*250, y: scalar*150))
             zones.append(CGPoint(x: scalar*320, y: scalar*60))
