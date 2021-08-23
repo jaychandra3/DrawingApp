@@ -170,33 +170,37 @@ struct DrawingView: View {
                             if testType == "alzheimer's" {
                                 let d1result: String = DistractorAnswers.step1FinalResult["result"] ?? ""
                                 patientInfo += "Distractor Step 1 Results : " + d1result + "\n"
-                                //let d1score: String = DistractorAnswers.step1FinalResult["score"] ?? "0"
-                                //patientInfo += "Distractor Step 1 Score: " + d1score.description + "%\n"
                             
                                 let d2result: String = DistractorAnswers.step2FinalResult["result"] ?? ""
                                 patientInfo += "Distractor Step 2 Results : " + d2result + "\n"
-                                //let d2score: String = DistractorAnswers.step2FinalResult["score"] ?? "0"
-                                //patientInfo += "Distractor Step 2 Score: " + d2score.description + "%\n"
                                 
                                 let d3result: String = DistractorAnswers.step3FinalResult["result"] ?? ""
                                 patientInfo += "Distractor Step 3 Results : " + d3result + "\n"
-                                //let d3score: String = DistractorAnswers.step3FinalResult["score"] ?? "0"
-                                //patientInfo += "Distractor Step 3 Score: " + d3score.description + "%\n"
                                 let d3inOrder: String = DistractorAnswers.step3FinalResult["inOrder"] ?? "false"
                                 patientInfo += "Distractor Step 3 InOrder: " + d3inOrder.description + "\n"
                                 
                                 patientInfo += "MCQ Selection: " + MCQFinalAnswer.answer!.description + "\n"
                                 // assuming correct answer is always C
                                 patientInfo += "MCQ Correctness: " + (MCQFinalAnswer.answer! == 3).description + "\n"
-                                patientInfo += "Device Height: \(UIScreen.screenHeight)\n"
-                                patientInfo += "Device Width: \(UIScreen.screenWidth)"
-                                print(patientInfo)
                                 MCQFinalAnswer.reset() // Resets MCQFinalAnswer struct after saving
                             }
-                            self.rootIsActive.toggle()
-    //                        avoid OOB
+                            patientInfo += "Device Height: \(UIScreen.screenHeight)\n"
+                            patientInfo += "Device Width: \(UIScreen.screenWidth)\n"
+                            
+                            let now = Date()
+                            let formatter = DateFormatter()
+                            formatter.dateFormat = "MMM-d-y-HH:mm"
+                            let dateTime: String = formatter.string(from: now)
+                            patientInfo += "Date/Time: \(dateTime)"
+                            
+                            print(patientInfo)
+
                             finishInfo(patient: patientID, patientInfoCSV: patientInfo)
                             trialnum -= 1
+                            
+                            self.rootIsActive.toggle()
+    //                        avoid OOB
+
                         } else {
                             self.drawings = [Drawing]()
                             self.data = DrawingData()
