@@ -134,23 +134,23 @@ class ErrorCalc {
                 error_arr.append(distanceToCircle(p: point, center: CGPoint(x: scalar*350,y: scalar*247), radius: scalar*200))
             }
             
-            // Distance to Park Prism
-            if (!isAlz && level == 4) {
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*350), and: CGPoint(x: scalar*250, y: scalar*150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*150), and: CGPoint(x: scalar*320, y: scalar*60)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*320, y: scalar*60), and: CGPoint(x: scalar*720, y: scalar*60)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*720, y: scalar*60), and: CGPoint(x: scalar*720, y: scalar*260)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*720, y: scalar*260), and: CGPoint(x: scalar*650, y: scalar*350)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*650, y: scalar*350), and: CGPoint(x: scalar*650, y: scalar*150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*650, y: scalar*150), and: CGPoint(x: scalar*720, y: scalar*60)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*720, y: scalar*60), and: CGPoint(x: scalar*650, y: scalar*150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*650, y: scalar*150), and: CGPoint(x: scalar*250, y: scalar*150)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*150), and: CGPoint(x: scalar*250, y: scalar*350)))
-                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*350), and: CGPoint(x: scalar*650, y: scalar*350)))
-            }
+//            // Distance to Park Prism
+//            if (!isAlz && level == 4) {
+//                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*350), and: CGPoint(x: scalar*250, y: scalar*150)))
+//                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*150), and: CGPoint(x: scalar*320, y: scalar*60)))
+//                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*320, y: scalar*60), and: CGPoint(x: scalar*720, y: scalar*60)))
+//                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*720, y: scalar*60), and: CGPoint(x: scalar*720, y: scalar*260)))
+//                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*720, y: scalar*260), and: CGPoint(x: scalar*650, y: scalar*350)))
+//                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*650, y: scalar*350), and: CGPoint(x: scalar*650, y: scalar*150)))
+//                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*650, y: scalar*150), and: CGPoint(x: scalar*720, y: scalar*60)))
+//                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*720, y: scalar*60), and: CGPoint(x: scalar*650, y: scalar*150)))
+//                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*650, y: scalar*150), and: CGPoint(x: scalar*250, y: scalar*150)))
+//                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*150), and: CGPoint(x: scalar*250, y: scalar*350)))
+//                error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*250, y: scalar*350), and: CGPoint(x: scalar*650, y: scalar*350)))
+//            }
             
-            // Distance to Alz Circle
-            if (isAlz) {
+            // Distance to Alz Circle (used in Park lvl 4 as well)
+            if (isAlz || !isAlz && level == 4) {
                 error_arr.append(distanceToCircle(p: point, center: CGPoint(x: scalar*350,y: scalar*247), radius: scalar*200))
             }
          
@@ -169,8 +169,8 @@ class ErrorCalc {
                 error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*750, y: scalar*350), and: CGPoint(x: scalar*750, y: scalar*150)))
             }
 
-            // Distance to Alz Prism
-            if (isAlz && level >= 4) {
+            // Distance to Alz Prism (used in Park lvl 4 as well)
+            if (isAlz && level >= 4 || !isAlz && level == 4) {
                 error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*350, y: scalar*350), and: CGPoint(x: scalar*350, y: scalar*150)))
                 error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*350, y: scalar*150), and: CGPoint(x: scalar*420, y: scalar*60)))
                 error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: scalar*420, y: scalar*60), and: CGPoint(x: scalar*820, y: scalar*60)))
@@ -279,24 +279,24 @@ class ErrorCalc {
             zones.append(CGPoint(x: scalar*974.304, y: scalar*55.18))
         }
         
-        // Check Park Prism
-        if (!isAlz && level == 4) {
-            zones.append(CGPoint(x: scalar*250, y: scalar*350))
-            zones.append(CGPoint(x: scalar*250, y: scalar*150))
-            zones.append(CGPoint(x: scalar*320, y: scalar*60))
-            zones.append(CGPoint(x: scalar*720, y: scalar*60))
-            zones.append(CGPoint(x: scalar*720, y: scalar*260))
-            zones.append(CGPoint(x: scalar*650, y: scalar*350))
-            zones.append(CGPoint(x: scalar*650, y: scalar*150))
-            zones.append(CGPoint(x: scalar*720, y: scalar*60))
-            zones.append(CGPoint(x: scalar*650, y: scalar*150))
-            zones.append(CGPoint(x: scalar*250, y: scalar*150))
-            zones.append(CGPoint(x: scalar*250, y: scalar*350))
-            zones.append(CGPoint(x: scalar*650, y: scalar*350))
-        }
+//        // Check Park Prism
+//        if (!isAlz && level == 4) {
+//            zones.append(CGPoint(x: scalar*250, y: scalar*350))
+//            zones.append(CGPoint(x: scalar*250, y: scalar*150))
+//            zones.append(CGPoint(x: scalar*320, y: scalar*60))
+//            zones.append(CGPoint(x: scalar*720, y: scalar*60))
+//            zones.append(CGPoint(x: scalar*720, y: scalar*260))
+//            zones.append(CGPoint(x: scalar*650, y: scalar*350))
+//            zones.append(CGPoint(x: scalar*650, y: scalar*150))
+//            zones.append(CGPoint(x: scalar*720, y: scalar*60))
+//            zones.append(CGPoint(x: scalar*650, y: scalar*150))
+//            zones.append(CGPoint(x: scalar*250, y: scalar*150))
+//            zones.append(CGPoint(x: scalar*250, y: scalar*350))
+//            zones.append(CGPoint(x: scalar*650, y: scalar*350))
+//        }
         
-        // Check Circle
-        if (isAlz || level == 1) {
+        // Check Circle (used in all Alz lvls and Park lvl 4)
+        if ((isAlz || level == 1) || (!isAlz && level == 4)) {
             zones.append(CGPoint(x: scalar*550, y: scalar*247))
             zones.append(CGPoint(x: scalar*150, y: scalar*247))
             zones.append(CGPoint(x: scalar*350, y: scalar*447))
@@ -322,8 +322,8 @@ class ErrorCalc {
             zones.append(CGPoint(x: scalar*750, y: scalar*350))
         }
 
-        // Check Alz Prism
-        if (isAlz && level >= 4){
+        // Check Alz Prism (also used in Park lvl 4)
+        if (isAlz && level >= 4 || !isAlz && level == 4) {
             zones.append(CGPoint(x: scalar*350, y: scalar*350))
             zones.append(CGPoint(x: scalar*350, y: scalar*150))
             zones.append(CGPoint(x: scalar*420, y: scalar*60))

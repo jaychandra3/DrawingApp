@@ -52,7 +52,7 @@ struct shapeView: View {
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
                     Prism().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
-                    Circle().fill(Color.red.opacity(0.75)).frame(width: scalar * 15, height: scalar * 15).position(x: scalar * 250, y: scalar * 150)
+                    Circle().fill(Color.red.opacity(0.75)).frame(width: scalar * 15, height: scalar * 15).position(x: scalar * 350, y: scalar * 150)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
