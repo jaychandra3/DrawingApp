@@ -73,11 +73,11 @@ struct HomeView: View {
                 Button(action: {parkinsonsTestActive.toggle();
                     testType = "parkinson's"
                 }, label: {
-                    Text("Take the Parkinson's Test")
+                    Text("Take the Drawing Test")
                 }).buttonStyle(MainButtonStyle())
                 
                 Button(action: {alzheimersTestActive.toggle(); testType = "alzheimer's"}, label: {
-                    Text("Take the Alzheimer's Test")
+                    Text("Take the Memory Test")
                 }).buttonStyle(MainButtonStyle())
                 
                 Button(action: {recordsActive.toggle()}, label: {
