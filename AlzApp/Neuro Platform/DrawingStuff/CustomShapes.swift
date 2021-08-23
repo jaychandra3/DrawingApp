@@ -29,7 +29,6 @@ struct SpiroSquare: Shape {
     }
 }
 
-// height x width is 1366 x 1024 for 5th generation iPad
 // divide by 1150 to accomdate for variations in aspect ratios
 
 struct ArchSpiral: Shape {
