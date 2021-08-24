@@ -53,23 +53,27 @@ struct DrawingView: View {
                     stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 }
             case .encoding_step2:
+                //print("finalShape at accurate step is \(finalShape)")
                 stepView(currentStep: stepList[2], finalShape: finalShape, data: $data)
             case .fast:
+                //print("finalShape at fast step is \(finalShape)")
                 stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
             case .encoding_step3:
                 if testType == "alzheimer's" {
-                    stepView(currentStep: stepList[3], data: $data)
+                    stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
                 } else {
-                    stepView(currentStep: stepList[4], data: $data)
+                    stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
                 }
+            case .emptyPadDrawing:
+                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
             case .distractor_step1:
-                stepView(currentStep: stepList[4], data: $data)
-            case .distractor_step2:
                 stepView(currentStep: stepList[5], data: $data)
-            case .distractor_step3:
+            case .distractor_step2:
                 stepView(currentStep: stepList[6], data: $data)
-            case .retrieval_step1:
+            case .distractor_step3:
                 stepView(currentStep: stepList[7], data: $data)
+            case .retrieval_step1:
+                stepView(currentStep: stepList[8], data: $data)
             case .multiple_choice:
                 MultipleChoiceView(finalShape: finalShape)
             }

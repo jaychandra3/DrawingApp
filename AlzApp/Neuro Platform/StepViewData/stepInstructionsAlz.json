@@ -56,11 +56,18 @@
         "id": 1004,
         "step": "encoding_step3",
         "stepLabel": "Encoding Step 3 - Free Hand Drawing of Highest Difficulty Level Shape Achieved",
-        "instructions": "From your memory, draw the figure from the previous step as accurately as possible. ",
+        "instructions": "Draw the figure presented in the template section as accurately as possible. ",
         "levels": []
     },
     {
         "id": 1005,
+        "step": "empty_pad_drawing",
+        "stepLabel": "Encoding Step 3 - Free Hand Drawing of Highest Difficulty Level Shape Achieved",
+        "instructions": "From memory, draw the figure from the previous step as accurately as possible. ",
+        "levels": []
+    },
+    {
+        "id": 1006,
         "step": "distractor_step1",
         "stepLabel": "Distractor Step 1",
         "instructions": "For this part of the test, after reading the following instructions, please hand the iPad to the test administrator (do not press the Start button!). After you complete this task, listen to the administrator for further instructions. \n \n Complete the following task:  \n \n - Count backwards from 100 by 7s. ",

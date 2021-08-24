@@ -58,9 +58,8 @@ struct shapeView: View {
             }.padding()
         } else if shape == "arch_spiral" {
             VStack (alignment: .leading) {
-                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                Text("Template: ").bold().font(.system(size:20))
                 ArchSpiral().stroke(lineWidth:3)
-                Divider()
                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)

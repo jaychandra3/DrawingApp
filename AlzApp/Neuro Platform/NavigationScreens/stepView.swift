@@ -31,7 +31,7 @@ struct stepView: View {
                 Text(currentStep.instructions).font(.system(size: 23))
             }.padding()
             VStack {
-                if currentStep.step == "practice_screen" || currentStep.step == "retrieval_step" || currentStep.step == "encoding_step3" {
+                if currentStep.step == "practice_screen" || currentStep.step == "retrieval_step" || currentStep.step == "empty_pad_drawing" {
                     ZStack {
                         DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
                         TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
@@ -42,7 +42,17 @@ struct stepView: View {
                     shapeView(shape: finalShape!, data: $data)
                 } else if currentStep.step == "fast" {
                     shapeView(shape: finalShape!, data: $data)
-                } else if currentStep.step == "distractor_step1" {
+                } else if currentStep.step == "encoding_step3" {
+                    FinalShapePreview(shape: finalShape!, data: $data)
+                } else if (currentStep.step == "encoding_step3") {
+                    FinalShapePreview(shape: finalShape!, data: $data)
+                }
+                
+                
+//                else if currentStep.step == "encoding_step3" && testType == "parkinson's" {
+//                    FinalShapePreview(shape: finalShape!, data: $data)
+//                }
+                else if currentStep.step == "distractor_step1" {
                     Spacer()
                     TimerView(displayDistractorView: $displayDistractorView).padding()
                     if displayDistractorView {
