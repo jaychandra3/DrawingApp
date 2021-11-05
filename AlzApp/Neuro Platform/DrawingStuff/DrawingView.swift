@@ -29,6 +29,7 @@ struct DrawingView: View {
     @State private var threshold : CGFloat = 17*UIScreen.screenWidth/1150
     @State var answerSelected: Bool = false
     @State var showPopup: Bool = false
+    @State var isCountdownDone: Bool = false
     //@EnvironmentObject var testType: TestType
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
@@ -76,6 +77,9 @@ struct DrawingView: View {
                 stepView(currentStep: stepList[8], data: $data)
             case .multiple_choice:
                 MultipleChoiceView(finalShape: finalShape)
+            case .timer:
+                //BreakView(isCountdownDone: $isCountdownDone, showPopup = $showPopup)
+                print("hi")
             }
             
             Spacer()
@@ -97,7 +101,7 @@ struct DrawingView: View {
                     }
                     
                     if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + "level" + (levelnum+1).description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
-                        (trialList[trialnum] != .multiple_choice) {
+                        (trialList[trialnum] != .multiple_choice) && (trialList[trialnum] != .timer){
                         // toggle showingAlert so that the alert message pops up when necessary
                         self.showPopup = true // Actual alert
                         self.showingAlert = true // Drawing alert
@@ -217,10 +221,13 @@ struct DrawingView: View {
                         Text("Finish Test").foregroundColor(.white)
                     }
                 }).alert(isPresented: $showPopup, content: {
+                    if (trialList[trialnum] == .timer && !isCountdownDone) {
+                        return Alert(title: Text("Take a break!"), message: Text("Please wait for the countdown to finish before progressing to the next step"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
+                    }
                      if (showingAlert) {
                          return Alert(title: Text("No Drawing"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
                      } else {
-                         return Alert(title: Text("No Answer Selected"), message: Text("Please select an answer before finishing the test"), dismissButton: .default(Text("OK")))
+                         return Alert(title: Text("No Answer Selected"), message: Text("Please select an answer before finishing the test"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
                      }
                 }).buttonStyle(MainButtonStyle())
             }

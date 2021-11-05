@@ -21,25 +21,25 @@ struct TouchCaptureView: UIViewControllerRepresentable {
         }
         
         func didStartDrag(_ sender: TouchCaptureViewController, _ touch : UITouch) {
-            if (touch.type != .pencil) {
-                return
-            }
+//            if (touch.type != .pencil) {
+//                return
+//            }
             parent.data.update(value : touch, view : sender.view)
             parent.continueDrawing(point: touch.location(in: sender.view), bounds: sender.view.bounds)
         }
         
         func didDrag(_ sender: TouchCaptureViewController, _ touch : UITouch) {
-            if (touch.type != .pencil) {
-                return
-            }
+//            if (touch.type != .pencil) {
+//                return
+//            }
             parent.data.update(value : touch, view : sender.view)
             parent.continueDrawing(point: touch.location(in: sender.view), bounds: sender.view.bounds)
         }
         
         func didFinishDrag(_ sender: TouchCaptureViewController, _ touch : UITouch) {
-            if (touch.type != .pencil) {
-                return
-            }
+//            if (touch.type != .pencil) {
+//                return
+//            }
             parent.data.update(value: touch, view: sender.view)
             parent.finishDrawing(point: touch.location(in: sender.view), bounds : sender.view.bounds)
         }
