@@ -30,6 +30,7 @@ struct DrawingView: View {
     @State var answerSelected: Bool = false
     @State var showPopup: Bool = false
     @State var isCountdownDone: Bool = false
+    @State var timeRemaining: Int = 30
     //@EnvironmentObject var testType: TestType
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
@@ -79,7 +80,7 @@ struct DrawingView: View {
                 MultipleChoiceView(finalShape: finalShape)
             case .timer:
                 //BreakView(isCountdownDone: $isCountdownDone, showPopup = $showPopup)
-                print("hi")
+                BreakView(timeRemaining: $timeRemaining)
             }
             
             Spacer()
@@ -113,6 +114,16 @@ struct DrawingView: View {
                         self.showPopup = true
                         self.showingAlert = false
                         return
+                    }
+                    
+                    if (trialList[trialnum] == .timer) {
+                        if (timeRemaining > 0) {
+                            self.showPopup = true
+                            return
+                        } else {
+                            self.showPopup = false
+                            self.isCountdownDone = true
+                        }
                     }
                     
                     // increment levelnum if we're inside encoding step 1
@@ -221,7 +232,7 @@ struct DrawingView: View {
                         Text("Finish Test").foregroundColor(.white)
                     }
                 }).alert(isPresented: $showPopup, content: {
-                    if (trialList[trialnum] == .timer && !isCountdownDone) {
+                    if (trialList[trialnum] == .timer) {
                         return Alert(title: Text("Take a break!"), message: Text("Please wait for the countdown to finish before progressing to the next step"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
                     }
                      if (showingAlert) {
