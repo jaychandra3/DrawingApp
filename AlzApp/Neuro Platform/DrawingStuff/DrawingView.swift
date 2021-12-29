@@ -76,8 +76,36 @@ struct DrawingView: View {
                 stepView(currentStep: stepList[8], data: $data)
             case .multiple_choice:
                 MultipleChoiceView(finalShape: finalShape)
-            case .non_adap_normal:
-                switch
+            case .lvl1_normal:
+                stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+            case .lvl1_fast:
+                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
+            case .lvl1_no_temp:
+                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
+            case .lvl2_normal:
+                stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+            case .lvl2_fast:
+                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
+            case .lvl2_no_temp:
+                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
+            case .lvl3_normal:
+                stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+            case .lvl3_fast:
+                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
+            case .lvl3_no_temp:
+                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
+            case .lvl4_normal:
+                stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+            case .lvl4_fast:
+                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
+            case .lvl4_no_temp:
+                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
+            case .lvl5_normal:
+                stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+            case .lvl5_fast:
+                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
+            case .lvl5_no_temp:
+                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
             }
             
             Spacer()
@@ -85,20 +113,22 @@ struct DrawingView: View {
                 Spacer()
                 
                 Button(action: {
-                    print(trialList[trialnum])
                     if (trialList[trialnum] == .practice_screen) {
-                        if testType == "alzheimer's" {
+                        switch testType {
+                        case "alzheimer's":
                             stepList = steps_alz
                             trialList = trialListAlz
                             patientInfo += "Test Type: Alzheimer's\n"
-                        } else if testType == "non_adaptive" {
+                        case "parkinson's":
+                            patientInfo += "Test Type: Parkinson's\n"
+                            isAlz = false
+                        case "non_adaptive":
+                            print("non_adaptive selected!")
                             stepList = steps_non_adap
                             trialList = trialListNonAdap
                             patientInfo += "Test Type: Non-Adaptive\n"
-                        }
-                        else {
-                            patientInfo += "Test Type: Parkinson's\n"
-                            isAlz = false
+                        default:
+                            stepList = []
                         }
                     }
                     
