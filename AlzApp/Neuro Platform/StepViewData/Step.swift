@@ -10,16 +10,6 @@
 import Foundation
 import SwiftUI
 
-/*
-struct Step: Hashable, Codable, Identifiable {
-    var id: Int
-    var step: String
-    var stepLabel: String
-    var shape: String
-    var instructions: String
-}
-*/
-
 struct Step: Hashable, Codable, Identifiable {
     var id: Int
     var step: String
@@ -40,12 +30,3 @@ struct Level: Hashable, Codable, Identifiable {
         self.passedTest = passedTest
     }
 }
-
-/*
-index = 3
-passed: Bool
-if (passed == true) {
-    index ++
-}
-levelList[index]
-*/

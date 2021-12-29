@@ -87,7 +87,6 @@ struct NewPatientView: View {
 }
 
 struct NewPatientView_Previews: PreviewProvider {
-    //@State var a: Bool =
     static var previews: some View {
         NewPatientView(rootActive: Binding.constant(true))
     }

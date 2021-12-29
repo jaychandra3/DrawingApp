@@ -23,6 +23,7 @@ enum TrialType {
     case distractor_step3
     case retrieval_step1
     case multiple_choice
+    case timer
 }
 
 enum TrialShape {
@@ -46,7 +47,7 @@ var trialListParkinson: [TrialType] = [
 ]
 
 var trialListAlz: [TrialType] = [
-    .practice_screen, .encoding_step1, .encoding_step2, .encoding_step3, .emptyPadDrawing, .distractor_step1, .distractor_step2, .distractor_step3, .retrieval_step1, .multiple_choice
+    .practice_screen, .encoding_step1, .encoding_step2, .encoding_step3, .emptyPadDrawing, .distractor_step1, .distractor_step2, .distractor_step3, .retrieval_step1, .timer, .multiple_choice
 ]
 
 var levelList: [LevelNum] = [

@@ -96,6 +96,13 @@
     },
     {
         "id": 1009,
+        "step": "timer",
+        "stepLabel": "Take a Break!",
+        "instructions": "Congratulations for making it this far, you're doing great! Take a slight break for now, and continue the task after the timer counts down!",
+        "levels": []
+    },
+    {
+        "id": 1010,
         "step": "retrieval_step_multiple_choice",
         "stepLabel": "Retrieval Step 2 - Multiple Choice",
         "instructions": "Which of the follow best matches the last figure you drew from the encoding step? (Record time till decision?)",
