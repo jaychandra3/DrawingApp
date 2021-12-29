@@ -76,6 +76,8 @@ struct DrawingView: View {
                 stepView(currentStep: stepList[8], data: $data)
             case .multiple_choice:
                 MultipleChoiceView(finalShape: finalShape)
+            case .non_adap_normal:
+                switch
             }
             
             Spacer()
@@ -89,6 +91,10 @@ struct DrawingView: View {
                             stepList = steps_alz
                             trialList = trialListAlz
                             patientInfo += "Test Type: Alzheimer's\n"
+                        } else if testType == "non_adaptive" {
+                            stepList = steps_non_adap
+                            trialList = trialListNonAdap
+                            patientInfo += "Test Type: Non-Adaptive\n"
                         }
                         else {
                             patientInfo += "Test Type: Parkinson's\n"

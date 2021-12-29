@@ -40,12 +40,3 @@ struct Level: Hashable, Codable, Identifiable {
         self.passedTest = passedTest
     }
 }
-
-/*
-index = 3
-passed: Bool
-if (passed == true) {
-    index ++
-}
-levelList[index]
-*/

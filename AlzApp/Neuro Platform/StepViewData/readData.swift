@@ -13,6 +13,7 @@ import Foundation
 // stepsList is the one we want to use (stepInstructions.json is the updated json file)
 var steps: [Step] = load("stepinstructions.json")
 var steps_alz: [Step] = load("stepInstructionsAlz.json")
+var steps_non_adap: [Step] = load("stepInstructionsNonAdap.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
