@@ -62,10 +62,8 @@ struct DrawingView: View {
                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 }
             case .encoding_step2:
-                //print("finalShape at accurate step is \(finalShape)")
                 StepView(currentStep: stepList[2], finalShape: finalShape, data: $data)
             case .fast:
-                //print("finalShape at fast step is \(finalShape)")
                 StepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
             case .encoding_step3:
                 if testType == "alzheimer's" {
@@ -85,6 +83,114 @@ struct DrawingView: View {
                 StepView(currentStep: stepList[8], data: $data)
             case .multiple_choice:
                 MultipleChoiceView(finalShape: finalShape)
+            case .level1:
+                 switch levelList[levelnum] {
+                 case .normal1:
+                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                 case .normal2:
+                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                 case .fast:
+                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                 case .no_temp:
+                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                 // 5 cases below will never be executed
+                 case .level1:
+                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                 case .level2:
+                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                 case .level3:
+                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                 case .level4:
+                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                 case .level5:
+                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                 }
+             case .level2:
+                 switch levelList[levelnum] {
+                 case .normal1:
+                     StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                 case .normal2:
+                     StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                 case .fast:
+                     StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                 case .no_temp:
+                     StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                 case .level1:
+                     StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                 case .level2:
+                     StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                 case .level3:
+                     StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                 case .level4:
+                     StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                 case .level5:
+                     StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                 }
+             case .level3:
+                 switch levelList[levelnum] {
+                 case .normal1:
+                     StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                 case .normal2:
+                     StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                 case .fast:
+                     StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                 case .no_temp:
+                     StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                 case .level1:
+                     StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                 case .level2:
+                     StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                 case .level3:
+                     StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                 case .level4:
+                     StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                 case .level5:
+                     StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                 }
+             case .level4:
+                 switch levelList[levelnum] {
+                 case .normal1:
+                     StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                 case .normal2:
+                     StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                 case .fast:
+                     StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                 case .no_temp:
+                     StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                 case .level1:
+                     StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                 case .level2:
+                     StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                 case .level3:
+                     StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                 case .level4:
+                     StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                 case .level5:
+                     StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                 }
+             case .level5:
+                 switch levelList[levelnum] {
+                 case .normal1:
+                     StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                 case .normal2:
+                     StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                 case .fast:
+                     StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                 case .no_temp:
+                     StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                 case .level1:
+                     StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                 case .level2:
+                     StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                 case .level3:
+                     StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                 case .level4:
+                     StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                 case .level5:
+                     StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                 }
+            case .timer:
+                BreakView(timeRemaining: $timeRemaining)
             }
             
             Spacer()
@@ -233,11 +339,11 @@ struct DrawingView: View {
                     if (trialList[trialnum] == .timer) {
                         return Alert(title: Text("Take a break!"), message: Text("Please wait for the countdown to finish before progressing to the next step"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
                     }
-                     if (showingAlert) {
-                         return Alert(title: Text("No Drawing"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
-                     } else {
-                         return Alert(title: Text("No Answer Selected"), message: Text("Please select an answer before finishing the test"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
-                     }
+                    if (showingAlert) {
+                        return Alert(title: Text("No Drawing"), message: Text("Please follow the instructions and perform the drawing task to the best of your ability"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
+                    } else {
+                        return Alert(title: Text("No Answer Selected"), message: Text("Please select an answer before finishing the test"), dismissButton: .default(Text("OK"), action: {self.showPopup = false}))
+                    }
                 }).buttonStyle(MainButtonStyle())
             }
             Spacer()

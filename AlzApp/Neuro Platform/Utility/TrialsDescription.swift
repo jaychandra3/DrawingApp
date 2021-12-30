@@ -24,6 +24,7 @@ enum TrialType {
     case distractor_step3
     case retrieval_step1
     case multiple_choice
+    case timer
     
     // for non-adaptive tests
     case level1

@@ -22,6 +22,7 @@
 		9602A3C5265AC469002188E6 /* QuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9602A3C4265AC469002188E6 /* QuestionsView.swift */; };
 		9602A3CA265AC685002188E6 /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9602A3C9265AC685002188E6 /* MultipleChoiceView.swift */; };
 		9630FAD826D484B100977CA7 /* FinalShapePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9630FAD726D484B100977CA7 /* FinalShapePreview.swift */; };
+		964EC7ED277D9DB700FAD519 /* BreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964EC7EC277D9DB700FAD519 /* BreakView.swift */; };
 		96508376277CE61F002CCB26 /* stepInstructionsNonAdap.json in Resources */ = {isa = PBXBuildFile; fileRef = 96508375277CE61F002CCB26 /* stepInstructionsNonAdap.json */; };
 		9656AB4426425BFC00A8A6B3 /* stepInstructionsPark.json in Resources */ = {isa = PBXBuildFile; fileRef = 9656AB4326425BFC00A8A6B3 /* stepInstructionsPark.json */; };
 		966656D92658926000F3E7A4 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966656D32658926000F3E7A4 /* TimerView.swift */; };
@@ -30,7 +31,7 @@
 		966656DD2658926000F3E7A4 /* Distractor3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966656D72658926000F3E7A4 /* Distractor3View.swift */; };
 		966656DF265893DE00F3E7A4 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966656DE265893DE00F3E7A4 /* GridView.swift */; };
 		966656E12658941900F3E7A4 /* DistractorAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966656E02658941900F3E7A4 /* DistractorAnswers.swift */; };
-		96D7D0F22615417E0092E77A /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D7D0F12615417E0092E77A /* StepView.swift */; };
+		96D7D0F22615417E0092E77A /* stepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D7D0F12615417E0092E77A /* stepView.swift */; };
 		96D7D0FC261550BE0092E77A /* readData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D7D0FB261550BE0092E77A /* readData.swift */; };
 		96D7D1012615513A0092E77A /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D7D1002615513A0092E77A /* Step.swift */; };
 		96FDA7972643A05200184838 /* shapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FDA7962643A05200184838 /* shapeView.swift */; };
@@ -94,6 +95,7 @@
 		9602A3C4265AC469002188E6 /* QuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsView.swift; sourceTree = "<group>"; };
 		9602A3C9265AC685002188E6 /* MultipleChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
 		9630FAD726D484B100977CA7 /* FinalShapePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalShapePreview.swift; sourceTree = "<group>"; };
+		964EC7EC277D9DB700FAD519 /* BreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakView.swift; sourceTree = "<group>"; };
 		96508375277CE61F002CCB26 /* stepInstructionsNonAdap.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stepInstructionsNonAdap.json; sourceTree = "<group>"; };
 		9656AB4326425BFC00A8A6B3 /* stepInstructionsPark.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stepInstructionsPark.json; sourceTree = "<group>"; };
 		966656D32658926000F3E7A4 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -282,10 +284,10 @@
 				AF4CBBCB2544ADF00049C80F /* NewPatientView.swift */,
 				AFDD0852259AA8B1001AF7DA /* InstructionsView.swift */,
 				AFDD0857259AAEBA001AF7DA /* AboutAppView.swift */,
-				96D7D0F12615417E0092E77A /* StepView.swift */,
+				96D7D0F12615417E0092E77A /* stepView.swift */,
 				9602A3C4265AC469002188E6 /* QuestionsView.swift */,
 				9630FAD726D484B100977CA7 /* FinalShapePreview.swift */,
-				969E2ECD2735D51C00B0797A /* BreakView.swift */,
+				964EC7EC277D9DB700FAD519 /* BreakView.swift */,
 			);
 			path = NavigationScreens;
 			sourceTree = "<group>";
@@ -504,6 +506,7 @@
 				AF9244D824D4B46B00EEA283 /* FileManagerItemView.swift in Sources */,
 				6C7523F9265B10320047A440 /* ErrorCalc.swift in Sources */,
 				9602A3CA265AC685002188E6 /* MultipleChoiceView.swift in Sources */,
+				964EC7ED277D9DB700FAD519 /* BreakView.swift in Sources */,
 				96D7D0F22615417E0092E77A /* stepView.swift in Sources */,
 				AFDFDDBF24BE771200EBDCA9 /* TouchCaptureView.swift in Sources */,
 				AFC37F19251FDB1E00825E5B /* TextFileView.swift in Sources */,
