@@ -49,18 +49,21 @@ struct DrawingView: View {
                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .level5:
                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
-                // 3 cases below will never be executed
+                // 4 cases below will never be executed
+                case .normal1:
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .normal2:
                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .fast:
                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .no_temp:
                     StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
-                case .normal:
-                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 }
             case .encoding_step2:
+                //print("finalShape at accurate step is \(finalShape)")
                 StepView(currentStep: stepList[2], finalShape: finalShape, data: $data)
             case .fast:
+                //print("finalShape at fast step is \(finalShape)")
                 StepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
             case .encoding_step3:
                 if testType == "alzheimer's" {
@@ -81,15 +84,111 @@ struct DrawingView: View {
             case .multiple_choice:
                 MultipleChoiceView(finalShape: finalShape)
             case .level1:
-                StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                switch levelList[levelnum] {
+                case .normal1:
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .normal2:
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .fast:
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .no_temp:
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                // 5 cases below will never be executed
+                case .level1:
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .level2:
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .level3:
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .level4:
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .level5:
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                }
             case .level2:
-                StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                switch levelList[levelnum] {
+                case .normal1:
+                    StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .normal2:
+                    StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .fast:
+                    StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .no_temp:
+                    StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .level1:
+                    StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .level2:
+                    StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .level3:
+                    StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .level4:
+                    StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .level5:
+                    StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                }
             case .level3:
-                StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                switch levelList[levelnum] {
+                case .normal1:
+                    StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .normal2:
+                    StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .fast:
+                    StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .no_temp:
+                    StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .level1:
+                    StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .level2:
+                    StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .level3:
+                    StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .level4:
+                    StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .level5:
+                    StepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                }
             case .level4:
-                StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                switch levelList[levelnum] {
+                case .normal1:
+                    StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .normal2:
+                    StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .fast:
+                    StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .no_temp:
+                    StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .level1:
+                    StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .level2:
+                    StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .level3:
+                    StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .level4:
+                    StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .level5:
+                    StepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                }
             case .level5:
-                StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                switch levelList[levelnum] {
+                case .normal1:
+                    StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .normal2:
+                    StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .fast:
+                    StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .no_temp:
+                    StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .level1:
+                    StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .level2:
+                    StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .level3:
+                    StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .level4:
+                    StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .level5:
+                    StepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                }
             }
             
             Spacer()
@@ -182,10 +281,6 @@ struct DrawingView: View {
                                 }
                             }
                         }
-                    }
-                    
-                    if (testType == "non_adaptive") {
-                       
                     }
                     
                     // Only increase trial if calibration is complete or if it is not .encoding_step1

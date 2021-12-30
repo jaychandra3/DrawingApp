@@ -47,7 +47,8 @@ enum LevelNum {
     case level3
     case level4
     case level5
-    case normal
+    case normal1
+    case normal2
     case fast
     case no_temp
 }
@@ -69,5 +70,5 @@ var defaultLevelList: [LevelNum] = [
 ]
 
 var levelListNonAdap: [LevelNum] = [
-    .normal, .normal, .fast, .no_temp
+    .normal1, .normal2, .fast, .no_temp
 ]
