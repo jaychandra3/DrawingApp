@@ -11,7 +11,7 @@ import Foundation
 // var stepList: [Step] = load("stepInstruction.json")
 
 // stepsList is the one we want to use (stepInstructions.json is the updated json file)
-var steps: [Step] = load("stepinstructions.json")
+var steps: [Step] = load("stepInstructionsPark.json")
 var steps_alz: [Step] = load("stepInstructionsAlz.json")
 var steps_non_adap: [Step] = load("stepInstructionsNonAdap.json")
 

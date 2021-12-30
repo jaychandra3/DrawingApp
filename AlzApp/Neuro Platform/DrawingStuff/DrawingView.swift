@@ -16,9 +16,10 @@ struct DrawingView: View {
     @Binding var rootIsActive: Bool
     @State var stepList: Array<Step> = steps
     @State var trialList: Array<TrialType> = trialListParkinson
+    @State var levelList: Array<LevelNum> = defaultLevelList
     var trials : Int
     @State private var trialnum : Int = 0
-    @State private var levelnum: Int = 2
+    @State private var levelnum: Int = 0
     @State private var calibrationDone: Bool = false
     @State var finalShape: String = ""
     let patient : String
@@ -51,6 +52,13 @@ struct DrawingView: View {
                     stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .level5:
                     stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                // 3 cases below will never be executed
+                case .normal:
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .fast:
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .no_temp:
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 }
             case .encoding_step2:
                 //print("finalShape at accurate step is \(finalShape)")
@@ -76,36 +84,103 @@ struct DrawingView: View {
                 stepView(currentStep: stepList[8], data: $data)
             case .multiple_choice:
                 MultipleChoiceView(finalShape: finalShape)
-            case .lvl1_normal:
-                stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
-            case .lvl1_fast:
-                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
-            case .lvl1_no_temp:
-                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
-            case .lvl2_normal:
-                stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
-            case .lvl2_fast:
-                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
-            case .lvl2_no_temp:
-                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
-            case .lvl3_normal:
-                stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
-            case .lvl3_fast:
-                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
-            case .lvl3_no_temp:
-                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
-            case .lvl4_normal:
-                stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
-            case .lvl4_fast:
-                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
-            case .lvl4_no_temp:
-                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
-            case .lvl5_normal:
-                stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
-            case .lvl5_fast:
-                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
-            case .lvl5_no_temp:
-                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
+            case .level1:
+                //print("stepList: \(stepList[1].stepLabel)")
+                switch levelList[levelnum] {
+                // 5 cases below will never be executed
+                case .level1:
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .level2:
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .level3:
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .level4:
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .level5:
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .normal:
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .fast:
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                case .no_temp:
+                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                }
+            case .level2:
+                switch levelList[levelnum] {
+                case .normal:
+                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .fast:
+                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .no_temp:
+                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .level1:
+                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .level2:
+                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .level3:
+                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .level4:
+                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                case .level5:
+                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                }
+            case .level3:
+                switch levelList[levelnum] {
+                case .normal:
+                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .fast:
+                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .no_temp:
+                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .level1:
+                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .level2:
+                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .level3:
+                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .level4:
+                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                case .level5:
+                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                }
+            case .level4:
+                switch levelList[levelnum] {
+                case .normal:
+                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .fast:
+                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .no_temp:
+                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .level1:
+                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .level2:
+                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .level3:
+                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .level4:
+                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                case .level5:
+                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                }
+            case .level5:
+                switch levelList[levelnum] {
+                case .normal:
+                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .fast:
+                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .no_temp:
+                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .level1:
+                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .level2:
+                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .level3:
+                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .level4:
+                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                case .level5:
+                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                }
             }
             
             Spacer()
@@ -114,22 +189,31 @@ struct DrawingView: View {
                 
                 Button(action: {
                     if (trialList[trialnum] == .practice_screen) {
+                        print(trialList[trialnum])
                         switch testType {
                         case "alzheimer's":
                             stepList = steps_alz
                             trialList = trialListAlz
                             patientInfo += "Test Type: Alzheimer's\n"
+                            levelnum = 2
                         case "parkinson's":
                             patientInfo += "Test Type: Parkinson's\n"
                             isAlz = false
+                            levelnum = 2
                         case "non_adaptive":
                             print("non_adaptive selected!")
+                            print("level num: \(levelnum)")
                             stepList = steps_non_adap
                             trialList = trialListNonAdap
+                            levelList = levelListNonAdap
                             patientInfo += "Test Type: Non-Adaptive\n"
                         default:
                             stepList = []
                         }
+                    }
+                    
+                    if (testType == "non_adaptive") {
+                        levelnum = (levelnum + 1) % 3
                     }
                     
                     if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + "level" + (levelnum+1).description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
@@ -157,12 +241,6 @@ struct DrawingView: View {
                         patientInfo += "Level \(currentLevel.levelLabel.suffix(1)) \(currentLevel.levelShape)" + " Error: " + patient_error.description + "\n"
                         if (patient_error > threshold || !EC.drawingComplete()) {
                             passedTest = false
-                        }
-                        if (passedTest) {
-                            print("PASSED TEST!!! :)")
-                        }
-                        else {
-                            print("FAILED TEST!!! :(")
                         }
                         currentLevel.evaluateLevel(passedTest: self.passedTest)
                         self.data.coordinates.removeAll()

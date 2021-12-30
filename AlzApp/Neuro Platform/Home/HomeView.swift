@@ -87,7 +87,7 @@ struct HomeView: View {
                     Text("Take the Memory Test")
                 }).buttonStyle(MainButtonStyle())
                 
-                Button(action: {nonadaptiveTestActive.toggle(); testType = "non-adaptive"}, label: {
+                Button(action: {nonadaptiveTestActive.toggle(); testType = "non_adaptive"}, label: {
                     Text("Take the Non-Adaptive Test")
                 }).buttonStyle(MainButtonStyle())
                 

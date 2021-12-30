@@ -26,21 +26,11 @@ enum TrialType {
     case multiple_choice
     
     // for non-adaptive tests
-    case lvl1_normal
-    case lvl1_fast
-    case lvl1_no_temp
-    case lvl2_normal
-    case lvl2_fast
-    case lvl2_no_temp
-    case lvl3_normal
-    case lvl3_fast
-    case lvl3_no_temp
-    case lvl4_normal
-    case lvl4_fast
-    case lvl4_no_temp
-    case lvl5_normal
-    case lvl5_fast
-    case lvl5_no_temp
+    case level1
+    case level2
+    case level3
+    case level4
+    case level5
 }
 
 enum TrialShape {
@@ -57,6 +47,9 @@ enum LevelNum {
     case level3
     case level4
     case level5
+    case normal
+    case fast
+    case no_temp
 }
 
 var trialListParkinson: [TrialType] = [
@@ -68,13 +61,13 @@ var trialListAlz: [TrialType] = [
 ]
 
 var trialListNonAdap: [TrialType] = [
-    .lvl1_normal, .lvl1_normal, .lvl1_fast, .lvl1_no_temp,
-    .lvl2_normal, .lvl2_normal, .lvl2_fast, .lvl2_no_temp,
-    .lvl3_normal, .lvl3_normal, .lvl3_fast, .lvl3_no_temp,
-    .lvl4_normal, .lvl4_normal, .lvl4_fast, .lvl4_no_temp,
-    .lvl5_normal, .lvl5_normal, .lvl5_fast, .lvl5_no_temp
+    .level1, .level2, .level3, .level4, .level5
 ]
 
-var levelList: [LevelNum] = [
+var defaultLevelList: [LevelNum] = [
     .level1, .level2, .level3, .level4, .level5
+]
+
+var levelListNonAdap: [LevelNum] = [
+    .normal, .fast, .no_temp
 ]
