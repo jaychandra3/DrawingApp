@@ -64,6 +64,18 @@ struct StepView: View {
                     TimerView(displayDistractorView: $displayDistractorView).padding()
                     Distractor3View().padding()
                     Spacer()
+                } else if (currentStep.step.starts(with: "non_adap")) {
+                    VStack {
+                        Text(currentStep.levels[levelNum!].instructions).font(.system(size: 23))
+                        if (currentStep.levels[levelNum!].step == "no_template") {
+                            ZStack {
+                                DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                                TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                            }
+                        } else {
+                            shapeView(shape: currentStep.levels[levelNum!].levelShape, data: $data)
+                        }
+                    }
                 } else {
                     Spacer()
                     EmptyView()

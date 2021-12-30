@@ -8,7 +8,7 @@
     },
     {
         "id": 1002,
-        "step": "lvl1",
+        "step": "non_adap_lvl1",
         "stepLabel": "Level 1",
         "instructions": "",
         "levels":
@@ -45,7 +45,7 @@
     },
     {
         "id": 1003,
-        "step": "lvl2",
+        "step": "non_adap_lvl2",
         "stepLabel": "Level 2: Infinity Symbol",
         "instructions": "",
         "levels":
@@ -82,7 +82,7 @@
     },
     {
         "id": 1004,
-        "step": "lvl3",
+        "step": "non_adap_lvl3",
         "stepLabel": "Level 3",
         "instructions": "",
         "levels":
@@ -119,7 +119,7 @@
     },
     {
         "id": 1005,
-        "step": "lvl4",
+        "step": "non_adap_lvl4",
         "stepLabel": "Level 4",
         "instructions": "",
         "levels":
@@ -156,7 +156,7 @@
     },
     {
         "id": 1006,
-        "step": "lvl5",
+        "step": "non_adap_lvl5",
         "stepLabel": "Level 5",
         "instructions": "",
         "levels":
