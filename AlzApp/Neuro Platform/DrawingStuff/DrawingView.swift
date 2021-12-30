@@ -30,7 +30,6 @@ struct DrawingView: View {
     @State private var threshold : CGFloat = 17*UIScreen.screenWidth/1150
     @State var answerSelected: Bool = false
     @State var showPopup: Bool = false
-    //@EnvironmentObject var testType: TestType
     /**
      This view combines most of the needed features of drawing, collecting data, and printing the final file
      */
@@ -39,147 +38,146 @@ struct DrawingView: View {
         VStack {
             switch trialList[trialnum] {
             case .practice_screen:
-                stepView(currentStep: stepList[0], data: $data)
+                StepView(currentStep: stepList[0], data: $data)
             case .encoding_step1:
                 switch levelList[levelnum] {
                 case .level1:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .level2:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .level3:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .level4:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .level5:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 // 3 cases below will never be executed
                 case .normal:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .fast:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 case .no_temp:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                 }
             case .encoding_step2:
                 //print("finalShape at accurate step is \(finalShape)")
-                stepView(currentStep: stepList[2], finalShape: finalShape, data: $data)
+                StepView(currentStep: stepList[2], finalShape: finalShape, data: $data)
             case .fast:
                 //print("finalShape at fast step is \(finalShape)")
-                stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
+                StepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
             case .encoding_step3:
                 if testType == "alzheimer's" {
-                    stepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
+                    StepView(currentStep: stepList[3], finalShape: finalShape, data: $data)
                 } else {
-                    stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
+                    StepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
                 }
             case .emptyPadDrawing:
-                stepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
+                StepView(currentStep: stepList[4], finalShape: finalShape, data: $data)
             case .distractor_step1:
-                stepView(currentStep: stepList[5], data: $data)
+                StepView(currentStep: stepList[5], data: $data)
             case .distractor_step2:
-                stepView(currentStep: stepList[6], data: $data)
+                StepView(currentStep: stepList[6], data: $data)
             case .distractor_step3:
-                stepView(currentStep: stepList[7], data: $data)
+                StepView(currentStep: stepList[7], data: $data)
             case .retrieval_step1:
-                stepView(currentStep: stepList[8], data: $data)
+                StepView(currentStep: stepList[8], data: $data)
             case .multiple_choice:
                 MultipleChoiceView(finalShape: finalShape)
             case .level1:
-                //print("stepList: \(stepList[1].stepLabel)")
                 switch levelList[levelnum] {
                 // 5 cases below will never be executed
                 case .level1:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: 1, data: $data)
                 case .level2:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: 1, data: $data)
                 case .level3:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: 1, data: $data)
                 case .level4:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: 1, data: $data)
                 case .level5:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: 1, data: $data)
                 case .normal:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: 1, data: $data)
                 case .fast:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: 1, data: $data)
                 case .no_temp:
-                    stepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[1], levelNum: 1, data: $data)
                 }
             case .level2:
                 switch levelList[levelnum] {
                 case .normal:
-                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[2], levelNum: 2, data: $data)
                 case .fast:
-                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[2], levelNum: 2, data: $data)
                 case .no_temp:
-                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[2], levelNum: 2, data: $data)
                 case .level1:
-                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[2], levelNum: 2, data: $data)
                 case .level2:
-                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[2], levelNum: 2, data: $data)
                 case .level3:
-                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[2], levelNum: 2, data: $data)
                 case .level4:
-                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[2], levelNum: 2, data: $data)
                 case .level5:
-                    stepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[2], levelNum: 2, data: $data)
                 }
             case .level3:
                 switch levelList[levelnum] {
                 case .normal:
-                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[3], levelNum: 3, data: $data)
                 case .fast:
-                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[3], levelNum: 3, data: $data)
                 case .no_temp:
-                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[3], levelNum: 3, data: $data)
                 case .level1:
-                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[3], levelNum: 3, data: $data)
                 case .level2:
-                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[3], levelNum: 3, data: $data)
                 case .level3:
-                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[3], levelNum: 3, data: $data)
                 case .level4:
-                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[3], levelNum: 3, data: $data)
                 case .level5:
-                    stepView(currentStep: stepList[3], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[3], levelNum: 3, data: $data)
                 }
             case .level4:
                 switch levelList[levelnum] {
                 case .normal:
-                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[4], levelNum: 4, data: $data)
                 case .fast:
-                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[4], levelNum: 4, data: $data)
                 case .no_temp:
-                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[4], levelNum: 4, data: $data)
                 case .level1:
-                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[4], levelNum: 4, data: $data)
                 case .level2:
-                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[4], levelNum: 4, data: $data)
                 case .level3:
-                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[4], levelNum: 4, data: $data)
                 case .level4:
-                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[4], levelNum: 4, data: $data)
                 case .level5:
-                    stepView(currentStep: stepList[4], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[4], levelNum: 4, data: $data)
                 }
             case .level5:
                 switch levelList[levelnum] {
                 case .normal:
-                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[5], levelNum: 5, data: $data)
                 case .fast:
-                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[5], levelNum: 5, data: $data)
                 case .no_temp:
-                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[5], levelNum: 5, data: $data)
                 case .level1:
-                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[5], levelNum: 5, data: $data)
                 case .level2:
-                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[5], levelNum: 5, data: $data)
                 case .level3:
-                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[5], levelNum: 5, data: $data)
                 case .level4:
-                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[5], levelNum: 5, data: $data)
                 case .level5:
-                    stepView(currentStep: stepList[5], levelNum: levelnum, data: $data)
+                    StepView(currentStep: stepList[5], levelNum: 5, data: $data)
                 }
             }
             
@@ -189,7 +187,6 @@ struct DrawingView: View {
                 
                 Button(action: {
                     if (trialList[trialnum] == .practice_screen) {
-                        print(trialList[trialnum])
                         switch testType {
                         case "alzheimer's":
                             stepList = steps_alz
@@ -201,28 +198,29 @@ struct DrawingView: View {
                             isAlz = false
                             levelnum = 2
                         case "non_adaptive":
-                            print("non_adaptive selected!")
-                            print("level num: \(levelnum)")
                             stepList = steps_non_adap
                             trialList = trialListNonAdap
                             levelList = levelListNonAdap
                             patientInfo += "Test Type: Non-Adaptive\n"
+                            print("step list 0: \(stepList[0])")
+                            print("step list 1: \(stepList[1])")
+                            print("step list 2: \(stepList[2])")
+                            print("step list 3: \(stepList[3])")
+                            print("step list 4: \(stepList[4])")
+                            print("step list 5: \(stepList[5])")
+
                         default:
                             stepList = []
                         }
                     }
                     
-                    if (testType == "non_adaptive") {
-                        levelnum = (levelnum + 1) % 3
-                    }
-                    
-                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + "level" + (levelnum+1).description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
-                        (trialList[trialnum] != .multiple_choice) {
-                        // toggle showingAlert so that the alert message pops up when necessary
-                        self.showPopup = true // Actual alert
-                        self.showingAlert = true // Drawing alert
-                        return
-                    }
+//                    if !(self.data.finishDrawing(patient : self.patient, drawingName: "trial" + trialnum.description + "level" + (levelnum+1).description + ".csv")) && (trialList[trialnum] != .distractor_step1) && (trialList[trialnum] != .distractor_step2) && (trialList[trialnum] != .distractor_step3) &&
+//                        (trialList[trialnum] != .multiple_choice) {
+//                        // toggle showingAlert so that the alert message pops up when necessary
+//                        self.showPopup = true // Actual alert
+//                        self.showingAlert = true // Drawing alert
+//                        return
+//                    }
                     
                     // Show MCQ 'No Answer' Alert
                     if (trialList[trialnum] == .multiple_choice && MCQFinalAnswer.answer == nil) {
@@ -283,24 +281,20 @@ struct DrawingView: View {
                     
                     // Only increase trial if calibration is complete or if it is not .encoding_step1
                     if (calibrationDone || trialList[trialnum] != .encoding_step1) {
-                        trialnum += 1
-                        if trialnum >= trialList.count {
+                        if (testType == "non_adaptive") {
+                            levelnum += 1
+                            if (levelnum >= 4) {
+                                levelnum = 0
+                                trialnum += 1
+                            }
+                        }
+                        else {
+                            trialnum += 1
+                        }
+                        if (trialnum == trialList.count && (testType != "non_adaptive"
+                            || testType == "non_adaptive" && levelnum == 0)) {
                             if testType == "alzheimer's" {
-                                let d1result: String = DistractorAnswers.step1FinalResult["result"] ?? ""
-                                patientInfo += "Distractor Step 1 Results : " + d1result + "\n"
-                            
-                                let d2result: String = DistractorAnswers.step2FinalResult["result"] ?? ""
-                                patientInfo += "Distractor Step 2 Results : " + d2result + "\n"
-                                
-                                let d3result: String = DistractorAnswers.step3FinalResult["result"] ?? ""
-                                patientInfo += "Distractor Step 3 Results : " + d3result + "\n"
-                                let d3inOrder: String = DistractorAnswers.step3FinalResult["inOrder"] ?? "false"
-                                patientInfo += "Distractor Step 3 InOrder: " + d3inOrder.description + "\n"
-                                
-                                patientInfo += "MCQ Selection: " + MCQFinalAnswer.answer!.description + "\n"
-                                // assuming correct answer is always C
-                                patientInfo += "MCQ Correctness: " + (MCQFinalAnswer.answer! == 3).description + "\n"
-                                MCQFinalAnswer.reset() // Resets MCQFinalAnswer struct after saving
+                                handleAlzFinishTask() // Resets MCQFinalAnswer struct after saving
                             }
                             patientInfo += "Device Height: \(UIScreen.screenHeight)\n"
                             patientInfo += "Device Width: \(UIScreen.screenWidth)\n"
@@ -310,14 +304,10 @@ struct DrawingView: View {
                             formatter.dateFormat = "MMM-d-y-HH:mm"
                             let dateTime: String = formatter.string(from: now)
                             patientInfo += "Date/Time: \(dateTime)"
-                            
                             print(patientInfo)
-
                             finishInfo(patient: patientID, patientInfoCSV: patientInfo)
                             trialnum -= 1
-                            
                             self.rootIsActive.toggle()
-    //                        avoid OOB
 
                         } else {
                             self.drawings = [Drawing]()
@@ -325,10 +315,10 @@ struct DrawingView: View {
                         }
                     }
                 }, label: {
-                    if trialnum < trialList.count - 1 { //checks if there's still more trials left
-                        Text("Next Trial").foregroundColor(.white)
-                    } else {
+                    if (trialnum == trialList.count - 1 && (testType != "non_adaptive" || testType == "non_adaptive" && levelnum == levelList.count - 1)) {
                         Text("Finish Test").foregroundColor(.white)
+                    } else {
+                        Text("Next Trial").foregroundColor(.white)
                     }
                 }).alert(isPresented: $showPopup, content: {
                      if (showingAlert) {
@@ -342,6 +332,23 @@ struct DrawingView: View {
         }.navigationBarHidden(true)
         .navigationTitle("Trial " + (trialnum + 1).description + "/" + trials.description)
     }
+}
+
+fileprivate func handleAlzFinishTask() {
+    let d1result: String = DistractorAnswers.step1FinalResult["result"] ?? ""
+    patientInfo += "Distractor Step 1 Results : " + d1result + "\n"
+    
+    let d2result: String = DistractorAnswers.step2FinalResult["result"] ?? ""
+    patientInfo += "Distractor Step 2 Results : " + d2result + "\n"
+    
+    let d3result: String = DistractorAnswers.step3FinalResult["result"] ?? ""
+    patientInfo += "Distractor Step 3 Results : " + d3result + "\n"
+    let d3inOrder: String = DistractorAnswers.step3FinalResult["inOrder"] ?? "false"
+    patientInfo += "Distractor Step 3 InOrder: " + d3inOrder.description + "\n"
+    patientInfo += "MCQ Selection: " + MCQFinalAnswer.answer!.description + "\n"
+    // assuming correct answer is always C
+    patientInfo += "MCQ Correctness: " + (MCQFinalAnswer.answer! == 3).description + "\n"
+    MCQFinalAnswer.reset()
 }
 
 func finishInfo(patient: String, patientInfoCSV: String, formName : String = "patientInfo.csv") {

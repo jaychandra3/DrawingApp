@@ -18,30 +18,35 @@
                 "step": "encoding_step1_1",
                 "levelLabel": "level1",
                 "levelShape": "circle_alz",
+                "instructions": "",
             },
             {
                 "id": 10022,
                 "step": "encoding_step1_2",
                 "levelLabel": "level2",
                 "levelShape": "circle_triangle",
+                "instructions": "",
             },
             {
                 "id": 10023,
                 "step": "encoding_step1_3",
                 "levelLabel": "level3",
                 "levelShape": "circle_triangle_rect",
+                "instructions": "",
             },
             {
                 "id": 10024,
                 "step": "encoding_step1_4",
                 "levelLabel": "level4",
                 "levelShape": "circle_prism_triangle",
+                "instructions": "",
             },
             {
                 "id": 10025,
                 "step": "encoding_step1_5",
                 "levelLabel": "level5",
                 "levelShape": "level5_undecided",
+                "instructions": "",
             }
         ]
     },

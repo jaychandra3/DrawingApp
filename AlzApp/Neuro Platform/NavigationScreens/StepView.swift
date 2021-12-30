@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 import CoreGraphics
 
-struct stepView: View {
+struct StepView: View {
     var currentStep: Step
     var levelNum: Int?
     var finalShape: String?
@@ -47,11 +47,6 @@ struct stepView: View {
                 } else if (currentStep.step == "encoding_step3") {
                     FinalShapePreview(shape: finalShape!, data: $data)
                 }
-                
-                
-//                else if currentStep.step == "encoding_step3" && testType == "parkinson's" {
-//                    FinalShapePreview(shape: finalShape!, data: $data)
-//                }
                 else if currentStep.step == "distractor_step1" {
                     Spacer()
                     TimerView(displayDistractorView: $displayDistractorView).padding()

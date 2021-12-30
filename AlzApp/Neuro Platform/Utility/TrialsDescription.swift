@@ -69,5 +69,5 @@ var defaultLevelList: [LevelNum] = [
 ]
 
 var levelListNonAdap: [LevelNum] = [
-    .normal, .fast, .no_temp
+    .normal, .normal, .fast, .no_temp
 ]
