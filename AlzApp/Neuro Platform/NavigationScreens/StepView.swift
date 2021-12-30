@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 import CoreGraphics
 
-struct stepView: View {
+struct StepView: View {
     var currentStep: Step
     var levelNum: Int?
     var finalShape: String?
@@ -47,11 +47,6 @@ struct stepView: View {
                 } else if (currentStep.step == "encoding_step3") {
                     FinalShapePreview(shape: finalShape!, data: $data)
                 }
-                
-                
-//                else if currentStep.step == "encoding_step3" && testType == "parkinson's" {
-//                    FinalShapePreview(shape: finalShape!, data: $data)
-//                }
                 else if currentStep.step == "distractor_step1" {
                     Spacer()
                     TimerView(displayDistractorView: $displayDistractorView).padding()
@@ -69,6 +64,18 @@ struct stepView: View {
                     TimerView(displayDistractorView: $displayDistractorView).padding()
                     Distractor3View().padding()
                     Spacer()
+                } else if (currentStep.step.starts(with: "non_adap")) {
+                    VStack (alignment: .leading) {
+                        Text(currentStep.levels[levelNum!].instructions).font(.system(size: 23))
+                        if (currentStep.levels[levelNum!].step == "no_template") {
+                            ZStack {
+                                DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                                TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                            }
+                        } else {
+                            shapeView(shape: currentStep.levels[levelNum!].levelShape, data: $data)
+                        }
+                    }.padding()
                 } else {
                     Spacer()
                     EmptyView()

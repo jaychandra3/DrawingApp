@@ -24,6 +24,7 @@ struct Level: Hashable, Codable, Identifiable {
     var levelLabel: String
     var levelShape: String
     var passedTest: Bool?
+    var instructions: String
     
     // assigns value to passedTest
     mutating func evaluateLevel(passedTest: Bool) -> Void {

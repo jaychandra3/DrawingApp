@@ -21,6 +21,7 @@ var testType: String = ""
 struct HomeView: View {
     @State var parkinsonsTestActive : Bool = false
     @State var alzheimersTestActive: Bool = false
+    @State var nonadaptiveTestActive: Bool = false
     @State var recordsActive : Bool = false
     @State var instructionsActive : Bool = false
     @State var aboutAppActive : Bool = false
@@ -42,6 +43,12 @@ struct HomeView: View {
             NavigationLink(
                 destination: NewPatientView(rootActive: $alzheimersTestActive),
                 isActive: $alzheimersTestActive,
+                label: {
+                    EmptyView()
+                })
+            NavigationLink(
+                destination: NewPatientView(rootActive: $nonadaptiveTestActive),
+                isActive: $nonadaptiveTestActive,
                 label: {
                     EmptyView()
                 })
@@ -78,6 +85,10 @@ struct HomeView: View {
                 
                 Button(action: {alzheimersTestActive.toggle(); testType = "alzheimer's"}, label: {
                     Text("Take the Memory Test")
+                }).buttonStyle(MainButtonStyle())
+                
+                Button(action: {nonadaptiveTestActive.toggle(); testType = "non_adaptive"}, label: {
+                    Text("Take the Non-Adaptive Test")
                 }).buttonStyle(MainButtonStyle())
                 
                 Button(action: {recordsActive.toggle()}, label: {

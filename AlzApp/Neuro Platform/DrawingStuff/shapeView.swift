@@ -35,7 +35,10 @@ struct shapeView: View {
                 Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
                 Infinity().stroke(lineWidth:3)
                 Divider()
-                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                HStack {
+                    Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                    Text("(Draw downwards and towards the right starting at red dot)").font(.system(size:12)).padding(.top, -43)
+                }
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
                     Infinity().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
