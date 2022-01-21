@@ -39,7 +39,7 @@
                 "step": "no_template",
                 "levelLabel": "No Template",
                 "levelShape": "circle",
-                "instructions": "From memory, draw the figure from the previous step as accurately as possible. ",
+                "instructions": "Draw the figure displayed as accurately as possible. ",
             },
         ]
     },
@@ -76,7 +76,7 @@
                 "step": "no_template",
                 "levelLabel": "No Template",
                 "levelShape": "infinity_symbol",
-                "instructions": "From memory, draw the figure from the previous step as accurately as possible. ",
+                "instructions": "Draw the figure displayed as accurately as possible. ",
             },
         ]
     },
@@ -113,7 +113,7 @@
                 "step": "no_template",
                 "levelLabel": "No Template",
                 "levelShape": "arch_spiral",
-                "instructions": "From memory, draw the figure from the previous step as accurately as possible. ",
+                "instructions": "Draw the figure displayed as accurately as possible. ",
             },
         ]
     },
@@ -150,7 +150,7 @@
                 "step": "no_template",
                 "levelLabel": "No Template",
                 "levelShape": "prism",
-                "instructions": "From memory, draw the figure from the previous step as accurately as possible. ",
+                "instructions": "Draw the figure displayed as accurately as possible. ",
             },
         ]
     },
@@ -187,7 +187,7 @@
                 "step": "no_template",
                 "levelLabel": "No Template",
                 "levelShape": "spirograph",
-                "instructions": "From memory, draw the figure from the previous step as accurately as possible. ",
+                "instructions": "Draw the figure displayed as accurately as possible. ",
             },
         ]
     }

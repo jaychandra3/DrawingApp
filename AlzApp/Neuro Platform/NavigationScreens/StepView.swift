@@ -68,10 +68,27 @@ struct StepView: View {
                     VStack (alignment: .leading) {
                         Text(currentStep.levels[levelNum!].instructions).font(.system(size: 23))
                         if (currentStep.levels[levelNum!].step == "no_template") {
-                            ZStack {
-                                DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
-                                TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
-                            }
+                            var shape = currentStep.levels[levelNum!].levelShape
+                            VStack (alignment: .leading) {
+                                Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
+                                if shape == "circle" {
+                                    Level1().stroke(lineWidth:3)
+                                } else if shape == "infinity_symbol" {
+                                    Infinity().stroke(lineWidth:3)
+                                } else if shape == "arch_spiral" {
+                                    ArchSpiral().stroke(lineWidth:3)
+                                } else if shape == "prism" {
+                                    Prism().stroke(lineWidth:3)
+                                } else if shape == "spirograph" {
+                                    Spirograph().stroke(lineWidth:3)
+                                }
+                                Divider()
+                                Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
+                                ZStack {
+                                    DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
+                                    TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
+                                }.padding(.top, -10)
+                            }.padding()
                         } else {
                             shapeView(shape: currentStep.levels[levelNum!].levelShape, data: $data)
                         }
