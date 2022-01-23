@@ -53,23 +53,6 @@ struct ArchSpiral: Shape {
 }
 
 struct Prism: Shape {
-//    func path(in rect: CGRect) -> Path {
-//        let scalar : CGFloat = UIScreen.screenWidth/1150
-//        var path = Path()
-//            path.move(to: CGPoint(x: scalar * 250, y: scalar * 350))       //1
-//         path.addLine(to: CGPoint(x: scalar * 250, y: scalar * 150))       //2
-//         path.addLine(to: CGPoint(x: scalar * 320, y: scalar * 60))       //3
-//         path.addLine(to: CGPoint(x: scalar * 720, y: scalar * 60))       //4
-//         path.addLine(to: CGPoint(x: scalar * 720, y: scalar * 260))       //5
-//         path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 350))       //6
-//         path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 150))       //7
-//         path.addLine(to: CGPoint(x: scalar * 720, y: scalar * 60))       //wrap(4)
-//         path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 150))       //A(7)
-//         path.addLine(to: CGPoint(x: scalar * 250, y: scalar * 150))       //B(2)
-//         path.addLine(to: CGPoint(x: scalar * 250, y: scalar * 350))       //C(1)
-//         path.addLine(to: CGPoint(x: scalar * 650, y: scalar * 350))       //C(6)
-//        return path
-//    }
     
     func path(in rect: CGRect) -> Path {
         let scalar : CGFloat = UIScreen.screenWidth/1150

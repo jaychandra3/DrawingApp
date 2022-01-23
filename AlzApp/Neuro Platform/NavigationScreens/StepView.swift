@@ -65,7 +65,7 @@ struct StepView: View {
                     Distractor3View().padding()
                     Spacer()
                 } else if (currentStep.step.starts(with: "non_adap")) {
-                    VStack {
+                    VStack (alignment: .leading) {
                         Text(currentStep.levels[levelNum!].instructions).font(.system(size: 23))
                         if (currentStep.levels[levelNum!].step == "no_template") {
                             ZStack {
@@ -75,7 +75,7 @@ struct StepView: View {
                         } else {
                             shapeView(shape: currentStep.levels[levelNum!].levelShape, data: $data)
                         }
-                    }
+                    }.padding()
                 } else {
                     Spacer()
                     EmptyView()
