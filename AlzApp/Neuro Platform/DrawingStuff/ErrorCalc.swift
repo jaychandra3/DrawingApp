@@ -10,12 +10,21 @@ import Foundation
 import SwiftUI
 
 class ErrorCalc {
-    var isAlz : Bool
-    var level : Int
-    var data : DrawingData
+    private var alzNum = 0
+    private var parkNum = 1
+    private var nonAdapNum = 2
     
-    init(isAlz : Bool, level: Int, data: DrawingData) {
-        self.isAlz = isAlz
+    private var isAlz : Bool
+    private var isPark : Bool
+    private var isNonAdap: Bool
+    
+    private var level : Int
+    private var data : DrawingData
+    
+    init(testNum : Int, level: Int, data: DrawingData) {
+        self.isAlz = testNum == alzNum
+        self.isPark = testNum == parkNum
+        self.isNonAdap = testNum == nonAdapNum
         self.level = level
         self.data = data
     }
@@ -35,7 +44,7 @@ class ErrorCalc {
             print("X: " + point.x.description + " Y: " + point.y.description)
             
             // Distance to Spiral
-            if (!isAlz && level == 3) {
+            if ((isPark || isNonAdap) && level == 3) {
                 // center everything at (0,0)
                 let norm_point : CGPoint = CGPoint(x: point.x-spiral_center.x, y: point.y-spiral_center.y)
                 if(norm_point.x*norm_point.x+norm_point.y+norm_point.y < scalar*2000) {
@@ -58,7 +67,7 @@ class ErrorCalc {
             }
             
             // Distance to Infinity Symbol
-            if (!isAlz && level == 2) {
+            if ((isPark || isNonAdap) && level == 2) {
                 let norm_point : CGPoint = CGPoint(x: point.x-infinity_center.x, y: infinity_center.y-point.y)
                 
                  // one error is distance to theta-based projection onto infinity
@@ -89,7 +98,7 @@ class ErrorCalc {
             }
             
             // Distance to Spirograph
-            if (!isAlz && level == 5) {
+            if ((isPark || isNonAdap) && level == 5) {
                 let norm_point : CGPoint = CGPoint(x: point.x-spirograph_center.x, y: spirograph_center.y-point.y)
                 print("X': " + norm_point.x.description + " Y': " + norm_point.y.description)
                 // based on the quadrant, distance to various approximating circles and ellipses are calculated
@@ -195,13 +204,14 @@ class ErrorCalc {
             
             // Calculate min distance to overall figure
             min_error = error_arr.min() ?? -1
-            print("Error: " + min_error.description)
+            print("Error: \(min_error)")
             total_error += min_error
             error_arr.removeAll()
             count+=1
         }
         avg_error = total_error/count
-        print("Avg Error: " + avg_error.description)
+        print("Avg Error: \(avg_error)")
+        print("EC Level: \(level)");
         print("--------------------------------------------------")
         return avg_error
     }
@@ -214,7 +224,7 @@ class ErrorCalc {
         var radius : CGFloat = scalar*35 // have different radii for diff figures
 
         // Check Spiral
-        if (!isAlz && level == 3) {
+        if ((isPark || isNonAdap) && level == 3) {
             radius = scalar*30
             zones.append(CGPoint(x: scalar*500, y: scalar*250))
             zones.append(CGPoint(x: scalar*500, y: scalar*184.027))
@@ -231,7 +241,7 @@ class ErrorCalc {
         }
         
         // Check Infinity Symbol
-        if (!isAlz && level == 2) {
+        if ((isPark || isNonAdap) && level == 2) {
             zones.append(CGPoint(x: scalar*500, y: scalar*250))
             zones.append(CGPoint(x: scalar*940, y: scalar*250))
             zones.append(CGPoint(x: scalar*60, y: scalar*250))
@@ -242,7 +252,7 @@ class ErrorCalc {
         }
         
         // Check Spirograph
-        if (!isAlz && level == 5) {
+        if ((isPark || isNonAdap) && level == 5) {
             zones.append(CGPoint(x: scalar*720, y: scalar*250))
             zones.append(CGPoint(x: scalar*500, y: scalar*470))
             zones.append(CGPoint(x: scalar*280, y: scalar*250))
