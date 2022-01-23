@@ -9,6 +9,12 @@
 import SwiftUI
 
 struct DrawingView: View {
+    
+    @State private var ALZ : Int = 0
+    @State private var PARK : Int = 1
+    @State private var NON_ADAP : Int = 2
+    @State private var testNum : Int = 0
+    
     @State private var drawings : [Drawing] = [Drawing]()
     @Binding var rootIsActive: Bool
     @State var stepList: Array<Step> = steps
@@ -23,9 +29,8 @@ struct DrawingView: View {
     @State private var data = DrawingData()
     @State private var showingAlert : Bool = false
     @State private var passedTest : Bool = true
-    @State private var isAlz : Bool = true
     @State private var threshold : CGFloat = 17*UIScreen.screenWidth/1150
-    @State var answerSelected: Bool = false
+    @State private var answerSelected: Bool = false
     @State var showPopup: Bool = false
     @State var isCountdownDone: Bool = false
     @State var timeRemaining: Int = 30
@@ -201,20 +206,22 @@ struct DrawingView: View {
                     if (trialList[trialnum] == .practice_screen) {
                         switch testType {
                         case "alzheimer's":
+                            testNum = ALZ
+                            patientInfo += "Test Type: Alzheimer's\n"
                             stepList = steps_alz
                             trialList = trialListAlz
-                            patientInfo += "Test Type: Alzheimer's\n"
                             levelnum = 2
                         case "parkinson's":
+                            testNum = PARK
                             patientInfo += "Test Type: Parkinson's\n"
-                            isAlz = false
                             levelnum = 2
                         case "non_adaptive":
+                            testNum = NON_ADAP
+                            patientInfo += "Test Type: Non-Adaptive\n"
                             levelnum = -1 // incrememnts to 0 on the first button press
                             stepList = steps_non_adap
                             trialList = trialListNonAdap
                             levelList = levelListNonAdap
-                            patientInfo += "Test Type: Non-Adaptive\n"
                         default:
                             stepList = []
                         }
@@ -250,7 +257,7 @@ struct DrawingView: View {
                         // 1. Evaluate the level
                         // TODO: Add the implementation for evaluation. Currently a simulation
                         var currentLevel: Level = stepList[1].levels[levelnum]
-                        let EC : ErrorCalc = ErrorCalc(isAlz: isAlz, level: levelnum+1, data: self.data)
+                        let EC : ErrorCalc = ErrorCalc(testNum: testNum, level: levelnum+1, data: self.data)
                         let patient_error : CGFloat = EC.calcError()
                         patientInfo += "Level \(currentLevel.levelLabel.suffix(1)) \(currentLevel.levelShape)" + " Error: " + patient_error.description + "\n"
                         if (patient_error > threshold || !EC.drawingComplete()) {
@@ -302,6 +309,12 @@ struct DrawingView: View {
                             if (levelnum >= 4) {
                                 levelnum = 0
                                 trialnum += 1
+                            }
+                            print("Trial \(trialnum) Level \(levelnum)")
+                            if (levelnum != 0) {
+                                let EC : ErrorCalc = ErrorCalc(testNum: testNum, level: trialnum + 1, data: self.data)
+                                let patient_error : CGFloat = EC.calcError()
+                                patientInfo += "Trial \(trialnum) Level \(levelnum) Error: \(patient_error)\n"
                             }
                         }
                         else {
@@ -382,12 +395,12 @@ func finishInfo(patient: String, patientInfoCSV: String, formName : String = "pa
     }
 }
 
-struct DrawingView_Previews: PreviewProvider {
-    @State static var value = true
-    static var previews: some View {
-        Group {
-            DrawingView(rootIsActive: $value, trials: 3, patient: "Elias")
-            DrawingView(rootIsActive: $value, trials: 3, patient: "Elias")
-        }
-    }
-}
+//struct DrawingView_Previews: PreviewProvider {
+//    @State static var value = true
+//    static var previews: some View {
+//        Group {
+//            DrawingView(rootIsActive: $value, trials: 3, patient: "Elias")
+//            DrawingView(rootIsActive: $value, trials: 3, patient: "Elias")
+//        }
+//    }
+//}
