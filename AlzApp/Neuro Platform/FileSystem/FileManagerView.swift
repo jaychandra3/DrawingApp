@@ -42,13 +42,14 @@ struct FileManagerView: View {
                         print("button is pressed - toggle to true")
                 })
             }
-            .fileMover(isPresented: $isMovingSelection, file: updateDocumentsPath(createDirectory: isMovingSelection)){ result in
+            .fileMover(isPresented: $isMovingSelection, file: getDocumentsDirectoryRoot()) { result in
                 switch result {
                 case .success(let url):
                     defaults.set([], forKey: "stored_patient_array")
                     print("Saved to \(url)")
                 case .failure(let error):
                     print(error.localizedDescription)
+                    print("CANCELLED EXPORT")
                 }
             }
         }

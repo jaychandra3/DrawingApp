@@ -82,7 +82,7 @@ class DrawingData {
         let str : String = CSVString()
             try str.write(to: url, atomically: true, encoding: .utf8)
             //let input = try String(contentsOf: url)
-            //print(input)
+            print("URL: \(url)")
         } catch {
             print("Failed to write to disk")
             print(error.localizedDescription)

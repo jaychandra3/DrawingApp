@@ -68,7 +68,7 @@ struct StepView: View {
                     VStack (alignment: .leading) {
                         Text(currentStep.levels[levelNum!].instructions).font(.system(size: 23))
                         if (currentStep.levels[levelNum!].step == "no_template") {
-                            var shape = currentStep.levels[levelNum!].levelShape
+                            let shape = currentStep.levels[levelNum!].levelShape
                             VStack (alignment: .leading) {
                                 Text("Template: ").bold().font(.system(size:20)).padding(.top, 2)
                                 if shape == "circle" {

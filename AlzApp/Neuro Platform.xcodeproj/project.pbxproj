@@ -55,6 +55,7 @@
 		AFDFDDBF24BE771200EBDCA9 /* TouchCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDFDDBE24BE771200EBDCA9 /* TouchCaptureView.swift */; };
 		D8987F182650F10F00080476 /* Override.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8987F172650F10F00080476 /* Override.swift */; };
 		D8987F1A26548F7D00080476 /* stepInstructionsAlz.json in Resources */ = {isa = PBXBuildFile; fileRef = D8987F1926548F7D00080476 /* stepInstructionsAlz.json */; };
+		DCDB4C1E27CC702B0005DE56 /* TemplateCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDB4C1D27CC702B0005DE56 /* TemplateCoordinates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		AFDFDDBE24BE771200EBDCA9 /* TouchCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCaptureView.swift; sourceTree = "<group>"; };
 		D8987F172650F10F00080476 /* Override.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Override.swift; sourceTree = "<group>"; };
 		D8987F1926548F7D00080476 /* stepInstructionsAlz.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stepInstructionsAlz.json; sourceTree = "<group>"; };
+		DCDB4C1D27CC702B0005DE56 /* TemplateCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCoordinates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 				AF4EE252249BD4F800603E42 /* Drawing.swift */,
 				96FDA7962643A05200184838 /* shapeView.swift */,
 				6C7523F8265B10320047A440 /* ErrorCalc.swift */,
+				DCDB4C1D27CC702B0005DE56 /* TemplateCoordinates.swift */,
 			);
 			path = DrawingStuff;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				966656DA2658926000F3E7A4 /* Distractor1View.swift in Sources */,
 				AFDFDDBC24BE74EE00EBDCA9 /* TouchCaptureViewController.swift in Sources */,
 				D8987F182650F10F00080476 /* Override.swift in Sources */,
+				DCDB4C1E27CC702B0005DE56 /* TemplateCoordinates.swift in Sources */,
 				52ADE80B249570B200595A42 /* SceneDelegate.swift in Sources */,
 				966656DF265893DE00F3E7A4 /* GridView.swift in Sources */,
 				AF4CBBCC2544ADF00049C80F /* NewPatientView.swift in Sources */,
@@ -686,14 +690,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Neuro Platform/Preview Content\"";
-				DEVELOPMENT_TEAM = LJF9B77S4D;
+				DEVELOPMENT_TEAM = HBZ2NKGW43;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Neuro Platform/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.NDDP.Neuro-Platform.jason";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NDDP.Neuro-Platform.richard";
 				PRODUCT_NAME = Inscribe;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -706,14 +710,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Neuro Platform/Preview Content\"";
-				DEVELOPMENT_TEAM = LJF9B77S4D;
+				DEVELOPMENT_TEAM = HBZ2NKGW43;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Neuro Platform/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.NDDP.Neuro-Platform.jason";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.NDDP.Neuro-Platform.richard";
 				PRODUCT_NAME = Inscribe;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

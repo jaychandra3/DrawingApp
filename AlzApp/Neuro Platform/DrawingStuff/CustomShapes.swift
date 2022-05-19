@@ -48,6 +48,7 @@ struct ArchSpiral: Shape {
                 path.addLine(to: CGPoint(x: x, y: y))
             }
         }
+        print("\(path)")
         return path
     }
 }
@@ -75,6 +76,7 @@ struct Prism: Shape {
         path.addLine(to: CGPoint(x: scalar * 350, y: scalar * 350))       //C(1)
         path.addLine(to: CGPoint(x: scalar * 750, y: scalar * 350))       //C(6)
         
+        print("prism: \(path)")
         return path
     }
 }
