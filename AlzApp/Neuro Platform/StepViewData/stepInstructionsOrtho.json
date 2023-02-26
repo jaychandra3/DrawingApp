@@ -1,0 +1,138 @@
+[
+    {
+        "id": 1001,
+        "step": "practice_screen",
+        "stepLabel": "Practice Drawing with the Apple Pencil!",
+        "instructions": "Use the blank screen below as a drawing pad and practice drawing with the Apple Pencil! Treat the screen as just a normal piece of paper. Try writing your name, or drawing a circle to the best of your ability!",
+        "levels": []
+    },
+    {
+        "id": 1002,
+        "step": "ortho_lvl1",
+        "stepLabel": "Level 1",
+        "instructions": "",
+        "levels":
+        [
+            {
+                "id": 10021,
+                "step": "normal",
+                "levelLabel": "Normal Tracing",
+                "levelShape": "circle",
+                "instructions": "Trace the figure below as accurately as possible. ",
+            },
+            {
+                "id": 10022,
+                "step": "normal",
+                "levelLabel": "Normal Tracing",
+                "levelShape": "circle",
+                "instructions": "Trace the figure below as accurately as possible. ",
+            },
+            {
+                "id": 10023,
+                "step": "fast",
+                "levelLabel": "Fast Tracing",
+                "levelShape": "circle",
+                "instructions": "Trace the figure below as quickly as possible. ",
+            },
+            {
+                "id": 10024,
+                "step": "no_template",
+                "levelLabel": "No Template",
+                "levelShape": "circle",
+                "instructions": "Draw the figure displayed as accurately as possible. ",
+            },
+        ]
+    },
+    {
+        "id": 1003,
+        "step": "ortho_lvl2",
+        "stepLabel": "Level 2",
+        "instructions": "",
+        "levels":
+        [
+            {
+                "id": 10031,
+                "step": "normal",
+                "levelLabel": "Normal Tracing",
+                "levelShape": "infinity_symbol",
+                "instructions": "Trace the figure below as accurately as possible. ",
+            },
+            {
+                "id": 10034,
+                "step": "no_template",
+                "levelLabel": "No Template",
+                "levelShape": "infinity_symbol",
+                "instructions": "Draw the figure displayed as accurately as possible. ",
+            },
+        ]
+    },
+    {
+        "id": 1004,
+        "step": "ortho_lvl3",
+        "stepLabel": "Level 3",
+        "instructions": "",
+        "levels":
+        [
+            {
+                "id": 10041,
+                "step": "normal",
+                "levelLabel": "Normal Tracing",
+                "levelShape": "arch_spiral",
+                "instructions": "Trace the figure below as accurately as possible. ",
+            },
+            {
+                "id": 10044,
+                "step": "no_template",
+                "levelLabel": "No Template",
+                "levelShape": "arch_spiral",
+                "instructions": "Draw the figure displayed as accurately as possible. ",
+            },
+        ]
+    },
+    {
+        "id": 1005,
+        "step": "ortho_lvl4",
+        "stepLabel": "Level 4",
+        "instructions": "",
+        "levels":
+        [
+            {
+                "id": 10051,
+                "step": "normal",
+                "levelLabel": "Normal Tracing",
+                "levelShape": "prism",
+                "instructions": "Trace the figure below as accurately as possible. ",
+            },
+            {
+                "id": 10054,
+                "step": "no_template",
+                "levelLabel": "No Template",
+                "levelShape": "prism",
+                "instructions": "Draw the figure displayed as accurately as possible. ",
+            },
+        ]
+    },
+    {
+        "id": 1006,
+        "step": "ortho_lvl5",
+        "stepLabel": "Level 5",
+        "instructions": "",
+        "levels":
+        [
+            {
+                "id": 10061,
+                "step": "normal",
+                "levelLabel": "Normal Tracing",
+                "levelShape": "spirosquare",
+                "instructions": "Trace the figure below as accurately as possible. ",
+            },
+            {
+                "id": 10064,
+                "step": "no_template",
+                "levelLabel": "No Template",
+                "levelShape": "spirosquare",
+                "instructions": "Draw the figure displayed as accurately as possible. ",
+            },
+        ]
+    }
+]

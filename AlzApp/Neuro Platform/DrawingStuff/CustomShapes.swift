@@ -13,18 +13,29 @@ import SwiftUI
 // shapes with explicit names are for Parkinson's 
 struct SpiroSquare: Shape {
     func path(in rect: CGRect) -> Path {
+        let scalar : CGFloat = UIScreen.screenWidth/1150
         var path = Path()
-        
+        let width = rect.width - 600
+        let height = rect.height
+
         let rotations = 5
         let amount = .pi / CGFloat(rotations)
         let transform = CGAffineTransform(rotationAngle: amount)
-        
+
         for _ in 0 ..< rotations {
+            let rect = CGRect(x: scalar * -width / 2, y: scalar * -height / 2, width: scalar * width, height: scalar * height)
+            path.addRect(rect)
             path = path.applying(transform)
-            
-            path.addRect(CGRect(x: -rect.width / 2, y: -rect.height / 2, width: rect.width, height: rect.height))
         }
         
+        let xOffset = rect.width * 0.5
+        let yOffset = rect.height / 2
+        
+        var transform2 = CGAffineTransform.identity
+        transform2 = transform2.translatedBy(x: xOffset, y: yOffset)
+        
+        path = path.applying(transform2)
+
         return path
     }
 }

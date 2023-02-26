@@ -64,7 +64,7 @@ struct StepView: View {
                     TimerView(displayDistractorView: $displayDistractorView).padding()
                     Distractor3View().padding()
                     Spacer()
-                } else if (currentStep.step.starts(with: "non_adap")) {
+                } else if (currentStep.step.starts(with: "non_adap") || currentStep.step.starts(with: "ortho")) {
                     VStack (alignment: .leading) {
                         Text(currentStep.levels[levelNum!].instructions).font(.system(size: 23))
                         if (currentStep.levels[levelNum!].step == "no_template") {
@@ -81,6 +81,8 @@ struct StepView: View {
                                     Prism().stroke(lineWidth:3)
                                 } else if shape == "spirograph" {
                                     Spirograph().stroke(lineWidth:3)
+                                } else if shape == "spirosquare" {
+                                    SpiroSquare().stroke(lineWidth: 3)
                                 }
                                 Divider()
                                 Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)

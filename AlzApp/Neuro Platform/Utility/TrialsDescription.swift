@@ -73,3 +73,7 @@ var defaultLevelList: [LevelNum] = [
 var levelListNonAdap: [LevelNum] = [
     .normal1, .normal2, .fast, .no_temp
 ]
+
+var levelListOrtho: [LevelNum] = [
+    .normal1, .no_temp // for non-circle shapes in ortho
+]

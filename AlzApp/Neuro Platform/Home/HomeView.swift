@@ -22,6 +22,7 @@ struct HomeView: View {
     @State var parkinsonsTestActive : Bool = false
     @State var alzheimersTestActive: Bool = false
     @State var nonadaptiveTestActive: Bool = false
+    @State var orthoTestActive: Bool = false
     @State var recordsActive : Bool = false
     @State var instructionsActive : Bool = false
     @State var aboutAppActive : Bool = false
@@ -53,6 +54,12 @@ struct HomeView: View {
                     EmptyView()
                 })
             NavigationLink(
+                destination: NewPatientView(rootActive: $orthoTestActive),
+                isActive: $orthoTestActive,
+                label: {
+                    EmptyView()
+                })
+            NavigationLink(
                 destination: FileManagerView(),
                 isActive: $recordsActive,
                 label: {
@@ -71,7 +78,6 @@ struct HomeView: View {
                     EmptyView()
                 })
             
-            
             // Define actual user seen interface
             // deal with styles and stuff here
             Text("Inscribe")
@@ -89,6 +95,10 @@ struct HomeView: View {
                 
                 Button(action: {nonadaptiveTestActive.toggle(); testType = "non_adaptive"}, label: {
                     Text("Take the Non-Adaptive Test")
+                }).buttonStyle(MainButtonStyle())
+                
+                Button(action: {orthoTestActive.toggle(); testType = "ortho"}, label: {
+                    Text("Take the Orthopaedic Test")
                 }).buttonStyle(MainButtonStyle())
                 
                 Button(action: {recordsActive.toggle()}, label: {

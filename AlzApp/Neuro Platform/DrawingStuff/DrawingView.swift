@@ -13,6 +13,7 @@ struct DrawingView: View {
     @State private var ALZ : Int = 0
     @State private var PARK : Int = 1
     @State private var NON_ADAP : Int = 2
+    @State private var ORTHO : Int = 3
     @State private var testNum : Int = 0
     
     @State private var drawings : [Drawing] = [Drawing]()
@@ -111,7 +112,7 @@ struct DrawingView: View {
                      StepView(currentStep: stepList[1], levelNum: levelnum, data: $data)
                  }
              case .level2:
-                 switch levelList[levelnum] {
+                switch levelList[levelnum] {
                  case .normal1:
                      StepView(currentStep: stepList[2], levelNum: levelnum, data: $data)
                  case .normal2:
@@ -222,8 +223,21 @@ struct DrawingView: View {
                             stepList = steps_non_adap
                             trialList = trialListNonAdap
                             levelList = levelListNonAdap
+                        case "ortho":
+                            testNum = ORTHO
+                            patientInfo += "Test Type: Ortho\n"
+                            levelnum = -1
+                            stepList = steps_ortho
+                            trialList = trialListNonAdap
+                            levelList = levelListNonAdap
                         default:
                             stepList = []
+                        }
+                    }
+                    
+                    if (testType == "ortho") {
+                        if trialList[trialnum] == .level2 {
+                            levelList = levelListOrtho
                         }
                     }
                     
@@ -304,9 +318,13 @@ struct DrawingView: View {
                     
                     // Only increase trial if calibration is complete or if it is not .encoding_step1
                     if (calibrationDone || trialList[trialnum] != .encoding_step1) {
-                        if (testType == "non_adaptive") {
+                        if (testType == "non_adaptive" || testType == "ortho") {
                             levelnum += 1
                             if (levelnum >= 4) {
+                                levelnum = 0
+                                trialnum += 1
+                            }
+                            if (testType == "ortho" && levelnum >= 2 && trialList[trialnum] != .level1) {
                                 levelnum = 0
                                 trialnum += 1
                             }
@@ -343,7 +361,7 @@ struct DrawingView: View {
                         }
                     }
                 }, label: {
-                    if (trialnum == trialList.count - 1 && (testType != "non_adaptive" || testType == "non_adaptive" && levelnum == levelList.count - 1)) {
+                    if (trialnum == trialList.count - 1 && (testType != "non_adaptive" || testType == "non_adaptive" && levelnum == levelList.count - 1) && (testType != "ortho" || testType == "ortho" && levelnum == levelList.count - 1)) {
                         Text("Finish Test").foregroundColor(.white)
                     } else {
                         Text("Next Trial").foregroundColor(.white)

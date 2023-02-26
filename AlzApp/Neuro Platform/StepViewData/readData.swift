@@ -14,6 +14,7 @@ import Foundation
 var steps: [Step] = load("stepInstructionsPark.json")
 var steps_alz: [Step] = load("stepInstructionsAlz.json")
 var steps_non_adap: [Step] = load("stepInstructionsNonAdap.json")
+var steps_ortho: [Step] = load("stepInstructionsOrtho.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
