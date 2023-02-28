@@ -155,12 +155,12 @@ struct shapeView: View {
                 Divider()
                 HStack {
                     Text("Your Drawing: ").bold().font(.system(size:20)).padding(.top, -50)
-                    Text("(Draw downwards starting at red dot)").font(.system(size:12)).padding(.top, -43)
+                    Text("(Draw upwards starting at red dot)").font(.system(size:12)).padding(.top, -43)
                 }
                 ZStack {
                     DrawingPad(currentDrawing: $currentDrawing, drawings: $drawings)
                     SpiroSquare().stroke(style: StrokeStyle(lineWidth:3, dash:[6])).opacity(0.5)
-                    Circle().fill(Color.red.opacity(0.75)).frame(width: scalar * 15, height: scalar * 15).position(x: scalar*500, y: scalar*50)
+                    Circle().fill(Color.red.opacity(0.75)).frame(width: scalar * 15, height: scalar * 15).position(x: scalar * 500, y: scalar * 250)
                     TouchCaptureView(currentDrawing: $currentDrawing, drawings: $drawings, data: $data).opacity(0.1)
                 }.padding(.top, -10)
             }.padding()
