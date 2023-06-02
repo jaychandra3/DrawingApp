@@ -14,27 +14,35 @@ import SwiftUI
 struct SpiroSquare: Shape {
     func path(in rect: CGRect) -> Path {
         let scalar : CGFloat = UIScreen.screenWidth/1150
+        let centerX = scalar * 500
+        let centerY = scalar * 250
+        let numSegments = 3
+        let segmentLength = UIScreen.screenWidth/(CGFloat(numSegments) + 1)
+        let segmentWidth = segmentLength / 4
+
         var path = Path()
-        let width = rect.width - 600
-        let height = rect.height
+        path.move(to: CGPoint(x: centerX, y: centerY))
 
-        let rotations = 5
-        let amount = .pi / CGFloat(rotations)
-        let transform = CGAffineTransform(rotationAngle: amount)
-
-        for _ in 0 ..< rotations {
-            let rect = CGRect(x: scalar * -width / 2, y: scalar * -height / 2, width: scalar * width, height: scalar * height)
-            path.addRect(rect)
-            path = path.applying(transform)
+        for i in 1...numSegments {
+            let startX = centerX + CGFloat(i) * segmentWidth
+            let endX = centerX - CGFloat(i) * segmentWidth
+            let startY = centerY - CGFloat(i) * segmentWidth
+            let endY = centerY + CGFloat(i) * segmentWidth
+            
+            if i == 1 {
+                path.addLine(to: CGPoint(x: centerX, y: startY))
+            }
+           
+            path.addLine(to: CGPoint(x: startX, y: startY))
+            path.addLine(to: CGPoint(x: startX, y: endY))
+            path.addLine(to: CGPoint(x: endX, y: endY))
+            if i < numSegments{
+                path.addLine(to: CGPoint(x: endX, y: startY - segmentWidth))
+            }
+            else{
+                path.addLine(to: CGPoint(x: endX, y: startY))
+            }
         }
-        
-        let xOffset = rect.width * 0.5
-        let yOffset = rect.height / 2
-        
-        var transform2 = CGAffineTransform.identity
-        transform2 = transform2.translatedBy(x: xOffset, y: yOffset)
-        
-        path = path.applying(transform2)
 
         return path
     }

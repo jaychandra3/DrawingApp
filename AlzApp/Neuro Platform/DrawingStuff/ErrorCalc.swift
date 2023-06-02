@@ -13,10 +13,12 @@ class ErrorCalc {
     private var alzNum = 0
     private var parkNum = 1
     private var nonAdapNum = 2
+    private var orthoNum = 3
     
     private var isAlz : Bool
     private var isPark : Bool
     private var isNonAdap: Bool
+    private var isOrtho: Bool
     
     private var level : Int
     private var data : DrawingData
@@ -25,6 +27,7 @@ class ErrorCalc {
         self.isAlz = testNum == alzNum
         self.isPark = testNum == parkNum
         self.isNonAdap = testNum == nonAdapNum
+        self.isOrtho = testNum == orthoNum
         self.level = level
         self.data = data
     }
@@ -44,7 +47,7 @@ class ErrorCalc {
             print("X: " + point.x.description + " Y: " + point.y.description)
             
             // Distance to Spiral
-            if ((isPark || isNonAdap) && level == 3) {
+            if ((isPark || isNonAdap || isOrtho) && level == 3) {
                 // center everything at (0,0)
                 let norm_point : CGPoint = CGPoint(x: point.x-spiral_center.x, y: point.y-spiral_center.y)
                 if(norm_point.x*norm_point.x+norm_point.y+norm_point.y < scalar*2000) {
@@ -67,7 +70,7 @@ class ErrorCalc {
             }
             
             // Distance to Infinity Symbol
-            if ((isPark || isNonAdap) && level == 2) {
+            if ((isPark || isNonAdap || isOrtho) && level == 2) {
                 let norm_point : CGPoint = CGPoint(x: point.x-infinity_center.x, y: infinity_center.y-point.y)
                 
                  // one error is distance to theta-based projection onto infinity
@@ -95,6 +98,53 @@ class ErrorCalc {
                     error_arr.append(abs(sqrt(norm_point.x*norm_point.x + norm_point.y*norm_point.y) - projected_radius))
                 }
             
+            }
+            
+            // Distance to Spirograph
+            if ((isOrtho) && level == 5) {
+                let scalar : CGFloat = UIScreen.screenWidth/1150
+                let centerX = scalar * 500
+                let centerY = scalar * 250
+                let numSegments = 3
+                let segmentLength = UIScreen.screenWidth / (CGFloat(numSegments) + 1)
+                let segmentWidth = segmentLength / 4
+                
+                var oldX = centerX
+                var oldY = centerY
+
+                for i in 1...numSegments {
+                    let startX = centerX + CGFloat(i) * segmentWidth
+                    let endX = centerX - CGFloat(i) * segmentWidth
+                    let startY = centerY - CGFloat(i) * segmentWidth
+                    let endY = centerY + CGFloat(i) * segmentWidth
+                    
+                    
+                    if i == 1 {
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: oldX, y: oldY), and: CGPoint(x: centerX, y: startY)))
+                        oldX = centerX
+                        oldY = startY
+                    }
+                   
+                    error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: oldX, y: oldY), and: CGPoint(x: startX, y: startY)))
+                    oldX = startX
+                    oldY = startY
+                    error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: oldX, y: oldY), and: CGPoint(x: startX, y: endY)))
+                    oldX = startX
+                    oldY = endY
+                    error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: oldX, y: oldY), and: CGPoint(x: endX, y: endY)))
+                    oldX = endX
+                    oldY = endY
+                    if i < numSegments{
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: oldX, y: oldY), and: CGPoint(x: endX, y: startY - segmentWidth)))
+                        oldX = endX
+                        oldY = startY - segmentWidth
+                    }
+                    else{
+                        error_arr.append(distanceFromPoint(p: point, toLineSegment: CGPoint(x: oldX, y: oldY), and: CGPoint(x: endX, y: startY)))
+                        oldX = endX
+                        oldY = startY
+                    }
+                }
             }
             
             // Distance to Spirograph
@@ -224,7 +274,7 @@ class ErrorCalc {
         var radius : CGFloat = scalar*35 // have different radii for diff figures
 
         // Check Spiral
-        if ((isPark || isNonAdap) && level == 3) {
+        if ((isPark || isNonAdap || isOrtho) && level == 3) {
             radius = scalar*30
             zones.append(CGPoint(x: scalar*500, y: scalar*250))
             zones.append(CGPoint(x: scalar*500, y: scalar*184.027))
@@ -241,7 +291,7 @@ class ErrorCalc {
         }
         
         // Check Infinity Symbol
-        if ((isPark || isNonAdap) && level == 2) {
+        if ((isPark || isNonAdap || isOrtho) && level == 2) {
             zones.append(CGPoint(x: scalar*500, y: scalar*250))
             zones.append(CGPoint(x: scalar*940, y: scalar*250))
             zones.append(CGPoint(x: scalar*60, y: scalar*250))
