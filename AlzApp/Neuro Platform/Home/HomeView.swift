@@ -26,6 +26,7 @@ struct HomeView: View {
     @State var recordsActive : Bool = false
     @State var instructionsActive : Bool = false
     @State var aboutAppActive : Bool = false
+    @State var passwordTxt : String = ""
     //@EnvironmentObject var testType: TestType
     var body: some View {
         VStack{
@@ -101,10 +102,6 @@ struct HomeView: View {
                     Text("Take the Orthopaedic Test")
                 }).buttonStyle(MainButtonStyle())
                 
-                Button(action: {recordsActive.toggle()}, label: {
-                    Text("View Patient Records")
-                }).buttonStyle(MainButtonStyle())
-                
                 Button(action: {instructionsActive.toggle()}, label: {
                     Text("Instructions Overview")
                 }).buttonStyle(MainButtonStyle())
@@ -112,6 +109,21 @@ struct HomeView: View {
                 Button(action: {aboutAppActive.toggle()}, label: {
                     Text("About the App")
                 }).buttonStyle(MainButtonStyle())
+                
+                Button(action:{if(passwordTxt == "2135")
+                    {recordsActive.toggle();
+                    passwordTxt = ""}
+                },
+                label: {
+                    Text("View Patient Records")
+                }).buttonStyle(MainButtonStyle())
+                
+                Text("Password:")
+                    .multilineTextAlignment(.center)
+                    .frame(width: 300)
+                TextField("Password Entry for Data Access", text: $passwordTxt)
+                    .multilineTextAlignment(.center)
+                    .frame(width: 300)
             }
             
         }.navigationBarHidden(true)
